@@ -9,7 +9,7 @@
     "projectName": "2026-10 Polk Large Debris",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 712389,
+    "estimate": 800965.0,
     "letDate": "10/14/2026",
     "typeOfWork": "DEBRIS REMOVAL",
     "csj": "6503-75-001"
@@ -40,7 +40,7 @@
     "projectName": "US 69_N of FM 841 to W of FM 1475-IOI",
     "highway": "US 69",
     "subCSJCount": 2,
-    "estimate": 30903546.45,
+    "estimate": 31796269.84,
     "letDate": "10/06/2026",
     "typeOfWork": "Intersection Improvements With Right And/Or Left T",
     "csj": "0200-01-093"
@@ -61,7 +61,7 @@
     "projectName": "IH 45 Innovative Corridor DAL 1",
     "highway": "IH 45",
     "subCSJCount": 7,
-    "estimate": 33244748.6,
+    "estimate": 29876158.27,
     "letDate": "10/06/2026",
     "typeOfWork": "Cooperative and Automated Transportation",
     "csj": "0092-02-145"
@@ -76,7 +76,7 @@
     "projectName": "Traffic Control Services FY 27 Wood",
     "highway": "US0080",
     "subCSJCount": 1,
-    "estimate": 2303800,
+    "estimate": 2735000.0,
     "letDate": "10/06/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6504-70-001"
@@ -121,7 +121,7 @@
     "projectName": "US 87: 0143-03-049; WNF",
     "highway": "US 87",
     "subCSJCount": 1,
-    "estimate": 47441025.1,
+    "estimate": 39881467.43,
     "letDate": "10/06/2026",
     "typeOfWork": "Widen Road - Add Lanes",
     "csj": "0143-03-049"
@@ -137,7 +137,7 @@
     "projectName": "PHR_SL499_FY24",
     "highway": "SL 499",
     "subCSJCount": 2,
-    "estimate": 105183.65,
+    "estimate": 102744.0,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "1137-02-044"
@@ -152,7 +152,7 @@
     "projectName": "Debris Removal - Grayson Co FY27",
     "highway": "US0075",
     "subCSJCount": 1,
-    "estimate": 600000,
+    "estimate": 631000.0,
     "letDate": "10/15/2026",
     "typeOfWork": "DEBRIS REMOVAL",
     "csj": "6507-51-001"
@@ -167,7 +167,7 @@
     "projectName": "2026 - RDC Complex Chloride",
     "highway": "US0084",
     "subCSJCount": 1,
-    "estimate": 337920,
+    "estimate": 488505.0,
     "letDate": "10/06/2026",
     "typeOfWork": "DE-ICING SALT",
     "csj": "6508-26-001"
@@ -182,7 +182,7 @@
     "projectName": "EAO - Miscellaneous Concrete",
     "highway": "IH0010",
     "subCSJCount": 1,
-    "estimate": 1,
+    "estimate": 809850.0,
     "letDate": "10/14/2026",
     "typeOfWork": "MISCELLANEOUS CONCRETE REPAIR",
     "csj": "6507-39-001"
@@ -212,7 +212,7 @@
     "projectName": "VA_2027 Dist Wide - BMN",
     "highway": "Various",
     "subCSJCount": 1,
-    "estimate": 2428360,
+    "estimate": 3269224.0,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Maintenance",
     "csj": "0911-00-188"
@@ -227,7 +227,7 @@
     "projectName": "Traffic Control Services - Smith County",
     "highway": "US0069",
     "subCSJCount": 1,
-    "estimate": 1500000,
+    "estimate": 940700.0,
     "letDate": "10/13/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6508-38-001"
@@ -257,7 +257,7 @@
     "projectName": "US 90 Sanderson Canyon Bridge @ UPRR",
     "highway": "US 90",
     "subCSJCount": 1,
-    "estimate": 6089616.17,
+    "estimate": 6768347.71,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Replacement",
     "csj": "0022-01-034"
@@ -272,7 +272,7 @@
     "projectName": "THERMOPLASTIC STRIPING AND PAV",
     "highway": "US0377",
     "subCSJCount": 1,
-    "estimate": 4414900.84,
+    "estimate": 3276697.17,
     "letDate": "10/06/2026",
     "typeOfWork": "THERMOPLASTIC PAVEMENT MARKINGS",
     "csj": "6496-56-001"
@@ -287,7 +287,7 @@
     "projectName": "6507-26-001 Brush Removal",
     "highway": "SH0349",
     "subCSJCount": 1,
-    "estimate": 1999722,
+    "estimate": 746150.0,
     "letDate": "10/06/2026",
     "typeOfWork": "BRUSH REMOVAL",
     "csj": "6507-26-001"
@@ -302,7 +302,7 @@
     "projectName": "Concrete Punch Outs",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 1356250,
+    "estimate": 1521875.0,
     "letDate": "10/06/2026",
     "typeOfWork": "CONCRETE SPALL REPAIR",
     "csj": "6497-96-001"
@@ -333,7 +333,7 @@
     "projectName": "US 281, FM 1954 to Lake Creek",
     "highway": "US 281",
     "subCSJCount": 2,
-    "estimate": 3056396.63,
+    "estimate": 3682675.16,
     "letDate": "10/06/2026",
     "typeOfWork": "Resurface Roadway",
     "csj": "0249-02-026"
@@ -480,7 +480,7 @@
     "projectName": "FM 46 F: Falls C/L T: SH 14 - SC FY 27",
     "highway": "FM 46",
     "subCSJCount": 58,
-    "estimate": 18913517.76,
+    "estimate": 19126404.98,
     "letDate": "10/06/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0049-14-015"
@@ -552,7 +552,7 @@
     "projectName": "US 90; 0024-02-081; SC",
     "highway": "US 90",
     "subCSJCount": 28,
-    "estimate": 8106446.42,
+    "estimate": 8592887.27,
     "letDate": "10/06/2026",
     "typeOfWork": "Resurface Roadway",
     "csj": "0024-02-081"
@@ -567,7 +567,7 @@
     "projectName": "RMC 6508-74-001",
     "highway": "US0290",
     "subCSJCount": 1,
-    "estimate": 400000,
+    "estimate": 532540.0,
     "letDate": "10/13/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6508-74-001"
@@ -610,7 +610,7 @@
     "projectName": "SH 132:0017-13-013; SC",
     "highway": "SH 132",
     "subCSJCount": 29,
-    "estimate": 10853913.77,
+    "estimate": 10890777.22,
     "letDate": "10/06/2026",
     "typeOfWork": "Resurface Roadway",
     "csj": "0017-13-013"
@@ -640,7 +640,7 @@
     "projectName": "AAO MBGF FY 27",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 986350,
+    "estimate": 983600.0,
     "letDate": "10/19/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6505-06-001"
@@ -655,7 +655,7 @@
     "projectName": "Large Guide Sign Repl 2026 (Non-Site)",
     "highway": "US0080",
     "subCSJCount": 1,
-    "estimate": 2988037.95,
+    "estimate": 3713700.0,
     "letDate": "10/06/2026",
     "typeOfWork": "LARGE SIGN REPLACEMENT",
     "csj": "6503-57-001"
@@ -670,7 +670,7 @@
     "projectName": "FM 75 FROM MONTE CARLO BLVD TO-38701016",
     "highway": "FM 75",
     "subCSJCount": 1,
-    "estimate": 5938082.2,
+    "estimate": 4906593.39,
     "letDate": "10/06/2026",
     "typeOfWork": "Rehabilitate Existing Roadway",
     "csj": "0387-01-016"
@@ -685,7 +685,7 @@
     "projectName": "Callout Cable Barrier East FY26",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 400000,
+    "estimate": 625967.0,
     "letDate": "10/19/2026",
     "typeOfWork": "CABLE BARRIER REPAIR",
     "csj": "6505-54-001"
@@ -731,7 +731,7 @@
     "projectName": "Pool Hill Rd at Brookshire Creek",
     "highway": "POOL HILL RD",
     "subCSJCount": 2,
-    "estimate": 2127190.21,
+    "estimate": 1963405.1,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Replacement",
     "csj": "0912-34-209"
@@ -746,7 +746,7 @@
     "projectName": "IH 30 AT BASS PRO DRIVE",
     "highway": "IH 30",
     "subCSJCount": 1,
-    "estimate": 51718095.61,
+    "estimate": 54378798.32,
     "letDate": "10/06/2026",
     "typeOfWork": "Interchange Improvement",
     "csj": "0009-11-248"
@@ -761,7 +761,7 @@
     "projectName": "BPM FY 2027 III",
     "highway": "BI0040D",
     "subCSJCount": 1,
-    "estimate": 1000000,
+    "estimate": 811416.0,
     "letDate": "10/14/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6504-61-001"
@@ -806,7 +806,7 @@
     "projectName": "US 67 from US 259 to Titus C/L",
     "highway": "US 67",
     "subCSJCount": 31,
-    "estimate": 11041220.18,
+    "estimate": 11965133.84,
     "letDate": "10/06/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0010-08-061"
@@ -821,7 +821,7 @@
     "projectName": "BSAO MBGF FY 27",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 997550,
+    "estimate": 994160.0,
     "letDate": "10/19/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6505-07-001"
@@ -838,7 +838,7 @@
     "projectName": "PHR_CANTON RD_FY24_1",
     "highway": "E CANTON RD",
     "subCSJCount": 3,
-    "estimate": 621188.51,
+    "estimate": 1118074.05,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0921-02-527"
@@ -868,7 +868,7 @@
     "projectName": "FY27, Flexible Pavement, Erath, etc.",
     "highway": "US0281",
     "subCSJCount": 1,
-    "estimate": 2731307.99,
+    "estimate": 2461750.0,
     "letDate": "10/06/2026",
     "typeOfWork": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
     "csj": "6504-96-001"
@@ -883,7 +883,7 @@
     "projectName": "FY 27 HOU Emergency Debris Removal",
     "highway": "IH0010",
     "subCSJCount": 1,
-    "estimate": 4923327.5,
+    "estimate": 4412777.41,
     "letDate": "10/06/2026",
     "typeOfWork": "DEBRIS REMOVAL",
     "csj": "6509-92-001"
@@ -914,7 +914,7 @@
     "projectName": "RER | IH 35W | IH 35E | Johnson CL SB",
     "highway": "IH 35W",
     "subCSJCount": 2,
-    "estimate": 12088988.8,
+    "estimate": 10903495.95,
     "letDate": "10/06/2026",
     "typeOfWork": "Rehabilitate Existing Roadway",
     "csj": "0014-23-041"
@@ -929,7 +929,7 @@
     "projectName": "FY 2027 Traffic Signal Maintenance",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 288380,
+    "estimate": 269625.0,
     "letDate": "10/08/2026",
     "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
     "csj": "6506-29-001"
@@ -959,7 +959,7 @@
     "projectName": "FY27, Guardrail, N Tarrant",
     "highway": "US0081",
     "subCSJCount": 1,
-    "estimate": 2699848.05,
+    "estimate": 1895621.0,
     "letDate": "10/06/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6506-90-001"
@@ -974,7 +974,7 @@
     "projectName": "US 69 3R Rehab",
     "highway": "US 69",
     "subCSJCount": 1,
-    "estimate": 9182925.37,
+    "estimate": 9878022.29,
     "letDate": "10/06/2026",
     "typeOfWork": "Rehabilitate Existing Roadway",
     "csj": "0410-02-047"
@@ -989,7 +989,7 @@
     "projectName": "Traffic Control Services-Cherokee County",
     "highway": "US0069",
     "subCSJCount": 1,
-    "estimate": 1500000,
+    "estimate": 866500.0,
     "letDate": "10/13/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6508-42-001"
@@ -1019,7 +1019,7 @@
     "projectName": "FM 273 FDR w/Overlay",
     "highway": "FM 273",
     "subCSJCount": 1,
-    "estimate": 10924688.49,
+    "estimate": 9766245.96,
     "letDate": "10/06/2026",
     "typeOfWork": "Preventive Maintenance",
     "csj": "0510-06-024"
@@ -1034,7 +1034,7 @@
     "projectName": "10-26 Angelina Ditch Cleaning",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 311077,
+    "estimate": 385050.0,
     "letDate": "10/28/2026",
     "typeOfWork": "DITCH CLEANING AND RESHAPING",
     "csj": "6510-42-001"
@@ -1049,7 +1049,7 @@
     "projectName": "District Wide Crack Seal FY 2027",
     "highway": "SH0208",
     "subCSJCount": 1,
-    "estimate": 882415.95,
+    "estimate": 731323.0,
     "letDate": "10/01/2026",
     "typeOfWork": "CRACK SEAL",
     "csj": "6502-82-001"
@@ -1064,7 +1064,7 @@
     "projectName": "GRADE 4 MODIFIED UNCOATED ROCK (DW)",
     "highway": "US0183",
     "subCSJCount": 1,
-    "estimate": 600000,
+    "estimate": 388250.0,
     "letDate": "10/25/2026",
     "typeOfWork": "AGGREGATE",
     "csj": "6510-55-001"
@@ -1094,7 +1094,7 @@
     "projectName": "Large Green Signs FY27",
     "highway": "SH0006",
     "subCSJCount": 1,
-    "estimate": 500000,
+    "estimate": 343344.36,
     "letDate": "10/15/2026",
     "typeOfWork": "LARGE SIGN REPLACEMENT",
     "csj": "6503-97-001"
@@ -1109,7 +1109,7 @@
     "projectName": "Mill and Inlay (N) FY2027",
     "highway": "IH0030",
     "subCSJCount": 1,
-    "estimate": 6132750,
+    "estimate": 5500500.0,
     "letDate": "10/06/2026",
     "typeOfWork": "MILL AND INLAY",
     "csj": "6501-57-001"
@@ -1139,7 +1139,7 @@
     "projectName": "BPM - La Salle, Webb, Dimmit, etc.",
     "highway": "IH0035",
     "subCSJCount": 1,
-    "estimate": 1327986,
+    "estimate": 1245105.0,
     "letDate": "10/06/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6500-59-001"
@@ -1154,7 +1154,7 @@
     "projectName": "0907-00-217 VA PAVEMENT MARKINGS",
     "highway": "Various",
     "subCSJCount": 1,
-    "estimate": 3446186.77,
+    "estimate": 2539431.95,
     "letDate": "10/06/2026",
     "typeOfWork": "Highway Improvement",
     "csj": "0907-00-217"
@@ -1172,7 +1172,7 @@
     "projectName": "IH 27 NB/SH 217 BRG BMIP",
     "highway": "IH 27",
     "subCSJCount": 4,
-    "estimate": 3795188.65,
+    "estimate": 3904922.85,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Maintenance",
     "csj": "0067-17-039"
@@ -1187,7 +1187,7 @@
     "projectName": "WNF | IH 14 | IH 35",
     "highway": "SL 121",
     "subCSJCount": 1,
-    "estimate": 24679268.85,
+    "estimate": 22052184.35,
     "letDate": "10/06/2026",
     "typeOfWork": "Construct New Road",
     "csj": "2502-01-024"
@@ -1202,7 +1202,7 @@
     "projectName": "BPM Denton Underseal FY 27",
     "highway": "FM1385",
     "subCSJCount": 1,
-    "estimate": 134050,
+    "estimate": 78310.0,
     "letDate": "10/14/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6485-46-001"
@@ -1217,7 +1217,7 @@
     "projectName": "BPM - Bridge Rail Upgrades",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 700000,
+    "estimate": 999970.0,
     "letDate": "10/21/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6507-80-001"
@@ -1232,7 +1232,7 @@
     "projectName": "FY 27 Ditch Cleaning and Reshaping",
     "highway": "US0096",
     "subCSJCount": 1,
-    "estimate": 2711299,
+    "estimate": 2396085.2,
     "letDate": "10/06/2026",
     "typeOfWork": "DITCH CLEANING AND RESHAPING",
     "csj": "6506-33-001"
@@ -1379,7 +1379,7 @@
     "projectName": "SAO MBGF FY 27",
     "highway": "US0084",
     "subCSJCount": 1,
-    "estimate": 279872,
+    "estimate": 283622.0,
     "letDate": "10/19/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6505-08-001"
@@ -1394,7 +1394,7 @@
     "projectName": "6509-64-001 ASPPM",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 75000,
+    "estimate": 168000.0,
     "letDate": "10/13/2026",
     "typeOfWork": "ASPHALTIC PATCHING MATERIAL",
     "csj": "6509-64-001"
@@ -1409,7 +1409,7 @@
     "projectName": "Long Line Striping - S. Tarrant",
     "highway": "IH0030",
     "subCSJCount": 1,
-    "estimate": 640022.54,
+    "estimate": 640889.52,
     "letDate": "10/21/2026",
     "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
     "csj": "6506-54-001"
@@ -1439,7 +1439,7 @@
     "projectName": "10-27 San Augustine Tree",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 205500,
+    "estimate": 193065.0,
     "letDate": "10/28/2026",
     "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
     "csj": "6510-51-001"
@@ -1454,7 +1454,7 @@
     "projectName": "METAL BEAM GUARD FENCE REPAIR - FY 27",
     "highway": "US0190",
     "subCSJCount": 1,
-    "estimate": 915307.45,
+    "estimate": 750704.0,
     "letDate": "10/06/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6504-87-001"
@@ -1469,7 +1469,7 @@
     "projectName": "FM 2821 TWLTL W of FM 247",
     "highway": "FM 2821",
     "subCSJCount": 1,
-    "estimate": 1767958.9,
+    "estimate": 1749727.54,
     "letDate": "10/06/2026",
     "typeOfWork": "Construct TWLTL",
     "csj": "2850-01-020"
@@ -1484,7 +1484,7 @@
     "projectName": "FY2027 Districtwide Crack Seal",
     "highway": "US0287",
     "subCSJCount": 1,
-    "estimate": 957200,
+    "estimate": 792700.7,
     "letDate": "10/08/2026",
     "typeOfWork": "CRACK SEAL",
     "csj": "6508-46-001"
@@ -1530,7 +1530,7 @@
     "projectName": "IH 45 FR from NAVARRO CL to SH 34",
     "highway": "IH 45",
     "subCSJCount": 32,
-    "estimate": 18377217.8,
+    "estimate": 13621550.38,
     "letDate": "10/06/2026",
     "typeOfWork": "Seal Coat, Pavement Markings, Mill & Inlay HMAC",
     "csj": "0092-05-058"
@@ -1545,7 +1545,7 @@
     "projectName": "AAO Modified 5 Aggregate",
     "highway": "FM0170",
     "subCSJCount": 1,
-    "estimate": 1,
+    "estimate": 101000.0,
     "letDate": "10/14/2026",
     "typeOfWork": "AGGREGATE",
     "csj": "6507-60-001"
@@ -1577,7 +1577,7 @@
     "projectName": "US 79 - At Drain (BMIP24)",
     "highway": "US 79",
     "subCSJCount": 3,
-    "estimate": 607197.21,
+    "estimate": 344329.0,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Maintenance",
     "csj": "0204-01-075"
@@ -1607,7 +1607,7 @@
     "projectName": "Bridge Maintenance - Hopkins Co. FY27",
     "highway": "IH0030",
     "subCSJCount": 1,
-    "estimate": 364300,
+    "estimate": 381350.0,
     "letDate": "10/15/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6508-04-001"
@@ -1622,7 +1622,7 @@
     "projectName": "2027 - RMC SEAL COAT",
     "highway": "SH0132",
     "subCSJCount": 1,
-    "estimate": 2611385.35,
+    "estimate": 2877263.06,
     "letDate": "10/06/2026",
     "typeOfWork": "SEAL COAT",
     "csj": "6507-19-001"
@@ -1637,7 +1637,7 @@
     "projectName": "DW Flexbase",
     "highway": "IH0010",
     "subCSJCount": 1,
-    "estimate": 260000,
+    "estimate": 115982.5,
     "letDate": "10/20/2026",
     "typeOfWork": "FLEXIBLE BASE",
     "csj": "6509-98-001"
@@ -1653,7 +1653,7 @@
     "projectName": "US60-FM1172 to Castro CL FY27 HSIP",
     "highway": "US 60",
     "subCSJCount": 2,
-    "estimate": 2217841,
+    "estimate": 1696791.55,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0168-03-040"
@@ -1668,7 +1668,7 @@
     "projectName": "FY27 Cable Barrier",
     "highway": "IH0040",
     "subCSJCount": 1,
-    "estimate": 144800,
+    "estimate": 118800.0,
     "letDate": "10/08/2026",
     "typeOfWork": "CABLE BARRIER REPAIR",
     "csj": "6508-49-001"
@@ -1683,7 +1683,7 @@
     "projectName": "FM 486  Downtown Streetscape - TASA",
     "highway": "FM 486",
     "subCSJCount": 1,
-    "estimate": 235741.96,
+    "estimate": 257449.73,
     "letDate": "10/06/2026",
     "typeOfWork": "Construct Pedestrian Infrastructure",
     "csj": "0590-05-057"
@@ -1698,7 +1698,7 @@
     "projectName": "Mill and Inlay (S) FY2027",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 6132750,
+    "estimate": 6111500.0,
     "letDate": "10/06/2026",
     "typeOfWork": "MILL AND INLAY",
     "csj": "6501-58-001"
@@ -1748,7 +1748,7 @@
     "projectName": "SH44JimWellsUS281toSanDiegoEOM(FY27SC)",
     "highway": "SH 44",
     "subCSJCount": 36,
-    "estimate": 12735110.1,
+    "estimate": 11654367.91,
     "letDate": "10/06/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0086-11-054"
@@ -1763,7 +1763,7 @@
     "projectName": "FY27 Culvert Repair - Anderson Co",
     "highway": "SH0294",
     "subCSJCount": 1,
-    "estimate": 750000,
+    "estimate": 526902.25,
     "letDate": "10/13/2026",
     "typeOfWork": "CULVERT REPAIR",
     "csj": "6505-28-001"
@@ -1778,7 +1778,7 @@
     "projectName": "IH 10 Austin County Striping",
     "highway": "IH0010",
     "subCSJCount": 1,
-    "estimate": 1559292,
+    "estimate": 689187.4,
     "letDate": "10/06/2026",
     "typeOfWork": "PAVEMENT MARKINGS",
     "csj": "6502-41-001"
@@ -1793,7 +1793,7 @@
     "projectName": "FY 27 Pavement Markings Call Out",
     "highway": "US0080",
     "subCSJCount": 1,
-    "estimate": 1529895,
+    "estimate": 1287807.5,
     "letDate": "10/06/2026",
     "typeOfWork": "PAVEMENT MARKINGS",
     "csj": "6496-83-001"
@@ -1808,7 +1808,7 @@
     "projectName": "FY27_DistrictwideLargeSign",
     "highway": "Various",
     "subCSJCount": 1,
-    "estimate": 919236.05,
+    "estimate": 899871.0,
     "letDate": "10/06/2026",
     "typeOfWork": "Install/Replace Signs",
     "csj": "0906-00-295"
@@ -1838,7 +1838,7 @@
     "projectName": "IH 45: S of Risinger Rd to Dallas Co Ln",
     "highway": "IH 45",
     "subCSJCount": 1,
-    "estimate": 4533561.52,
+    "estimate": 3761164.0,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0092-03-064"
@@ -1853,7 +1853,7 @@
     "projectName": "Large Sign Replacement District Wide",
     "highway": "IH0069C",
     "subCSJCount": 1,
-    "estimate": 1197322.04,
+    "estimate": 1098005.0,
     "letDate": "10/06/2026",
     "typeOfWork": "LARGE SIGN REPLACEMENT",
     "csj": "6497-69-001"
@@ -1883,7 +1883,7 @@
     "projectName": "Reflectorized Pavement Markings 09 10/26",
     "highway": "IH0035E",
     "subCSJCount": 1,
-    "estimate": 383456,
+    "estimate": 370456.0,
     "letDate": "10/14/2026",
     "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
     "csj": "6502-76-001"
@@ -1898,7 +1898,7 @@
     "projectName": "2026-Spot Paint & Bead Striping",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 686450,
+    "estimate": 702450.0,
     "letDate": "10/14/2026",
     "typeOfWork": "SPOT PAVEMENT MARKINGS",
     "csj": "6506-35-001"
@@ -1935,7 +1935,7 @@
     "projectName": "US 80 WESTBOUND AT BUFFALO CRE-9503100",
     "highway": "US 80",
     "subCSJCount": 8,
-    "estimate": 55675966,
+    "estimate": 55012735.47,
     "letDate": "10/06/2026",
     "typeOfWork": "Bridge Replacement",
     "csj": "0095-03-100"
@@ -1950,7 +1950,7 @@
     "projectName": "Tree Trimming and Brush Removal 09 10/26",
     "highway": "IH0035E",
     "subCSJCount": 1,
-    "estimate": 1,
+    "estimate": 172975.4,
     "letDate": "10/14/2026",
     "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
     "csj": "6501-52-001"
@@ -1980,7 +1980,7 @@
     "projectName": "MISCELLANEOUS BRIDGE REPAIR (BPM 2027)",
     "highway": "SH0016",
     "subCSJCount": 1,
-    "estimate": 1164995.83,
+    "estimate": 727661.05,
     "letDate": "10/06/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6499-74-001"
@@ -2010,7 +2010,7 @@
     "projectName": "IH 45, IH 610, US 290, FM 1458 Repairs",
     "highway": "Various",
     "subCSJCount": 1,
-    "estimate": 4359973.8,
+    "estimate": 4064176.4,
     "letDate": "10/06/2026",
     "typeOfWork": "Rehabilitate Bridge",
     "csj": "0912-72-848"
@@ -2025,7 +2025,7 @@
     "projectName": "FY '27 Palo Pinto MMC Flexible Base",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 104500,
+    "estimate": 156750.0,
     "letDate": "10/14/2026",
     "typeOfWork": "FLEXIBLE BASE",
     "csj": "6508-71-001"
@@ -2063,7 +2063,7 @@
     "projectName": "SH 86 12 Miles W of Hall C/L to Hall C/L",
     "highway": "SH 86",
     "subCSJCount": 9,
-    "estimate": 5605276.77,
+    "estimate": 6256779.57,
     "letDate": "10/06/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0303-04-039"
@@ -2078,7 +2078,7 @@
     "projectName": "Victory Station At IH 35E SBFR",
     "highway": "IH 35E",
     "subCSJCount": 1,
-    "estimate": 1273638,
+    "estimate": 1177499.75,
     "letDate": "10/06/2026",
     "typeOfWork": "Construct Pedestrian Infrastructure",
     "csj": "0196-03-288"
@@ -2168,7 +2168,7 @@
     "projectName": "MISC. BRIDGE REPAIR (BPM 2027)",
     "highway": "FM0581",
     "subCSJCount": 1,
-    "estimate": 1160604.69,
+    "estimate": 719494.0,
     "letDate": "10/06/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6503-72-001"
@@ -2183,7 +2183,7 @@
     "projectName": "2026-10 Trinity MBGF",
     "highway": "US0287",
     "subCSJCount": 1,
-    "estimate": 169015,
+    "estimate": 241625.0,
     "letDate": "10/14/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6504-00-001"
@@ -2198,7 +2198,7 @@
     "projectName": "FY2026 - BPM Jack & Wise Counties",
     "highway": "SH0114",
     "subCSJCount": 1,
-    "estimate": 1412530.89,
+    "estimate": 1040614.79,
     "letDate": "10/06/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6493-26-001"
@@ -2213,7 +2213,7 @@
     "projectName": "Emulsion - Duval County",
     "highway": "SH0044",
     "subCSJCount": 1,
-    "estimate": 577160,
+    "estimate": 534600.0,
     "letDate": "10/08/2026",
     "typeOfWork": "EMULSION",
     "csj": "6506-34-001"
@@ -2228,7 +2228,7 @@
     "projectName": "Winter Weather Material 09 0926",
     "highway": "FM0876",
     "subCSJCount": 1,
-    "estimate": 1,
+    "estimate": 411000.0,
     "letDate": "10/14/2026",
     "typeOfWork": "WINTER WEATHER MATERIAL",
     "csj": "6502-95-001"
@@ -2243,7 +2243,7 @@
     "projectName": "FM 1462 - W of Troon Dr to BS 35-C",
     "highway": "FM 1462",
     "subCSJCount": 1,
-    "estimate": 1078721.72,
+    "estimate": 974715.75,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "1414-03-043"
@@ -2258,7 +2258,7 @@
     "projectName": "Tree Trimming and Brush Removal FY 27",
     "highway": "IH0010",
     "subCSJCount": 1,
-    "estimate": 326000,
+    "estimate": 299875.0,
     "letDate": "10/08/2026",
     "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
     "csj": "6509-34-001"
@@ -2274,7 +2274,7 @@
     "projectName": "FM791 Karnes RefMk 526 to FM887 Junction",
     "highway": "FM 791",
     "subCSJCount": 2,
-    "estimate": 18280355.16,
+    "estimate": 17798655.4,
     "letDate": "10/06/2026",
     "typeOfWork": "Rehabilitate Existing Roadway",
     "csj": "1122-01-034"
@@ -2304,7 +2304,7 @@
     "projectName": "MBGF - McLennan AO",
     "highway": "SH0006",
     "subCSJCount": 1,
-    "estimate": 1513544,
+    "estimate": 1158972.0,
     "letDate": "10/06/2026",
     "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
     "csj": "6503-84-001"
@@ -2319,7 +2319,7 @@
     "projectName": "6504-67-001 FULL DEPTH CONCRETE",
     "highway": "SL0008",
     "subCSJCount": 1,
-    "estimate": 3049175.32,
+    "estimate": 2731500.0,
     "letDate": "10/06/2026",
     "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
     "csj": "6504-67-001"
@@ -2361,7 +2361,7 @@
     "projectName": "FM 681 - Install Warning Signs at Curves",
     "highway": "FM 681",
     "subCSJCount": 13,
-    "estimate": 558022.95,
+    "estimate": 441564.5,
     "letDate": "10/06/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0669-01-070"
@@ -2391,7 +2391,7 @@
     "projectName": "On Call Traffic Control FY 27 Denton CO",
     "highway": "IH0035E",
     "subCSJCount": 1,
-    "estimate": 562983,
+    "estimate": 827358.0,
     "letDate": "10/14/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6502-60-001"
@@ -2406,7 +2406,7 @@
     "projectName": "Trinity Ditch and Culvert Cleaning",
     "highway": "US0287",
     "subCSJCount": 1,
-    "estimate": 372650,
+    "estimate": 363600.5,
     "letDate": "10/08/2026",
     "typeOfWork": "DITCH CLEANING AND RESHAPING",
     "csj": "6508-34-001"

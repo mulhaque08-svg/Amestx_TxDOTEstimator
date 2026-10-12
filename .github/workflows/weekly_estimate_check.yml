@@ -1,4 +1,4 @@
-name: Weekly TxDOT Estimate Audit
+name: Weekly TxDOT Estimate Audit & Live Sync
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:
-  audit-estimates:
+  sync-estimates:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -18,12 +18,14 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Run TxDOT Estimate Verification & Audit
+      - name: Run TxDOT Estimate Live Sync & Audit
         run: |
-          python backend/verify_txdot_estimates.py
+          python backend/sync_live_estimates.py
 
-      - name: Upload Audit Report Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: estimate-audit-report
-          path: backend/estimate_audit_report_*.csv
+      - name: Commit and push changes if any
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "Auto-sync live TxDOT letting estimates from Tableau"
+          git push origin main || echo "No changes to push"
