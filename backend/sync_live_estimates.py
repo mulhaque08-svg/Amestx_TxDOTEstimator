@@ -167,22 +167,26 @@ def sync_month_estimates(month='2026-10'):
             except Exception as e:
                 print(f"  [ERROR] {pj}: {e}")
 
-    # 3. Update app.html EMBEDDED_MONTHLY_CACHE
-    json_str_for_html = json.dumps(projects)
+    # 3. Update app.html EMBEDDED_MONTHLY_CACHE safely without regex corruption
     for html_path in APP_HTML_PATHS:
         if os.path.exists(html_path):
             try:
                 with open(html_path, 'r', encoding='utf-8') as f:
-                    html_content = f.read()
+                    f_lines = f.readlines()
                 
-                # Regex replace window.EMBEDDED_MONTHLY_CACHE["2026-10"] = ...
-                pattern = rf'("?{month}"?\s*:\s*)(\[[^\]]*\])'
-                match = re.search(pattern, html_content)
-                if match:
-                    html_content = html_content[:match.start(2)] + json_str_for_html + html_content[match.end(2):]
+                replaced = False
+                for i, l in enumerate(f_lines):
+                    if 'window.EMBEDDED_MONTHLY_CACHE =' in l:
+                        raw = l.strip().replace('window.EMBEDDED_MONTHLY_CACHE =', '').rstrip(';')
+                        cache_dict = json.loads(raw)
+                        cache_dict[month] = projects
+                        f_lines[i] = "        window.EMBEDDED_MONTHLY_CACHE = " + json.dumps(cache_dict) + ";\n"
+                        replaced = True
+                        break
+                
+                if replaced:
                     with open(html_path, 'w', encoding='utf-8') as f:
-                        html_content_written = html_content
-                        f.write(html_content)
+                        f.writelines(f_lines)
                     print(f"  [SAVED] {html_path} (embedded cache updated)")
             except Exception as e:
                 print(f"  [ERROR] {html_path}: {e}")
