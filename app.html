@@ -3517,7 +3517,6 @@
 
             // Determine primary category recommendation based on CSJ & projectType
             let primaryCat = 'State-Let-Construction';
-            const cleanCSJ = (csj || '').trim();
             const pTypeStr = ((projectType || '') + ' ' + (county || '')).toLowerCase();
             if (cleanCSJ.startsWith('6') || pTypeStr.includes('maintenance') || pTypeStr.includes('mmc') || pTypeStr.includes('rmc') || pTypeStr.includes('sup')) {
                 if (pTypeStr.includes('local') || pTypeStr.includes('district let')) {
