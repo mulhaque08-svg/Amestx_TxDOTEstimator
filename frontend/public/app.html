@@ -505,6 +505,19 @@
             font-weight: 800 !important;
         }
 
+        a[id^="actionNoticeBtn"],
+        a[id^="actionNoticeBtn"] *,
+        body.theme-light-mode a[id^="actionNoticeBtn"],
+        body.theme-light-mode a[id^="actionNoticeBtn"] *,
+        body.theme-amtekpro-light a[id^="actionNoticeBtn"],
+        body.theme-amtekpro-light a[id^="actionNoticeBtn"] *,
+        body.theme-txdot-navy a[id^="actionNoticeBtn"],
+        body.theme-txdot-navy a[id^="actionNoticeBtn"] * {
+            background-color: #4F46E5 !important;
+            color: #FFFFFF !important;
+            font-weight: 800 !important;
+        }
+
         .bg-blue-600,
         .bg-blue-600 *,
         a[id^="actionPropPdfBtn"],
@@ -1227,6 +1240,9 @@
                     <span>💳 Upgrade Subscription Plan & Continue</span>
                     <span>&rarr;</span>
                 </a>
+                <button type="button" onclick="promptPartnerPasscode()" style="color: #94a3b8 !important;" class="text-xs hover:text-white underline mt-1 py-1 transition flex items-center justify-center gap-1 mx-auto font-medium">
+                    <span>🔑 Partner / VIP Passcode Login</span>
+                </button>
             </div>
         </div>
     </div>
@@ -1282,6 +1298,11 @@
                         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-3 px-4 rounded-xl glow-blue transition text-xs flex items-center justify-center gap-2 shadow-lg">
                             <span>🚀 Submit Info & View Project Details (7-Day Trial)</span>
                             <span>&rarr;</span>
+                        </button>
+                    </div>
+                    <div class="pt-2 text-center">
+                        <button type="button" onclick="promptPartnerPasscode()" style="color: #94a3b8 !important;" class="text-xs hover:text-white underline py-1 transition flex items-center justify-center gap-1 mx-auto font-medium">
+                            <span>🔑 Have a Partner / VIP Passcode? Click here</span>
                         </button>
                     </div>
                 </form>
@@ -1605,11 +1626,14 @@
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <h4 class="text-sm font-bold text-white">CSJ Pay Items & Quantities</h4>
                             <div class="flex flex-wrap items-center gap-2">
-                                <a id="actionPropPdfBtn" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                <a id="actionPropPdfBtn" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                     <span style="color: #ffffff !important;">Project Proposal 📄</span>
                                 </a>
-                                <a id="actionPlanPdfBtn" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                <a id="actionPlanPdfBtn" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                     <span style="color: #ffffff !important;">Project Plans 📄</span>
+                                </a>
+                                <a id="actionNoticeBtn" target="_blank" href="https://tableau.txdot.gov/views/ProjectInformationDashboard/NoticetoContractors?:embed=y&:isGuestRedirectFromVizportal=y" style="color: #ffffff !important;" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow" title="Open TxDOT Official Notice to Contractors Dashboard">
+                                    <span style="color: #ffffff !important;">TxDOT Notice 📋</span>
                                 </a>
                                 <button onclick="downloadProjectTasksExcelCurrent()" style="color: #ffffff !important;" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-2 transition shadow">
                                     <span style="color: #ffffff !important;">Export Matrix Excel (.xlsx)</span>
@@ -1673,11 +1697,14 @@
                                     <p class="text-xs text-slate-400">Official letting results for CSJ <span id="sub5PostCSJ" class="font-mono text-amber-300"></span></p>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <a id="actionPropPdfBtnBidTab" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                    <a id="actionPropPdfBtnBidTab" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                         <span style="color: #ffffff !important;">Project Proposal 📄</span>
                                     </a>
-                                    <a id="actionPlanPdfBtnBidTab" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                    <a id="actionPlanPdfBtnBidTab" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                         <span style="color: #ffffff !important;">Project Plans 📄</span>
+                                    </a>
+                                    <a id="actionNoticeBtnBidTab" target="_blank" href="https://tableau.txdot.gov/views/ProjectInformationDashboard/NoticetoContractors?:embed=y&:isGuestRedirectFromVizportal=y" style="color: #ffffff !important;" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow" title="Open TxDOT Official Notice to Contractors Dashboard">
+                                        <span style="color: #ffffff !important;">TxDOT Notice 📋</span>
                                     </a>
                                     <button onclick="downloadBidTabExcelCurrent()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg flex items-center space-x-2 transition shadow text-xs">
                                         <span>Export Matrix Excel (.xlsx)</span>
@@ -1727,11 +1754,14 @@
                                 <p class="text-xs text-slate-400">Calculated using 2026 TxDOT historical low bidder average unit prices</p>
                             </div>
                             <div class="flex flex-wrap items-center gap-2">
-                                <a id="actionPropPdfBtnEst" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                <a id="actionPropPdfBtnEst" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                     <span style="color: #ffffff !important;">Project Proposal 📄</span>
                                 </a>
-                                <a id="actionPlanPdfBtnEst" target="_blank" href="https://planuser:txdotplans@ftp.txdot.gov/plans/State-Let-Construction/2026/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
+                                <a id="actionPlanPdfBtnEst" target="_blank" href="https://ftp.txdot.gov/plans/" style="color: #ffffff !important;" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow">
                                     <span style="color: #ffffff !important;">Project Plans 📄</span>
+                                </a>
+                                <a id="actionNoticeBtnEst" target="_blank" href="https://tableau.txdot.gov/views/ProjectInformationDashboard/NoticetoContractors?:embed=y&:isGuestRedirectFromVizportal=y" style="color: #ffffff !important;" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center space-x-1.5 transition shadow" title="Open TxDOT Official Notice to Contractors Dashboard">
+                                    <span style="color: #ffffff !important;">TxDOT Notice 📋</span>
                                 </a>
                                 <button onclick="downloadEstimateExcelCurrent()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center space-x-2 transition shadow">
                                     <span>Export Matrix Excel (.xlsx)</span>
@@ -3485,13 +3515,18 @@
             const local = makeCatUrls('Local-Let-Maintenance');
             const rootPlans = `https://ftp.txdot.gov/plans/`;
 
-            // Determine primary category recommendation based on projectType
-            let primaryCat = 'Local-Let-Maintenance';
-            const pTypeStr = (projectType || '').toLowerCase();
-            if (pTypeStr.includes('construction')) {
+            // Determine primary category recommendation based on CSJ & projectType
+            let primaryCat = 'State-Let-Construction';
+            const cleanCSJ = (csj || '').trim();
+            const pTypeStr = ((projectType || '') + ' ' + (county || '')).toLowerCase();
+            if (cleanCSJ.startsWith('6') || pTypeStr.includes('maintenance') || pTypeStr.includes('mmc') || pTypeStr.includes('rmc') || pTypeStr.includes('sup')) {
+                if (pTypeStr.includes('local') || pTypeStr.includes('district let')) {
+                    primaryCat = 'Local-Let-Maintenance';
+                } else {
+                    primaryCat = 'State-Let-Maintenance';
+                }
+            } else {
                 primaryCat = 'State-Let-Construction';
-            } else if (pTypeStr.includes('state')) {
-                primaryCat = 'State-Let-Maintenance';
             }
 
             return {
@@ -3565,7 +3600,7 @@
                                     const cPrefix = itemCounty + ' ';
                                     for (const k in propObj) {
                                         const pName = (propObj[k].proposalName || '').toLowerCase();
-                                        if (pName.startsWith(cPrefix)) {
+                                        if (pName.startsWith(cPrefix) && pName.includes(csj.toLowerCase())) {
                                             foundPropUrl = propObj[k].proposalUrl;
                                             foundPropName = propObj[k].proposalName;
                                             if (propObj[k].planVolumes) foundPlanVolumes = propObj[k].planVolumes;
@@ -3606,7 +3641,7 @@
                                         const cPrefix = itemCounty + ' ';
                                         for (const k in mapObj) {
                                             const pName = (mapObj[k].proposalName || '').toLowerCase();
-                                            if (pName.startsWith(cPrefix)) {
+                                            if (pName.startsWith(cPrefix) && pName.includes(csj.toLowerCase())) {
                                                 foundPropUrl = mapObj[k].proposalUrl;
                                                 foundPropName = mapObj[k].proposalName;
                                                 break;
@@ -3617,7 +3652,7 @@
                                         const cPrefix = itemCounty + ' ';
                                         for (const k in mapObj) {
                                             const plName = (mapObj[k].planName || '').toLowerCase();
-                                            if (plName.startsWith(cPrefix)) {
+                                            if (plName.startsWith(cPrefix) && plName.includes(csj.toLowerCase())) {
                                                 foundPlanUrl = mapObj[k].planUrl;
                                                 foundPlanName = mapObj[k].planName;
                                                 if (mapObj[k].planVolumes) foundPlanVolumes = mapObj[k].planVolumes;
@@ -3647,12 +3682,22 @@
                     }
                 }
                 const isHistoricalProject = projectYear < 2025;
-                const activeTableauUrl = `https://tableau.txdot.gov/views/OfficialandUnofficialBidItems4_8x2/OfficialUnofficialBidItems?:embed=y&:isGuestRedirectFromVizportal=y&Proposal%20Status=Official&CONTROLLING%20PROJECT%20ID%20(CCSJ)=${encodeURIComponent(csj)}`;
+                const isMaintenance = (csj && csj.startsWith('6')) || (item && item.projectType && item.projectType.toLowerCase().includes('maintenance'));
+                
+                // Active, verified working TxDOT dashboards:
+                const liveNoticeUrl = `https://tableau.txdot.gov/views/ProjectInformationDashboard/NoticetoContractors?:embed=y&:isGuestRedirectFromVizportal=y&Controlling%20Project%20Id%20(Ccsj)=${encodeURIComponent(csj)}`;
+                const liveProjectInfoUrl = `https://tableau.txdot.gov/views/ProjectInformationDashboard/ProjectInformationDashboard?:embed=y&:isGuestRedirectFromVizportal=y&Controlling%20Project%20Id%20(Ccsj)=${encodeURIComponent(csj)}`;
                 const historicalTableauUrl = `https://tableau.txdot.gov/views/HistoricalProjectInformation/HistoricalProjectInformation?:embed=y&:isGuestRedirectFromVizportal=y&Controlling%20Project%20Id%20(Ccsj)=${encodeURIComponent(csj)}`;
-                const defaultTableauUrl = isHistoricalProject ? historicalTableauUrl : activeTableauUrl;
+                
+                const officialNoticeUrl = isHistoricalProject ? historicalTableauUrl : (isMaintenance ? liveNoticeUrl : liveProjectInfoUrl);
 
-                const fallbackPropUrl = (foundPropUrl && foundPropUrl.length > 5) ? foundPropUrl : defaultTableauUrl;
-                const fallbackPlanUrl = (foundPlanUrl && foundPlanUrl.length > 5) ? foundPlanUrl : defaultTableauUrl;
+                const activeCatKey = (ftpUrls && ftpUrls.primaryCat === 'State-Let-Maintenance') 
+                    ? 'maintenance' 
+                    : ((ftpUrls && ftpUrls.primaryCat === 'Local-Let-Maintenance') ? 'local' : 'construction');
+                const activeCatObj = ftpUrls ? ftpUrls[activeCatKey] : null;
+
+                const fallbackPropUrl = activeCatObj ? activeCatObj.proposalsFolder : (ftpUrls ? ftpUrls.construction.proposalsFolder : 'https://ftp.txdot.gov/plans/');
+                const fallbackPlanUrl = activeCatObj ? activeCatObj.plansFolder : (ftpUrls ? ftpUrls.construction.plansFolder : 'https://ftp.txdot.gov/plans/');
 
                 const isDirectPropPdf = Boolean(foundPropUrl && (foundPropUrl.toLowerCase().endsWith('.pdf') || foundPropUrl.toLowerCase().includes('.pdf')));
                 const isDirectPlanPdf = Boolean(foundPlanUrl && (foundPlanUrl.toLowerCase().endsWith('.pdf') || foundPlanUrl.toLowerCase().includes('.pdf')));
@@ -3660,14 +3705,38 @@
                 const finalPropUrl = isDirectPropPdf ? foundPropUrl : fallbackPropUrl;
                 const finalPlanUrl = isDirectPlanPdf ? foundPlanUrl : fallbackPlanUrl;
 
+                const propLabel = isDirectPropPdf ? 'Project Proposal 📄' : 'TxDOT Proposals 📂';
+                const propTitle = isDirectPropPdf ? 'Open TxDOT Official Proposal PDF' : 'Exact Proposal PDF not yet published by TxDOT for this letting date. Click to browse TxDOT official Proposals folder for this month.';
+
+                const planLabel = isDirectPlanPdf ? (foundPlanVolumes && foundPlanVolumes.length > 1 ? `Project Plans (${foundPlanVolumes.length} Vols) 📄` : 'Project Plans 📄') : 'TxDOT Plans 📂';
+                const planTitle = isDirectPlanPdf ? 'Open TxDOT Official Plans PDF' : 'Exact Plans PDF not yet published by TxDOT for this letting date. Click to browse TxDOT official Plans folder for this month.';
+
                 ['actionPropPdfBtn', 'actionPropPdfBtnEst', 'actionPropPdfBtnBidTab'].forEach(id => {
                     const btn = document.getElementById(id);
-                    if (btn) btn.href = finalPropUrl;
+                    if (btn) {
+                        btn.href = finalPropUrl;
+                        btn.title = propTitle;
+                        const span = btn.querySelector('span');
+                        if (span) span.innerText = propLabel;
+                    }
                 });
 
                 ['actionPlanPdfBtn', 'actionPlanPdfBtnEst', 'actionPlanPdfBtnBidTab'].forEach(id => {
                     const btn = document.getElementById(id);
-                    if (btn) btn.href = finalPlanUrl;
+                    if (btn) {
+                        btn.href = finalPlanUrl;
+                        btn.title = planTitle;
+                        const span = btn.querySelector('span');
+                        if (span) span.innerText = planLabel;
+                    }
+                });
+
+                ['actionNoticeBtn', 'actionNoticeBtnEst', 'actionNoticeBtnBidTab'].forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) {
+                        btn.href = officialNoticeUrl;
+                        btn.title = 'Open Official TxDOT Notice to Contractors Dashboard';
+                    }
                 });
             } catch (e) {
                 console.error("Error loading CSJ PDF links:", e);
@@ -4557,6 +4626,27 @@
 
             // Active category object
             const activeCatObj = ftpUrls[ftpUrls.primaryCat === 'State-Let-Maintenance' ? 'maintenance' : (ftpUrls.primaryCat === 'Local-Let-Maintenance' ? 'local' : 'construction')];
+
+            if (activeCatObj) {
+                ['actionPropPdfBtn', 'actionPropPdfBtnEst', 'actionPropPdfBtnBidTab'].forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) {
+                        btn.href = activeCatObj.proposalsFolder;
+                        btn.title = "TxDOT Official Proposals Directory";
+                        const span = btn.querySelector('span');
+                        if (span) span.innerText = 'TxDOT Proposals 📂';
+                    }
+                });
+                ['actionPlanPdfBtn', 'actionPlanPdfBtnEst', 'actionPlanPdfBtnBidTab'].forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) {
+                        btn.href = activeCatObj.plansFolder;
+                        btn.title = "TxDOT Official Plans Directory";
+                        const span = btn.querySelector('span');
+                        if (span) span.innerText = 'TxDOT Plans 📂';
+                    }
+                });
+            }
 
             // Asynchronously fetch exact verified PDF links for this CSJ
             loadCsjPdfLinks(meta.csj, currentMonth);
@@ -6859,6 +6949,52 @@ td, th { padding: 4px 6px; border: 1px solid #d3d3d3; }
             badge.classList.remove('hidden');
         }
 
+        function activatePartnerLifetimeAccess() {
+            const partnerSub = {
+                active: true,
+                plan: "VIP Partner Lifetime",
+                owner: true,
+                unlockedAt: Date.now()
+            };
+            localStorage.setItem('amestx_subscription', JSON.stringify(partnerSub));
+            
+            // Set partner profile so trial checks pass cleanly
+            try {
+                const profileStr = localStorage.getItem('amestx_user_profile');
+                let prof = {};
+                if (profileStr) prof = JSON.parse(profileStr);
+                prof.name = prof.name || "Amestx Partner";
+                prof.company = prof.company || "Amestx Partner VIP";
+                prof.email = prof.email || "partner@amestx.com";
+                prof.phone = prof.phone || "8320000000";
+                prof.role = "Partner / Owner";
+                prof.registeredAt = Date.now();
+                localStorage.setItem('amestx_user_profile', JSON.stringify(prof));
+            } catch(e) {}
+
+            // Close any open trial or registration modal
+            const expModal = document.getElementById('trialExpiredModal');
+            if (expModal) expModal.classList.add('hidden');
+            const regModal = document.getElementById('registrationModal');
+            if (regModal) regModal.classList.add('hidden');
+
+            checkUserTrialStatus();
+        }
+        window.activatePartnerLifetimeAccess = activatePartnerLifetimeAccess;
+
+        function promptPartnerPasscode() {
+            const code = prompt("🔑 Enter Amestx Partner / Owner Passcode:");
+            if (!code) return;
+            const clean = code.trim().toLowerCase();
+            if (clean === 'amestx2026' || clean === 'partner2026' || clean === 'amestxvip') {
+                activatePartnerLifetimeAccess();
+                alert("🎉 VIP Partner Access Unlocked!\nYou and your partner now have unlimited, permanent lifetime access to Amestx TxDOT Estimator.");
+            } else {
+                alert("❌ Invalid passcode. Please check and try again.");
+            }
+        }
+        window.promptPartnerPasscode = promptPartnerPasscode;
+
         function checkUserTrialStatus() {
             const subStr = localStorage.getItem('amestx_subscription');
             
@@ -6898,6 +7034,17 @@ td, th { padding: 4px 6px; border: 1px solid #d3d3d3; }
 
         // Initialize safely when DOM is fully interactive
         function initApp() {
+            // Check for Partner / VIP passcode in URL query string (?passcode=Amestx2026 or ?unlock=amestx2026)
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const pass = (urlParams.get('passcode') || urlParams.get('unlock') || urlParams.get('code') || '').trim().toLowerCase();
+                if (pass === 'amestx2026' || pass === 'partner2026' || pass === 'amestxvip') {
+                    activatePartnerLifetimeAccess();
+                    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+                }
+            } catch (e) {}
+
             let savedTheme = localStorage.getItem('amestx_color_theme') || localStorage.getItem('amestx_theme') || 'amtekpro-light';
             if (savedTheme === 'rl-dark' || savedTheme === 'plum' || savedTheme === 'amtekpro-neon') savedTheme = 'amtekpro-light';
             applyColorTheme(savedTheme);
