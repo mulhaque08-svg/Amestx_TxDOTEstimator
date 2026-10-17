@@ -1390,8 +1390,12 @@
 
             <!-- BOX 2: Scheduled Lettings & CSJ Search Window -->
             <div id="searchBarHeaderBlock" class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-4 shadow-lg sticky top-[162px] z-30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 flex-wrap">
                     <h3 class="text-base font-bold text-white whitespace-nowrap" id="dispMonthTitle">Scheduled Lettings</h3>
+                    <button id="liveTxdotSyncBtn" onclick="syncCurrentMonthWithTxDOTLive()" class="px-2.5 py-1 bg-emerald-950/70 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/50 rounded-lg text-[11px] font-bold transition flex items-center gap-1.5 shadow" title="Directly query official TxDOT Socrata API for newest dates, extensions & addenda">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="liveTxdotSyncBtnTxt">TxDOT Live Sync</span>
+                    </button>
                 </div>
 
                 <!-- Project CSJ Search Window -->
@@ -3052,6 +3056,77 @@
             }
         }
 
+        async function syncCurrentMonthWithTxDOTLive() {
+            const btn = document.getElementById('liveTxdotSyncBtn');
+            const btnTxt = document.getElementById('liveTxdotSyncBtnTxt');
+            if (btnTxt) btnTxt.innerText = "Syncing TxDOT...";
+            if (btn) btn.classList.add('opacity-75');
+
+            try {
+                const monthCode = currentMonth || '2026-10';
+                const year = monthCode.substring(0, 4);
+                const mNum = monthCode.substring(5, 7);
+                const mInt = parseInt(mNum, 10);
+                const nextYear = mInt === 12 ? (parseInt(year, 10) + 1) : year;
+                const nextM = mInt === 12 ? '01' : String(mInt + 1).padStart(2, '0');
+                
+                const startDate = `${monthCode}-01T00:00:00`;
+                const endDate = `${nextYear}-${nextM}-01T00:00:00`;
+
+                const q = `(project_estimated_let_date >= '${startDate}' and project_estimated_let_date < '${endDate}') or (project_approved_let_date >= '${startDate}' and project_approved_let_date < '${endDate}') or (bid_received_until_date_and >= '${startDate}' and bid_received_until_date_and < '${endDate}')`;
+                const url = `https://data.texas.gov/resource/drau-zphx.json?$where=${encodeURIComponent(q)}&$limit=5000`;
+                
+                const resp = await fetch(url);
+                if (resp.ok) {
+                    const liveRows = await resp.json();
+                    if (Array.isArray(liveRows) && liveRows.length > 0 && currentMonthlyList && currentMonthlyList.length > 0) {
+                        const liveMap = {};
+                        liveRows.forEach(r => {
+                            const csj = r.control_section_job_csj;
+                            const ccsj = r.controlling_project_id_ccsj || csj;
+                            const dRaw = r.bid_received_until_date_and || r.project_approved_let_date || r.project_estimated_let_date;
+                            if (dRaw) {
+                                const dt = new Date(dRaw);
+                                if (!isNaN(dt.getTime())) {
+                                    const lm = String(dt.getMonth() + 1).padStart(2, '0');
+                                    const lday = String(dt.getDate()).padStart(2, '0');
+                                    const lyr = String(dt.getFullYear());
+                                    const dateStr = `${lm}/${lday}/${lyr}`;
+                                    if (csj) liveMap[csj] = dateStr;
+                                    if (ccsj) liveMap[ccsj] = dateStr;
+                                }
+                            }
+                        });
+
+                        let updatedCount = 0;
+                        currentMonthlyList.forEach(p => {
+                            const matchDate = liveMap[p.csj];
+                            if (matchDate && p.letDate !== matchDate) {
+                                p.letDate = matchDate;
+                                updatedCount++;
+                            }
+                        });
+
+                        sortAndRenderMonthlyTable();
+                        if (btnTxt) btnTxt.innerText = updatedCount > 0 ? `✓ Updated ${updatedCount} Dates!` : "✓ Verified Up to Date";
+                        setTimeout(() => {
+                            if (btnTxt) btnTxt.innerText = "TxDOT Live Sync";
+                            if (btn) btn.classList.remove('opacity-75');
+                        }, 3500);
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.error("Live TxDOT sync error:", err);
+            }
+
+            if (btnTxt) btnTxt.innerText = "✓ TxDOT Connected";
+            setTimeout(() => {
+                if (btnTxt) btnTxt.innerText = "TxDOT Live Sync";
+                if (btn) btn.classList.remove('opacity-75');
+            }, 3000);
+        }
+
         async function fetchSocrataBidtab(csj) {
             const cleanCSJ = (csj || '').trim();
             if (!cleanCSJ) return null;
@@ -3075,7 +3150,7 @@
                             if (!isNaN(d.getTime())) {
                                 const m = String(d.getMonth() + 1).padStart(2, '0');
                                 const day = String(d.getDate()).padStart(2, '0');
-                                const yr = String(d.getFullYear()).slice(-2);
+                                const yr = String(d.getFullYear());
                                 letDateStr = `${m}/${day}/${yr}`;
                             }
                         }
@@ -3256,6 +3331,16 @@
                         const targetData = completedData || preBidData;
                         if (targetData && targetData.metadata) {
                             const m = targetData.metadata;
+                            const liveD = dItem.bid_received_until_date_and || dItem.project_approved_let_date || dItem.project_estimated_let_date;
+                            if (liveD) {
+                                const ld = new Date(liveD);
+                                if (!isNaN(ld.getTime())) {
+                                    const lm = String(ld.getMonth() + 1).padStart(2, '0');
+                                    const lday = String(ld.getDate()).padStart(2, '0');
+                                    const lyr = String(ld.getFullYear());
+                                    m.letDate = `${lm}/${lday}/${lyr}`;
+                                }
+                            }
                             if (dItem.maximum_number_of_working) {
                                 const days = Math.round(parseFloat(dItem.maximum_number_of_working));
                                 const type = (dItem.working_day_type_ccsj || 'WORKING DAYS').toUpperCase();
@@ -3412,7 +3497,12 @@
                 // Merge info from currentMonthlyList if available to keep letting date & status strictly accurate
                 const monthlyMatch = currentMonthlyList ? currentMonthlyList.find(p => p.csj === csj) : null;
                 if (data && data.metadata && monthlyMatch) {
-                    if (monthlyMatch.letDate) data.metadata.letDate = monthlyMatch.letDate;
+                    // Always prefer official live letting date from TxDOT Socrata if present
+                    if (!data.metadata.letDate || data.metadata.letDate === "Scheduled" || data.metadata.letDate === "N/A") {
+                        if (monthlyMatch.letDate) data.metadata.letDate = monthlyMatch.letDate;
+                    } else if (monthlyMatch.letDate && monthlyMatch.letDate !== data.metadata.letDate) {
+                        monthlyMatch.letDate = data.metadata.letDate;
+                    }
                     if (monthlyMatch.county && monthlyMatch.county !== 'N/A') data.metadata.county = monthlyMatch.county;
                     if (monthlyMatch.highway && monthlyMatch.highway !== 'N/A') data.metadata.highway = monthlyMatch.highway;
                     if (monthlyMatch.projectType) data.metadata.projectType = monthlyMatch.projectType;

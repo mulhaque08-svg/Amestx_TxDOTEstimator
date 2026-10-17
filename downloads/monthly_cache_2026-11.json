@@ -44,7 +44,7 @@
     "highway": "IH 37",
     "subCSJCount": 1,
     "estimate": 1496610,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Removal And/Or Replacement And/Or Disposal",
     "csj": "0074-06-256"
   },
@@ -74,7 +74,7 @@
     "highway": "US0084",
     "subCSJCount": 1,
     "estimate": 2000000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6506-48-001"
   },
@@ -89,7 +89,7 @@
     "highway": "SH 5",
     "subCSJCount": 1,
     "estimate": 39786610.84,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "RECONSTRUCT & WIDEN 2 LN RURAL HWY TO 4 LN URBAN",
     "csj": "0047-04-032"
   },
@@ -239,7 +239,7 @@
     "highway": "SH0208",
     "subCSJCount": 1,
     "estimate": 2000000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "ASPHALT PAVEMENT REPAIR",
     "csj": "6504-98-001"
   },
@@ -269,7 +269,7 @@
     "highway": "IH0037",
     "subCSJCount": 1,
     "estimate": 65000,
-    "letDate": "11/18/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "EROSION REPAIR",
     "csj": "6498-01-001"
   },
@@ -284,7 +284,7 @@
     "highway": "SH 114",
     "subCSJCount": 1,
     "estimate": 605622.93,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Widen Road - Add Lanes And Shoulders",
     "csj": "0353-01-031"
   },
@@ -380,7 +380,7 @@
     "highway": "RM 12",
     "subCSJCount": 1,
     "estimate": 981254,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Construct Pedestrian Infrastructure",
     "csj": "0285-03-066"
   },
@@ -395,7 +395,7 @@
     "highway": "FM0535",
     "subCSJCount": 1,
     "estimate": 2672500,
-    "letDate": "11/04/2026",
+    "letDate": "11/03/2026",
     "typeOfWork": "AGGREGATE",
     "csj": "6496-55-001"
   },
@@ -470,7 +470,7 @@
     "highway": "US0059",
     "subCSJCount": 1,
     "estimate": 36800,
-    "letDate": "11/04/2026",
+    "letDate": "11/05/2026",
     "typeOfWork": "JANITORIAL MAINTENANCE",
     "csj": "6495-00-001"
   },
@@ -485,7 +485,7 @@
     "highway": "SH0081",
     "subCSJCount": 1,
     "estimate": 1500000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "BASE FAILURE PAVEMENT REPAIR",
     "csj": "6510-36-001"
   },
@@ -629,7 +629,7 @@
     "highway": "MAMGANA-HEIN RD",
     "subCSJCount": 3,
     "estimate": 2964147.95,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Bridge Replacement",
     "csj": "0922-33-234"
   },
@@ -644,7 +644,7 @@
     "highway": "IH0035",
     "subCSJCount": 1,
     "estimate": 400000,
-    "letDate": "11/03/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
     "csj": "6502-62-001"
   },
@@ -776,7 +776,7 @@
     "highway": "FM 520",
     "subCSJCount": 2,
     "estimate": 474876.91,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "1621-02-007"
   },
@@ -856,7 +856,7 @@
     "highway": "SL0121",
     "subCSJCount": 1,
     "estimate": 1500000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "BASE FAILURE PAVEMENT REPAIR",
     "csj": "6510-39-001"
   },
@@ -871,7 +871,7 @@
     "highway": "SH0081",
     "subCSJCount": 1,
     "estimate": 1000000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6509-56-001"
   },
@@ -901,7 +901,7 @@
     "highway": "US0059",
     "subCSJCount": 1,
     "estimate": 35700,
-    "letDate": "11/04/2026",
+    "letDate": "11/05/2026",
     "typeOfWork": "LANDSCAPE MAINTENANCE",
     "csj": "6494-99-001"
   },
@@ -947,7 +947,7 @@
     "highway": "PW",
     "subCSJCount": 2,
     "estimate": 1833887.9,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Preventive Maintenance",
     "csj": "0923-06-068"
   },
@@ -1007,7 +1007,7 @@
     "highway": "SL0121",
     "subCSJCount": 1,
     "estimate": 650000,
-    "letDate": "11/10/2026",
+    "letDate": "11/17/2026",
     "typeOfWork": "HOT-MIX COLD-LAID",
     "csj": "6506-95-001"
   },
@@ -1082,7 +1082,7 @@
     "highway": "US 277",
     "subCSJCount": 1,
     "estimate": 7519837.49,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Preventive Maintenance",
     "csj": "0157-04-058"
   },
@@ -1097,7 +1097,7 @@
     "highway": "SH0005",
     "subCSJCount": 1,
     "estimate": 609000,
-    "letDate": "11/11/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "HOT MIX",
     "csj": "6506-44-001"
   },
@@ -1168,7 +1168,7 @@
     "highway": "UA 90",
     "subCSJCount": 57,
     "estimate": 17072171.65,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0027-03-077"
   },
@@ -1183,7 +1183,7 @@
     "highway": "FM 2856",
     "subCSJCount": 1,
     "estimate": 157269.29,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "2899-01-013"
   },
@@ -1243,7 +1243,7 @@
     "highway": "US0287",
     "subCSJCount": 1,
     "estimate": 1000000,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
     "csj": "6508-43-001"
   },
@@ -1394,7 +1394,7 @@
     "highway": "US0290",
     "subCSJCount": 1,
     "estimate": 800000,
-    "letDate": "11/04/2026",
+    "letDate": "11/10/2026",
     "typeOfWork": "TRAFFIC CONTROL SERVICES",
     "csj": "6506-72-001"
   },
@@ -1409,7 +1409,7 @@
     "highway": "IH0069",
     "subCSJCount": 1,
     "estimate": 3700000,
-    "letDate": "11/04/2026",
+    "letDate": "11/03/2026",
     "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
     "csj": "6509-25-001"
   },
@@ -1455,7 +1455,7 @@
     "highway": "SH0016",
     "subCSJCount": 1,
     "estimate": 250000,
-    "letDate": "11/18/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "EROSION REPAIR",
     "csj": "6494-06-001"
   },
@@ -1470,7 +1470,7 @@
     "highway": "SH0081",
     "subCSJCount": 1,
     "estimate": 600000,
-    "letDate": "11/10/2026",
+    "letDate": "11/17/2026",
     "typeOfWork": "LIMESTONE ROCK ASPHALT",
     "csj": "6506-96-001"
   },
@@ -1530,7 +1530,7 @@
     "highway": "FM 1004",
     "subCSJCount": 1,
     "estimate": 2281773,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0947-03-034"
   },
@@ -1545,7 +1545,7 @@
     "highway": "SH0045",
     "subCSJCount": 1,
     "estimate": 1160585.5,
-    "letDate": "11/04/2026",
+    "letDate": "11/03/2026",
     "typeOfWork": "SMALL SIGN REPLACEMENT",
     "csj": "6484-51-001"
   },
@@ -1562,7 +1562,7 @@
     "highway": "SH 30",
     "subCSJCount": 3,
     "estimate": 31732117.15,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Bridge Replacement",
     "csj": "0212-03-058"
   },
@@ -1622,7 +1622,7 @@
     "highway": "US0377",
     "subCSJCount": 1,
     "estimate": 1500000,
-    "letDate": "11/09/2026",
+    "letDate": "11/02/2026",
     "typeOfWork": "GROUNDS MAINTENANCE",
     "csj": "6494-86-001"
   },
@@ -1693,7 +1693,7 @@
     "highway": "SL 254",
     "subCSJCount": 42,
     "estimate": 9696778.28,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0007-05-016"
   },
@@ -1712,7 +1712,7 @@
     "highway": "IH 35",
     "subCSJCount": 5,
     "estimate": 3185147.59,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "FDR, EDGE MILL, UNDERSEAL AND TOM OVERLAY FR",
     "csj": "0016-03-125"
   },
@@ -1766,7 +1766,7 @@
     "highway": "US 287",
     "subCSJCount": 25,
     "estimate": 17588678.56,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0066-03-045"
   },
@@ -1812,7 +1812,7 @@
     "highway": "FM 485",
     "subCSJCount": 2,
     "estimate": 10576528.92,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "0262-01-034"
   },
@@ -1857,7 +1857,7 @@
     "highway": "FM 665",
     "subCSJCount": 1,
     "estimate": 4769574.6,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Hazard Elimination & Safety",
     "csj": "1052-02-098"
   },
@@ -1917,7 +1917,7 @@
     "highway": "IH 35",
     "subCSJCount": 1,
     "estimate": 140603143.13,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Widen Road - Add Lanes",
     "csj": "0195-02-092"
   },
@@ -1932,7 +1932,7 @@
     "highway": "IH0030",
     "subCSJCount": 1,
     "estimate": 900000,
-    "letDate": "11/04/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "ILLUMINATION MAINTENANCE",
     "csj": "6504-57-001"
   },
@@ -2022,7 +2022,7 @@
     "highway": "IH0035",
     "subCSJCount": 1,
     "estimate": 95000,
-    "letDate": "11/18/2026",
+    "letDate": "11/12/2026",
     "typeOfWork": "EROSION REPAIR",
     "csj": "6498-00-001"
   },
@@ -2052,7 +2052,7 @@
     "highway": "IH 45",
     "subCSJCount": 1,
     "estimate": 893150.12,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Install Illumination",
     "csj": "0500-01-158"
   },
@@ -2067,7 +2067,7 @@
     "highway": "US0287",
     "subCSJCount": 1,
     "estimate": 400000,
-    "letDate": "11/05/2026",
+    "letDate": "11/10/2026",
     "typeOfWork": "WINTER WEATHER MATERIAL",
     "csj": "6508-45-001"
   },
@@ -2195,7 +2195,7 @@
     "highway": "US 84",
     "subCSJCount": 53,
     "estimate": 25657565.5,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Seal Coat",
     "csj": "0052-04-054"
   },
@@ -2255,7 +2255,7 @@
     "highway": "FM 35",
     "subCSJCount": 1,
     "estimate": 6591205.76,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Widen Road - Add Shoulders",
     "csj": "1017-03-040"
   },
@@ -2270,7 +2270,7 @@
     "highway": "IH0020",
     "subCSJCount": 1,
     "estimate": 250000,
-    "letDate": "11/03/2026",
+    "letDate": "11/10/2026",
     "typeOfWork": "MISCELLANEOUS CONCRETE REPAIR",
     "csj": "6496-11-001"
   },
@@ -2321,7 +2321,7 @@
     "highway": "SH 66",
     "subCSJCount": 37,
     "estimate": 380723.2,
-    "letDate": "11/03/2026",
+    "letDate": "11/04/2026",
     "typeOfWork": "Preventive Maintenance",
     "csj": "0009-06-056"
   }
