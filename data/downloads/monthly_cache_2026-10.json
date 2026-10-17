@@ -2410,5 +2410,155 @@
     "letDate": "10/08/2026",
     "typeOfWork": "DITCH CLEANING AND RESHAPING",
     "csj": "6508-34-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Harrison County",
+    "county": "Harrison",
+    "subCSJs": [
+      "6509-86-001"
+    ],
+    "projectName": "Marshall Hot Mix FY 27",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 396480.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-86-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Bowie County",
+    "county": "Bowie",
+    "subCSJs": [
+      "6509-89-001"
+    ],
+    "projectName": "Texarkana Hot Mix FY 27",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 399000.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-89-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Upshur County",
+    "county": "Upshur",
+    "subCSJs": [
+      "6509-83-001"
+    ],
+    "projectName": "Gilmer Hot Mix FY 27",
+    "highway": "US0271",
+    "subCSJCount": 1,
+    "estimate": 390400.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-83-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Marion County",
+    "county": "Marion",
+    "subCSJs": [
+      "6509-84-001"
+    ],
+    "projectName": "Jefferson Hot Mix FY 27",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 396480.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-84-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Cass County",
+    "county": "Cass",
+    "subCSJs": [
+      "6509-85-001"
+    ],
+    "projectName": "Linden Hot Mix FY 27",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 406700.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-85-001"
+  },
+  {
+    "projectType": "RAISED PAVEMENT MARKERS",
+    "projectDescription": "Installation of Raised Pavement Markers",
+    "county": "Angelina",
+    "subCSJs": [
+      "6510-35-001"
+    ],
+    "projectName": "2026-Raised Pavement Markers",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 348125.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "RAISED PAVEMENT MARKERS",
+    "csj": "6510-35-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Morris County",
+    "county": "Morris",
+    "subCSJs": [
+      "6509-82-001"
+    ],
+    "projectName": "Hot Mix Daingerfield FY 27",
+    "highway": "US0259",
+    "subCSJCount": 1,
+    "estimate": 382800.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-82-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Bowie County",
+    "county": "Bowie",
+    "subCSJs": [
+      "6509-88-001"
+    ],
+    "projectName": "New Boston Hot Mix FY 27",
+    "highway": "US0082",
+    "subCSJCount": 1,
+    "estimate": 399500.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-88-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Panola County",
+    "county": "Panola",
+    "subCSJs": [
+      "6509-81-001"
+    ],
+    "projectName": "Carthage Hot Mix FY 27",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 396480.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-81-001"
+  },
+  {
+    "projectType": "HOT MIX",
+    "projectDescription": "Hot Mix in Titus County",
+    "county": "Titus",
+    "subCSJs": [
+      "6509-87-001"
+    ],
+    "projectName": "Mt. Pleasant Hot Mix FY 27",
+    "highway": "IH0030",
+    "subCSJCount": 1,
+    "estimate": 381700.0,
+    "letDate": "10/14/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6509-87-001"
   }
 ]
