@@ -1365,7 +1365,7 @@
     "highway": "US0290",
     "subCSJCount": 1,
     "estimate": 51000,
-    "letDate": "10/27/2026",
+    "letDate": "10/18/2026",
     "typeOfWork": "LANDSCAPE MAINTENANCE",
     "csj": "6508-91-001"
   },
@@ -2228,7 +2228,7 @@
     "projectName": "Winter Weather Material 09 0926",
     "highway": "FM0876",
     "subCSJCount": 1,
-    "estimate": 411000.0,
+    "estimate": 446751.0,
     "letDate": "10/14/2026",
     "typeOfWork": "WINTER WEATHER MATERIAL",
     "csj": "6502-95-001"
