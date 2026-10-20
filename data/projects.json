@@ -944,7 +944,7 @@
     "projectName": "Misc Concrete Repair KRAO FY'27",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 270825,
+    "estimate": 203140.0,
     "letDate": "10/14/2026",
     "typeOfWork": "CONCRETE STRUCTURE REPAIR",
     "csj": "6504-79-001"
@@ -1322,7 +1322,7 @@
     "projectName": "6509-64-001 ASPPM",
     "highway": "IH0020",
     "subCSJCount": 1,
-    "estimate": 168000.0,
+    "estimate": 159798.0,
     "letDate": "10/13/2026",
     "typeOfWork": "ASPHALTIC PATCHING MATERIAL",
     "csj": "6509-64-001"
