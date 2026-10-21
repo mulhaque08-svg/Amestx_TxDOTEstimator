@@ -21,13 +21,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Run TxDOT Live Schedule & Date Sync
+      - name: Run Master TxDOT Live Schedule, Estimates & Month Reconciliation
         run: |
-          python backend/sync_live_txdot_schedules.py
+          python backend/sync_txdot_master.py
 
-      - name: Run TxDOT Estimate Audit
-        run: |
-          python backend/sync_live_estimates.py
 
       - name: Commit and push changes if any
         run: |
