@@ -1,592 +1,5 @@
 [
   {
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "projectDescription": "Mowing Right of Way",
-    "county": "Collin",
-    "subCSJs": [
-      "6508-10-001"
-    ],
-    "projectName": "Mowing HW ROW W 07 12.26",
-    "highway": "US0075",
-    "subCSJCount": 1,
-    "estimate": 437898.16,
-    "letDate": "12/03/2026",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "csj": "6508-10-001"
-  },
-  {
-    "projectType": "EMERGENCY PIPE REPLACEMENT",
-    "projectDescription": "Pipe replacement with pavement markings at various locations",
-    "county": "Brazoria",
-    "subCSJs": [
-      "6497-81-001"
-    ],
-    "projectName": "SH 332, etc. Pipe Replacement",
-    "highway": "SH0332",
-    "subCSJCount": 1,
-    "estimate": 202137.07,
-    "letDate": "12/08/2026",
-    "typeOfWork": "EMERGENCY PIPE REPLACEMENT",
-    "csj": "6497-81-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "Install Reflectorized Backplates",
-    "county": "Leon",
-    "subCSJs": [
-      "0917-20-051",
-      "0917-16-046"
-    ],
-    "projectName": "VA Leon County -  Backplates FY 27",
-    "highway": "Various",
-    "subCSJCount": 2,
-    "estimate": 184986.45,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0917-16-046"
-  },
-  {
-    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "projectDescription": "ON-CALL RETROREFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "county": "Collin",
-    "subCSJs": [
-      "6508-08-001"
-    ],
-    "projectName": "On Call RPM 07 12.26",
-    "highway": "US0075",
-    "subCSJCount": 1,
-    "estimate": 177824.69,
-    "letDate": "12/03/2026",
-    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "csj": "6508-08-001"
-  },
-  {
-    "projectType": "Seal Coat",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY 2027",
-    "county": "Tom Green",
-    "subCSJs": [
-      "0344-02-052",
-      "0070-01-056",
-      "0396-03-029",
-      "1647-02-005",
-      "2844-02-010",
-      "2470-01-007",
-      "0454-01-050",
-      "0148-04-025",
-      "0159-08-004",
-      "2361-01-005",
-      "1486-02-011",
-      "2298-02-007",
-      "0201-05-026",
-      "3209-01-008",
-      "2713-01-004",
-      "2298-03-012",
-      "0201-06-033",
-      "0148-03-029",
-      "2843-01-014",
-      "1647-01-006",
-      "0830-02-023"
-    ],
-    "projectName": "0070-01-056 FM 1223 SEAL COAT",
-    "highway": "FM 1223",
-    "subCSJCount": 21,
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Seal Coat",
-    "csj": "0070-01-056"
-  },
-  {
-    "projectType": "Seal Coat",
-    "projectDescription": "FY 2027 Seal Coat",
-    "county": "Van Zandt",
-    "subCSJs": [
-      "1763-02-033",
-      "0594-02-031",
-      "1398-01-014",
-      "2302-02-009",
-      "0889-02-017",
-      "0096-06-076",
-      "0657-04-014",
-      "2426-01-014",
-      "0892-02-009",
-      "0892-03-003",
-      "1151-01-016",
-      "0745-02-015",
-      "0927-01-035",
-      "2408-01-012",
-      "0522-03-028",
-      "0118-04-037",
-      "0165-02-069",
-      "0592-02-017",
-      "2654-01-024",
-      "0401-03-029",
-      "0443-03-024",
-      "0545-03-015",
-      "1116-01-024",
-      "1666-02-009",
-      "0058-04-023",
-      "0889-02-018",
-      "1116-02-002",
-      "0657-01-021",
-      "0910-00-176",
-      "1161-02-012",
-      "0095-07-062",
-      "0245-19-030",
-      "1666-03-007",
-      "0594-01-017",
-      "0118-05-025",
-      "0892-01-022",
-      "0910-00-175",
-      "0199-05-014",
-      "0927-01-036",
-      "1161-02-013",
-      "0657-03-018",
-      "2833-01-016",
-      "0745-01-025",
-      "0646-05-043"
-    ],
-    "projectName": "US 80,  W City Limits - FM 857, SC 27",
-    "highway": "US 80",
-    "subCSJCount": 44,
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Seal Coat",
-    "csj": "0095-07-062"
-  },
-  {
-    "projectType": "LARGE SIGN REPLACEMENT",
-    "projectDescription": "Guide sign replacement on US0287 and US0067",
-    "county": "Ellis",
-    "subCSJs": [
-      "6499-18-001"
-    ],
-    "projectName": "Guide Sign Repl US 287, US 67 08/2026",
-    "highway": "US0287",
-    "subCSJCount": 1,
-    "estimate": 1000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "LARGE SIGN REPLACEMENT",
-    "csj": "6499-18-001"
-  },
-  {
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "projectDescription": "Vegetation Management Mowing",
-    "county": "Collin",
-    "subCSJs": [
-      "6508-09-001"
-    ],
-    "projectName": "Mowing HW ROW E 07 12.26",
-    "highway": "US0380",
-    "subCSJCount": 1,
-    "estimate": 295106.28,
-    "letDate": "12/03/2026",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "csj": "6508-09-001"
-  },
-  {
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "projectDescription": "6508-52-001 will be mowing & herbicide for FY2027 in S. Tarrant County.",
-    "county": "Tarrant",
-    "subCSJs": [
-      "6508-52-001"
-    ],
-    "projectName": "FY 2027 - Mowing & Herbicide - S Tarrant",
-    "highway": "IH0030",
-    "subCSJCount": 1,
-    "estimate": 1182171.57,
-    "letDate": "12/02/2026",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "csj": "6508-52-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "Install Reflectorized Backplates",
-    "county": "Madison",
-    "subCSJs": [
-      "0917-31-041"
-    ],
-    "projectName": "VA Madison County -  Backplates FY 27",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 126512.1,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0917-31-041"
-  },
-  {
-    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "projectDescription": "6508-51-001 is Reflectorized Pavement Markings for FY2027 in Johnson County",
-    "county": "Johnson",
-    "subCSJs": [
-      "6508-51-001"
-    ],
-    "projectName": "FY2027 - Call-Out Striping - Johnson",
-    "highway": "SH0174",
-    "subCSJCount": 1,
-    "estimate": 520961.54,
-    "letDate": "12/02/2026",
-    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "csj": "6508-51-001"
-  },
-  {
-    "projectType": "Bridge Maintenance",
-    "projectDescription": "US 90-@ TRINITY RIVER-BRIDGE MAINTENANCE (STR 201460002803128)",
-    "county": "Liberty",
-    "subCSJs": [
-      "0028-03-119",
-      "0244-05-043",
-      "0601-01-069",
-      "0244-05-044",
-      "0601-01-068"
-    ],
-    "projectName": "US 90-@ TRINITY RIVER-BRIDGE MAINTENANCE",
-    "highway": "US 90",
-    "subCSJCount": 5,
-    "estimate": 5428043.08,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Bridge Maintenance",
-    "csj": "0028-03-119"
-  },
-  {
-    "projectType": "Highway Improvement",
-    "projectDescription": "FOR THE CONSTRUCTION OF INTERSECTION AND OPERATIONAL IMPROVEMENTS, CONSISTING OF ASPHALT REPAIR \nALONG IH 35",
-    "county": "Travis",
-    "subCSJs": [
-      "0914-00-513"
-    ],
-    "projectName": "FY 27 Districtwide Asphalt Repair Contr",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 1909737.5,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Highway Improvement",
-    "csj": "0914-00-513"
-  },
-  {
-    "projectType": "ASPHALT PAVEMENT REPAIR",
-    "projectDescription": "Asphaltic Concrete Pavement Repairs",
-    "county": "Matagorda",
-    "subCSJs": [
-      "6497-98-001"
-    ],
-    "projectName": "Asphaltic Concrete Pavement Repair FY 27",
-    "highway": "FM2668",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/02/2026",
-    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
-    "csj": "6497-98-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "Add CTB along segments of SS 325",
-    "county": "Wichita",
-    "subCSJs": [
-      "0156-07-115"
-    ],
-    "projectName": "SS 325 CTB",
-    "highway": "IH 44",
-    "subCSJCount": 1,
-    "estimate": 1210800.61,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0156-07-115"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "INSTALL ADVANCED WARNING SIGNS (INTERSECTION), IMPROVE SCHOOL ZONE, INSTALL RRFB, INSTALL PAVEMENT MARKINGS, INSTALL SIDEWALKS",
-    "county": "El Paso",
-    "subCSJs": [
-      "0002-02-065",
-      "0924-06-722",
-      "0924-06-719",
-      "0002-14-047",
-      "0374-02-125"
-    ],
-    "projectName": "SH20 SAFETY (ROBERT V | MORNING GLORY)",
-    "highway": "SH 20",
-    "subCSJCount": 5,
-    "estimate": 1370183.55,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0002-02-065"
-  },
-  {
-    "projectType": "Install Noise Barrier",
-    "projectDescription": "Construct Sound Wall",
-    "county": "Galveston",
-    "subCSJs": [
-      "0523-09-024",
-      "0500-04-145"
-    ],
-    "projectName": "IH 45: Clear Creek to FM 518, Wall/Pond",
-    "highway": "IH 45",
-    "subCSJCount": 2,
-    "estimate": 2641362.27,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Install Noise Barrier",
-    "csj": "0500-04-145"
-  },
-  {
-    "projectType": "CULVERT REPAIR",
-    "projectDescription": "Culvert Repair",
-    "county": "Victoria",
-    "subCSJs": [
-      "6470-08-001"
-    ],
-    "projectName": "Culvert Structure Improvements VAO",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/31/2026",
-    "typeOfWork": "CULVERT REPAIR",
-    "csj": "6470-08-001"
-  },
-  {
-    "projectType": "Bridge Maintenance",
-    "projectDescription": "Bridge Repair in the Lubbock District",
-    "county": "Lubbock",
-    "subCSJs": [
-      "0905-00-136"
-    ],
-    "projectName": "FY 27 BMN - Various Locations",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 1946790.5,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Bridge Maintenance",
-    "csj": "0905-00-136"
-  },
-  {
-    "projectType": "DITCH CLEANING AND RESHAPING",
-    "projectDescription": "DITCH CLEANING AND RESHAPING",
-    "county": "Ellis",
-    "subCSJs": [
-      "6507-34-001"
-    ],
-    "projectName": "ELLIS-DITCH CLEANING AND RESHAPING 1226",
-    "highway": "IH0035E",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/03/2026",
-    "typeOfWork": "DITCH CLEANING AND RESHAPING",
-    "csj": "6507-34-001"
-  },
-  {
-    "projectType": "ILLUMINATION MAINTENANCE",
-    "projectDescription": "Illumination Repair - Ganado",
-    "county": "Jackson",
-    "subCSJs": [
-      "6499-87-001"
-    ],
-    "projectName": "Illumination Repair - Ganado",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 600000,
-    "letDate": "12/31/2026",
-    "typeOfWork": "ILLUMINATION MAINTENANCE",
-    "csj": "6499-87-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "county": "Bexar",
-    "subCSJs": [
-      "6504-44-001"
-    ],
-    "projectName": "West Bexar Bridge Maint. FY 27",
-    "highway": "SH0151",
-    "subCSJCount": 1,
-    "estimate": 300000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6504-44-001"
-  },
-  {
-    "projectType": "DITCH CLEANING AND RESHAPING",
-    "projectDescription": "Ditch cleaning and reshaping for various locations in Brazos, Robertson, and Grimes counties.",
-    "county": "Brazos",
-    "subCSJs": [
-      "6464-60-001"
-    ],
-    "projectName": "Bryan AO Ditch Cleaning - 05",
-    "highway": "SH0006",
-    "subCSJCount": 1,
-    "estimate": 200000,
-    "letDate": "12/05/2026",
-    "typeOfWork": "DITCH CLEANING AND RESHAPING",
-    "csj": "6464-60-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "SAFETY LIGHTING, ADD LEFT TURN LANE, ADD RIGHT TURN LANE",
-    "county": "Ector",
-    "subCSJs": [
-      "1127-05-024"
-    ],
-    "projectName": "HSIP_FM866_SafetyLightingTurnLanes",
-    "highway": "FM 866",
-    "subCSJCount": 1,
-    "estimate": 2054496.55,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "1127-05-024"
-  },
-  {
-    "projectType": "Bridge Replacement",
-    "projectDescription": "Replace Bridge and Approaches at Mullens Bayou",
-    "county": "Refugio",
-    "subCSJs": [
-      "0916-27-016"
-    ],
-    "projectName": "MullensBayouRd(CR42) Bridge Replacement",
-    "highway": "MULLENS BAYOU RD",
-    "subCSJCount": 1,
-    "estimate": 882212.21,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Bridge Replacement",
-    "csj": "0916-27-016"
-  },
-  {
-    "projectType": "SWEEPING AND DEBRIS REMOVAL",
-    "projectDescription": "6510-29-001, Sweeping & Debris, FY27, S Tarrant",
-    "county": "Tarrant",
-    "subCSJs": [
-      "6510-29-001"
-    ],
-    "projectName": "FY27, Sweeping And Debris, S Tarrant",
-    "highway": "IH0030",
-    "subCSJCount": 1,
-    "estimate": 3436661.21,
-    "letDate": "12/01/2026",
-    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
-    "csj": "6510-29-001"
-  },
-  {
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "projectDescription": "Limestone Rock Asphalt - La Salle County",
-    "county": "La Salle",
-    "subCSJs": [
-      "6508-64-001"
-    ],
-    "projectName": "La Salle County - LRA",
-    "highway": "IH0035",
-    "subCSJCount": 1,
-    "estimate": 850150.0,
-    "letDate": "12/10/2026",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "csj": "6508-64-001"
-  },
-  {
-    "projectType": "HERBICIDE/INSECTICIDE",
-    "projectDescription": "HERBICIDE",
-    "county": "Collin",
-    "subCSJs": [
-      "6508-11-001"
-    ],
-    "projectName": "Herbicide 07 12.26",
-    "highway": "US0075",
-    "subCSJCount": 1,
-    "estimate": 73270.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "HERBICIDE/INSECTICIDE",
-    "csj": "6508-11-001"
-  },
-  {
-    "projectType": "TREE REMOVAL",
-    "projectDescription": "Tree Removal and Brush",
-    "county": "Montgomery",
-    "subCSJs": [
-      "6506-76-001"
-    ],
-    "projectName": "Tree Removal and Brush RMC 6506-76-001",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 711080.0,
-    "letDate": "12/08/2026",
-    "typeOfWork": "TREE REMOVAL",
-    "csj": "6506-76-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "SEAL COAT",
-    "county": "Presidio",
-    "subCSJs": [
-      "0485-01-026",
-      "0485-02-018",
-      "0104-07-027"
-    ],
-    "projectName": "US067 SC (15 MI S JCTUS67/90 | 33 MI S)",
-    "highway": "US 67",
-    "subCSJCount": 3,
-    "estimate": 5924302.88,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0104-07-027"
-  },
-  {
-    "projectType": "Rehabilitate Existing Roadway",
-    "projectDescription": "FULL DEPTH REPAIR",
-    "county": "Ellis",
-    "subCSJs": [
-      "0442-03-050",
-      "0048-08-060",
-      "0048-04-111"
-    ],
-    "projectName": "IH 35E From US 77S To US 77N FY28",
-    "highway": "IH 35E",
-    "subCSJCount": 3,
-    "estimate": 6007681.66,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "csj": "0048-04-111"
-  },
-  {
-    "projectType": "INSTALLATION OF TRAFFIC SIGNALS",
-    "projectDescription": "Installation of traffic signals at the intersection of SH 99 and FM 1960",
-    "county": "Liberty",
-    "subCSJs": [
-      "6502-51-001"
-    ],
-    "projectName": "SH 99 & FM 1960 Signal Installation",
-    "highway": "FM1960",
-    "subCSJCount": 1,
-    "estimate": 350000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "INSTALLATION OF TRAFFIC SIGNALS",
-    "csj": "6502-51-001"
-  },
-  {
-    "projectType": "EROSION REPAIR",
-    "projectDescription": "Erosion Repair",
-    "county": "Brazoria",
-    "subCSJs": [
-      "6435-95-001"
-    ],
-    "projectName": "SH 35 at San Bernard Erosion",
-    "highway": "SH0288",
-    "subCSJCount": 1,
-    "estimate": 836425.24,
-    "letDate": "12/02/2026",
-    "typeOfWork": "EROSION REPAIR",
-    "csj": "6435-95-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "STRIPING",
-    "county": "De Witt",
-    "subCSJs": [
-      "0913-00-134"
-    ],
-    "projectName": "DISTRICTWIDE STIPING 2709",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 1866640.2,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0913-00-134"
-  },
-  {
     "projectType": "Construct Pedestrian Infrastructure",
     "projectDescription": "Construct Sidewalks Along SL 368",
     "county": "Bexar",
@@ -600,1461 +13,6 @@
     "letDate": "12/02/2026",
     "typeOfWork": "Construct Pedestrian Infrastructure",
     "csj": "0016-08-053"
-  },
-  {
-    "projectType": "REMOVAL AND DISPOSAL OF DRIFTWOOD",
-    "projectDescription": "Removal and Disposal of Driftwood",
-    "county": "Collin",
-    "subCSJs": [
-      "6498-22-001"
-    ],
-    "projectName": "Drift and Debris 07 12.26",
-    "highway": "US0075",
-    "subCSJCount": 1,
-    "estimate": 87676.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "REMOVAL AND DISPOSAL OF DRIFTWOOD",
-    "csj": "6498-22-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BPM FUA for WFAO FY '27",
-    "county": "Clay",
-    "subCSJs": [
-      "6510-33-001"
-    ],
-    "projectName": "BPM Wichita Area  FY '27",
-    "highway": "US0287",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6510-33-001"
-  },
-  {
-    "projectType": "EMULSION",
-    "projectDescription": "Emulsion Material for Pecos, Reeves, and Terrell counties.",
-    "county": "Pecos",
-    "subCSJs": [
-      "6505-32-001"
-    ],
-    "projectName": "6505-32-001 Emulsion",
-    "highway": "BI0010G",
-    "subCSJCount": 1,
-    "estimate": 110000,
-    "letDate": "12/08/2026",
-    "typeOfWork": "EMULSION",
-    "csj": "6505-32-001"
-  },
-  {
-    "projectType": "Bridge Maintenance",
-    "projectDescription": "Bridge Maintenance Improvement Program - BMIP",
-    "county": "De Witt",
-    "subCSJs": [
-      "0913-00-140"
-    ],
-    "projectName": "BMIP 2712",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 4401017.85,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Bridge Maintenance",
-    "csj": "0913-00-140"
-  },
-  {
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "projectDescription": "Mowing various Highway Right of Ways within South Tarrant county in FY26.",
-    "county": "Tarrant",
-    "subCSJs": [
-      "6487-75-001"
-    ],
-    "projectName": "FY26, Mowing, S. Tarrant",
-    "highway": "IH0030",
-    "subCSJCount": 1,
-    "estimate": 987872.28,
-    "letDate": "12/01/2026",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "csj": "6487-75-001"
-  },
-  {
-    "projectType": "Seal Coat",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "county": "Parker",
-    "subCSJs": [
-      "1513-01-021",
-      "1094-04-019",
-      "0008-09-041",
-      "1469-01-025",
-      "1853-01-049"
-    ],
-    "projectName": "FY27 Seal Coat Pavement Preservation",
-    "highway": "FM 5",
-    "subCSJCount": 5,
-    "estimate": 5981723.36,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Seal Coat",
-    "csj": "1469-01-025"
-  },
-  {
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "projectDescription": "MOWING HIGHWAY RIGHT OF WAY",
-    "county": "Galveston",
-    "subCSJs": [
-      "6504-29-001"
-    ],
-    "projectName": "FY 2027 MOWING HIGHWAY RIGHT OF WAY",
-    "highway": "SH0087",
-    "subCSJCount": 1,
-    "estimate": 495189.02,
-    "letDate": "12/08/2026",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "csj": "6504-29-001"
-  },
-  {
-    "projectType": "Rehabilitate Existing Roadway",
-    "projectDescription": "IH 27 CRCP in Lubbock County",
-    "county": "Lubbock",
-    "subCSJs": [
-      "0905-06-129"
-    ],
-    "projectName": "FY 27 CRCP IH27-Lubbock",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 3128110.48,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "csj": "0905-06-129"
-  },
-  {
-    "projectType": "EMULSION",
-    "projectDescription": "PROVIDE EMULSION (MATERIAL ONLY) FOR SAN SABA AND MCCULLOCH COUNTIES",
-    "county": "San Saba",
-    "subCSJs": [
-      "6459-83-001"
-    ],
-    "projectName": "EMULSION-SOUTH 23/24",
-    "highway": "US0190",
-    "subCSJCount": 1,
-    "estimate": 38000,
-    "letDate": "12/31/2026",
-    "typeOfWork": "EMULSION",
-    "csj": "6459-83-001"
-  },
-  {
-    "projectType": "CRASH CUSHION ATTENUATOR REPAIR",
-    "projectDescription": "Crash Cushion Attenuator Repair",
-    "county": "Montgomery",
-    "subCSJs": [
-      "6506-85-001"
-    ],
-    "projectName": "Crash Cushion RMC 6506-85-001",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 629321.0,
-    "letDate": "12/08/2026",
-    "typeOfWork": "CRASH CUSHION ATTENUATOR REPAIR",
-    "csj": "6506-85-001"
-  },
-  {
-    "projectType": "Bridge Replacement",
-    "projectDescription": "Bridge Replacement of CR 326 @ San Antonio River",
-    "county": "Karnes",
-    "subCSJs": [
-      "0916-36-024"
-    ],
-    "projectName": "CR 326 @ SA River Bridge Replacement",
-    "highway": "COUNTY ROAD 326",
-    "subCSJCount": 1,
-    "estimate": 3101274.4,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Bridge Replacement",
-    "csj": "0916-36-024"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Supplemental Bridge Preventative Maintenance",
-    "county": "Childress",
-    "subCSJs": [
-      "6508-48-001"
-    ],
-    "projectName": "FY27 Supplemental BPM 2",
-    "highway": "US0287",
-    "subCSJCount": 1,
-    "estimate": 1000000,
-    "letDate": "12/02/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6508-48-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "Seal Coat Mainlanes FY 2027",
-    "county": "Hood",
-    "subCSJs": [
-      "2213-01-016",
-      "2631-02-007",
-      "0239-07-022",
-      "1598-01-023",
-      "0313-01-064",
-      "2213-02-012",
-      "0365-01-056",
-      "0134-05-041",
-      "0902-00-405",
-      "2631-03-007",
-      "2855-01-032",
-      "0007-07-028",
-      "2631-01-007",
-      "3123-02-014",
-      "0362-04-049",
-      "0385-04-055",
-      "2417-02-019",
-      "1513-02-046",
-      "3123-01-017",
-      "2738-01-018",
-      "2292-01-035",
-      "0134-05-040",
-      "0080-08-028",
-      "0313-08-032",
-      "0312-04-037",
-      "2550-01-012",
-      "0313-02-070"
-    ],
-    "projectName": "Summer 2027 District Sealcoat",
-    "highway": "FM 167",
-    "subCSJCount": 27,
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "1598-01-023"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "THERMOPLASTIC STRIPING",
-    "county": "Brown",
-    "subCSJs": [
-      "0923-00-086"
-    ],
-    "projectName": "Brownwood Area Thermo Striping FY2027",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 1642575.91,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0923-00-086"
-  },
-  {
-    "projectType": "Parking Lot Repair - Seal Coat and Striping",
-    "projectDescription": "Parking Lot Repair Consisting of New Surface and Striping",
-    "county": "Travis",
-    "subCSJs": [
-      "6391-34-001"
-    ],
-    "projectName": "FY 24 Austin State Supported Living",
-    "highway": "SL 1",
-    "subCSJCount": 1,
-    "estimate": 146215.35,
-    "letDate": "12/05/2026",
-    "typeOfWork": "Parking Lot Repair - Seal Coat and Striping",
-    "csj": "6391-34-001"
-  },
-  {
-    "projectType": "Highway Improvement",
-    "projectDescription": "Centerline and Edgeline Rumble Strips",
-    "county": "Angelina",
-    "subCSJs": [
-      "0911-00-137",
-      "0893-04-015",
-      "1879-01-025"
-    ],
-    "projectName": "FM 328_FM 2109 to EOP - FY 27 HSIP",
-    "highway": "FM 328",
-    "subCSJCount": 3,
-    "estimate": 4851339.58,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Highway Improvement",
-    "csj": "0893-04-015"
-  },
-  {
-    "projectType": "SEAL COAT",
-    "projectDescription": "PURCHASE AND DELIVERY OF MATERIALS ONLY CHFRS-2P AND CSS1-H 30% FOG OIL",
-    "county": "Eastland",
-    "subCSJs": [
-      "6496-48-001"
-    ],
-    "projectName": "CHFRS-2P AND CSS1-H 30% FOG OIL Seal Co",
-    "highway": "SH0006",
-    "subCSJCount": 1,
-    "estimate": 1000000,
-    "letDate": "12/09/2026",
-    "typeOfWork": "SEAL COAT",
-    "csj": "6496-48-001"
-  },
-  {
-    "projectType": "Resurface Roadway",
-    "projectDescription": "FDR, LEVEL UP AND TOM",
-    "county": "Lee",
-    "subCSJs": [
-      "0211-03-039"
-    ],
-    "projectName": "US 77 from 1.4 mi N to .57 mi S of SH 21",
-    "highway": "US 77",
-    "subCSJCount": 1,
-    "estimate": 1977989.53,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Resurface Roadway",
-    "csj": "0211-03-039"
-  },
-  {
-    "projectType": "METAL BEAM GUARD FENCE REPAIR",
-    "projectDescription": "6510-28-001, Guardrail Repair, FY27, Jack and Wise",
-    "county": "Wise",
-    "subCSJs": [
-      "6510-28-001"
-    ],
-    "projectName": "FY27, Guardrail Repair, Jack and Wise",
-    "highway": "US0380",
-    "subCSJCount": 1,
-    "estimate": 865906,
-    "letDate": "12/16/2026",
-    "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
-    "csj": "6510-28-001"
-  },
-  {
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "projectDescription": "Tree Trimming and Brush Removal",
-    "county": "Fort Bend",
-    "subCSJs": [
-      "6509-26-001"
-    ],
-    "projectName": "RMC 6509-26-001",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 410070.0,
-    "letDate": "12/08/2026",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
-    "csj": "6509-26-001"
-  },
-  {
-    "projectType": "CULVERT CLEANING",
-    "projectDescription": "Inlet and Culvert Cleaning",
-    "county": "Denton",
-    "subCSJs": [
-      "6508-30-001"
-    ],
-    "projectName": "Culvert Cleaning 04 1226",
-    "highway": "IH0035W",
-    "subCSJCount": 1,
-    "estimate": 94300.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "CULVERT CLEANING",
-    "csj": "6508-30-001"
-  },
-  {
-    "projectType": "Bridge Replacement",
-    "projectDescription": "Replace bridge and approach",
-    "county": "Hays",
-    "subCSJs": [
-      "0366-01-084"
-    ],
-    "projectName": "SH 123 at Big Cottonwood Creek",
-    "highway": "SH 123",
-    "subCSJCount": 1,
-    "estimate": 2818472.4,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Bridge Replacement",
-    "csj": "0366-01-084"
-  },
-  {
-    "projectType": "SKID RESTORATION (NON-REHAB)",
-    "projectDescription": "Diamond Grind Outside Lanes Only.",
-    "county": "Harris",
-    "subCSJs": [
-      "6502-84-001"
-    ],
-    "projectName": "FY27 Diamond Grind FM 1093",
-    "highway": "FM1093",
-    "subCSJCount": 1,
-    "estimate": 261584.68,
-    "letDate": "12/08/2026",
-    "typeOfWork": "SKID RESTORATION (NON-REHAB)",
-    "csj": "6502-84-001"
-  },
-  {
-    "projectType": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LAN",
-    "projectDescription": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LANE",
-    "county": "Andrews",
-    "subCSJs": [
-      "1718-05-021"
-    ],
-    "projectName": "HSIP_FM1788_SaftyLightingTurnLane",
-    "highway": "FM 1788",
-    "subCSJCount": 1,
-    "estimate": 2153993.53,
-    "letDate": "12/01/2026",
-    "typeOfWork": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LAN",
-    "csj": "1718-05-021"
-  },
-  {
-    "projectType": "Intersection Improvement",
-    "projectDescription": "ADD NORTHBOUND RIGHT TURN LANE, DUAL LEFT TURN LANES, REHABILITATE INTERSECTION PAVEMENT, AND SIGNAL IMPROVEMENTS",
-    "county": "Burnet",
-    "subCSJs": [
-      "0252-01-084"
-    ],
-    "projectName": "US 281 AT RM 1431",
-    "highway": "US 281",
-    "subCSJCount": 1,
-    "estimate": 6953263.29,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Intersection Improvement",
-    "csj": "0252-01-084"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "PAVEMENT PM",
-    "county": "Randall",
-    "subCSJs": [
-      "2635-04-048",
-      "2635-03-031"
-    ],
-    "projectName": "FM 2590 PM RANDALL 2-2",
-    "highway": "FM 2590",
-    "subCSJCount": 2,
-    "estimate": 4415580.95,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "2635-03-031"
-  },
-  {
-    "projectType": "LITTER REMOVAL",
-    "projectDescription": "Litter Removal on Various Highways in Harris County.",
-    "county": "Harris",
-    "subCSJs": [
-      "6508-93-001"
-    ],
-    "projectName": "SUP 6508-93-001 Litter Removal",
-    "highway": "IH0069",
-    "subCSJCount": 1,
-    "estimate": 969418,
-    "letDate": "12/01/2026",
-    "typeOfWork": "LITTER REMOVAL",
-    "csj": "6508-93-001"
-  },
-  {
-    "projectType": "HYDRAULIC CEMENT",
-    "projectDescription": "Hydraulic Cement",
-    "county": "Ellis",
-    "subCSJs": [
-      "6503-03-001"
-    ],
-    "projectName": "Hydraulic Cement 09 1026",
-    "highway": "FM0876",
-    "subCSJCount": 1,
-    "estimate": 120000.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "HYDRAULIC CEMENT",
-    "csj": "6503-03-001"
-  },
-  {
-    "projectType": "CONCRETE SPALL REPAIR",
-    "projectDescription": "Concrete Repairs",
-    "county": "Gonzales",
-    "subCSJs": [
-      "6501-60-001"
-    ],
-    "projectName": "Concrete Repairs",
-    "highway": "UA0090",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/31/2026",
-    "typeOfWork": "CONCRETE SPALL REPAIR",
-    "csj": "6501-60-001"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "Install Continuous Turn Lane",
-    "county": "Comal",
-    "subCSJs": [
-      "1728-02-069"
-    ],
-    "projectName": "FM 306: 1728-02-069; SFT",
-    "highway": "FM 306",
-    "subCSJCount": 1,
-    "estimate": 3761232.63,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "1728-02-069"
-  },
-  {
-    "projectType": "ASPHALT PAVEMENT REPAIR",
-    "projectDescription": "Asphalt Pavement Repair",
-    "county": "Montgomery",
-    "subCSJs": [
-      "6506-82-001"
-    ],
-    "projectName": "Asphalt Pavement RMC 6506-82-001",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 334340.0,
-    "letDate": "12/08/2026",
-    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
-    "csj": "6506-82-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "FY 2027 STRIPING",
-    "county": "El Paso",
-    "subCSJs": [
-      "0924-00-133"
-    ],
-    "projectName": "VA FY 2027 STRIPING PROJ (DISTRICTWIDE)",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 3554027.29,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0924-00-133"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "county": "Bexar",
-    "subCSJs": [
-      "6504-45-001"
-    ],
-    "projectName": "East Bexar Bridge Maint. FY27",
-    "highway": "IH0037",
-    "subCSJCount": 1,
-    "estimate": 300000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6504-45-001"
-  },
-  {
-    "projectType": "ILLUMINATION MAINTENANCE",
-    "projectDescription": "Illumination Maintenance for Ector, Crane, Ward, and Winkler counties.",
-    "county": "Ector",
-    "subCSJs": [
-      "6505-24-001"
-    ],
-    "projectName": "6505-24-001 Roadway Illumination",
-    "highway": "IH0020",
-    "subCSJCount": 1,
-    "estimate": 450000,
-    "letDate": "12/02/2026",
-    "typeOfWork": "ILLUMINATION MAINTENANCE",
-    "csj": "6505-24-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "FOR THE CONSTRUCTION OF THERMOPLASTIC STRIPING",
-    "county": "Brown",
-    "subCSJs": [
-      "0923-00-085"
-    ],
-    "projectName": "EASTLAND AREA THERMO STRIPING FY 2026",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 1889400.75,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0923-00-085"
-  },
-  {
-    "projectType": "Bridge Replacement",
-    "projectDescription": "Replace Bridge and Approaches",
-    "county": "Houston",
-    "subCSJs": [
-      "0911-28-064",
-      "0911-28-062"
-    ],
-    "projectName": "CR 2065_HURRICANE BAYOU - HBP",
-    "highway": "COUNTY ROAD 2065",
-    "subCSJCount": 2,
-    "estimate": 1597562.0,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Bridge Replacement",
-    "csj": "0911-28-062"
-  },
-  {
-    "projectType": "HOT MIX",
-    "projectDescription": "Provide Superpave Hot Mix for Gregg County, Longview Maintenance Section.",
-    "county": "Gregg",
-    "subCSJs": [
-      "6469-26-001"
-    ],
-    "projectName": "MMC Superpave Hot Mix Gregg Co FY 26",
-    "highway": "US0080",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/11/2026",
-    "typeOfWork": "HOT MIX",
-    "csj": "6469-26-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "OVERLAY",
-    "county": "Scurry",
-    "subCSJs": [
-      "0693-03-046"
-    ],
-    "projectName": "SH 350 SCURRY COUNTY",
-    "highway": "SH 350",
-    "subCSJCount": 1,
-    "estimate": 11054519.3,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0693-03-046"
-  },
-  {
-    "projectType": "FULL DEPTH CONCRETE REPAIR",
-    "projectDescription": "FULL DEPTH CONCRETE REPAIR FOR VARIOUS ROADWAYS IN THE COLLIN COUNTY MAINTENANCE SECTIONS",
-    "county": "Collin",
-    "subCSJs": [
-      "6508-07-001"
-    ],
-    "projectName": "On Call FDCR 07 12.26",
-    "highway": "US0075",
-    "subCSJCount": 1,
-    "estimate": 403750.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
-    "csj": "6508-07-001"
-  },
-  {
-    "projectType": "Seal Coat",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "county": "Glasscock",
-    "subCSJs": [
-      "0070-03-060",
-      "0070-05-039",
-      "0405-01-027",
-      "0405-02-028",
-      "0069-03-064",
-      "0070-04-044",
-      "0463-04-028"
-    ],
-    "projectName": "0405-01-027 SH 158 A-R SEAL COAT",
-    "highway": "SH 158",
-    "subCSJCount": 7,
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Seal Coat",
-    "csj": "0405-01-027"
-  },
-  {
-    "projectType": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
-    "projectDescription": "US380 Flexible Pavement Repair in Terry County",
-    "county": "Terry",
-    "subCSJs": [
-      "6496-16-001"
-    ],
-    "projectName": "US380 Flexible Pavement Repair",
-    "highway": "US0380",
-    "subCSJCount": 1,
-    "estimate": 256000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
-    "csj": "6496-16-001"
-  },
-  {
-    "projectType": "Bridge Replacement",
-    "projectDescription": "Bridge Replacement and approaches",
-    "county": "Dallas",
-    "subCSJs": [
-      "0918-47-460",
-      "0918-47-461"
-    ],
-    "projectName": "Pleasant Run at Ten Mile Creek",
-    "highway": "W PLEASANT RUN RD",
-    "subCSJCount": 2,
-    "estimate": 8607908.7,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Bridge Replacement",
-    "csj": "0918-47-460"
-  },
-  {
-    "projectType": "HERBICIDE/INSECTICIDE",
-    "projectDescription": "Denton County Herbicide/Insecticide FY 26",
-    "county": "Denton",
-    "subCSJs": [
-      "6502-57-001"
-    ],
-    "projectName": "Herbicide 04 1226",
-    "highway": "IH0035",
-    "subCSJCount": 1,
-    "estimate": 663150.41,
-    "letDate": "12/03/2026",
-    "typeOfWork": "HERBICIDE/INSECTICIDE",
-    "csj": "6502-57-001"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "FDR, 2\" Mill & Fill - 1\" TY D and 1\" TOM",
-    "county": "Travis",
-    "subCSJs": [
-      "0113-13-193",
-      "0016-01-142"
-    ],
-    "projectName": "SL 360 - RM 2244 to SL 1",
-    "highway": "SL 360",
-    "subCSJCount": 2,
-    "estimate": 8182630.37,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0113-13-193"
-  },
-  {
-    "projectType": "BRIDGE BEAM REPAIR",
-    "projectDescription": "FY 25 Bridge Beam repair on IH0820 in North Tarrant County.",
-    "county": "Tarrant",
-    "subCSJs": [
-      "6481-79-001"
-    ],
-    "projectName": "FY25 Bridge Beam Repair N. Tarrant",
-    "highway": "IH0820",
-    "subCSJCount": 1,
-    "estimate": 50000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE BEAM REPAIR",
-    "csj": "6481-79-001"
-  },
-  {
-    "projectType": "CULVERT REPAIR",
-    "projectDescription": "CALLOUT CULVERT REPAIR",
-    "county": "Mclennan",
-    "subCSJs": [
-      "6510-46-001"
-    ],
-    "projectName": "2027 CULVERT REPAIR - DISTRICTWIDE",
-    "highway": "FM0308",
-    "subCSJCount": 1,
-    "estimate": 500000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "CULVERT REPAIR",
-    "csj": "6510-46-001"
-  },
-  {
-    "projectType": "Surfacing/Roadway Restoration",
-    "projectDescription": "FM 1416 (FM 2460, SOUTH to SH 87) OVERLAY",
-    "county": "Newton",
-    "subCSJs": [
-      "0627-04-070"
-    ],
-    "projectName": "FM 1416 (FM 2460 to SH 87) OVERLAY",
-    "highway": "FM 1416",
-    "subCSJCount": 1,
-    "estimate": 3184850.7,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "csj": "0627-04-070"
-  },
-  {
-    "projectType": "Hazard Elimination & Safety",
-    "projectDescription": "Install Pedestrian Signal, Install Pedestrian Crosswalk, Install Sidewalks",
-    "county": "Travis",
-    "subCSJs": [
-      "0914-04-366"
-    ],
-    "projectName": "AUS_CoBC(HSIP23)",
-    "highway": "BEE CAVE PKWY",
-    "subCSJCount": 1,
-    "estimate": 1018060.24,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "csj": "0914-04-366"
-  },
-  {
-    "projectType": "HERBICIDE/INSECTICIDE",
-    "projectDescription": "Herbicide/Insecticide",
-    "county": "Ellis",
-    "subCSJs": [
-      "6502-79-001"
-    ],
-    "projectName": "Herbicide/Insecticide 09 1226",
-    "highway": "IH0035E",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/03/2026",
-    "typeOfWork": "HERBICIDE/INSECTICIDE",
-    "csj": "6502-79-001"
-  },
-  {
-    "projectType": "Widen Road - Add Lanes",
-    "projectDescription": "WIDEN FROM 4 LANE TO 6 LANE FREEWAY FACILITY",
-    "county": "Cooke",
-    "subCSJs": [
-      "0195-01-113",
-      "0195-01-111"
-    ],
-    "projectName": "IH 35 from FM 3002 to Spring Creek Rd",
-    "highway": "IH 35",
-    "subCSJCount": 2,
-    "estimate": 294253971.44,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Widen Road - Add Lanes",
-    "csj": "0195-01-111"
-  },
-  {
-    "projectType": "Preventive Maintenance",
-    "projectDescription": "OVERLAY",
-    "county": "Shackelford",
-    "subCSJs": [
-      "0011-05-053",
-      "1031-04-023",
-      "1360-01-034",
-      "0011-06-050",
-      "1249-01-019",
-      "1031-05-020"
-    ],
-    "projectName": "US 180 ALBANY TOWN SECTION",
-    "highway": "US 180",
-    "subCSJCount": 6,
-    "estimate": 2781403.68,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Preventive Maintenance",
-    "csj": "0011-06-050"
-  },
-  {
-    "projectType": "Widen Road - Add Lanes And Shoulders",
-    "projectDescription": "CONSTRUCT INTERCHANGE",
-    "county": "Ellis",
-    "subCSJs": [
-      "1051-03-001",
-      "0092-03-053"
-    ],
-    "projectName": "IH 45 AT FM 664",
-    "highway": "IH 45",
-    "subCSJCount": 2,
-    "estimate": 116272606.72,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Widen Road - Add Lanes And Shoulders",
-    "csj": "0092-03-053"
-  },
-  {
-    "projectType": "FLEXIBLE BASE",
-    "projectDescription": "FLEXIBLE BASE",
-    "county": "Kaufman",
-    "subCSJs": [
-      "6508-31-001"
-    ],
-    "projectName": "FLEX BASE (Material Only) 06 1226",
-    "highway": "FM2728",
-    "subCSJCount": 1,
-    "estimate": 120000,
-    "letDate": "12/03/2026",
-    "typeOfWork": "FLEXIBLE BASE",
-    "csj": "6508-31-001"
-  },
-  {
-    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "projectDescription": "6508-85-001 is Call-Out Striping for Jack & Wise Counties for FY 2027.",
-    "county": "Wise",
-    "subCSJs": [
-      "6508-85-001"
-    ],
-    "projectName": "FY 27 Call-Out Striping - Wise/Jack",
-    "highway": "US0380",
-    "subCSJCount": 1,
-    "estimate": 146567.17,
-    "letDate": "12/16/2026",
-    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "csj": "6508-85-001"
-  },
-  {
-    "projectType": "BRIDGE REPAIR",
-    "projectDescription": "Steel structure repair",
-    "county": "Hardin",
-    "subCSJs": [
-      "6409-35-001"
-    ],
-    "projectName": "FY23 Steel Repair",
-    "highway": "US0096",
-    "subCSJCount": 1,
-    "estimate": 100000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE REPAIR",
-    "csj": "6409-35-001"
-  },
-  {
-    "projectType": "Widen Road - Add Lanes And Shoulders",
-    "projectDescription": "ROADWAY WIDENING TO A SUPER 2",
-    "county": "Winkler",
-    "subCSJs": [
-      "0354-04-043"
-    ],
-    "projectName": "SH115_Super2_FM874_CR313",
-    "highway": "SH 115",
-    "subCSJCount": 1,
-    "estimate": 23065860.83,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Widen Road - Add Lanes And Shoulders",
-    "csj": "0354-04-043"
-  },
-  {
-    "projectType": "EMULSION",
-    "projectDescription": "Emulsion",
-    "county": "Ellis",
-    "subCSJs": [
-      "6503-02-001"
-    ],
-    "projectName": "Emulsion 09 1226",
-    "highway": "FM0876",
-    "subCSJCount": 1,
-    "estimate": 378125.0,
-    "letDate": "12/03/2026",
-    "typeOfWork": "EMULSION",
-    "csj": "6503-02-001"
-  },
-  {
-    "projectType": "Resurface Roadway",
-    "projectDescription": "Seal Coat I-20 Frontage Roads",
-    "county": "Mitchell",
-    "subCSJs": [
-      "0677-01-024",
-      "0005-06-124",
-      "0333-01-033",
-      "1361-03-030",
-      "0107-02-041",
-      "0005-08-107",
-      "0558-03-026",
-      "0053-20-007",
-      "0263-05-025",
-      "0006-16-005",
-      "0332-02-028",
-      "0053-12-075",
-      "0668-03-010",
-      "0296-06-016",
-      "3610-01-004",
-      "1529-03-010",
-      "2011-02-016",
-      "3455-01-011",
-      "0006-02-126",
-      "2859-01-011",
-      "2033-03-011",
-      "0677-02-017"
-    ],
-    "projectName": "District Seal Coat  0005-08 FTG ROADS",
-    "highway": "IH 20",
-    "subCSJCount": 22,
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Resurface Roadway",
-    "csj": "0005-08-107"
-  },
-  {
-    "projectType": "HOT MIX",
-    "projectDescription": "HOT MIX SUPERPAVE FOR GREGG COUNTY",
-    "county": "Gregg",
-    "subCSJs": [
-      "6505-42-001"
-    ],
-    "projectName": "FY 27 Hot Mix Superpave Gregg County",
-    "highway": "SL0281",
-    "subCSJCount": 1,
-    "estimate": 1000000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "HOT MIX",
-    "csj": "6505-42-001"
-  },
-  {
-    "projectType": "LITTER REMOVAL",
-    "projectDescription": "Litter Removal on Various Highways in Galveston County.",
-    "county": "Galveston",
-    "subCSJs": [
-      "6509-20-001"
-    ],
-    "projectName": "SUP 6509-20-001 Litter Removal",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 360000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "LITTER REMOVAL",
-    "csj": "6509-20-001"
-  },
-  {
-    "projectType": "Surfacing/Roadway Restoration",
-    "projectDescription": "Milling, Seal Coat, Overlay, Pavement Markings, and Widening to make the Northbound lanes 12 feet wide (No added capacity)",
-    "county": "Harris",
-    "subCSJs": [
-      "1743-01-012"
-    ],
-    "projectName": "FM 1876, Bellaire Bvd to Old Richmond Rd",
-    "highway": "FM 1876",
-    "subCSJCount": 1,
-    "estimate": 2783534.9,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "csj": "1743-01-012"
-  },
-  {
-    "projectType": "ADD PASSING LANES",
-    "projectDescription": "Full Depth Repair/Overlay",
-    "county": "Runnels",
-    "subCSJs": [
-      "0035-01-036",
-      "2006-03-013"
-    ],
-    "projectName": "0035-01-036 US 83 Overlay",
-    "highway": "US 83",
-    "subCSJCount": 2,
-    "estimate": 16999397.08,
-    "letDate": "12/01/2026",
-    "typeOfWork": "ADD PASSING LANES",
-    "csj": "0035-01-036"
-  },
-  {
-    "projectType": "HERBICIDE/INSECTICIDE",
-    "projectDescription": "Herbicide/Insecticide",
-    "county": "Navarro",
-    "subCSJs": [
-      "6505-10-001"
-    ],
-    "projectName": "Herbicide 01 1227",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 283568.25,
-    "letDate": "12/03/2026",
-    "typeOfWork": "HERBICIDE/INSECTICIDE",
-    "csj": "6505-10-001"
-  },
-  {
-    "projectType": "JANITORIAL MAINTENANCE",
-    "projectDescription": "SUP for janitorial maintenance",
-    "county": "Fort Bend",
-    "subCSJs": [
-      "6501-24-001"
-    ],
-    "projectName": "SUP 6501-24-001",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 78000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "JANITORIAL MAINTENANCE",
-    "csj": "6501-24-001"
-  },
-  {
-    "projectType": "Widen Road - Add Lanes",
-    "projectDescription": "WIDEN FROM 4 LANE TO 6 LANE DIVIDED RURAL",
-    "county": "Hidalgo",
-    "subCSJs": [
-      "0528-01-113"
-    ],
-    "projectName": "052801113 SH 107 HIDALGO (WIDEN 4 TO 6)",
-    "highway": "SH 107",
-    "subCSJCount": 1,
-    "estimate": 24134501.53,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Widen Road - Add Lanes",
-    "csj": "0528-01-113"
-  },
-  {
-    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
-    "projectDescription": "SIGNAL MAINTENANCE & REPAIR (ON CALL)",
-    "county": "Smith",
-    "subCSJs": [
-      "6499-34-001"
-    ],
-    "projectName": "SIGNAL MAINTENANCE - REPAIR FY 27",
-    "highway": "US0069",
-    "subCSJCount": 1,
-    "estimate": 830000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
-    "csj": "6499-34-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "CONCRETE SPALL REPAIRS AT VARIOUS LOCATIONS",
-    "county": "Comal",
-    "subCSJs": [
-      "6504-43-001"
-    ],
-    "projectName": "New Braunfels A.O. Bridge Maint. FY27",
-    "highway": "IH0035",
-    "subCSJCount": 1,
-    "estimate": 369000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6504-43-001"
-  },
-  {
-    "projectType": "BRIDGE SCOUR REPAIR",
-    "projectDescription": "BRIDGE SCOUR AND CONCRETE REPAIR",
-    "county": "Kerr",
-    "subCSJs": [
-      "6504-41-001"
-    ],
-    "projectName": "Kerr County BPM 1 FY27",
-    "highway": "SH0027",
-    "subCSJCount": 1,
-    "estimate": 227000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE SCOUR REPAIR",
-    "csj": "6504-41-001"
-  },
-  {
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "projectDescription": "Intersection Improvements - Construct Hybrid R Cut Intersection",
-    "county": "Potter",
-    "subCSJs": [
-      "0042-01-033",
-      "0042-02-021",
-      "0042-10-004",
-      "0275-01-258",
-      "0042-01-032"
-    ],
-    "projectName": "US 287/SS 228 Intersection Improvements",
-    "highway": "US 287",
-    "subCSJCount": 5,
-    "estimate": 7782908.65,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "csj": "0042-01-032"
-  },
-  {
-    "projectType": "BRIDGE SCOUR REPAIR",
-    "projectDescription": "BRIDGE SCOUR REPAIR",
-    "county": "Kerr",
-    "subCSJs": [
-      "6504-42-001"
-    ],
-    "projectName": "Kerr County BPM 2 FY27",
-    "highway": "FM1341",
-    "subCSJCount": 1,
-    "estimate": 225000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE SCOUR REPAIR",
-    "csj": "6504-42-001"
-  },
-  {
-    "projectType": "BRIDGE REPAIR",
-    "projectDescription": "Bridge Maintenance",
-    "county": "Jasper",
-    "subCSJs": [
-      "6409-89-001"
-    ],
-    "projectName": "Bridge Maintenance FY 23",
-    "highway": "US0096",
-    "subCSJCount": 1,
-    "estimate": 1000000,
-    "letDate": "12/01/2026",
-    "typeOfWork": "BRIDGE REPAIR",
-    "csj": "6409-89-001"
-  },
-  {
-    "projectType": "DRAINAGE IMPROVEMENT AND/OR REPAIRS",
-    "projectDescription": "Drainage Improvement and Ditch Reshaping",
-    "county": "Montgomery",
-    "subCSJs": [
-      "6506-83-001"
-    ],
-    "projectName": "Drainage Improvement RMC 6506-83-001",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 367698.8,
-    "letDate": "12/08/2026",
-    "typeOfWork": "DRAINAGE IMPROVEMENT AND/OR REPAIRS",
-    "csj": "6506-83-001"
-  },
-  {
-    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
-    "projectDescription": "ITS Maintenance",
-    "county": "Mclennan",
-    "subCSJs": [
-      "6504-82-001"
-    ],
-    "projectName": "ITS Maintenance",
-    "highway": "SH0006",
-    "subCSJCount": 1,
-    "estimate": 1110000,
-    "letDate": "12/02/2026",
-    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
-    "csj": "6504-82-001"
-  },
-  {
-    "projectType": "BRIDGE DECK REPAIR",
-    "projectDescription": "Bridge Deck Overlay",
-    "county": "Victoria",
-    "subCSJs": [
-      "6501-63-001"
-    ],
-    "projectName": "Bridge Deck Overlay",
-    "highway": "US0077",
-    "subCSJCount": 1,
-    "estimate": 1,
-    "letDate": "12/30/2026",
-    "typeOfWork": "BRIDGE DECK REPAIR",
-    "csj": "6501-63-001"
-  },
-  {
-    "projectType": "Highway Improvement",
-    "projectDescription": "INSTALL THERMOPLASTIC PAVEMENT MARKINGS",
-    "county": "Potter",
-    "subCSJs": [
-      "0904-00-229"
-    ],
-    "projectName": "FY 27 Districtwide Thermo Pav Markings",
-    "highway": "Various",
-    "subCSJCount": 1,
-    "estimate": 2090093.67,
-    "letDate": "12/02/2026",
-    "typeOfWork": "Highway Improvement",
-    "csj": "0904-00-229"
-  },
-  {
-    "projectType": "Rehabilitate Existing Roadway",
-    "projectDescription": "Foam Asphalt, HMA Overlay, Restriping, signage, and Clean / Seal Bridge Joints",
-    "county": "Hood",
-    "subCSJs": [
-      "3524-01-008"
-    ],
-    "projectName": "SL 567; US 377 to BU 377",
-    "highway": "SL 567",
-    "subCSJCount": 1,
-    "estimate": 16526560.17,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "csj": "3524-01-008"
-  },
-  {
-    "projectType": "JANITORIAL MAINTENANCE",
-    "projectDescription": "Janitorial Services for 7303 Mesa.",
-    "county": "Harris",
-    "subCSJs": [
-      "6509-52-001"
-    ],
-    "projectName": "SUP 6509-52-001 Janitorial Services",
-    "highway": "IH0610",
-    "subCSJCount": 1,
-    "estimate": 18100,
-    "letDate": "12/01/2026",
-    "typeOfWork": "JANITORIAL MAINTENANCE",
-    "csj": "6509-52-001"
-  },
-  {
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "projectDescription": "Limestone Rock Asphalt in Harrison County",
-    "county": "Harrison",
-    "subCSJs": [
-      "6509-80-001"
-    ],
-    "projectName": "Atlanta District Wide LRA 27",
-    "highway": "IH0020",
-    "subCSJCount": 1,
-    "estimate": 396480.0,
-    "letDate": "12/01/2026",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "csj": "6509-80-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Bridge preventative maintenance in Grayson Co.",
-    "county": "Grayson",
-    "subCSJs": [
-      "6505-16-001"
-    ],
-    "projectName": "BPM Grayson FY27",
-    "highway": "US0069",
-    "subCSJCount": 1,
-    "estimate": 650000.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6505-16-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Bridge preventative maintenance in Lamar Co.",
-    "county": "Lamar",
-    "subCSJs": [
-      "6505-05-001"
-    ],
-    "projectName": "BPM Lamar FY27",
-    "highway": "US0271",
-    "subCSJCount": 1,
-    "estimate": 500000.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6505-05-001"
-  },
-  {
-    "projectType": "SWEEPING AND DEBRIS REMOVAL",
-    "projectDescription": "6503-04-001, Sweeping and Debris Removal, FY27, Johnson",
-    "county": "Johnson",
-    "subCSJs": [
-      "6503-04-001"
-    ],
-    "projectName": "FY27, Sweeping and Debris, Johnson",
-    "highway": "IH0035W",
-    "subCSJCount": 1,
-    "estimate": 909031.81,
-    "letDate": "12/16/2026",
-    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
-    "csj": "6503-04-001"
-  },
-  {
-    "projectType": "DRAINAGE SYSTEM CLEANING",
-    "projectDescription": "Cleaning & Maintaining Drainage Inlet & Pipes",
-    "county": "Nueces",
-    "subCSJs": [
-      "6510-27-001"
-    ],
-    "projectName": "Drainage System Cleaning Nueces",
-    "highway": "US0181",
-    "subCSJCount": 1,
-    "estimate": 300000.0,
-    "letDate": "12/15/2026",
-    "typeOfWork": "DRAINAGE SYSTEM CLEANING",
-    "csj": "6510-27-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Bridge preventative maintenance in Hunt Co.",
-    "county": "Hunt",
-    "subCSJs": [
-      "6505-15-001"
-    ],
-    "projectName": "BPM Hunt #2 FY27",
-    "highway": "US0380",
-    "subCSJCount": 1,
-    "estimate": 600000.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6505-15-001"
-  },
-  {
-    "projectType": "REST AREA Concrete MAINTENANCE",
-    "projectDescription": "Concrete Repairs for Callahan County Rest Area East Bound",
-    "county": "Callahan",
-    "subCSJs": [
-      "6506-67-001"
-    ],
-    "projectName": "Callahan Rest area",
-    "highway": "IH0020",
-    "subCSJCount": 1,
-    "estimate": 300000.0,
-    "letDate": "12/07/2026",
-    "typeOfWork": "REST AREA Concrete MAINTENANCE",
-    "csj": "6506-67-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "county": "Jim Wells",
-    "subCSJs": [
-      "6496-96-001"
-    ],
-    "projectName": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "highway": "US0281",
-    "subCSJCount": 1,
-    "estimate": 700000.0,
-    "letDate": "12/15/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6496-96-001"
-  },
-  {
-    "projectType": "Construct TWLTL",
-    "projectDescription": "Construct TWLTL",
-    "county": "Walker",
-    "subCSJs": [
-      "2850-01-020"
-    ],
-    "projectName": "FM 2821 TWLTL W of FM 247",
-    "highway": "FM 2821",
-    "subCSJCount": 1,
-    "estimate": 1500000.0,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Construct TWLTL",
-    "csj": "2850-01-020"
-  },
-  {
-    "projectType": "REHABILITATION OF EXISTING ROADWAY",
-    "projectDescription": "Rehab existing streets and parking lots",
-    "county": "Howard",
-    "subCSJs": [
-      "6464-67-001"
-    ],
-    "projectName": "Big Spring St Hosp Str & Park Lot Rehab",
-    "highway": "MR0686",
-    "subCSJCount": 1,
-    "estimate": 144358.0,
-    "letDate": "12/15/2026",
-    "typeOfWork": "REHABILITATION OF EXISTING ROADWAY",
-    "csj": "6464-67-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Bridge preventative maintenance in Hunt Co.",
-    "county": "Hunt",
-    "subCSJs": [
-      "6505-14-001"
-    ],
-    "projectName": "BPM Hunt FY27",
-    "highway": "IH0030",
-    "subCSJCount": 1,
-    "estimate": 350000.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6505-14-001"
-  },
-  {
-    "projectType": "BRIDGE REPAIR",
-    "projectDescription": "BRIDGE AND CONCRETE REPAIR (CALL-OUT)",
-    "county": "Comanche",
-    "subCSJs": [
-      "6496-46-001"
-    ],
-    "projectName": "BRIDGE AND CONCRETE REPAIR (CALLOUT)",
-    "highway": "US0067",
-    "subCSJCount": 1,
-    "estimate": 900000.0,
-    "letDate": "12/09/2026",
-    "typeOfWork": "BRIDGE REPAIR",
-    "csj": "6496-46-001"
-  },
-  {
-    "projectType": "BASE FAILURE PAVEMENT REPAIR",
-    "projectDescription": "ABL State Supported Living Center full depth repair",
-    "county": "Taylor",
-    "subCSJs": [
-      "6506-68-001"
-    ],
-    "projectName": "ABL State Supported Living Center",
-    "highway": "SL0322",
-    "subCSJCount": 1,
-    "estimate": 270000.0,
-    "letDate": "12/07/2026",
-    "typeOfWork": "BASE FAILURE PAVEMENT REPAIR",
-    "csj": "6506-68-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BPM FUA in Graham Area",
-    "county": "Archer",
-    "subCSJs": [
-      "6510-31-001"
-    ],
-    "projectName": "BPM Graham Area  FY '27",
-    "highway": "US0281",
-    "subCSJCount": 1,
-    "estimate": 1.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6510-31-001"
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "BPM FUA for Gainesville AO FY '27",
-    "county": "Cooke",
-    "subCSJs": [
-      "6510-32-001"
-    ],
-    "projectName": "BPM Gainesville Area  FY '27",
-    "highway": "US0082",
-    "subCSJCount": 1,
-    "estimate": 1.0,
-    "letDate": "12/17/2026",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6510-32-001"
   },
   {
     "projectType": "REFLECTIVE PAVEMENT MARKINGS (GRAPHICS)",
@@ -2072,209 +30,192 @@
     "csj": "6506-38-001"
   },
   {
-    "projectType": "Performance Based Contract",
-    "projectDescription": "Flexible Asset Maintenance contract for IH0035W in South Tarrant",
-    "county": "Tarrant",
-    "subCSJs": [
-      "6482-46-001"
-    ],
-    "projectName": "Flexible Asset Maintenance South Tarrant",
-    "highway": "IH0035W",
-    "subCSJCount": 1,
-    "estimate": 27875745.0,
-    "letDate": "12/01/2026",
-    "typeOfWork": "Performance Based Contract",
-    "csj": "6482-46-001"
-  },
-  {
-    "projectType": "ILLUMINATION MAINTENANCE",
-    "projectDescription": "Illumination Maintenance - Repair DW (On Call)",
-    "county": "Smith",
-    "subCSJs": [
-      "6504-73-001"
-    ],
-    "projectName": "Illumination Maintenance - Repair",
-    "highway": "IH0020",
-    "subCSJCount": 1,
-    "estimate": 340000.0,
-    "letDate": "12/08/2026",
-    "typeOfWork": "ILLUMINATION MAINTENANCE",
-    "csj": "6504-73-001"
-  },
-  {
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "projectDescription": "Limestone Rock Asphalt",
-    "county": "Childress",
-    "subCSJs": [
-      "6508-44-001"
-    ],
-    "projectName": "FY27 Limestone Rock Asphalt",
-    "highway": "US0287",
-    "subCSJCount": 1,
-    "estimate": 2591200.0,
-    "letDate": "12/01/2026",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "csj": "6508-44-001"
-  },
-  {
-    "csj": "0011-05-053",
-    "county": "Shackelford",
-    "highway": "US 180",
-    "projectName": "US 180 OVERLAY IN ALBANY 0011-05",
-    "projectDescription": "OVERLAY",
     "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
+    "projectDescription": "OVERLAY",
+    "county": "Shackelford",
+    "subCSJs": [
+      "0011-05-053",
+      "0011-06-050",
+      "1031-04-023",
+      "1031-05-020",
+      "1249-01-019",
+      "1360-01-034"
+    ],
+    "projectName": "US 180 ALBANY TOWN SECTION",
+    "highway": "US 180",
+    "subCSJCount": 6,
     "estimate": 2781403.68,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0011-05-053"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "0011-06-050"
   },
   {
-    "csj": "2213-01-016",
-    "county": "Johnson",
-    "highway": "FM 2331",
-    "projectName": "FM 2331: SH 171 to FM 4",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
     "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
+    "projectDescription": "Seal Coat Mainlanes FY 2027",
+    "county": "Hood",
+    "subCSJs": [
+      "0007-07-028",
+      "0134-05-040",
+      "0134-05-041",
+      "0239-07-022",
+      "0312-04-037",
+      "0313-01-064",
+      "0313-02-070",
+      "0313-08-032",
+      "0362-04-049",
+      "0365-01-056",
+      "0385-04-055",
+      "0902-00-405",
+      "1513-02-046",
+      "1598-01-023",
+      "2213-01-016",
+      "2213-02-012",
+      "2292-01-035",
+      "2417-02-019",
+      "2550-01-012",
+      "2631-01-007",
+      "2631-02-007",
+      "2631-03-007",
+      "2738-01-018",
+      "2855-01-032",
+      "3123-01-017",
+      "3123-02-014"
+    ],
+    "projectName": "Summer 2027 District Sealcoat",
+    "highway": "FM 167",
+    "subCSJCount": 26,
     "estimate": 13619544.74,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2213-01-016"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "1598-01-023"
   },
   {
-    "csj": "1763-02-033",
-    "county": "Gregg",
-    "highway": "FM 1845",
-    "projectName": "FM 1845, Upshure CL - FM 2605",
+    "projectType": "Seal Coat",
     "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
+    "county": "Van Zandt",
+    "subCSJs": [
+      "0058-04-023",
+      "0095-07-062",
+      "0096-06-076",
+      "0118-04-037",
+      "0118-05-025",
+      "0165-02-069",
+      "0199-05-014",
+      "0245-19-030",
+      "0401-03-029",
+      "0443-03-024",
+      "0522-03-028",
+      "0545-03-015",
+      "0592-02-017",
+      "0594-01-017",
+      "0594-02-031",
+      "0646-05-043",
+      "0657-01-021",
+      "0657-03-018",
+      "0657-04-014",
+      "0745-01-025",
+      "0745-02-015",
+      "0889-02-017",
+      "0889-02-018",
+      "0892-01-022",
+      "0892-02-009",
+      "0892-03-003",
+      "0910-00-175",
+      "0910-00-176",
+      "0927-01-035",
+      "0927-01-036",
+      "1116-01-024",
+      "1116-02-002",
+      "1151-01-016",
+      "1161-02-012",
+      "1161-02-013",
+      "1398-01-014",
+      "1666-02-009",
+      "1666-03-007",
+      "1763-02-033",
+      "2302-02-009",
+      "2408-01-012",
+      "2426-01-014",
+      "2654-01-024",
+      "2833-01-016"
+    ],
+    "projectName": "US 80,  W City Limits - FM 857, SC 27",
+    "highway": "US 80",
+    "subCSJCount": 44,
     "estimate": 23738912.25,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1763-02-033"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0313-01-064",
-    "county": "Wise",
-    "highway": "FM 51",
-    "projectName": "FY27 SealCoat/Pavement Preservation",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0313-01-064"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0594-02-031",
-    "county": "Rusk",
-    "highway": "SH 322",
-    "projectName": "SH 322, GREGG C/L - US 259",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
     "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0594-02-031"
-    ],
-    "subCSJCount": 1
+    "csj": "0095-07-062"
   },
   {
-    "csj": "2631-02-007",
-    "county": "Parker",
-    "highway": "FM 3450",
-    "projectName": "FY27 Seal Coat Pavement. Preservation.",
-    "projectDescription": "SEAL COAT MAINLANES FY 27",
+    "projectType": "CONCRETE SPALL REPAIR",
+    "projectDescription": "Concrete Repairs",
+    "county": "Gonzales",
+    "subCSJs": [
+      "6501-60-001"
+    ],
+    "projectName": "Concrete Repairs",
+    "highway": "UA0090",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/31/2026",
+    "typeOfWork": "CONCRETE SPALL REPAIR",
+    "csj": "6501-60-001"
+  },
+  {
+    "projectType": "Highway Improvement",
+    "projectDescription": "Centerline and Edgeline Rumble Strips",
+    "county": "Angelina",
+    "subCSJs": [
+      "0893-04-015",
+      "0911-00-137",
+      "1879-01-025"
+    ],
+    "projectName": "FM 328_FM 2109 to EOP - FY 27 HSIP",
+    "highway": "FM 328",
+    "subCSJCount": 3,
+    "estimate": 4851339.58,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Highway Improvement",
+    "csj": "0893-04-015"
+  },
+  {
     "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2631-02-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0485-01-026",
-    "county": "Brewster",
-    "highway": "US 385",
-    "projectName": "US385 SEAL COAT (US90 | 23.5 MI S US90)",
     "projectDescription": "SEAL COAT",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
+    "county": "Presidio",
+    "subCSJs": [
+      "0104-07-027",
+      "0485-01-026",
+      "0485-02-018"
+    ],
+    "projectName": "US067 SC (15 MI S JCTUS67/90 | 33 MI S)",
+    "highway": "US 67",
+    "subCSJCount": 3,
     "estimate": 5924302.88,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0485-01-026"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1031-04-023",
-    "county": "Shackelford",
-    "highway": "FM 576",
-    "projectName": "FM 576 MORAN TOWN SECTION 1031-04",
-    "projectDescription": "OVERLAY",
-    "projectType": "Preventive Maintenance",
     "typeOfWork": "Preventive Maintenance",
-    "estimate": 2781403.68,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1031-04-023"
-    ],
-    "subCSJCount": 1
+    "csj": "0104-07-027"
   },
   {
-    "csj": "0070-05-039",
-    "county": "Concho",
-    "highway": "US 87",
-    "projectName": "0070-05-039  US 87 A-R SEAL COAT",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
     "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
+    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
+    "county": "Glasscock",
+    "subCSJs": [
+      "0069-03-064",
+      "0070-03-060",
+      "0070-04-044",
+      "0070-05-039",
+      "0405-01-027",
+      "0405-02-028",
+      "0463-04-028"
+    ],
+    "projectName": "0405-01-027 SH 158 A-R SEAL COAT",
+    "highway": "SH 158",
+    "subCSJCount": 7,
     "estimate": 13896097.58,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0070-05-039"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0070-03-060",
-    "county": "Concho",
-    "highway": "US 87",
-    "projectName": "0070-03-060 US 87 A-R SEAL COAT",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
     "typeOfWork": "Seal Coat",
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0070-03-060"
-    ],
-    "subCSJCount": 1
+    "csj": "0405-01-027"
   },
   {
     "csj": "0258-07-049",
@@ -2309,6 +250,37 @@
     "subCSJCount": 1
   },
   {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Bridge preventative maintenance in Hunt Co.",
+    "county": "Hunt",
+    "subCSJs": [
+      "6505-15-001"
+    ],
+    "projectName": "BPM Hunt #2 FY27",
+    "highway": "US0380",
+    "subCSJCount": 1,
+    "estimate": 600000.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6505-15-001"
+  },
+  {
+    "projectType": "ADD PASSING LANES",
+    "projectDescription": "Full Depth Repair/Overlay",
+    "county": "Runnels",
+    "subCSJs": [
+      "0035-01-036",
+      "2006-03-013"
+    ],
+    "projectName": "0035-01-036 US 83 Overlay",
+    "highway": "US 83",
+    "subCSJCount": 2,
+    "estimate": 16999397.08,
+    "letDate": "12/01/2026",
+    "typeOfWork": "ADD PASSING LANES",
+    "csj": "0035-01-036"
+  },
+  {
     "csj": "1186-01-104",
     "county": "Travis",
     "highway": "FM 969",
@@ -2325,36 +297,57 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0005-06-124",
-    "county": "Howard",
-    "highway": "IH 20",
-    "projectName": "DISTRICT SEAL COAT FY 2027 -16",
-    "projectDescription": "SEAL COAT FRONTAGE ROADS",
     "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
+    "projectDescription": "Seal Coat I-20 Frontage Roads",
+    "county": "Mitchell",
+    "subCSJs": [
+      "0005-06-124",
+      "0005-08-107",
+      "0006-02-126",
+      "0006-16-005",
+      "0053-12-075",
+      "0053-20-007",
+      "0107-02-041",
+      "0263-05-025",
+      "0296-06-016",
+      "0332-02-028",
+      "0333-01-033",
+      "0558-03-026",
+      "0668-03-010",
+      "0677-01-024",
+      "0677-02-017",
+      "1361-03-030",
+      "1529-03-010",
+      "2011-02-016",
+      "2033-03-011",
+      "2859-01-011",
+      "3455-01-011",
+      "3610-01-004"
+    ],
+    "projectName": "District Seal Coat  0005-08 FTG ROADS",
+    "highway": "IH 20",
+    "subCSJCount": 22,
     "estimate": 12727248.91,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0005-06-124"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Resurface Roadway",
+    "csj": "0005-08-107"
   },
   {
-    "csj": "0918-47-391",
+    "csj": "0581-02-158",
     "county": "Dallas",
-    "highway": "Various",
-    "projectName": "Intersection of Zang Blvd and Saner Ave",
-    "projectDescription": "CONSTRUCT INTERSECTION IMPROVEMENTS INCLUDING LEFT TURN LANES, REALIGNMENT, UPGRADED TRAFFIC SIGNAL AND PEDESTRIAN CROSSWALKS",
+    "highway": "SL 12",
+    "projectName": "SL 12 At Country Creek Drive",
+    "projectDescription": "CONSTRUCT INTERSECTION IMPROVEMENTS INCLUDING LEFT TURN LANES, NEW TRAFFIC SIGNAL, AND PEDESTRIAN CROSSWALKS",
     "projectType": "Intersection Improvements With Right And/Or Left T",
     "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 745675.3,
+    "estimate": 1527291.4,
     "letDate": "12/03/2026",
     "monthCode": "2026-12",
     "subCSJs": [
+      "0581-02-158",
       "0918-47-391"
     ],
-    "subCSJCount": 1
+    "subCSJCount": 2
   },
   {
     "csj": "6511-56-001",
@@ -2369,22 +362,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "6511-56-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2213-02-012",
-    "county": "Johnson",
-    "highway": "FM 2331",
-    "projectName": "FY.28.Seal Coat Pavement Preservation",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2213-02-012"
     ],
     "subCSJCount": 1
   },
@@ -2421,84 +398,164 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0344-02-052",
-    "county": "Runnels",
-    "highway": "SH 158",
-    "projectName": "0344-02-052  SH 158 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
     "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
+    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY 2027",
+    "county": "Tom Green",
+    "subCSJs": [
+      "0070-01-056",
+      "0148-03-029",
+      "0148-04-025",
+      "0159-08-004",
+      "0201-05-026",
+      "0201-06-033",
+      "0344-02-052",
+      "0396-03-029",
+      "0454-01-050",
+      "0830-02-023",
+      "1486-02-011",
+      "1647-01-006",
+      "1647-02-005",
+      "2298-02-007",
+      "2298-03-012",
+      "2361-01-005",
+      "2470-01-007",
+      "2713-01-004",
+      "2843-01-014",
+      "2844-02-010",
+      "3209-01-008"
+    ],
+    "projectName": "0070-01-056 FM 1223 SEAL COAT",
+    "highway": "FM 1223",
+    "subCSJCount": 21,
     "estimate": 9464477.87,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0344-02-052"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0657-04-014",
-    "county": "Wood",
-    "highway": "FM 515",
-    "projectName": "FM 515, FM 1483-FM 69, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
     "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0657-04-014"
-    ],
-    "subCSJCount": 1
+    "csj": "0070-01-056"
   },
   {
-    "csj": "0405-02-028",
-    "county": "Sterling",
-    "highway": "SH 158",
-    "projectName": "0405-02-028 SH 158 A-R SEAL COAT",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "STRIPING",
+    "county": "De Witt",
     "subCSJs": [
-      "0405-02-028"
+      "0913-00-134"
     ],
-    "subCSJCount": 1
+    "projectName": "DISTRICTWIDE STIPING 2709",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 1866640.2,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0913-00-134"
   },
   {
-    "csj": "0244-05-043",
-    "county": "Newton",
-    "highway": "US 190",
-    "projectName": "US 190-@ CANEY CREEK-BRIDGE MAINTENANCE",
-    "projectDescription": "US 190-@ CANEY CREEK-BRIDGE MAINTENANCE (STR 201760024405041)",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BPM FUA in Graham Area",
+    "county": "Archer",
+    "subCSJs": [
+      "6510-31-001"
+    ],
+    "projectName": "BPM Graham Area  FY '27",
+    "highway": "US0281",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6510-31-001"
+  },
+  {
+    "projectType": "Performance Based Contract",
+    "projectDescription": "Flexible Asset Maintenance contract for IH0035W, IH0020, and IH0030 in South Tarrant",
+    "county": "Tarrant",
+    "subCSJs": [
+      "6482-46-001"
+    ],
+    "projectName": "Flexible Asset Maintenance South Tarrant",
+    "highway": "IH0035W",
+    "subCSJCount": 1,
+    "estimate": 27875745.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Performance Based Contract",
+    "csj": "6482-46-001"
+  },
+  {
     "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
+    "projectDescription": "US 90-@ TRINITY RIVER-BRIDGE MAINTENANCE (STR 201460002803128)",
+    "county": "Liberty",
+    "subCSJs": [
+      "0028-03-119",
+      "0244-05-043",
+      "0244-05-044",
+      "0601-01-068",
+      "0601-01-069"
+    ],
+    "projectName": "US 90-@ TRINITY RIVER-BRIDGE MAINTENANCE",
+    "highway": "US 90",
+    "subCSJCount": 5,
     "estimate": 5428043.08,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0244-05-043"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Bridge Maintenance",
+    "csj": "0028-03-119"
   },
   {
-    "csj": "0523-09-024",
-    "county": "Montgomery",
-    "highway": "FM 1488",
-    "projectName": "FM1488: @ WE Elementary School-Soundwall",
-    "projectDescription": "Construct Sound Wall",
-    "projectType": "Install Noise Barrier",
-    "typeOfWork": "Install Noise Barrier",
-    "estimate": 2641362.27,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "projectDescription": "Limestone Rock Asphalt - La Salle County",
+    "county": "La Salle",
     "subCSJs": [
+      "6508-64-001"
+    ],
+    "projectName": "La Salle County - LRA",
+    "highway": "IH0035",
+    "subCSJCount": 1,
+    "estimate": 850150.0,
+    "letDate": "12/10/2026",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "csj": "6508-64-001"
+  },
+  {
+    "projectType": "Install Noise Barrier",
+    "projectDescription": "Construct Sound Wall",
+    "county": "Galveston",
+    "subCSJs": [
+      "0500-04-145",
       "0523-09-024"
     ],
-    "subCSJCount": 1
+    "projectName": "IH 45: Clear Creek to FM 518, Wall/Pond",
+    "highway": "IH 45",
+    "subCSJCount": 2,
+    "estimate": 2641362.27,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Install Noise Barrier",
+    "csj": "0500-04-145"
+  },
+  {
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "Add CTB along segments of SS 325",
+    "county": "Wichita",
+    "subCSJs": [
+      "0156-07-115"
+    ],
+    "projectName": "SS 325 CTB",
+    "highway": "IH 44",
+    "subCSJCount": 1,
+    "estimate": 1210800.61,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0156-07-115"
+  },
+  {
+    "projectType": "JANITORIAL MAINTENANCE",
+    "projectDescription": "SUP for janitorial maintenance",
+    "county": "Fort Bend",
+    "subCSJs": [
+      "6501-24-001"
+    ],
+    "projectName": "SUP 6501-24-001",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 78000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "JANITORIAL MAINTENANCE",
+    "csj": "6501-24-001"
   },
   {
     "csj": "6511-69-001",
@@ -2517,116 +574,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0365-01-056",
-    "county": "Parker",
-    "highway": "SH 171",
-    "projectName": "FY27Seal Coat Pavement Preservation",
-    "projectDescription": "Sealcoat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "EMULSION",
+    "projectDescription": "Emulsion Material for Pecos, Reeves, and Terrell counties.",
+    "county": "Pecos",
     "subCSJs": [
-      "0365-01-056"
+      "6505-32-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2426-01-014",
-    "county": "Henderson",
-    "highway": "FM 2495",
-    "projectName": "FM 2495, BS 31 - FM 317, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2426-01-014"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0892-02-009",
-    "county": "Anderson",
-    "highway": "FM 321",
-    "projectName": "FM 321, SH 19 - SH 155, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0892-02-009"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1361-03-030",
-    "county": "Scurry",
-    "highway": "SH 208",
-    "projectName": "DISTRICT SEAL COAT FY 1361-03",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1361-03-030"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0107-02-041",
-    "county": "Shackelford",
-    "highway": "US 180",
-    "projectName": "DISTRICT SEAL COAT FY 2026 -21",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0107-02-041"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0892-03-003",
-    "county": "Anderson",
-    "highway": "FM 321",
-    "projectName": "FM 321, SH 155 - FM 2574, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0892-03-003"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0096-06-076",
-    "county": "Gregg",
-    "highway": "US 80",
-    "projectName": "US 80, SH 300 - HARRISON C/L",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0096-06-076"
-    ],
-    "subCSJCount": 1
+    "projectName": "6505-32-001 Emulsion",
+    "highway": "BI0010G",
+    "subCSJCount": 1,
+    "estimate": 110000.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "EMULSION",
+    "csj": "6505-32-001"
   },
   {
     "csj": "6510-99-001",
@@ -2661,52 +621,53 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0244-05-044",
-    "county": "Newton",
-    "highway": "US 190",
-    "projectName": "US 190-@ CANEY CREEK RELIEF-BRIDGE MAINT",
-    "projectDescription": "US 190-@ CANEY CREEK RELIEF-BRIDGE MAINTENANCE (STR 201760024405042)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 5428043.08,
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "INSTALL ADVANCED WARNING SIGNS (INTERSECTION), IMPROVE SCHOOL ZONE, INSTALL RRFB, INSTALL PAVEMENT MARKINGS, INSTALL SIDEWALKS",
+    "county": "El Paso",
+    "subCSJs": [
+      "0002-02-065",
+      "0002-14-047",
+      "0374-02-125",
+      "0924-06-719",
+      "0924-06-722"
+    ],
+    "projectName": "SH20 SAFETY (ROBERT V | MORNING GLORY)",
+    "highway": "SH 20",
+    "subCSJCount": 5,
+    "estimate": 1370183.55,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0244-05-044"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0002-02-065"
   },
   {
-    "csj": "2302-02-009",
-    "county": "Henderson",
-    "highway": "RM 3054",
-    "projectName": "RM 3054, SH 198 - RM 2329, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "DRAINAGE IMPROVEMENT AND/OR REPAIRS",
+    "projectDescription": "Drainage Improvement and Ditch Reshaping",
+    "county": "Montgomery",
     "subCSJs": [
-      "2302-02-009"
+      "6506-83-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Drainage Improvement RMC 6506-83-001",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 367698.8,
+    "letDate": "12/08/2026",
+    "typeOfWork": "DRAINAGE IMPROVEMENT AND/OR REPAIRS",
+    "csj": "6506-83-001"
   },
   {
-    "csj": "0889-02-017",
-    "county": "Henderson",
-    "highway": "FM 317",
-    "projectName": "FM 317, FM 607-FM 314, SC",
-    "projectDescription": "Seal Coat 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "projectDescription": "Limestone Rock Asphalt in Harrison County",
+    "county": "Harrison",
     "subCSJs": [
-      "0889-02-017"
+      "6509-80-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Atlanta District Wide LRA 27",
+    "highway": "IH0020",
+    "subCSJCount": 1,
+    "estimate": 396480.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "csj": "6509-80-001"
   },
   {
     "csj": "0334-01-052",
@@ -2741,36 +702,38 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1398-01-014",
-    "county": "Henderson",
-    "highway": "SH 334",
-    "projectName": "SH 334, US 175 - E. of SH 198,  SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Preventive Maintenance",
+    "projectDescription": "FOR THE CONSTRUCTION OF THERMOPLASTIC STRIPING",
+    "county": "Eastland",
     "subCSJs": [
-      "1398-01-014"
+      "0923-00-085"
     ],
-    "subCSJCount": 1
+    "projectName": "EASTLAND AREA THERMO STRIPING FY 2026",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 1889400.75,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "0923-00-085"
   },
   {
-    "csj": "0239-07-022",
-    "county": "Jack",
-    "highway": "SH 59",
-    "projectName": "SH 59: Clay Co Ln to FM 1810",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Intersection Improvements With Right And/Or Left T",
+    "projectDescription": "Intersection Improvements - Construct Hybrid R Cut Intersection",
+    "county": "Potter",
     "subCSJs": [
-      "0239-07-022"
+      "0042-01-032",
+      "0042-01-033",
+      "0042-02-021",
+      "0042-10-004",
+      "0275-01-258"
     ],
-    "subCSJCount": 1
+    "projectName": "US 287/SS 228 Intersection Improvements",
+    "highway": "US 287",
+    "subCSJCount": 5,
+    "estimate": 7782908.65,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
+    "csj": "0042-01-032"
   },
   {
     "csj": "6493-07-001",
@@ -2805,68 +768,83 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1360-01-034",
-    "county": "Jones",
-    "highway": "FM 1226",
-    "projectName": "FM 1226 IN STAMFORD",
-    "projectDescription": "OVERLAY",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 2781403.68,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "projectType": "Bridge Replacement",
+    "projectDescription": "Bridge Replacement of CR 326 @ San Antonio River",
+    "county": "Karnes",
     "subCSJs": [
-      "1360-01-034"
+      "0916-36-024"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0333-01-033",
-    "county": "Mitchell",
-    "highway": "SH 163",
-    "projectName": "District Seal Coat 0333-01",
-    "projectDescription": "Seal Coat",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
+    "projectName": "CR 326 @ SA River Bridge Replacement",
+    "highway": "COUNTY ROAD 326",
+    "subCSJCount": 1,
+    "estimate": 3101274.4,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0333-01-033"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Bridge Replacement",
+    "csj": "0916-36-024"
   },
   {
-    "csj": "0558-03-026",
-    "county": "Borden",
-    "highway": "FM 669",
-    "projectName": "District Seal Coat FY 2027 0558-03",
-    "projectDescription": "Seal Coat",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0558-03-026"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1151-01-016",
-    "county": "Smith",
-    "highway": "FM 848",
-    "projectName": "FM 848, SH 64 - FM 346",
-    "projectDescription": "SEAL COAT FY 2027",
     "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectDescription": "Seal Coat Mainlanes FY 27",
+    "county": "Parker",
     "subCSJs": [
-      "1151-01-016"
+      "0008-09-041",
+      "0080-08-028",
+      "1469-01-025",
+      "1513-01-021",
+      "1853-01-049"
     ],
-    "subCSJCount": 1
+    "projectName": "FY27 Seal Coat Pavement Preservation",
+    "highway": "FM 5",
+    "subCSJCount": 5,
+    "estimate": 5981723.36,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Seal Coat",
+    "csj": "1469-01-025"
+  },
+  {
+    "projectType": "BRIDGE REPAIR",
+    "projectDescription": "BRIDGE AND CONCRETE REPAIR (CALL-OUT)",
+    "county": "Comanche",
+    "subCSJs": [
+      "6496-46-001"
+    ],
+    "projectName": "BRIDGE AND CONCRETE REPAIR (CALLOUT)",
+    "highway": "US0067",
+    "subCSJCount": 1,
+    "estimate": 900000.0,
+    "letDate": "12/09/2026",
+    "typeOfWork": "BRIDGE REPAIR",
+    "csj": "6496-46-001"
+  },
+  {
+    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "projectDescription": "6508-51-001 is Reflectorized Pavement Markings for FY2027 in Johnson County",
+    "county": "Johnson",
+    "subCSJs": [
+      "6508-51-001"
+    ],
+    "projectName": "FY2027 - Call-Out Striping - Johnson",
+    "highway": "SH0174",
+    "subCSJCount": 1,
+    "estimate": 520961.54,
+    "letDate": "12/02/2026",
+    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "csj": "6508-51-001"
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Supplemental Bridge Preventative Maintenance",
+    "county": "Hall",
+    "subCSJs": [
+      "6508-48-001"
+    ],
+    "projectName": "FY27 Supplemental BPM 2",
+    "highway": "US0287",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "12/02/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6508-48-001"
   },
   {
     "csj": "6511-59-001",
@@ -2881,22 +859,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "6511-59-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0927-01-035",
-    "county": "Smith",
-    "highway": "FM 344",
-    "projectName": "FM 344, SH 155 - FM 346, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0927-01-035"
     ],
     "subCSJCount": 1
   },
@@ -2917,132 +879,154 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0053-20-007",
-    "county": "Nolan",
-    "highway": "BU 84J",
-    "projectName": "DISTRICT SEAL COAT FY 2027 -38",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "HYDRAULIC CEMENT",
+    "projectDescription": "Hydraulic Cement",
+    "county": "Ellis",
     "subCSJs": [
-      "0053-20-007"
+      "6503-03-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0263-05-025",
-    "county": "Fisher",
-    "highway": "SH 70",
-    "projectName": "DISTRICT SEAL COAT FY 2027 0263-05",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0263-05-025"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0522-03-028",
-    "county": "Van Zandt",
-    "highway": "FM 16",
-    "projectName": "FM 16, SH 64 - FM 773. SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0522-03-028"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0007-07-028",
-    "county": "Palo Pinto",
-    "highway": "SH 16",
-    "projectName": "FY27 Seal Coat/Pavement Preservation",
-    "projectDescription": "Sealcoat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0007-07-028"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2631-01-007",
-    "county": "Hood",
-    "highway": "FM 3450",
-    "projectName": "FY27 Seal Coat Pavement Preservation.",
-    "projectDescription": "SEAL COAT MAINLANES FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2631-01-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0924-06-722",
-    "county": "El Paso",
-    "highway": "SHADOW MTN",
-    "projectName": "SHADOW MTN DR (SH20 | N SH20)",
-    "projectDescription": "PEDESTRIAN HYBRID BEACON, INSTALL PEDESTRIAN CROSSWALK",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1370183.55,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0924-06-722"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0385-04-055",
-    "county": "Hood",
-    "highway": "SH 144",
-    "projectName": "FY27 SealCoat / Pavement Preservation",
-    "projectDescription": "Sealcoat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0385-04-055"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0581-02-158",
-    "county": "Dallas",
-    "highway": "SL 12",
-    "projectName": "SL 12 At Country Creek Drive",
-    "projectDescription": "CONSTRUCT INTERSECTION IMPROVEMENTS INCLUDING LEFT TURN LANES, NEW TRAFFIC SIGNAL, AND PEDESTRIAN CROSSWALKS",
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 1527291.4,
+    "projectName": "Hydraulic Cement 09 1226",
+    "highway": "FM0876",
+    "subCSJCount": 1,
+    "estimate": 120000.0,
     "letDate": "12/03/2026",
-    "monthCode": "2026-12",
+    "typeOfWork": "HYDRAULIC CEMENT",
+    "csj": "6503-03-001"
+  },
+  {
+    "projectType": "ILLUMINATION MAINTENANCE",
+    "projectDescription": "Illumination Maintenance - Repair DW (On Call)",
+    "county": "Smith",
     "subCSJs": [
-      "0581-02-158"
+      "6504-73-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Illumination Maintenance - Repair",
+    "highway": "IH0020",
+    "subCSJCount": 1,
+    "estimate": 340000.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "ILLUMINATION MAINTENANCE",
+    "csj": "6504-73-001"
+  },
+  {
+    "projectType": "Rehabilitate Existing Roadway",
+    "projectDescription": "Foam Asphalt, HMA Overlay, Restriping, signage, and Clean / Seal Bridge Joints",
+    "county": "Hood",
+    "subCSJs": [
+      "3524-01-008"
+    ],
+    "projectName": "SL 567; US 377 to BU 377",
+    "highway": "SL 567",
+    "subCSJCount": 1,
+    "estimate": 16526560.17,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "csj": "3524-01-008"
+  },
+  {
+    "projectType": "Construct TWLTL",
+    "projectDescription": "Construct TWLTL",
+    "county": "Walker",
+    "subCSJs": [
+      "2850-01-020"
+    ],
+    "projectName": "FM 2821 TWLTL W of FM 247",
+    "highway": "FM 2821",
+    "subCSJCount": 1,
+    "estimate": 1500000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Construct TWLTL",
+    "csj": "2850-01-020"
+  },
+  {
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "projectDescription": "Limestone Rock Asphalt",
+    "county": "Childress",
+    "subCSJs": [
+      "6508-44-001"
+    ],
+    "projectName": "FY27 Limestone Rock Asphalt",
+    "highway": "US0287",
+    "subCSJCount": 1,
+    "estimate": 2591200.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "csj": "6508-44-001"
+  },
+  {
+    "projectType": "SWEEPING AND DEBRIS REMOVAL",
+    "projectDescription": "6510-29-001, Sweeping & Debris, FY27, S Tarrant",
+    "county": "Tarrant",
+    "subCSJs": [
+      "6510-29-001"
+    ],
+    "projectName": "FY27, Sweeping And Debris, S Tarrant",
+    "highway": "IH0030",
+    "subCSJCount": 1,
+    "estimate": 3436661.21,
+    "letDate": "12/01/2026",
+    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
+    "csj": "6510-29-001"
+  },
+  {
+    "projectType": "Bridge Maintenance",
+    "projectDescription": "Bridge Repair in the Lubbock District",
+    "county": "Lubbock",
+    "subCSJs": [
+      "0905-00-136"
+    ],
+    "projectName": "FY 27 BMN - Various Locations",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 1946790.5,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Bridge Maintenance",
+    "csj": "0905-00-136"
+  },
+  {
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "projectDescription": "6508-52-001 will be mowing & herbicide for FY2027 in S. Tarrant County.",
+    "county": "Tarrant",
+    "subCSJs": [
+      "6508-52-001"
+    ],
+    "projectName": "FY 2027 - Mowing & Herbicide - S Tarrant",
+    "highway": "IH0030",
+    "subCSJCount": 1,
+    "estimate": 1182171.57,
+    "letDate": "12/02/2026",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "csj": "6508-52-001"
+  },
+  {
+    "projectType": "JANITORIAL MAINTENANCE",
+    "projectDescription": "Janitorial Services for 7303 Mesa.",
+    "county": "Harris",
+    "subCSJs": [
+      "6509-52-001"
+    ],
+    "projectName": "SUP 6509-52-001 Janitorial Services",
+    "highway": "IH0610",
+    "subCSJCount": 1,
+    "estimate": 18100.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "JANITORIAL MAINTENANCE",
+    "csj": "6509-52-001"
+  },
+  {
+    "projectType": "BASE FAILURE PAVEMENT REPAIR",
+    "projectDescription": "ABL State Supported Living Center full depth repair",
+    "county": "Taylor",
+    "subCSJs": [
+      "6506-68-001"
+    ],
+    "projectName": "ABL State Supported Living Center",
+    "highway": "SL0322",
+    "subCSJCount": 1,
+    "estimate": 270000.0,
+    "letDate": "12/07/2026",
+    "typeOfWork": "BASE FAILURE PAVEMENT REPAIR",
+    "csj": "6506-68-001"
   },
   {
     "csj": "0183-03-058",
@@ -3077,52 +1061,35 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1666-02-009",
-    "county": "Anderson",
-    "highway": "FM 837",
-    "projectName": "FM 837, SH 19 - FM 315",
-    "projectDescription": "Seal Coat 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Widen Road - Add Lanes And Shoulders",
+    "projectDescription": "CONSTRUCT INTERCHANGE",
+    "county": "Ellis",
     "subCSJs": [
-      "1666-02-009"
+      "0092-03-053",
+      "1051-03-001"
     ],
-    "subCSJCount": 1
+    "projectName": "IH 45 AT FM 664",
+    "highway": "IH 45",
+    "subCSJCount": 2,
+    "estimate": 116272606.72,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Widen Road - Add Lanes And Shoulders",
+    "csj": "0092-03-053"
   },
   {
-    "csj": "0275-01-258",
-    "county": "Potter",
-    "highway": "IH 40",
-    "projectName": "IH 40/SP 228 Ramp Overlay",
-    "projectDescription": "Overlay at IH 40/SP 228",
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 7782908.65,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Bridge Replacement",
+    "projectDescription": "Replace Bridge and Approaches at Mullens Bayou",
+    "county": "Refugio",
     "subCSJs": [
-      "0275-01-258"
+      "0916-27-016"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0042-01-033",
-    "county": "Potter",
-    "highway": "US 287",
-    "projectName": "2028 HSIP US 287 CABLE BARRIER 1/2",
-    "projectDescription": "INSTALL CABLE BARRIER",
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 7782908.65,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0042-01-033"
-    ],
-    "subCSJCount": 1
+    "projectName": "MullensBayouRd(CR42) Bridge Replacement",
+    "highway": "MULLENS BAYOU RD",
+    "subCSJCount": 1,
+    "estimate": 882212.21,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Bridge Replacement",
+    "csj": "0916-27-016"
   },
   {
     "csj": "2873-01-008",
@@ -3141,84 +1108,50 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1647-02-005",
-    "county": "Concho",
-    "highway": "FM 1678",
-    "projectName": "1647-02-005 FM 1678 SEAL COAT",
-    "projectDescription": "SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BPM FUA for WFAO FY '27",
+    "county": "Clay",
     "subCSJs": [
-      "1647-02-005"
+      "6510-33-001"
     ],
-    "subCSJCount": 1
+    "projectName": "BPM Wichita Area  FY '27",
+    "highway": "US0287",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6510-33-001"
   },
   {
-    "csj": "0042-10-004",
-    "county": "Potter",
-    "highway": "SS 228",
-    "projectName": "Spur 228 Widening Project",
-    "projectDescription": "WIDENING PROJECT - FEDERAL EARMARK",
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 7782908.65,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0042-10-004"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0454-01-050",
-    "county": "Coke",
-    "highway": "SH 208",
-    "projectName": "0454-01-050 SH 208 SEAL COAT",
-    "projectDescription": "SEAL COAT AND  TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0454-01-050"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0911-28-064",
-    "county": "Houston",
-    "highway": "COUNTY ROAD 2065",
-    "projectName": "CR 2065_At Hurricane Byu Rel - HBP",
-    "projectDescription": "Replace Bridge and Approaches",
     "projectType": "Bridge Replacement",
-    "typeOfWork": "Bridge Replacement",
-    "estimate": 1597562.0,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "projectDescription": "Replace Bridge and Approaches",
+    "county": "Houston",
     "subCSJs": [
+      "0911-28-062",
       "0911-28-064"
     ],
-    "subCSJCount": 1
+    "projectName": "CR 2065_HURRICANE BAYOU - HBP",
+    "highway": "COUNTY ROAD 2065",
+    "subCSJCount": 2,
+    "estimate": 1597562.0,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Bridge Replacement",
+    "csj": "0911-28-062"
   },
   {
-    "csj": "0042-02-021",
-    "county": "Carson",
-    "highway": "US 287",
-    "projectName": "2028 HSIP US 287 CABLE BARRIER 2/2",
-    "projectDescription": "INSTALL CABLE BARRIER",
-    "projectType": "Intersection Improvements With Right And/Or Left T",
-    "typeOfWork": "Intersection Improvements With Right And/Or Left T",
-    "estimate": 7782908.65,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE SCOUR REPAIR",
+    "projectDescription": "BRIDGE SCOUR REPAIR",
+    "county": "Kerr",
     "subCSJs": [
-      "0042-02-021"
+      "6504-42-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Kerr County BPM 2 FY27",
+    "highway": "FM1341",
+    "subCSJCount": 1,
+    "estimate": 225000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "BRIDGE SCOUR REPAIR",
+    "csj": "6504-42-001"
   },
   {
     "csj": "0024-09-031",
@@ -3253,36 +1186,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1879-01-025",
-    "county": "Shelby",
-    "highway": "FM 2026",
-    "projectName": "FM 2026_FM 1645 to US 96 - FY 27 HSIP",
-    "projectDescription": "Centerline and Edgeline Rumble Strips",
-    "projectType": "Highway Improvement",
-    "typeOfWork": "Highway Improvement",
-    "estimate": 4851339.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "Install Pedestrian Signal, Install Pedestrian Crosswalk, Install Sidewalks",
+    "county": "Travis",
     "subCSJs": [
-      "1879-01-025"
+      "0914-04-366"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0745-02-015",
-    "county": "Henderson",
-    "highway": "FM 314",
-    "projectName": "FM 314 N, SH 31 - Van Zandt CL, FY 27",
-    "projectDescription": "FY 2027 Seal COat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0745-02-015"
-    ],
-    "subCSJCount": 1
+    "projectName": "AUS_CoBC(HSIP23)",
+    "highway": "BEE CAVE PKWY",
+    "subCSJCount": 1,
+    "estimate": 1018060.24,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0914-04-366"
   },
   {
     "csj": "6511-66-001",
@@ -3317,20 +1233,49 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0396-03-029",
-    "county": "Schleicher",
-    "highway": "US 190",
-    "projectName": "0396-03-029 US 190 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "HOT MIX",
+    "projectDescription": "HOT MIX SUPERPAVE FOR GREGG COUNTY",
+    "county": "Gregg",
     "subCSJs": [
-      "0396-03-029"
+      "6505-42-001"
     ],
-    "subCSJCount": 1
+    "projectName": "FY 27 Hot Mix Superpave Gregg County",
+    "highway": "SL0281",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6505-42-001"
+  },
+  {
+    "projectType": "Intersection Improvement",
+    "projectDescription": "ADD NORTHBOUND RIGHT TURN LANE, DUAL LEFT TURN LANES, REHABILITATE INTERSECTION PAVEMENT, AND SIGNAL IMPROVEMENTS",
+    "county": "Burnet",
+    "subCSJs": [
+      "0252-01-084"
+    ],
+    "projectName": "US 281 AT RM 1431",
+    "highway": "US 281",
+    "subCSJCount": 1,
+    "estimate": 6953263.29,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Intersection Improvement",
+    "csj": "0252-01-084"
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "county": "Jim Wells",
+    "subCSJs": [
+      "6496-96-001"
+    ],
+    "projectName": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "highway": "US0281",
+    "subCSJCount": 1,
+    "estimate": 700000.0,
+    "letDate": "12/15/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6496-96-001"
   },
   {
     "csj": "6512-25-001",
@@ -3349,20 +1294,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1513-01-021",
-    "county": "Hood",
-    "highway": "FM 167",
-    "projectName": "FM 167:FM 4 to End of Maint.",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 5981723.36,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "projectType": "HERBICIDE/INSECTICIDE",
+    "projectDescription": "Herbicide/Insecticide",
+    "county": "Ellis",
     "subCSJs": [
-      "1513-01-021"
+      "6502-79-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Herbicide/Insecticide 09 1226",
+    "highway": "IH0035E",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "HERBICIDE/INSECTICIDE",
+    "csj": "6502-79-001"
+  },
+  {
+    "projectType": "FLEXIBLE BASE",
+    "projectDescription": "FLEXIBLE BASE",
+    "county": "Kaufman",
+    "subCSJs": [
+      "6508-31-001"
+    ],
+    "projectName": "FLEX BASE (Material Only) 06 1226",
+    "highway": "FM2728",
+    "subCSJCount": 1,
+    "estimate": 120000.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "FLEXIBLE BASE",
+    "csj": "6508-31-001"
   },
   {
     "csj": "5500-00-128",
@@ -3381,260 +1340,125 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2855-01-032",
-    "county": "Tarrant",
-    "highway": "RM 2871",
-    "projectName": "FY 27 Seal Coat; RM2871, IH20 to IH30",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "LITTER REMOVAL",
+    "projectDescription": "Litter Removal on Various Highways in Harris County.",
+    "county": "Harris",
     "subCSJs": [
-      "2855-01-032"
+      "6508-93-001"
     ],
-    "subCSJCount": 1
+    "projectName": "SUP 6508-93-001 Litter Removal",
+    "highway": "IH0069",
+    "subCSJCount": 1,
+    "estimate": 969418.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LITTER REMOVAL",
+    "csj": "6508-93-001"
   },
   {
-    "csj": "0443-03-024",
-    "county": "Van Zandt",
-    "highway": "FM 17",
-    "projectName": "FM 17, SH 110 - SH 64, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "DITCH CLEANING AND RESHAPING",
+    "projectDescription": "DITCH CLEANING AND RESHAPING",
+    "county": "Ellis",
     "subCSJs": [
-      "0443-03-024"
+      "6507-34-001"
     ],
-    "subCSJCount": 1
+    "projectName": "ELLIS-DITCH CLEANING AND RESHAPING 1226",
+    "highway": "IH0035E",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "DITCH CLEANING AND RESHAPING",
+    "csj": "6507-34-001"
   },
   {
-    "csj": "3123-02-014",
-    "county": "Johnson",
-    "highway": "FM 4",
-    "projectName": "FY27 Seal Coat; FM4, CR 1131 to US 67",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "CULVERT REPAIR",
+    "projectDescription": "CALLOUT CULVERT REPAIR",
+    "county": "McLennan",
     "subCSJs": [
-      "3123-02-014"
+      "6510-46-001"
     ],
-    "subCSJCount": 1
+    "projectName": "2027 CULVERT REPAIR - DISTRICTWIDE",
+    "highway": "FM0308",
+    "subCSJCount": 1,
+    "estimate": 500000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "CULVERT REPAIR",
+    "csj": "6510-46-001"
   },
   {
-    "csj": "0362-04-049",
-    "county": "Palo Pinto",
-    "highway": "SH 16",
-    "projectName": "SH 16: SH 337 to SH 254",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
+    "projectDescription": "ITS Maintenance",
+    "county": "McLennan",
     "subCSJs": [
-      "0362-04-049"
+      "6504-82-001"
     ],
-    "subCSJCount": 1
+    "projectName": "ITS Maintenance",
+    "highway": "SH0006",
+    "subCSJCount": 1,
+    "estimate": 1110000.0,
+    "letDate": "12/02/2026",
+    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
+    "csj": "6504-82-001"
   },
   {
-    "csj": "0545-03-015",
-    "county": "Rusk",
-    "highway": "SH 42",
-    "projectName": "SH 42, SH 64 - US 79, SC 2027",
-    "projectDescription": "FY 2027 Seal COat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BPM FUA for Gainesville AO FY '27",
+    "county": "Cooke",
     "subCSJs": [
-      "0545-03-015"
+      "6510-32-001"
     ],
-    "subCSJCount": 1
+    "projectName": "BPM Gainesville Area  FY '27",
+    "highway": "US0082",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6510-32-001"
   },
   {
-    "csj": "2844-02-010",
-    "county": "Menard",
-    "highway": "FM 2873",
-    "projectName": "2844-02-010  RM 2873 SEAL COAT",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2844-02-010"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0332-02-028",
-    "county": "Mitchell",
-    "highway": "BS 208B",
-    "projectName": "DISTRICT SEAL COAT BS 208 B",
-    "projectDescription": "SEAL COAT",
     "projectType": "Resurface Roadway",
+    "projectDescription": "FDR, LEVEL UP AND TOM",
+    "county": "Lee",
+    "subCSJs": [
+      "0211-03-039"
+    ],
+    "projectName": "US 77 from 1.4 mi N to .57 mi S of SH 21",
+    "highway": "US 77",
+    "subCSJCount": 1,
+    "estimate": 1977989.53,
+    "letDate": "12/02/2026",
     "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0332-02-028"
-    ],
-    "subCSJCount": 1
+    "csj": "0211-03-039"
   },
   {
-    "csj": "2631-03-007",
-    "county": "Hood",
-    "highway": "FM 3450",
-    "projectName": "FY.27 Seal Coat Pavement Preservation",
-    "projectDescription": "SEAL COAT MAINLANES FY 27",
+    "projectType": "LARGE SIGN REPLACEMENT",
+    "projectDescription": "Guide sign replacement on US0287 and US0067",
+    "county": "Ellis",
+    "subCSJs": [
+      "6499-18-001"
+    ],
+    "projectName": "Guide Sign Repl US 287, US 67 08/2026",
+    "highway": "US0287",
+    "subCSJCount": 1,
+    "estimate": 1000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LARGE SIGN REPLACEMENT",
+    "csj": "6499-18-001"
+  },
+  {
     "projectType": "Preventive Maintenance",
+    "projectDescription": "FDR, 2\" Mill & Fill - 1\" TY D and 1\" TOM",
+    "county": "Travis",
+    "subCSJs": [
+      "0016-01-142",
+      "0113-13-193"
+    ],
+    "projectName": "SL 360 - RM 2244 to SL 1",
+    "highway": "SL 360",
+    "subCSJCount": 2,
+    "estimate": 8182630.37,
+    "letDate": "12/01/2026",
     "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2631-03-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2408-01-012",
-    "county": "Henderson",
-    "highway": "FM 2494",
-    "projectName": "FM 2494, BU 175G - FM 753, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2408-01-012"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0134-05-040",
-    "county": "Jack",
-    "highway": "SH 59",
-    "projectName": "SH 59: FM 1810 to Park Rd",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0134-05-040"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0296-06-016",
-    "county": "Shackelford",
-    "highway": "US 180",
-    "projectName": "DISTRICT SEAL COAT FY 2026 -23",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0296-06-016"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0069-03-064",
-    "county": "Sterling",
-    "highway": "US 87",
-    "projectName": "0069-03-064  STERLING MTN YARD SEAL COAT",
-    "projectDescription": "A-R SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0069-03-064"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2470-01-007",
-    "county": "Runnels",
-    "highway": "FM 1874",
-    "projectName": "2470-01-007 FM 1874 SEAL COAT",
-    "projectDescription": "SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2470-01-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0165-02-069",
-    "county": "Smith",
-    "highway": "US 271",
-    "projectName": "US 271, FM 16- IS 20",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0165-02-069"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0592-02-017",
-    "county": "Rusk",
-    "highway": "FM 840",
-    "projectName": "FM 840, US 79/ US 259 - FM 2867",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0592-02-017"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2006-03-013",
-    "county": "Concho",
-    "highway": "FM 2134",
-    "projectName": "2006-03-013 FM 2134 OVERLAY",
-    "projectDescription": "FULL DEPTH REPAIR/OVERLAY",
-    "projectType": "ADD PASSING LANES",
-    "typeOfWork": "ADD PASSING LANES",
-    "estimate": 16999397.08,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2006-03-013"
-    ],
-    "subCSJCount": 1
+    "csj": "0113-13-193"
   },
   {
     "csj": "0913-28-098",
@@ -3649,22 +1473,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "0913-28-098"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0058-04-023",
-    "county": "Cherokee",
-    "highway": "SH 294",
-    "projectName": "SH 294, ANDR CL - CR 2326",
-    "projectDescription": "FY 2027 SC",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0058-04-023"
     ],
     "subCSJCount": 1
   },
@@ -3701,52 +1509,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "3209-01-008",
-    "county": "Menard",
-    "highway": "FM 3463",
-    "projectName": "3209-01-008 FM 3463 SEAL COAT",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "ASPHALT PAVEMENT REPAIR",
+    "projectDescription": "Asphalt Pavement Repair",
+    "county": "Montgomery",
     "subCSJs": [
-      "3209-01-008"
+      "6506-82-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0245-19-030",
-    "county": "Van Zandt",
-    "highway": "SH 64",
-    "projectName": "SH 64, FM 314 - SMITH CL, FY 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0245-19-030"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0485-02-018",
-    "county": "Brewster",
-    "highway": "US 385",
-    "projectName": "US385 SEAL COAT (TO 39.6 MI S US 90)",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 5924302.88,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0485-02-018"
-    ],
-    "subCSJCount": 1
+    "projectName": "Asphalt Pavement RMC 6506-82-001",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 334340.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
+    "csj": "6506-82-001"
   },
   {
     "csj": "0251-02-060",
@@ -3765,6 +1540,21 @@
     "subCSJCount": 1
   },
   {
+    "projectType": "LITTER REMOVAL",
+    "projectDescription": "Litter Removal on Various Highways in Galveston County.",
+    "county": "Galveston",
+    "subCSJs": [
+      "6509-20-001"
+    ],
+    "projectName": "SUP 6509-20-001 Litter Removal",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 360000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LITTER REMOVAL",
+    "csj": "6509-20-001"
+  },
+  {
     "csj": "6511-61-001",
     "county": "Lubbock",
     "highway": "IH0027",
@@ -3781,68 +1571,95 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1853-01-049",
-    "county": "Johnson",
-    "highway": "FM 1718",
-    "projectName": "FY27 Seal Coat/Pavement Preservation..",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 5981723.36,
+    "projectType": "Highway Improvement",
+    "projectDescription": "INSTALL THERMOPLASTIC PAVEMENT MARKINGS",
+    "county": "Potter",
+    "subCSJs": [
+      "0904-00-229"
+    ],
+    "projectName": "FY 27 Districtwide Thermo Pav Markings",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 2090093.67,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1853-01-049"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Highway Improvement",
+    "csj": "0904-00-229"
   },
   {
-    "csj": "0006-02-126",
-    "county": "Nolan",
-    "highway": "IH 20",
-    "projectName": "DISTRICT SEAL COAT FY 2027  0006-02 SFR",
-    "projectDescription": "SEAL COAT SOUTH FRONTAGE RD",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "ILLUMINATION MAINTENANCE",
+    "projectDescription": "Illumination Maintenance for Ector, Crane, Ward, and Winkler counties.",
+    "county": "Ector",
     "subCSJs": [
-      "0006-02-126"
+      "6505-24-001"
     ],
-    "subCSJCount": 1
+    "projectName": "6505-24-001 Roadway Illumination",
+    "highway": "IH0020",
+    "subCSJCount": 1,
+    "estimate": 450000.0,
+    "letDate": "12/02/2026",
+    "typeOfWork": "ILLUMINATION MAINTENANCE",
+    "csj": "6505-24-001"
   },
   {
-    "csj": "0918-47-461",
-    "county": "Dallas",
-    "highway": "WESTMORELAND",
-    "projectName": "Westmoreland Rd NB & SB at Five Mile Crk",
-    "projectDescription": "Bridge Replacement and approaches",
+    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "projectDescription": "6508-85-001 is Call-Out Striping for Jack & Wise Counties for FY 2027.",
+    "county": "Wise",
+    "subCSJs": [
+      "6508-85-001"
+    ],
+    "projectName": "FY 27 Call-Out Striping - Wise/Jack",
+    "highway": "US0380",
+    "subCSJCount": 1,
+    "estimate": 146567.17,
+    "letDate": "12/16/2026",
+    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "csj": "6508-85-001"
+  },
+  {
+    "projectType": "TREE REMOVAL",
+    "projectDescription": "Tree Removal and Brush",
+    "county": "Montgomery",
+    "subCSJs": [
+      "6506-76-001"
+    ],
+    "projectName": "Tree Removal and Brush RMC 6506-76-001",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 711080.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "TREE REMOVAL",
+    "csj": "6506-76-001"
+  },
+  {
     "projectType": "Bridge Replacement",
-    "typeOfWork": "Bridge Replacement",
-    "estimate": 8607908.7,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectDescription": "Bridge Replacement and approaches",
+    "county": "Dallas",
     "subCSJs": [
+      "0918-47-460",
       "0918-47-461"
     ],
-    "subCSJCount": 1
+    "projectName": "Pleasant Run at Ten Mile Creek",
+    "highway": "W PLEASANT RUN RD",
+    "subCSJCount": 2,
+    "estimate": 8607908.7,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Bridge Replacement",
+    "csj": "0918-47-460"
   },
   {
-    "csj": "0148-04-025",
-    "county": "Kimble",
-    "highway": "US 377",
-    "projectName": "0148-04-025 US 377 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "SAFETY LIGHTING, ADD LEFT TURN LANE, ADD RIGHT TURN LANE",
+    "county": "Ector",
     "subCSJs": [
-      "0148-04-025"
+      "1127-05-024"
     ],
-    "subCSJCount": 1
+    "projectName": "HSIP_FM866_SafetyLightingTurnLanes",
+    "highway": "FM 866",
+    "subCSJCount": 1,
+    "estimate": 2054496.55,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "1127-05-024"
   },
   {
     "csj": "0382-02-039",
@@ -3877,68 +1694,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0401-03-029",
-    "county": "Wood",
-    "highway": "SH 154",
-    "projectName": "SH 154,  Quitman Cty Lmt - Upshur C/L, S",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "ROADWAY WIDENING TO A SUPER 2",
+    "projectDescription": "ROADWAY WIDENING TO A SUPER 2",
+    "county": "Winkler",
     "subCSJs": [
-      "0401-03-029"
+      "0354-04-043"
     ],
-    "subCSJCount": 1
+    "projectName": "SH115_Super2_FM874_CR313",
+    "highway": "SH 115",
+    "subCSJCount": 1,
+    "estimate": 23065860.83,
+    "letDate": "12/01/2026",
+    "typeOfWork": "ROADWAY WIDENING TO A SUPER 2",
+    "csj": "0354-04-043"
   },
   {
-    "csj": "0002-14-047",
-    "county": "El Paso",
-    "highway": "FM 258",
-    "projectName": "FM258 SAFETY (BUSTAMANTE | GLORIETTA)",
-    "projectDescription": "IMPROVE SCHOOL ZONE, INSTALL SIDEWALK",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1370183.55,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE BEAM REPAIR",
+    "projectDescription": "FY 25 Bridge Beam repair on IH0820 in North Tarrant County.",
+    "county": "Tarrant",
     "subCSJs": [
-      "0002-14-047"
+      "6481-79-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1513-02-046",
-    "county": "Johnson",
-    "highway": "FM 4",
-    "projectName": "FY26 Seal Coat; FM4, CR 1131 to US 67",
-    "projectDescription": "Seal Coat Mainlanes",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
+    "projectName": "FY25 Bridge Beam Repair N. Tarrant",
+    "highway": "IH0820",
+    "subCSJCount": 1,
+    "estimate": 50000.0,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1513-02-046"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0070-04-044",
-    "county": "Concho",
-    "highway": "US 87",
-    "projectName": "0070-04-044 US 87 A-R SEAL COAT",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0070-04-044"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "BRIDGE BEAM REPAIR",
+    "csj": "6481-79-001"
   },
   {
     "csj": "0914-04-409",
@@ -3953,38 +1736,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "0914-04-409"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0911-00-137",
-    "county": "Angelina",
-    "highway": "Various",
-    "projectName": "FY 2027_Profile Pave Mark - TCD",
-    "projectDescription": "FY 2027 Profile Pavement Markings",
-    "projectType": "Highway Improvement",
-    "typeOfWork": "Highway Improvement",
-    "estimate": 4851339.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0911-00-137"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0677-01-024",
-    "county": "Taylor",
-    "highway": "FM 707",
-    "projectName": "DISTRICT SEAL COAT 0677-01",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0677-01-024"
     ],
     "subCSJCount": 1
   },
@@ -4005,116 +1756,94 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2654-01-024",
-    "county": "Smith",
-    "highway": "FM 2661",
-    "projectName": "FM 2664, SH 31 - SH 155, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Bridge Maintenance",
+    "projectDescription": "Bridge Maintenance Improvement Program - BMIP",
+    "county": "De Witt",
     "subCSJs": [
-      "2654-01-024"
+      "0913-00-140"
     ],
-    "subCSJCount": 1
+    "projectName": "BMIP 2712",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 4401017.85,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Bridge Maintenance",
+    "csj": "0913-00-140"
   },
   {
-    "csj": "0830-02-023",
-    "county": "Real",
-    "highway": "RM 335",
-    "projectName": "0830-02-023 RM 335 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "HOT MIX",
+    "projectDescription": "Provide Superpave Hot Mix for Gregg County, Longview Maintenance Section.",
+    "county": "Gregg",
     "subCSJs": [
-      "0830-02-023"
+      "6469-26-001"
     ],
-    "subCSJCount": 1
+    "projectName": "MMC Superpave Hot Mix Gregg Co FY 26",
+    "highway": "US0080",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/11/2026",
+    "typeOfWork": "HOT MIX",
+    "csj": "6469-26-001"
   },
   {
-    "csj": "0374-02-125",
-    "county": "El Paso",
-    "highway": "US 62",
-    "projectName": "US62 SAFETY (MAGRUDER | LIMERICK)",
-    "projectDescription": "IMPROVE TRAFFIC SIGNALS, INSTALL FLASHING YELLOW ARROW, INSTALL SIDEWALKS",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1370183.55,
+    "projectType": "EMULSION",
+    "projectDescription": "PROVIDE EMULSION (MATERIAL ONLY) FOR SAN SABA AND MCCULLOCH COUNTIES",
+    "county": "San Saba",
+    "subCSJs": [
+      "6459-83-001"
+    ],
+    "projectName": "EMULSION-SOUTH 23/24",
+    "highway": "US0190",
+    "subCSJCount": 1,
+    "estimate": 38000.0,
+    "letDate": "12/31/2026",
+    "typeOfWork": "EMULSION",
+    "csj": "6459-83-001"
+  },
+  {
+    "projectType": "Highway Improvement",
+    "projectDescription": "Asphalt Repairs Along the IH 35 Corridor",
+    "county": "Travis",
+    "subCSJs": [
+      "0914-00-513"
+    ],
+    "projectName": "FY 27 Districtwide Asphalt Repair Contr",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 1909737.5,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0374-02-125"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Highway Improvement",
+    "csj": "0914-00-513"
   },
   {
-    "csj": "0199-05-014",
-    "county": "Cherokee",
-    "highway": "SL 62",
-    "projectName": "SL 62, US 69 - US 69, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
+    "projectType": "HERBICIDE/INSECTICIDE",
+    "projectDescription": "Herbicide/Insecticide",
+    "county": "Navarro",
+    "subCSJs": [
+      "6505-10-001"
+    ],
+    "projectName": "Herbicide 01 1227",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 283568.25,
+    "letDate": "12/03/2026",
+    "typeOfWork": "HERBICIDE/INSECTICIDE",
+    "csj": "6505-10-001"
+  },
+  {
+    "projectType": "Preventive Maintenance",
+    "projectDescription": "OVERLAY",
+    "county": "Scurry",
+    "subCSJs": [
+      "0693-03-046"
+    ],
+    "projectName": "SH 350 SCURRY COUNTY",
+    "highway": "SH 350",
+    "subCSJCount": 1,
+    "estimate": 11054519.3,
     "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0199-05-014"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0080-08-028",
-    "county": "Hood",
-    "highway": "FM 167",
-    "projectName": "FM 167: US 377 to FM 4",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 5981723.36,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0080-08-028"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0927-01-036",
-    "county": "Smith",
-    "highway": "FM 344",
-    "projectName": "FM 344, FM 756 - SH 110, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0927-01-036"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0201-06-033",
-    "county": "Real",
-    "highway": "SH 41",
-    "projectName": "0201-06-033  SH 41 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0201-06-033"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "0693-03-046"
   },
   {
     "csj": "0183-03-057",
@@ -4133,36 +1862,95 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1161-02-013",
-    "county": "Cherokee",
-    "highway": "FM 855",
-    "projectName": "FM 855, US 69 - FM 346",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "county": "Bexar",
     "subCSJs": [
-      "1161-02-013"
+      "6504-44-001"
     ],
-    "subCSJCount": 1
+    "projectName": "West Bexar Bridge Maint. FY 27",
+    "highway": "SH0151",
+    "subCSJCount": 1,
+    "estimate": 300000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6504-44-001"
   },
   {
-    "csj": "0910-00-175",
-    "county": "Smith",
-    "highway": "Various",
-    "projectName": "VA, VATYLDISTR2027THERMO1",
-    "projectDescription": "FY 2027 THERMO PROGRAM AT VARIOUS LOCATIONS IN THE TYLER DISTRICT",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Bridge preventative maintenance in Hunt Co.",
+    "county": "Hunt",
     "subCSJs": [
-      "0910-00-175"
+      "6505-14-001"
     ],
-    "subCSJCount": 1
+    "projectName": "BPM Hunt FY27",
+    "highway": "IH0030",
+    "subCSJCount": 1,
+    "estimate": 350000.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6505-14-001"
+  },
+  {
+    "projectType": "DRAINAGE SYSTEM CLEANING",
+    "projectDescription": "Cleaning & Maintaining Drainage Inlet & Pipes",
+    "county": "Nueces",
+    "subCSJs": [
+      "6510-27-001"
+    ],
+    "projectName": "Drainage System Cleaning Nueces",
+    "highway": "US0181",
+    "subCSJCount": 1,
+    "estimate": 300000.0,
+    "letDate": "12/15/2026",
+    "typeOfWork": "DRAINAGE SYSTEM CLEANING",
+    "csj": "6510-27-001"
+  },
+  {
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "Install Reflectorized Backplates",
+    "county": "Leon",
+    "subCSJs": [
+      "0917-16-046",
+      "0917-20-051"
+    ],
+    "projectName": "VA Leon County -  Backplates FY 27",
+    "highway": "Various",
+    "subCSJCount": 2,
+    "estimate": 184986.45,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0917-16-046"
+  },
+  {
+    "projectType": "ASPHALT PAVEMENT REPAIR",
+    "projectDescription": "Asphaltic Concrete Pavement Repairs",
+    "county": "Matagorda",
+    "subCSJs": [
+      "6497-98-001"
+    ],
+    "projectName": "Asphaltic Concrete Pavement Repair FY 27",
+    "highway": "FM2668",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/02/2026",
+    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
+    "csj": "6497-98-001"
+  },
+  {
+    "projectType": "Bridge Replacement",
+    "projectDescription": "Replace bridge and approach",
+    "county": "Hays",
+    "subCSJs": [
+      "0366-01-084"
+    ],
+    "projectName": "SH 123 at Big Cottonwood Creek",
+    "highway": "SH 123",
+    "subCSJCount": 1,
+    "estimate": 2818472.4,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Bridge Replacement",
+    "csj": "0366-01-084"
   },
   {
     "csj": "6512-45-001",
@@ -4181,164 +1969,35 @@
     "subCSJCount": 1
   },
   {
-    "csj": "3123-01-017",
-    "county": "Hood",
-    "highway": "FM 4",
-    "projectName": "FM 4; FM167 to Johnson C/L",
-    "projectDescription": "Sealcoat Mainlanes",
     "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "3123-01-017"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2738-01-018",
-    "county": "Wise",
-    "highway": "FM 2265",
-    "projectName": "FY27Seal Coat/Pavement Preservation.1",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2738-01-018"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0601-01-069",
-    "county": "Hardin",
-    "highway": "SH 326",
-    "projectName": "SH 326-@BLACK CREEK-BRIDGE MAINTENANCE",
-    "projectDescription": "SH 326-@BLACK CREEK-BRIDGE MAINTENANCE (STR 201010060101003)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 5428043.08,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0601-01-069"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1666-03-007",
-    "county": "Anderson",
-    "highway": "FM 837",
-    "projectName": "FM 837, FM 860 - SH 19, SC",
-    "projectDescription": "Seal Coat 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1666-03-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0463-04-028",
-    "county": "Glasscock",
-    "highway": "SH 158",
-    "projectName": "0463-04-028 SH 158 A-R SEAL COAT",
-    "projectDescription": "A-R SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 13896097.58,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0463-04-028"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2292-01-035",
-    "county": "Wise",
-    "highway": "FM 730",
-    "projectName": "FM 730; Montague Co Line to Country Club",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2292-01-035"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0889-02-018",
-    "county": "Henderson",
-    "highway": "FM 317",
-    "projectName": "FM 317, FM 314-FM 315, SC",
-    "projectDescription": "Seal Coat 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0889-02-018"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0924-06-719",
-    "county": "El Paso",
-    "highway": "PEBBLE HILLS BLVD",
-    "projectName": "PEBBLE HILLS (KLEINFELD | KINGS CREST)",
-    "projectDescription": "IMPROVE TRAFFIC SIGNALS, IMPROVE SCHOOL ZONE, DYNAMIC SPEED FEEDBACK SIGNS, INSTALL PAVEMENT MARKINGS",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1370183.55,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0924-06-719"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0159-08-004",
-    "county": "Tom Green",
-    "highway": "SL 110",
-    "projectName": "0159-08-004 SL 110 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0159-08-004"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2635-04-048",
-    "county": "Potter",
-    "highway": "FM 2590",
-    "projectName": "FM 2590 PM POTTER 1-2",
     "projectDescription": "PAVEMENT PM",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 4415580.95,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "county": "Randall",
     "subCSJs": [
+      "2635-03-031",
       "2635-04-048"
     ],
-    "subCSJCount": 1
+    "projectName": "FM 2590 PM RANDALL 2-2",
+    "highway": "FM 2590",
+    "subCSJCount": 2,
+    "estimate": 4415580.95,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "2635-03-031"
+  },
+  {
+    "projectType": "BRIDGE DECK REPAIR",
+    "projectDescription": "Bridge Deck Overlay",
+    "county": "Victoria",
+    "subCSJs": [
+      "6501-63-001"
+    ],
+    "projectName": "Bridge Deck Overlay",
+    "highway": "US0077",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/30/2026",
+    "typeOfWork": "BRIDGE DECK REPAIR",
+    "csj": "6501-63-001"
   },
   {
     "csj": "0251-02-058",
@@ -4357,20 +2016,49 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1486-02-011",
-    "county": "Reagan",
-    "highway": "RM 1555",
-    "projectName": "1486-02-011 RM 1555 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "projectDescription": "Tree Trimming and Brush Removal",
+    "county": "Fort Bend",
     "subCSJs": [
-      "1486-02-011"
+      "6509-26-001"
     ],
-    "subCSJCount": 1
+    "projectName": "RMC 6509-26-001",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 410070.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "csj": "6509-26-001"
+  },
+  {
+    "projectType": "EMULSION",
+    "projectDescription": "Emulsion",
+    "county": "Ellis",
+    "subCSJs": [
+      "6503-02-001"
+    ],
+    "projectName": "Emulsion 09 1226",
+    "highway": "FM0876",
+    "subCSJCount": 1,
+    "estimate": 378125.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "EMULSION",
+    "csj": "6503-02-001"
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "CONCRETE SPALL REPAIRS AT VARIOUS LOCATIONS",
+    "county": "Comal",
+    "subCSJs": [
+      "6504-43-001"
+    ],
+    "projectName": "New Braunfels A.O. Bridge Maint. FY27",
+    "highway": "IH0035",
+    "subCSJCount": 1,
+    "estimate": 369000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6504-43-001"
   },
   {
     "csj": "6510-95-001",
@@ -4389,84 +2077,21 @@
     "subCSJCount": 1
   },
   {
-    "csj": "3610-01-004",
-    "county": "Mitchell",
-    "highway": "FM 3525",
-    "projectName": "DISTRICT SEAL COAT 3610-01",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "3610-01-004"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0118-04-037",
-    "county": "Cherokee",
-    "highway": "SH 21",
-    "projectName": "SH 24, ANDR CL - US 69",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0118-04-037"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0053-12-075",
-    "county": "Nolan",
-    "highway": "US 84",
-    "projectName": "US 84 SEAL COAT SB ONLY NOLAN CO",
-    "projectDescription": "SEAL COAT SOUTH BOUND MAIN LANES",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0053-12-075"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0668-03-010",
-    "county": "Howard",
-    "highway": "FM 700",
-    "projectName": "DISTRICT SEAL COAT FY 2027 -19",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0668-03-010"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0442-03-050",
-    "county": "Ellis",
-    "highway": "IH 35E",
-    "projectName": "IH 35E From US 77N To Dallas CL",
-    "projectDescription": "FULL DEPTH CONCRETE REPAIR",
     "projectType": "Rehabilitate Existing Roadway",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "estimate": 6007681.66,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectDescription": "FULL DEPTH REPAIR",
+    "county": "Ellis",
     "subCSJs": [
+      "0048-04-111",
+      "0048-08-060",
       "0442-03-050"
     ],
-    "subCSJCount": 1
+    "projectName": "IH 35E From US 77S To US 77N FY28",
+    "highway": "IH 35E",
+    "subCSJCount": 3,
+    "estimate": 6007681.66,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "csj": "0048-04-111"
   },
   {
     "csj": "6510-86-001",
@@ -4485,20 +2110,64 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0892-01-022",
-    "county": "Anderson",
-    "highway": "FM 321",
-    "projectName": "FM 321, FM 645 - SH 19, SC 027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "LARGE SIGN REPLACEMENT",
+    "projectDescription": "Districtwide Large Sign Installation and Replacement",
+    "county": "Jasper",
     "subCSJs": [
-      "0892-01-022"
+      "6409-89-001"
     ],
-    "subCSJCount": 1
+    "projectName": "FY27 Districtwide Large Sign",
+    "highway": "US0096",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "LARGE SIGN REPLACEMENT",
+    "csj": "6409-89-001"
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "county": "Bexar",
+    "subCSJs": [
+      "6504-45-001"
+    ],
+    "projectName": "East Bexar Bridge Maint. FY27",
+    "highway": "IH0037",
+    "subCSJCount": 1,
+    "estimate": 300000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6504-45-001"
+  },
+  {
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "projectDescription": "MOWING HIGHWAY RIGHT OF WAY",
+    "county": "Galveston",
+    "subCSJs": [
+      "6504-29-001"
+    ],
+    "projectName": "FY 2027 MOWING HIGHWAY RIGHT OF WAY",
+    "highway": "SH0087",
+    "subCSJCount": 1,
+    "estimate": 495189.02,
+    "letDate": "12/08/2026",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "csj": "6504-29-001"
+  },
+  {
+    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "projectDescription": "ON-CALL RETROREFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "county": "Collin",
+    "subCSJs": [
+      "6508-08-001"
+    ],
+    "projectName": "On Call RPM 07 12.26",
+    "highway": "US0075",
+    "subCSJCount": 1,
+    "estimate": 177824.69,
+    "letDate": "12/03/2026",
+    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "csj": "6508-08-001"
   },
   {
     "csj": "6512-47-001",
@@ -4517,20 +2186,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1051-03-001",
-    "county": "Ellis",
-    "highway": "FM 664",
-    "projectName": "FM 664 FROM WEST OF FERRIS ROAD TO IH 45",
-    "projectDescription": "FROM WEST OF FERRIS RD TO NORTH CENTRAL ST: REALIGN AND WIDEN 2 TO 4 LANE ROADWAY (6 LANES ULTIMATE); FROM NORTH CENTRAL ST TO IH 45: CONSTRUCT 0 TO 4 LANE ROADWAY (6 LANES ULTIMATE)",
-    "projectType": "Widen Road - Add Lanes And Shoulders",
-    "typeOfWork": "Widen Road - Add Lanes And Shoulders",
-    "estimate": 116272606.72,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "Install Reflectorized Backplates",
+    "county": "Madison",
     "subCSJs": [
-      "1051-03-001"
+      "0917-31-041"
     ],
-    "subCSJCount": 1
+    "projectName": "VA Madison County -  Backplates FY 27",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 126512.1,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "0917-31-041"
+  },
+  {
+    "projectType": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LAN",
+    "projectDescription": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LANE",
+    "county": "Andrews",
+    "subCSJs": [
+      "1718-05-021"
+    ],
+    "projectName": "HSIP_FM1788_SaftyLightingTurnLane",
+    "highway": "FM 1788",
+    "subCSJCount": 1,
+    "estimate": 2153993.53,
+    "letDate": "12/01/2026",
+    "typeOfWork": "SAFETY LIGHTING AT INTERSECTION, ADD LEFT TURN LAN",
+    "csj": "1718-05-021"
   },
   {
     "csj": "0055-03-030",
@@ -4549,22 +2232,6 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2417-02-019",
-    "county": "Johnson",
-    "highway": "FM 2331",
-    "projectName": "FY26;SealCoat FM 2331, SH171 to TCL",
-    "projectDescription": "Seal Coat Mainlanes",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2417-02-019"
-    ],
-    "subCSJCount": 1
-  },
-  {
     "csj": "0213-01-055",
     "county": "Walker",
     "highway": "US 190",
@@ -4579,6 +2246,21 @@
       "0213-01-055"
     ],
     "subCSJCount": 1
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Bridge preventative maintenance in Grayson Co.",
+    "county": "Grayson",
+    "subCSJs": [
+      "6505-16-001"
+    ],
+    "projectName": "BPM Grayson FY27",
+    "highway": "US0069",
+    "subCSJCount": 1,
+    "estimate": 650000.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6505-16-001"
   },
   {
     "csj": "6511-16-001",
@@ -4613,20 +2295,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0646-05-043",
-    "county": "Henderson",
-    "highway": "FM 316",
-    "projectName": "FM 316 S, US 175 - SH 198",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Bridge preventative maintenance in Lamar Co.",
+    "county": "Lamar",
     "subCSJs": [
-      "0646-05-043"
+      "6505-05-001"
     ],
-    "subCSJCount": 1
+    "projectName": "BPM Lamar FY27",
+    "highway": "US0271",
+    "subCSJCount": 1,
+    "estimate": 500000.0,
+    "letDate": "12/17/2026",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6505-05-001"
   },
   {
     "csj": "3271-01-020",
@@ -4645,36 +2326,50 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0313-02-070",
-    "county": "Parker",
-    "highway": "FM 51",
-    "projectName": "FM 51; Cottondale Rd to Wise Co Line",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Hazard Elimination & Safety",
+    "projectDescription": "Install Continuous Turn Lane",
+    "county": "Comal",
     "subCSJs": [
-      "0313-02-070"
+      "1728-02-069"
     ],
-    "subCSJCount": 1
+    "projectName": "FM 306: 1728-02-069; SFT",
+    "highway": "FM 306",
+    "subCSJCount": 1,
+    "estimate": 3761232.63,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "csj": "1728-02-069"
   },
   {
-    "csj": "0118-05-025",
-    "county": "Cherokee",
-    "highway": "SH 21",
-    "projectName": "SH 21, CL - U",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "CRASH CUSHION ATTENUATOR REPAIR",
+    "projectDescription": "Crash Cushion Attenuator Repair",
+    "county": "Montgomery",
     "subCSJs": [
-      "0118-05-025"
+      "6506-85-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Crash Cushion RMC 6506-85-001",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 629321.0,
+    "letDate": "12/08/2026",
+    "typeOfWork": "CRASH CUSHION ATTENUATOR REPAIR",
+    "csj": "6506-85-001"
+  },
+  {
+    "projectType": "Widen Road - Add Lanes",
+    "projectDescription": "WIDEN FROM 4 LANE TO 6 LANE FREEWAY FACILITY",
+    "county": "Cooke",
+    "subCSJs": [
+      "0195-01-111",
+      "0195-01-113"
+    ],
+    "projectName": "IH 35 from FM 3002 to Spring Creek Rd",
+    "highway": "IH 35",
+    "subCSJCount": 2,
+    "estimate": 294253971.44,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Widen Road - Add Lanes",
+    "csj": "0195-01-111"
   },
   {
     "csj": "6511-12-001",
@@ -4693,20 +2388,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1529-03-010",
-    "county": "Scurry",
-    "highway": "FM 1605",
-    "projectName": "Seal Coat FY 2027 SC 1529-03",
-    "projectDescription": "Seal Coat",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Preventive Maintenance",
+    "projectDescription": "THERMOPLASTIC STRIPING",
+    "county": "Brown",
     "subCSJs": [
-      "1529-03-010"
+      "0923-00-086"
     ],
-    "subCSJCount": 1
+    "projectName": "Brownwood Area Thermo Striping FY2027",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 1642575.91,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "0923-00-086"
   },
   {
     "csj": "5500-00-149",
@@ -4725,68 +2419,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0910-00-176",
-    "county": "Smith",
-    "highway": "Various",
-    "projectName": "THERMO",
-    "projectDescription": "FY 2027 THERMO with SC Operations",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "REHABILITATION OF EXISTING ROADWAY",
+    "projectDescription": "Rehab existing streets and parking lots",
+    "county": "Howard",
     "subCSJs": [
-      "0910-00-176"
+      "6464-67-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2298-02-007",
-    "county": "Reagan",
-    "highway": "RM 2401",
-    "projectName": "2298-02-007 RM 2401 SEAL COAT",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2298-02-007"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0148-03-029",
-    "county": "Kimble",
-    "highway": "US 377",
-    "projectName": "0148-03-029 US 377 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0148-03-029"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0657-03-018",
-    "county": "Wood",
-    "highway": "FM 515",
-    "projectName": "FM 515, SH 154-FM 1483, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0657-03-018"
-    ],
-    "subCSJCount": 1
+    "projectName": "Big Spring St Hosp Str & Park Lot Rehab",
+    "highway": "MR0686",
+    "subCSJCount": 1,
+    "estimate": 144358.0,
+    "letDate": "12/15/2026",
+    "typeOfWork": "REHABILITATION OF EXISTING ROADWAY",
+    "csj": "6464-67-001"
   },
   {
     "csj": "0757-02-023",
@@ -4805,36 +2450,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0313-08-032",
-    "county": "Hood",
-    "highway": "FM 51",
-    "projectName": "FY26 Seal Coat/Pavement Preservation7",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "FULL DEPTH CONCRETE REPAIR",
+    "projectDescription": "FULL DEPTH CONCRETE REPAIR FOR VARIOUS ROADWAYS IN THE COLLIN COUNTY MAINTENANCE SECTION",
+    "county": "Collin",
     "subCSJs": [
-      "0313-08-032"
+      "6508-07-001"
     ],
-    "subCSJCount": 1
+    "projectName": "On Call FDCR 07 12.26",
+    "highway": "US0075",
+    "subCSJCount": 1,
+    "estimate": 403750.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
+    "csj": "6508-07-001"
   },
   {
-    "csj": "0312-04-037",
-    "county": "Wise",
-    "highway": "FM 730",
-    "projectName": "FM 730; Hale St to SH 114",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "SWEEPING AND DEBRIS REMOVAL",
+    "projectDescription": "6503-04-001, Sweeping and Debris Removal, FY27, Johnson",
+    "county": "Johnson",
     "subCSJs": [
-      "0312-04-037"
+      "6503-04-001"
     ],
-    "subCSJCount": 1
+    "projectName": "FY27, Sweeping and Debris, Johnson",
+    "highway": "IH0035W",
+    "subCSJCount": 1,
+    "estimate": 909031.81,
+    "letDate": "12/16/2026",
+    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
+    "csj": "6503-04-001"
   },
   {
     "csj": "6511-57-001",
@@ -4849,22 +2492,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "6511-57-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0195-01-113",
-    "county": "Cooke",
-    "highway": "IH 35",
-    "projectName": "Widen to 6 Lane Freeway Facility",
-    "projectDescription": "ROW ACQUISITION, RELOCATION AND UTILITIES",
-    "projectType": "Widen Road - Add Lanes",
-    "typeOfWork": "Widen Road - Add Lanes",
-    "estimate": 1932277.8,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0195-01-113"
     ],
     "subCSJCount": 1
   },
@@ -4885,68 +2512,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0594-01-017",
-    "county": "Gregg",
-    "highway": "SH 322",
-    "projectName": "SH 322, SH 149 - RUSK CL",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "DITCH CLEANING AND RESHAPING",
+    "projectDescription": "Ditch cleaning and reshaping for various locations in Brazos, Robertson, and Grimes counties.",
+    "county": "Brazos",
     "subCSJs": [
-      "0594-01-017"
+      "6464-60-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0134-05-041",
-    "county": "Jack",
-    "highway": "FM 1810",
-    "projectName": "FY27 Seal Coat/Pavement Preservation5",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0134-05-041"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0902-00-405",
-    "county": "Tarrant",
-    "highway": "Various",
-    "projectName": "FY27.SealCoat/Pavement Preservation",
-    "projectDescription": "Restripe for Sealcoat.",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0902-00-405"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0601-01-068",
-    "county": "Hardin",
-    "highway": "SH 326",
-    "projectName": "SH 326-@CYPRESS CREEK-BRIDGE MAINTENANCE",
-    "projectDescription": "SH 326-@CYPRESS CREEK-BRIDGE MAINTENANCE (STR 201010060101001)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 5428043.08,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0601-01-068"
-    ],
-    "subCSJCount": 1
+    "projectName": "Bryan AO Ditch Cleaning - 05",
+    "highway": "SH0006",
+    "subCSJCount": 1,
+    "estimate": 200000.0,
+    "letDate": "12/05/2026",
+    "typeOfWork": "DITCH CLEANING AND RESHAPING",
+    "csj": "6464-60-001"
   },
   {
     "csj": "6511-01-001",
@@ -4981,22 +2559,6 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0006-16-005",
-    "county": "Taylor",
-    "highway": "BI 20N",
-    "projectName": "FY 2027 Seal Coat 0006-16",
-    "projectDescription": "Seal Coat",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0006-16-005"
-    ],
-    "subCSJCount": 1
-  },
-  {
     "csj": "5500-00-150",
     "county": "Travis",
     "highway": "Various",
@@ -5013,20 +2575,49 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1116-01-024",
-    "county": "Rusk",
-    "highway": "FM 782",
-    "projectName": "FM 782, FM 1716 - SH 149, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "REST AREA Concrete MAINTENANCE",
+    "projectDescription": "Concrete Repairs for Callahan County Rest Area East Bound",
+    "county": "Callahan",
     "subCSJs": [
-      "1116-01-024"
+      "6506-67-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Callahan Rest area",
+    "highway": "IH0020",
+    "subCSJCount": 1,
+    "estimate": 300000.0,
+    "letDate": "12/07/2026",
+    "typeOfWork": "REST AREA Concrete MAINTENANCE",
+    "csj": "6506-67-001"
+  },
+  {
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "projectDescription": "Vegetation Management Mowing",
+    "county": "Collin",
+    "subCSJs": [
+      "6508-09-001"
+    ],
+    "projectName": "Mowing HW ROW E 07 12.26",
+    "highway": "US0380",
+    "subCSJCount": 1,
+    "estimate": 295106.28,
+    "letDate": "12/03/2026",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "csj": "6508-09-001"
+  },
+  {
+    "projectType": "Surfacing/Roadway Restoration",
+    "projectDescription": "FM 1416 (FM 2460, SOUTH to SH 87) OVERLAY",
+    "county": "Newton",
+    "subCSJs": [
+      "0627-04-070"
+    ],
+    "projectName": "FM 1416 (FM 2460 to SH 87) OVERLAY",
+    "highway": "FM 1416",
+    "subCSJCount": 1,
+    "estimate": 3184850.7,
+    "letDate": "12/02/2026",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "csj": "0627-04-070"
   },
   {
     "csj": "6511-76-001",
@@ -5061,84 +2652,19 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2011-02-016",
-    "county": "Kent",
-    "highway": "SH 208",
-    "projectName": "DISTRICT SEAL COAT FY 2027  2011-02",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "HERBICIDE/INSECTICIDE",
+    "projectDescription": "HERBICIDE",
+    "county": "Collin",
     "subCSJs": [
-      "2011-02-016"
+      "6508-11-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "3455-01-011",
-    "county": "Jones",
-    "highway": "FM 3326",
-    "projectName": "DISTRICT SEAL COAT FY 2027  3455-01",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "3455-01-011"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2713-01-004",
-    "county": "Coke",
-    "highway": "FM 2742",
-    "projectName": "2713-01-004 FM 2742 SEAL COAT",
-    "projectDescription": "SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2713-01-004"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0048-08-060",
-    "county": "Ellis",
-    "highway": "IH 35E",
-    "projectName": "IH 35E From Hill CL To US 77S",
-    "projectDescription": "Full depth concrete repair",
-    "projectType": "Rehabilitate Existing Roadway",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "estimate": 6007681.66,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0048-08-060"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0201-05-026",
-    "county": "Edwards",
-    "highway": "SH 41",
-    "projectName": "0201-05-026  SH 41 SEAL COAT",
-    "projectDescription": "SEAL COAT AND TY II PAVEMENT MARKINGS FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0201-05-026"
-    ],
-    "subCSJCount": 1
+    "projectName": "Herbicide 07 12.26",
+    "highway": "US0075",
+    "subCSJCount": 1,
+    "estimate": 73270.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "HERBICIDE/INSECTICIDE",
+    "csj": "6508-11-001"
   },
   {
     "csj": "0911-28-104",
@@ -5157,6 +2683,19 @@
     "subCSJCount": 1
   },
   {
+    "csj": "A002-12-972",
+    "county": "Bexar",
+    "highway": "SH 211",
+    "projectName": "SH 211: FM 1957 to FM 471",
+    "projectDescription": "Expand From 2 Lanes to 4 Lanes Divided and Operational Improvements",
+    "projectType": "Feasibility Study",
+    "typeOfWork": "Feasibility Study",
+    "estimate": 1900000.0,
+    "letDate": "12/03/2026",
+    "subCSJs": [],
+    "subCSJCount": 0
+  },
+  {
     "csj": "0251-02-061",
     "county": "Hamilton",
     "highway": "US 281",
@@ -5171,6 +2710,36 @@
       "0251-02-061"
     ],
     "subCSJCount": 1
+  },
+  {
+    "projectType": "ILLUMINATION MAINTENANCE",
+    "projectDescription": "Illumination Repair - Ganado",
+    "county": "Jackson",
+    "subCSJs": [
+      "6499-87-001"
+    ],
+    "projectName": "Illumination Repair - Ganado",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 600000.0,
+    "letDate": "12/31/2026",
+    "typeOfWork": "ILLUMINATION MAINTENANCE",
+    "csj": "6499-87-001"
+  },
+  {
+    "projectType": "CULVERT REPAIR",
+    "projectDescription": "Culvert Repair",
+    "county": "Victoria",
+    "subCSJs": [
+      "6470-08-001"
+    ],
+    "projectName": "Culvert Structure Improvements VAO",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "12/31/2026",
+    "typeOfWork": "CULVERT REPAIR",
+    "csj": "6470-08-001"
   },
   {
     "csj": "0005-15-096",
@@ -5189,6 +2758,21 @@
     "subCSJCount": 1
   },
   {
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "projectDescription": "Mowing various Highway Right of Ways within South Tarrant county in FY26.",
+    "county": "Tarrant",
+    "subCSJs": [
+      "6487-75-001"
+    ],
+    "projectName": "FY26, Mowing, S. Tarrant",
+    "highway": "IH0030",
+    "subCSJCount": 1,
+    "estimate": 987872.28,
+    "letDate": "12/01/2026",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "csj": "6487-75-001"
+  },
+  {
     "csj": "0251-01-071",
     "county": "Hamilton",
     "highway": "US 281",
@@ -5201,22 +2785,6 @@
     "monthCode": "2026-12",
     "subCSJs": [
       "0251-01-071"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0917-20-051",
-    "county": "Freestone",
-    "highway": "Various",
-    "projectName": "VA Freestone County -  Backplates FY 27",
-    "projectDescription": "Install Reflectorized Backplates",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 184986.45,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0917-20-051"
     ],
     "subCSJCount": 1
   },
@@ -5237,68 +2805,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1161-02-012",
-    "county": "Cherokee",
-    "highway": "FM 855",
-    "projectName": "FM 855, US 175 - FM 346, SC 27",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Widen Road - Add Lanes",
+    "projectDescription": "WIDEN FROM 4 LANE TO 6 LANE DIVIDED RURAL",
+    "county": "Hidalgo",
     "subCSJs": [
-      "1161-02-012"
+      "0528-01-113"
     ],
-    "subCSJCount": 1
+    "projectName": "052801113 SH 107 HIDALGO (WIDEN 4 TO 6)",
+    "highway": "SH 107",
+    "subCSJCount": 1,
+    "estimate": 24134501.53,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Widen Road - Add Lanes",
+    "csj": "0528-01-113"
   },
   {
-    "csj": "1249-01-019",
-    "county": "Shackelford",
-    "highway": "FM 1084",
-    "projectName": "FM 1084 OVERLAY ALBANY TOWN SECTION",
-    "projectDescription": "OVERLAY",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 2781403.68,
-    "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "projectType": "SEAL COAT",
+    "projectDescription": "PURCHASE AND DELIVERY OF MATERIALS ONLY CHFRS-2P AND CSS1-H 30% FOG OIL",
+    "county": "Eastland",
     "subCSJs": [
-      "1249-01-019"
+      "6496-48-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2859-01-011",
-    "county": "Jones",
-    "highway": "FM 2833",
-    "projectName": "District Seal Coat FY 2027 2859-01",
-    "projectDescription": "Seal Coat",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2859-01-011"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2033-03-011",
-    "county": "Nolan",
-    "highway": "FM 1170",
-    "projectName": "DISTRICT SEAL COAT FY 2027 -34",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2033-03-011"
-    ],
-    "subCSJCount": 1
+    "projectName": "CHFRS-2P AND CSS1-H 30% FOG OIL Seal Co",
+    "highway": "SH0006",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "12/09/2026",
+    "typeOfWork": "SEAL COAT",
+    "csj": "6496-48-001"
   },
   {
     "csj": "0913-00-142",
@@ -5317,6 +2851,21 @@
     "subCSJCount": 1
   },
   {
+    "projectType": "REMOVAL AND DISPOSAL OF DRIFTWOOD",
+    "projectDescription": "Removal and Disposal of Driftwood",
+    "county": "Collin",
+    "subCSJs": [
+      "6498-22-001"
+    ],
+    "projectName": "Drift and Debris 07 12.26",
+    "highway": "US0075",
+    "subCSJCount": 1,
+    "estimate": 87676.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "REMOVAL AND DISPOSAL OF DRIFTWOOD",
+    "csj": "6498-22-001"
+  },
+  {
     "csj": "6511-45-001",
     "county": "McLennan",
     "highway": "US0084",
@@ -5333,68 +2882,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2843-01-014",
-    "county": "Glasscock",
-    "highway": "RM 2401",
-    "projectName": "2843-01-014 RM 2401 SEAL COAT",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Surfacing/Roadway Restoration",
+    "projectDescription": "Milling, Seal Coat, Overlay, Pavement Markings, and Widening to make the Northbound lanes 12 feet wide (No added capacity)",
+    "county": "Harris",
     "subCSJs": [
-      "2843-01-014"
+      "1743-01-012"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1647-01-006",
-    "county": "Runnels",
-    "highway": "FM 1678",
-    "projectName": "1647-01-006 FM 1678 SEAL COAT",
-    "projectDescription": "SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "1647-01-006"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0677-02-017",
-    "county": "Taylor",
-    "highway": "FM 707",
-    "projectName": "DISTRICT SEAL COAT FY 2026 -25",
-    "projectDescription": "SEAL COAT",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 12727248.91,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0677-02-017"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1031-05-020",
-    "county": "Shackelford",
-    "highway": "FM 576",
-    "projectName": "FM 576 MORAN TOWN SECTION 1031-05",
-    "projectDescription": "OVERLAY",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 2781403.68,
+    "projectName": "FM 1876, Bellaire Bvd to Old Richmond Rd",
+    "highway": "FM 1876",
+    "subCSJCount": 1,
+    "estimate": 2783534.9,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "csj": "1743-01-012"
+  },
+  {
+    "projectType": "SKID RESTORATION (NON-REHAB)",
+    "projectDescription": "Diamond Grind Outside Lanes Only.",
+    "county": "Harris",
     "subCSJs": [
-      "1031-05-020"
+      "6502-84-001"
     ],
-    "subCSJCount": 1
+    "projectName": "FY27 Diamond Grind FM 1093",
+    "highway": "FM1093",
+    "subCSJCount": 1,
+    "estimate": 261584.68,
+    "letDate": "12/08/2026",
+    "typeOfWork": "SKID RESTORATION (NON-REHAB)",
+    "csj": "6502-84-001"
   },
   {
     "csj": "6511-44-001",
@@ -5413,36 +2928,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "2550-01-012",
-    "county": "Erath",
-    "highway": "FM 2303",
-    "projectName": "FM 2303: SH 108 to FM 219",
-    "projectDescription": "Seal Coat Mainlanes FY 27",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13619544.74,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "HERBICIDE/INSECTICIDE",
+    "projectDescription": "Denton County Herbicide/Insecticide FY 26",
+    "county": "Denton",
     "subCSJs": [
-      "2550-01-012"
+      "6502-57-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Herbicide 04 1226",
+    "highway": "IH0035",
+    "subCSJCount": 1,
+    "estimate": 662564.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "HERBICIDE/INSECTICIDE",
+    "csj": "6502-57-001"
   },
   {
-    "csj": "2833-01-016",
-    "county": "Smith",
-    "highway": "SS 364",
-    "projectName": "SS 364, SH 31- SL 323",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "projectDescription": "Mowing Right of Way",
+    "county": "Collin",
     "subCSJs": [
-      "2833-01-016"
+      "6508-10-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Mowing HW ROW W 07 12.26",
+    "highway": "US0075",
+    "subCSJCount": 1,
+    "estimate": 437898.16,
+    "letDate": "12/03/2026",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "csj": "6508-10-001"
   },
   {
     "csj": "1308-01-036",
@@ -5461,84 +2974,79 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0745-01-025",
-    "county": "Van Zandt",
-    "highway": "FM 314",
-    "projectName": "FM 314, SH 64 - Henderson CL, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "BRIDGE SCOUR REPAIR",
+    "projectDescription": "BRIDGE SCOUR AND CONCRETE REPAIR",
+    "county": "Kerr",
     "subCSJs": [
-      "0745-01-025"
+      "6504-41-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Kerr County BPM 1 FY27",
+    "highway": "SH0027",
+    "subCSJCount": 1,
+    "estimate": 227000.0,
+    "letDate": "12/01/2026",
+    "typeOfWork": "BRIDGE SCOUR REPAIR",
+    "csj": "6504-41-001"
   },
   {
-    "csj": "1116-02-002",
-    "county": "Rusk",
-    "highway": "FS 782",
-    "projectName": "FS 782, FM 1716 - FM 782",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "CULVERT CLEANING",
+    "projectDescription": "Inlet and Culvert Cleaning",
+    "county": "Denton",
     "subCSJs": [
-      "1116-02-002"
+      "6508-30-001"
     ],
-    "subCSJCount": 1
+    "projectName": "Culvert Cleaning 04 1226",
+    "highway": "IH0035W",
+    "subCSJCount": 1,
+    "estimate": 94300.0,
+    "letDate": "12/03/2026",
+    "typeOfWork": "CULVERT CLEANING",
+    "csj": "6508-30-001"
   },
   {
-    "csj": "0657-01-021",
-    "county": "Wood",
-    "highway": "FM 515",
-    "projectName": "FM 515, US 69 - SH 11, SC 2027",
-    "projectDescription": "FY 2027 Seal Coat",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 23738912.25,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "Preventive Maintenance",
+    "projectDescription": "FY 2027 STRIPING",
+    "county": "El Paso",
     "subCSJs": [
-      "0657-01-021"
+      "0924-00-133"
     ],
-    "subCSJCount": 1
+    "projectName": "VA FY 2027 STRIPING PROJ (DISTRICTWIDE)",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 3554027.29,
+    "letDate": "12/01/2026",
+    "typeOfWork": "Preventive Maintenance",
+    "csj": "0924-00-133"
   },
   {
-    "csj": "0008-09-041",
-    "county": "Parker",
-    "highway": "FM 5",
-    "projectName": "FY27Seal Coat/Pavement Preservation",
-    "projectDescription": "Sealcoat Mainlanes FY 27",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 5981723.36,
+    "projectType": "Rehabilitate Existing Roadway",
+    "projectDescription": "IH 27 CRCP in Lubbock County",
+    "county": "Lubbock",
+    "subCSJs": [
+      "0905-06-129"
+    ],
+    "projectName": "FY 27 CRCP IH27-Lubbock",
+    "highway": "Various",
+    "subCSJCount": 1,
+    "estimate": 3128110.48,
     "letDate": "12/02/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "0008-09-041"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "csj": "0905-06-129"
   },
   {
-    "csj": "2361-01-005",
-    "county": "Runnels",
-    "highway": "FM 2406",
-    "projectName": "2361-01-005 FM 2406 SEAL COAT",
-    "projectDescription": "SEAL COAT FY2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
+    "projectType": "METAL BEAM GUARD FENCE REPAIR",
+    "projectDescription": "6510-28-001, Guardrail Repair, FY27, Jack and Wise",
+    "county": "Wise",
     "subCSJs": [
-      "2361-01-005"
+      "6510-28-001"
     ],
-    "subCSJCount": 1
+    "projectName": "FY27, Guardrail Repair, Jack and Wise",
+    "highway": "US0380",
+    "subCSJCount": 1,
+    "estimate": 865906.0,
+    "letDate": "12/16/2026",
+    "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
+    "csj": "6510-28-001"
   },
   {
     "csj": "0643-03-034",
@@ -5557,35 +3065,18 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0016-01-142",
+    "projectType": "Parking Lot Repair - Seal Coat and Striping",
+    "projectDescription": "Parking Lot Repair Consisting of New Surface and Striping",
     "county": "Travis",
-    "highway": "SL 275",
-    "projectName": "SL 275 - Williamson Ck to Slaughter Ln",
-    "projectDescription": "FDR, LEVEL-UP, BONDING COURSE, AND TOM",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 8182630.37,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
     "subCSJs": [
-      "0016-01-142"
+      "6391-34-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "2298-03-012",
-    "county": "Glasscock",
-    "highway": "RM 2401",
-    "projectName": "2298-03-012 RM 2401 SEAL COAT",
-    "projectDescription": "SEAL COAT FY 2027",
-    "projectType": "Seal Coat",
-    "typeOfWork": "Seal Coat",
-    "estimate": 9464477.87,
-    "letDate": "12/01/2026",
-    "monthCode": "2026-12",
-    "subCSJs": [
-      "2298-03-012"
-    ],
-    "subCSJCount": 1
+    "projectName": "FY 24 Austin State Supported Living",
+    "highway": "SL 1",
+    "subCSJCount": 1,
+    "estimate": 146215.35,
+    "letDate": "12/05/2026",
+    "typeOfWork": "Parking Lot Repair - Seal Coat and Striping",
+    "csj": "6391-34-001"
   }
 ]
