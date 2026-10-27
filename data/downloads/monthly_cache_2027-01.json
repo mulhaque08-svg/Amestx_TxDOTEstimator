@@ -1,304 +1,35 @@
 [
   {
-    "csj": "5000-00-346",
+    "csj": "5000-00-384",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 64",
+    "projectName": "NEVI - NCTCOG - Study Area 181",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 770350.0,
+    "estimate": 624995.0,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-346"
+      "5000-00-384"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-322",
+    "csj": "5000-00-375",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 36",
+    "projectName": "NEVI - NCTCOG - Study Area 98",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
+    "estimate": 772272.5,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-322"
+      "5000-00-375"
     ],
     "subCSJCount": 1
-  },
-  {
-    "csj": "6512-21-001",
-    "county": "Bowie",
-    "highway": "US0059",
-    "projectName": "CO Pavement Markings (Various) FY 2027",
-    "projectDescription": "Callout Pavement Markings (Various locations) Task #19I19713",
-    "projectType": "PAVEMENT MARKINGS",
-    "typeOfWork": "PAVEMENT MARKINGS",
-    "estimate": 1200000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-21-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-317",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 31",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 445213.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-317"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-333",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 51",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773326.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-333"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0069-10-003",
-    "county": "Howard",
-    "highway": "US 87",
-    "projectName": "FY27 BMIP US 87 NBFR@IH 20",
-    "projectDescription": "BMIP US 87 NBFR@IH 20",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 565000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0069-01-066",
-      "0069-01-067",
-      "0069-10-003",
-      "0069-10-004",
-      "0069-10-005",
-      "0069-10-006",
-      "0069-10-007",
-      "0069-10-008",
-      "0069-10-009",
-      "0069-10-010",
-      "0069-10-011"
-    ],
-    "subCSJCount": 11
-  },
-  {
-    "csj": "6494-84-001",
-    "county": "Brown",
-    "highway": "US0067",
-    "projectName": "TRAFFIC SIGNAL MAINTENANCE 2026",
-    "projectDescription": "TRAFFIC SIGNAL MAINTENANCE",
-    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
-    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
-    "estimate": 900000.0,
-    "letDate": "01/29/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6494-84-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-354",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 72",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772706.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-354"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0014-01-032",
-    "county": "Tarrant",
-    "highway": "BU 287P",
-    "projectName": "FTW_BY0287_Main St_Fort Worth",
-    "projectDescription": "INSTALL TRAFFIC SIGNALS INCLUDING APS PUSH BUTTONS, SAFETY LIGHTING AT INTERSECTION, INSTALL DIRECTIONAL ADA RAMPS, REFRESH/MODIFY PAVEMENT MARKINGS FOR ALL APPROACHES, ADD PEDESTRIAN CROSSINGS",
-    "projectType": "Traffic Signal Improvements",
-    "typeOfWork": "Traffic Signal Improvements",
-    "estimate": 758860.8,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0014-01-032"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-368",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 91",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 865000.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-368"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0907-00-241",
-    "county": "Tom Green",
-    "highway": "Various",
-    "projectName": "Districtwide CPM Scheduling",
-    "projectDescription": "CPM Scheduling",
-    "projectType": "Engineering Design/Study",
-    "typeOfWork": "Engineering Design/Study",
-    "estimate": 200000.0,
-    "letDate": "01/01/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0907-00-241"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-307",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 21",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-307"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-365",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 87",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 865000.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-365"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0336-03-082",
-    "county": "Angelina",
-    "highway": "SH 103",
-    "projectName": "SH 103_FM 706 South to SL 287 - HMA OV",
-    "projectDescription": "HMA Overlay",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 3053156.1,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0336-03-082"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0001-04-109",
-    "county": "El Paso",
-    "highway": "US 85",
-    "projectName": "US85 SAFETY (S COLDWELL | S SANTA FE)",
-    "projectDescription": "INSTALL ADVANCED WARNING SIGNALS AND SIGNS (CURVE), INSTALL RRFB, DYNAMIC SPEED FEEDBACK SIGNS, SAFETY LIGHTING, INSTALL PEDESTRIAN CROSSWALK, INSTALL SIDEWALKS, CHANNELIZATION, TRANSVERSE RUMBLE STRIPS",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1898568.91,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0001-04-109"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5500-00-153",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "FM 1875 Wildbloom Section 2",
-    "projectDescription": "Turn Lane",
-    "projectType": "Donation",
-    "typeOfWork": "Donation",
-    "estimate": 8512.57,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5500-00-153"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0227-06-033",
-    "county": "Hockley",
-    "highway": "US 385",
-    "projectName": "US385-FM1585 FY27 HSIP",
-    "projectDescription": "Safety Lighting (Intersection)",
-    "projectType": "Intersection Improvement",
-    "typeOfWork": "Intersection Improvement",
-    "estimate": 374763.75,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0227-06-033",
-      "0294-03-032",
-      "0380-05-026"
-    ],
-    "subCSJCount": 3
-  },
-  {
-    "csj": "0700-04-056",
-    "county": "Llano",
-    "highway": "SH 71",
-    "projectName": "SH 71 - at Pecan Creek (BMIP24)",
-    "projectDescription": "Bridge Maintenance",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 700723.14,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0700-04-056",
-      "0914-00-490"
-    ],
-    "subCSJCount": 2
   },
   {
     "csj": "0914-00-518",
@@ -365,6 +96,294 @@
     "subCSJCount": 1
   },
   {
+    "csj": "5500-00-153",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "FM 1875 Wildbloom Section 2",
+    "projectDescription": "Turn Lane",
+    "projectType": "Donation",
+    "typeOfWork": "Donation",
+    "estimate": 8512.57,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5500-00-153"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0227-06-033",
+    "county": "Hockley",
+    "highway": "US 385",
+    "projectName": "US385-FM1585 FY27 HSIP",
+    "projectDescription": "Safety Lighting (Intersection)",
+    "projectType": "Intersection Improvement",
+    "typeOfWork": "Intersection Improvement",
+    "estimate": 374763.75,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0227-06-033",
+      "0294-03-032",
+      "0380-05-026"
+    ],
+    "subCSJCount": 3
+  },
+  {
+    "csj": "0700-04-056",
+    "county": "Llano",
+    "highway": "SH 71",
+    "projectName": "SH 71 - at Pecan Creek (BMIP24)",
+    "projectDescription": "Bridge Maintenance",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 700723.14,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0700-04-056",
+      "0914-00-490"
+    ],
+    "subCSJCount": 2
+  },
+  {
+    "csj": "5000-00-317",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 31",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 445213.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-317"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0054-06-109",
+    "county": "Brown",
+    "highway": "US 67",
+    "projectName": "US 67 From 0.5 Mi W of FM 3254 to FM2524",
+    "projectDescription": "FOR THE CONSTRUCTION OF MILL AND OVERLAY",
+    "projectType": "Resurface Roadway",
+    "typeOfWork": "Resurface Roadway",
+    "estimate": 2550000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0054-05-029",
+      "0054-06-109",
+      "0636-01-042",
+      "2377-01-051"
+    ],
+    "subCSJCount": 4
+  },
+  {
+    "csj": "6502-86-001",
+    "county": "Harris",
+    "highway": "FM0529",
+    "projectName": "FY27 Restripe Longline FM 529",
+    "projectDescription": "Reflective Pavement Markings (Long Line)",
+    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "estimate": 500896.1,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6502-86-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-292",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 6",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772333.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-292"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-307",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 21",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-307"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6508-94-001",
+    "county": "Harris",
+    "highway": "IH0010",
+    "projectName": "Asphalt FY 27",
+    "projectDescription": "Asphalt",
+    "projectType": "ASPHALT",
+    "typeOfWork": "ASPHALT",
+    "estimate": 1994500.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6508-94-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6495-76-001",
+    "county": "Potter",
+    "highway": "IH0040",
+    "projectName": "FY 27 Bridge Cyclic Maint Amarillo Urban",
+    "projectDescription": "FY 27 Bridge Cyclic Maintenance 9 Amarillo Urban Structure Group",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "estimate": 1000000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6495-76-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0068-12-014",
+    "county": "Dawson",
+    "highway": "US 87",
+    "projectName": "IH27 FedEarmark FS on US87",
+    "projectDescription": "IH 27 route study along US 87 in Lamesa",
+    "projectType": "Engineering Design/Study",
+    "typeOfWork": "Engineering Design/Study",
+    "estimate": 997753.7,
+    "letDate": "01/05/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0068-12-014"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0069-10-003",
+    "county": "Howard",
+    "highway": "US 87",
+    "projectName": "FY27 BMIP US 87 NBFR@IH 20",
+    "projectDescription": "BMIP US 87 NBFR@IH 20",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 565000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0069-01-066",
+      "0069-01-067",
+      "0069-10-003",
+      "0069-10-004",
+      "0069-10-005",
+      "0069-10-006",
+      "0069-10-007",
+      "0069-10-008",
+      "0069-10-009",
+      "0069-10-010",
+      "0069-10-011"
+    ],
+    "subCSJCount": 11
+  },
+  {
+    "csj": "0336-03-082",
+    "county": "Angelina",
+    "highway": "SH 103",
+    "projectName": "SH 103_FM 706 South to SL 287 - HMA OV",
+    "projectDescription": "HMA Overlay",
+    "projectType": "Resurface Roadway",
+    "typeOfWork": "Resurface Roadway",
+    "estimate": 3053156.1,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0336-03-082"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0001-04-109",
+    "county": "El Paso",
+    "highway": "US 85",
+    "projectName": "US85 SAFETY (S COLDWELL | S SANTA FE)",
+    "projectDescription": "INSTALL ADVANCED WARNING SIGNALS AND SIGNS (CURVE), INSTALL RRFB, DYNAMIC SPEED FEEDBACK SIGNS, SAFETY LIGHTING, INSTALL PEDESTRIAN CROSSWALK, INSTALL SIDEWALKS, CHANNELIZATION, TRANSVERSE RUMBLE STRIPS",
+    "projectType": "Hazard Elimination & Safety",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "estimate": 1898568.91,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0001-04-109"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-333",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 51",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773326.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-333"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0907-00-241",
+    "county": "Tom Green",
+    "highway": "Various",
+    "projectName": "Districtwide CPM Scheduling",
+    "projectDescription": "CPM Scheduling",
+    "projectType": "Engineering Design/Study",
+    "typeOfWork": "Engineering Design/Study",
+    "estimate": 200000.0,
+    "letDate": "01/01/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0907-00-241"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-368",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 91",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 865000.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-368"
+    ],
+    "subCSJCount": 1
+  },
+  {
     "csj": "6506-09-001",
     "county": "Kaufman",
     "highway": "IH0020",
@@ -388,7 +407,7 @@
     "projectDescription": "Install Sidewalks",
     "projectType": "Construct Pedestrian Infrastructure",
     "typeOfWork": "Construct Pedestrian Infrastructure",
-    "estimate": 3095119.9,
+    "estimate": 2823110.6,
     "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
@@ -399,54 +418,6 @@
       "2525-01-020"
     ],
     "subCSJCount": 5
-  },
-  {
-    "csj": "6508-94-001",
-    "county": "Harris",
-    "highway": "IH0010",
-    "projectName": "Asphalt FY 27",
-    "projectDescription": "Asphalt",
-    "projectType": "ASPHALT",
-    "typeOfWork": "ASPHALT",
-    "estimate": 1994500.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6508-94-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0068-12-014",
-    "county": "Dawson",
-    "highway": "US 87",
-    "projectName": "IH27 FedEarmark FS on US87",
-    "projectDescription": "IH 27 route study along US 87 in Lamesa",
-    "projectType": "Engineering Design/Study",
-    "typeOfWork": "Engineering Design/Study",
-    "estimate": 997753.7,
-    "letDate": "01/05/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0068-12-014"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0914-00-584",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "FY 2027 BAAO and STAO Bridge FUA Repairs",
-    "projectDescription": "FY 2027 BAAO and STAO Bridge FUA Repairs",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 1628328.53,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0914-00-584"
-    ],
-    "subCSJCount": 1
   },
   {
     "csj": "0910-00-170",
@@ -481,37 +452,65 @@
     "csj": "6509-33-001"
   },
   {
-    "csj": "0054-06-109",
-    "county": "Brown",
-    "highway": "US 67",
-    "projectName": "US 67 From 0.5 Mi W of FM 3254 to FM2524",
-    "projectDescription": "FOR THE CONSTRUCTION OF MILL AND OVERLAY",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 2550000.0,
-    "letDate": "01/06/2027",
+    "csj": "6510-71-001",
+    "county": "Grayson",
+    "highway": "US0377",
+    "projectName": "On Call Tree Removal FY27 Grayson",
+    "projectDescription": "On Call tree removal contract in Grayson and Fannin Counties.",
+    "projectType": "TREE REMOVAL",
+    "typeOfWork": "TREE REMOVAL",
+    "estimate": 175000.0,
+    "letDate": "01/21/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0054-05-029",
-      "0054-06-109",
-      "0636-01-042",
-      "2377-01-051"
+      "6510-71-001"
     ],
-    "subCSJCount": 4
+    "subCSJCount": 1
   },
   {
-    "csj": "0322-01-053",
-    "county": "Bastrop",
-    "highway": "SH 95",
-    "projectName": "SH 95 - FM 1441 to Hoffman Rd",
-    "projectDescription": "Install Continuous Turn Lane, Profile Edgeline Markings, Profile Centerline Markings",
-    "projectType": "Highway Improvement",
-    "typeOfWork": "Highway Improvement",
-    "estimate": 5313235.7,
-    "letDate": "01/06/2027",
+    "csj": "5000-00-336",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 54",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773882.5,
+    "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0322-01-053"
+      "5000-00-336"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-365",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 87",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 865000.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-365"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6508-51-001",
+    "county": "Johnson",
+    "highway": "SH0174",
+    "projectName": "FY2027 - Call-Out Striping - Johnson",
+    "projectDescription": "6508-51-001 is Reflectorized Pavement Markings for FY2027 in Johnson County",
+    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "estimate": 520961.54,
+    "letDate": "01/20/2027",
+    "subCSJs": [
+      "6508-51-001"
     ],
     "subCSJCount": 1
   },
@@ -572,7 +571,7 @@
     "projectDescription": "Bridge Preventative Maintenance",
     "projectType": "Bridge Maintenance",
     "typeOfWork": "Bridge Maintenance",
-    "estimate": 805925.0,
+    "estimate": 714808.0,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
@@ -581,116 +580,114 @@
     "subCSJCount": 1
   },
   {
-    "csj": "6510-71-001",
-    "county": "Grayson",
-    "highway": "US0377",
-    "projectName": "On Call Tree Removal FY27 Grayson",
-    "projectDescription": "On Call tree removal contract in Grayson and Fannin Counties.",
-    "projectType": "TREE REMOVAL",
-    "typeOfWork": "TREE REMOVAL",
-    "estimate": 175000.0,
-    "letDate": "01/21/2027",
+    "csj": "6512-21-001",
+    "county": "Bowie",
+    "highway": "US0059",
+    "projectName": "CO Pavement Markings (Various) FY 2027",
+    "projectDescription": "Callout Pavement Markings (Various locations) Task #19I19713",
+    "projectType": "PAVEMENT MARKINGS",
+    "typeOfWork": "PAVEMENT MARKINGS",
+    "estimate": 1200000.0,
+    "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6510-71-001"
+      "6512-21-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-336",
+    "csj": "6494-84-001",
+    "county": "Brown",
+    "highway": "US0067",
+    "projectName": "TRAFFIC SIGNAL MAINTENANCE 2026",
+    "projectDescription": "TRAFFIC SIGNAL MAINTENANCE",
+    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
+    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
+    "estimate": 900000.0,
+    "letDate": "01/29/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6494-84-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-354",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 54",
+    "projectName": "NEVI - NCTCOG - Study Area 72",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773882.5,
+    "estimate": 772706.25,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-336"
+      "5000-00-354"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "6502-86-001",
-    "county": "Harris",
-    "highway": "FM0529",
-    "projectName": "FY27 Restripe Longline FM 529",
-    "projectDescription": "Reflective Pavement Markings (Long Line)",
-    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "estimate": 500896.1,
+    "csj": "0014-01-032",
+    "county": "Tarrant",
+    "highway": "BU 287P",
+    "projectName": "FTW_BY0287_Main St_Fort Worth",
+    "projectDescription": "INSTALL TRAFFIC SIGNALS INCLUDING APS PUSH BUTTONS, SAFETY LIGHTING AT INTERSECTION, INSTALL DIRECTIONAL ADA RAMPS, REFRESH/MODIFY PAVEMENT MARKINGS FOR ALL APPROACHES, ADD PEDESTRIAN CROSSINGS",
+    "projectType": "Traffic Signal Improvements",
+    "typeOfWork": "Traffic Signal Improvements",
+    "estimate": 758860.8,
     "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6502-86-001"
+      "0014-01-032"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0085-01-053",
-    "county": "Morris",
-    "highway": "US 259",
-    "projectName": "US 259 from Bowie C/L to FM 71",
-    "projectDescription": "Rehabilitate existing 2-lane highway",
-    "projectType": "Rehabilitate Existing Roadway",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "estimate": 7660750.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0085-01-053",
-      "0085-02-053",
-      "1918-01-015"
-    ],
-    "subCSJCount": 3
-  },
-  {
-    "csj": "0604-01-047",
-    "county": "Matagorda",
-    "highway": "FM 2031",
-    "projectName": "FM 2031 EROSION CONTROL 2611",
-    "projectDescription": "Erosion Control",
-    "projectType": "Drainage Improvements",
-    "typeOfWork": "Drainage Improvements",
-    "estimate": 766000.0,
+    "csj": "0914-00-584",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "FY 2027 BAAO and STAO Bridge FUA Repairs",
+    "projectDescription": "FY 2027 BAAO and STAO Bridge FUA Repairs",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 1628328.53,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0604-01-047"
+      "0914-00-584"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "6477-95-001",
-    "county": "Harris",
-    "highway": "US0290",
-    "projectName": "Long Line 2025",
-    "projectDescription": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "estimate": 2396705.05,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6477-95-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-292",
+    "csj": "5000-00-313",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 6",
+    "projectName": "NEVI - NCTCOG - Study Area 27",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772333.75,
+    "estimate": 659493.75,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-292"
+      "5000-00-313"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6506-57-001",
+    "county": "Kaufman",
+    "highway": "US0080",
+    "projectName": "KRAO REFL PVMNT MRKING FY'27 - 2",
+    "projectDescription": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
+    "estimate": 332097.34,
+    "letDate": "01/13/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6506-57-001"
     ],
     "subCSJCount": 1
   },
@@ -745,26 +742,104 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-347",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 65",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772520.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
+    "csj": "6512-70-001",
+    "county": "Bexar",
+    "highway": "MR0681",
+    "projectName": "TSA FY27 PARKING LOT WIDENING",
+    "projectDescription": "ADDING PAVEMENT FOR ADDTIONAL PARKING SPACES",
+    "projectType": "ASPHALT PAVEMENT WIDENING",
+    "typeOfWork": "ASPHALT PAVEMENT WIDENING",
+    "estimate": 140000.0,
+    "letDate": "01/07/2027",
     "subCSJs": [
-      "5000-00-347"
+      "6512-70-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-321",
+    "csj": "0912-72-780",
+    "county": "Harris",
+    "highway": "Various",
+    "projectName": "82 Westheimer Boost Corridor",
+    "projectDescription": "Develop the 82 Westheimer High Frequency Route as a Boost Corridor (Federal Community Project Funding Appropriated and Allocated by Congress from the General Fund for Transit Infrastructure Grants)",
+    "projectType": "Transit",
+    "typeOfWork": "Transit",
+    "estimate": 48329600.0,
+    "letDate": "01/15/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0912-72-780"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "RIPRAP REPAIR",
+    "projectDescription": "VARIOUS WORK",
+    "county": "Kerr",
+    "subCSJs": [
+      "6507-84-001"
+    ],
+    "projectName": "KERR REGION FLOOD REPAIR",
+    "highway": "FM1338",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "01/07/2027",
+    "typeOfWork": "RIPRAP REPAIR",
+    "csj": "6507-84-001"
+  },
+  {
+    "csj": "1057-03-060",
+    "county": "Cameron",
+    "highway": "FM 510",
+    "projectName": "FM 510 Rehab FY 2027",
+    "projectDescription": "Rehabilitate Roadway",
+    "projectType": "Rehabilitate Existing Roadway",
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "estimate": 5174096.72,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "1057-03-060"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6496-57-001",
+    "county": "Blanco",
+    "highway": "US0281",
+    "projectName": "FY 27 West Seal Coat Asphalt",
+    "projectDescription": "For the delivery of Cutback and Emulsions.",
+    "projectType": "ASPHALT",
+    "typeOfWork": "ASPHALT",
+    "estimate": 2000000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6496-57-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-346",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 35",
+    "projectName": "NEVI - NCTCOG - Study Area 64",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 770350.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-346"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-322",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 36",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
@@ -772,444 +847,23 @@
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-321"
+      "5000-00-322"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "6510-49-001",
-    "county": "Atascosa",
-    "highway": "IH0035",
-    "projectName": "Pleasanton Mowing and Litter Removal",
-    "projectDescription": "Pleasanton litter and mowing",
+    "csj": "6492-39-001",
+    "county": "Smith",
+    "highway": "US0069",
+    "projectName": "FY 27 ROW Mowing  Smith Co",
+    "projectDescription": "Mowing state right of way in Smith County.",
     "projectType": "MOWING HIGHWAY RIGHT OF WAY",
     "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "estimate": 790000.0,
-    "letDate": "01/12/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-49-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6505-45-001",
-    "county": "Cherokee",
-    "highway": "US0069",
-    "projectName": "FY 27 Cherokee Tree Removal",
-    "projectDescription": "Removal of trees on state right-of-way.",
-    "projectType": "TREE REMOVAL",
-    "typeOfWork": "TREE REMOVAL",
-    "estimate": 500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6505-45-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-356",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 74",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 768552.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-356"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0598-02-133",
-    "county": "Brazoria",
-    "highway": "SH 288",
-    "projectName": "SH 288 SB; at FM 1462",
-    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 120200059802203)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 232815.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0598-02-133",
-      "0598-02-134"
-    ],
-    "subCSJCount": 2
-  },
-  {
-    "csj": "0128-04-045",
-    "county": "McCulloch",
-    "highway": "US 190",
-    "projectName": "US 190 from East Main Street to US 87",
-    "projectDescription": "REHABILITATE EXISTING ROADWAY TO INCLUDE CONCRETE PAVEMENT REPAIR, STORM DRAIN, AND PAVEMENT MARKINGS.",
-    "projectType": "Rehabilitate Existing Roadway",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "estimate": 3275000.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0128-04-045"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-378",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 163",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 375858.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-378"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-294",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 8",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1862485.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-294"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6500-70-001",
-    "county": "Lampasas",
-    "highway": "US0281",
-    "projectName": "Lampasas, Mills, and San Saba Tree brush",
-    "projectDescription": "TREE TRIMMING AND BRUSH REMOVAL FOR LAMPASAS, MILLS, AND SAN SABA",
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
     "estimate": 900000.0,
     "letDate": "01/10/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6500-70-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-335",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 53",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774503.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-335"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-350",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 68",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773883.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-350"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-10-001",
-    "county": "Uvalde",
-    "highway": "US0090",
-    "projectName": "Uvalde LRA",
-    "projectDescription": "LRA materials only.",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 1050600.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-10-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-310",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 24",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-310"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-306",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 20",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-306"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6487-46-001",
-    "county": "Jasper",
-    "highway": "US0096",
-    "projectName": "2027 OA FDCR & CONCRETE RAIL REPAIR",
-    "projectDescription": "REPAIR CONCRETE PAVEMENT AND TRAFFIC RAIL",
-    "projectType": "FULL DEPTH CONCRETE REPAIR",
-    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
-    "estimate": 200000.0,
-    "letDate": "01/12/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6487-46-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0079-02-059",
-    "county": "Comanche",
-    "highway": "US 67",
-    "projectName": "Comanche Co Courthouse Restoration LOSA",
-    "projectDescription": "Removal of existing parallel parking, replace with curb & gutter, sidewalk, and pedestrian rail",
-    "projectType": "Removal And/Or Replacement And/Or Disposal",
-    "typeOfWork": "Removal And/Or Replacement And/Or Disposal",
-    "estimate": 240000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0079-02-059"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0508-01-401",
-    "county": "Harris",
-    "highway": "IH 10",
-    "projectName": "IH 10 WBFR; At Greens Bayou",
-    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 121020050801253)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 1239553.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0508-01-401",
-      "0508-01-402",
-      "0508-01-403",
-      "0508-01-404",
-      "0508-01-405"
-    ],
-    "subCSJCount": 5
-  },
-  {
-    "csj": "0915-12-605",
-    "county": "Bexar",
-    "highway": "FRATT RD",
-    "projectName": "CS: 0915-12-605; RH",
-    "projectDescription": "INSTALL RAILROAD SIGNAL WITH GATES ON FRATT RD AT UPRR DOT 414 054B",
-    "projectType": "Railroad Crossing Improvements",
-    "typeOfWork": "Railroad Crossing Improvements",
-    "estimate": 250000.0,
-    "letDate": "01/29/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0915-12-605"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-40-001",
-    "county": "Cameron",
-    "highway": "IH 69E",
-    "projectName": "FY27 Extension of U-turn storage lanes",
-    "projectDescription": "Extension of U-turn storage lanes",
-    "projectType": "Extension of U-turn storage lanes",
-    "typeOfWork": "Extension of U-turn storage lanes",
-    "estimate": 500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-40-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6491-32-001",
-    "county": "Chambers",
-    "highway": "IH0010",
-    "projectName": "FY 27 FDCR",
-    "projectDescription": "FULL DEPTH CONCRETE REPAIR",
-    "projectType": "FULL DEPTH CONCRETE REPAIR",
-    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
-    "estimate": 348635.0,
-    "letDate": "01/12/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6491-32-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-11-001",
-    "county": "Wilson",
-    "highway": "US0181",
-    "projectName": "Floresville LRA FY27",
-    "projectDescription": "LRA material only.",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 1409478.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-11-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-372",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 95",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773883.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-372"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0912-73-248",
-    "county": "Galveston",
-    "highway": "Various",
-    "projectName": "Various League City Signal Improvements",
-    "projectDescription": "Construction of traffic signal improvements at various locations, including installing upgraded signal heads with reflective back plates, pedestrian crosswalk push buttons, and countdown LED lamps",
-    "projectType": "Traffic Signal Improvements",
-    "typeOfWork": "Traffic Signal Improvements",
-    "estimate": 3669759.62,
-    "letDate": "01/15/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0912-73-248"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0922-33-246",
-    "county": "Webb",
-    "highway": "Various",
-    "projectName": "TPW - Lake Casa Blanca",
-    "projectDescription": "REPAIR AND RESURFACE VARIOUS ROADWAYS WITHIN LAKE CASA BLANCA STATE PARK",
-    "projectType": "State Park Improvements",
-    "typeOfWork": "State Park Improvements",
-    "estimate": 1065000.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0922-33-246"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-376",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 99",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773636.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-376"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0179-02-092",
-    "county": "Brazoria",
-    "highway": "SH 35",
-    "projectName": "SH 35 EB: at Brazos River",
-    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 120200017902098)",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 1364724.13,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0179-02-091",
-      "0179-02-092"
-    ],
-    "subCSJCount": 2
-  },
-  {
-    "csj": "6512-65-001",
-    "county": "Palo Pinto",
-    "highway": "IH0020",
-    "projectName": "FY 27 - BPM Palo Pinto",
-    "projectDescription": "6512-65-001 is Bridge Preventative Maintenance for FY 2027 in Palo Pinto County.",
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "estimate": 750000.0,
-    "letDate": "01/20/2027",
-    "subCSJs": [
-      "6512-65-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-44-001",
-    "county": "Kimble",
-    "highway": "US0377",
-    "projectName": "DISTRICTWIDE SWEEPING FY 27",
-    "projectDescription": "DISTRICTWIDE SWEEPING FY 27",
-    "projectType": "SWEEPING AND DEBRIS REMOVAL",
-    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
-    "estimate": 300000.0,
-    "letDate": "01/12/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-44-001"
+      "6492-39-001"
     ],
     "subCSJCount": 1
   },
@@ -1326,38 +980,6 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0902-20-242",
-    "county": "Wise",
-    "highway": "Various",
-    "projectName": "HSIP Wise.Jack Countywide 2028",
-    "projectDescription": "Install LED Roadside signs at multiple intersection locations",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 276184.71,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0902-20-242"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-20-001",
-    "county": "Uvalde",
-    "highway": "US0090",
-    "projectName": "HMA Uvalde",
-    "projectDescription": "HMA material only.",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 159500.0,
-    "letDate": "01/19/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-20-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
     "csj": "5000-00-362",
     "county": "Travis",
     "highway": "Various",
@@ -1454,145 +1076,70 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0912-72-780",
-    "county": "Harris",
-    "highway": "Various",
-    "projectName": "82 Westheimer Boost Corridor",
-    "projectDescription": "Develop the 82 Westheimer High Frequency Route as a Boost Corridor (Federal Community Project Funding Appropriated and Allocated by Congress from the General Fund for Transit Infrastructure Grants)",
-    "projectType": "Transit",
-    "typeOfWork": "Transit",
-    "estimate": 48329600.0,
-    "letDate": "01/15/2027",
+    "csj": "6510-49-001",
+    "county": "Atascosa",
+    "highway": "IH0035",
+    "projectName": "Pleasanton Mowing and Litter Removal",
+    "projectDescription": "Pleasanton litter and mowing",
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "estimate": 790000.0,
+    "letDate": "01/12/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0912-72-780"
+      "6510-49-001"
     ],
     "subCSJCount": 1
   },
   {
-    "projectType": "RIPRAP REPAIR",
-    "projectDescription": "VARIOUS WORK",
-    "county": "Kerr",
-    "subCSJs": [
-      "6507-84-001"
-    ],
-    "projectName": "KERR REGION FLOOD REPAIR",
-    "highway": "FM1338",
-    "subCSJCount": 1,
-    "estimate": 1000000.0,
-    "letDate": "01/07/2027",
-    "typeOfWork": "RIPRAP REPAIR",
-    "csj": "6507-84-001"
-  },
-  {
-    "csj": "1057-03-060",
-    "county": "Cameron",
-    "highway": "FM 510",
-    "projectName": "FM 510 Rehab FY 2027",
-    "projectDescription": "Rehabilitate Roadway",
-    "projectType": "Rehabilitate Existing Roadway",
-    "typeOfWork": "Rehabilitate Existing Roadway",
-    "estimate": 5173671.72,
+    "csj": "6505-45-001",
+    "county": "Cherokee",
+    "highway": "US0069",
+    "projectName": "FY 27 Cherokee Tree Removal",
+    "projectDescription": "Removal of trees on state right-of-way.",
+    "projectType": "TREE REMOVAL",
+    "typeOfWork": "TREE REMOVAL",
+    "estimate": 500000.0,
     "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "1057-03-060"
+      "6505-45-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "6496-57-001",
-    "county": "Blanco",
-    "highway": "US0281",
-    "projectName": "FY 27 West Seal Coat Asphalt",
-    "projectDescription": "For the delivery of Cutback and Emulsions.",
-    "projectType": "ASPHALT",
-    "typeOfWork": "ASPHALT",
-    "estimate": 2000000.0,
+    "csj": "0508-01-401",
+    "county": "Harris",
+    "highway": "IH 10",
+    "projectName": "IH 10 WBFR; At Greens Bayou",
+    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 121020050801253)",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 1239553.0,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6496-57-001"
+      "0508-01-401",
+      "0508-01-402",
+      "0508-01-403",
+      "0508-01-404",
+      "0508-01-405"
     ],
-    "subCSJCount": 1
+    "subCSJCount": 5
   },
   {
-    "csj": "5000-00-341",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 59",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 768552.5,
-    "letDate": "01/04/2027",
+    "csj": "6510-20-001",
+    "county": "Uvalde",
+    "highway": "US0090",
+    "projectName": "HMA Uvalde",
+    "projectDescription": "HMA material only.",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 159500.0,
+    "letDate": "01/19/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-341"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6506-73-001",
-    "county": "Kaufman",
-    "highway": "US0175",
-    "projectName": "KRAO HERBICIDE SOUTH",
-    "projectDescription": "WICK HERBICIDE, BROADCAST APPLICATION, AND PAVEMENT EDGES",
-    "projectType": "HERBICIDE/INSECTICIDE",
-    "typeOfWork": "HERBICIDE/INSECTICIDE",
-    "estimate": 587520.0,
-    "letDate": "01/13/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6506-73-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6500-69-001",
-    "county": "Comanche",
-    "highway": "SH0016",
-    "projectName": "Comanche, Eastland, Stephens Tree&Brush",
-    "projectDescription": "Tree trimming and brush removal for Comanche, Eastland and Stephens Counties",
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
-    "estimate": 900000.0,
-    "letDate": "01/10/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6500-69-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-384",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 181",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 624995.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-384"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-375",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 98",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772272.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-375"
+      "6510-20-001"
     ],
     "subCSJCount": 1
   },
@@ -1677,113 +1224,178 @@
     "subCSJCount": 1
   },
   {
-    "csj": "6510-73-001",
-    "county": "Cherokee",
-    "highway": "FM0747",
-    "projectName": "FY27 Culvert Repair - District Wide",
-    "projectDescription": "Repair culverts in various locations in the Tyler District.",
-    "projectType": "CULVERT REPAIR",
-    "typeOfWork": "CULVERT REPAIR",
-    "estimate": 200000.0,
-    "letDate": "01/14/2027",
-    "monthCode": "2027-01",
+    "projectType": "FULL DEPTH CONCRETE REPAIR",
+    "projectDescription": "Concrete Repair",
+    "county": "Harris",
     "subCSJs": [
-      "6510-73-001"
+      "6503-00-001"
     ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0265-03-042",
-    "county": "Bastrop",
-    "highway": "SH 71",
-    "projectName": "SH 71 AT POPE BEND RD.",
-    "projectDescription": "CONSTRUCT 4-LANE OVERPASS WITH 2-LANE EB & WB FRONTAGE ROADS",
-    "projectType": "HIGHWAY IMPROVEMENT",
-    "typeOfWork": "HIGHWAY IMPROVEMENT",
-    "estimate": 56243003.63,
+    "projectName": "Concrete Metro 2026",
+    "highway": "IH0610",
+    "subCSJCount": 1,
+    "estimate": 500000.0,
     "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0265-03-042"
-    ],
-    "subCSJCount": 1
+    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
+    "csj": "6503-00-001"
   },
   {
-    "csj": "6492-39-001",
-    "county": "Smith",
-    "highway": "US0069",
-    "projectName": "FY 27 ROW Mowing  Smith Co",
-    "projectDescription": "Mowing state right of way in Smith County.",
+    "csj": "6510-47-001",
+    "county": "Bexar",
+    "highway": "IH0010",
+    "projectName": "Seguin Mowing",
+    "projectDescription": "Mowing Seguin",
     "projectType": "MOWING HIGHWAY RIGHT OF WAY",
     "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "estimate": 900000.0,
-    "letDate": "01/10/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6492-39-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1062-02-030",
-    "county": "Harris",
-    "highway": "FM 1485",
-    "projectName": "FM 1485, Mont CL to Huffman-New Caney Rd",
-    "projectDescription": "Base Repair, Tack Coat, Overlay, Rumble Strips, Pavement Markings, Metal Beam Guard Fence, and Signs",
-    "projectType": "Surfacing/Roadway Restoration",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "estimate": 710353.56,
+    "estimate": 1100000.0,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "1062-02-030"
+      "6510-47-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0906-00-296",
-    "county": "Ector",
+    "csj": "5000-00-376",
+    "county": "Travis",
     "highway": "Various",
-    "projectName": "BRIDGE MAINTENANCE PROGRAM (2027) SOUTH",
-    "projectDescription": "BRIDGE MAINTENANCE PROGRAM (2027) - SOUTH SEGMENT",
+    "projectName": "NEVI - NCTCOG - Study Area 99",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773636.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-376"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0179-02-092",
+    "county": "Brazoria",
+    "highway": "SH 35",
+    "projectName": "SH 35 EB: at Brazos River",
+    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 120200017902098)",
     "projectType": "Bridge Maintenance",
     "typeOfWork": "Bridge Maintenance",
-    "estimate": 2000000.0,
-    "letDate": "01/07/2027",
+    "estimate": 1364724.13,
+    "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0906-00-296"
+      "0179-02-091",
+      "0179-02-092"
+    ],
+    "subCSJCount": 2
+  },
+  {
+    "csj": "0915-12-605",
+    "county": "Bexar",
+    "highway": "FRATT RD",
+    "projectName": "CS: 0915-12-605; RH",
+    "projectDescription": "INSTALL RAILROAD SIGNAL WITH GATES ON FRATT RD AT UPRR DOT 414 054B",
+    "projectType": "Railroad Crossing Improvements",
+    "typeOfWork": "Railroad Crossing Improvements",
+    "estimate": 250000.0,
+    "letDate": "01/29/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0915-12-605"
     ],
     "subCSJCount": 1
   },
   {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "FY 2027 BPM",
-    "county": "El Paso",
-    "subCSJs": [
-      "6492-55-001"
-    ],
-    "projectName": "FY 2027 BPM",
-    "highway": "IH0010",
-    "subCSJCount": 1,
-    "estimate": 1.0,
+    "csj": "6510-40-001",
+    "county": "Cameron",
+    "highway": "IH 69E",
+    "projectName": "FY27 Extension of U-turn storage lanes",
+    "projectDescription": "Extension of U-turn storage lanes",
+    "projectType": "Extension of U-turn storage lanes",
+    "typeOfWork": "Extension of U-turn storage lanes",
+    "estimate": 500000.0,
     "letDate": "01/06/2027",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6492-55-001"
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-40-001"
+    ],
+    "subCSJCount": 1
   },
   {
-    "csj": "6510-48-001",
-    "county": "Bexar",
-    "highway": "IH0035",
-    "projectName": "Floresville Mowing",
-    "projectDescription": "Floresville mowing",
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "estimate": 631000.0,
+    "csj": "6491-32-001",
+    "county": "Chambers",
+    "highway": "IH0010",
+    "projectName": "FY 27 FDCR",
+    "projectDescription": "FULL DEPTH CONCRETE REPAIR",
+    "projectType": "FULL DEPTH CONCRETE REPAIR",
+    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
+    "estimate": 348635.0,
     "letDate": "01/12/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6510-48-001"
+      "6491-32-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-11-001",
+    "county": "Wilson",
+    "highway": "US0181",
+    "projectName": "Floresville LRA FY27",
+    "projectDescription": "LRA material only.",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 1409478.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-11-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-372",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 95",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773883.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-372"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0912-73-248",
+    "county": "Galveston",
+    "highway": "Various",
+    "projectName": "Various League City Signal Improvements",
+    "projectDescription": "Construction of traffic signal improvements at various locations, including installing upgraded signal heads with reflective back plates, pedestrian crosswalk push buttons, and countdown LED lamps",
+    "projectType": "Traffic Signal Improvements",
+    "typeOfWork": "Traffic Signal Improvements",
+    "estimate": 3669759.62,
+    "letDate": "01/15/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0912-73-248"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0922-33-246",
+    "county": "Webb",
+    "highway": "Various",
+    "projectName": "TPW - Lake Casa Blanca",
+    "projectDescription": "REPAIR AND RESURFACE VARIOUS ROADWAYS WITHIN LAKE CASA BLANCA STATE PARK",
+    "projectType": "State Park Improvements",
+    "typeOfWork": "State Park Improvements",
+    "estimate": 1065000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0922-33-246"
     ],
     "subCSJCount": 1
   },
@@ -1853,49 +1465,418 @@
     "subCSJCount": 1
   },
   {
-    "projectType": "FULL DEPTH CONCRETE REPAIR",
-    "projectDescription": "Concrete Repair",
-    "county": "Harris",
-    "subCSJs": [
-      "6503-00-001"
-    ],
-    "projectName": "Concrete Metro 2026",
-    "highway": "IH0610",
-    "subCSJCount": 1,
-    "estimate": 500000.0,
-    "letDate": "01/06/2027",
-    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
-    "csj": "6503-00-001"
-  },
-  {
-    "csj": "6510-47-001",
-    "county": "Bexar",
-    "highway": "IH0010",
-    "projectName": "Seguin Mowing",
-    "projectDescription": "Mowing Seguin",
-    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
-    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
-    "estimate": 1100000.0,
-    "letDate": "01/07/2027",
+    "csj": "6508-62-001",
+    "county": "Houston",
+    "highway": "US0287",
+    "projectName": "2027 HOUSTON DITCH CLEANING",
+    "projectDescription": "DITCH AND CULVERT CLEANING",
+    "projectType": "DITCH CLEANING AND RESHAPING",
+    "typeOfWork": "DITCH CLEANING AND RESHAPING",
+    "estimate": 332092.0,
+    "letDate": "01/20/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6510-47-001"
+      "6508-62-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0024-08-152",
-    "county": "Bexar",
-    "highway": "US 90",
-    "projectName": "US 90: 0024-08-152; SFT",
-    "projectDescription": "Center Barrier Replacement and Continuous Illumination",
+    "csj": "6512-35-001",
+    "county": "Falls",
+    "highway": "SH0007",
+    "projectName": "FY 2027 HOT MIX - FALLS AND LIMESTONE",
+    "projectDescription": "HOT MIX - MATERIALS ONLY",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 1500000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-35-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-319",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 33",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-319"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0085-01-053",
+    "county": "Morris",
+    "highway": "US 259",
+    "projectName": "US 259 from Bowie C/L to FM 71",
+    "projectDescription": "Rehabilitate existing 2-lane highway",
+    "projectType": "Rehabilitate Existing Roadway",
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "estimate": 7660750.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0085-01-053",
+      "0085-02-053",
+      "1918-01-015"
+    ],
+    "subCSJCount": 3
+  },
+  {
+    "csj": "5000-00-345",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 63",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772272.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-345"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-323",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 37",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772520.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-323"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "1094-03-021",
+    "county": "Johnson",
+    "highway": "FM 731",
+    "projectName": "FY 26 GR - FM 731",
+    "projectDescription": "FY 2026 Green Ribbon Project: Landscape Enhancement- FM 731 from S Towne Dr to Greenridge Dr City of Burleson",
+    "projectType": "Landscape Development",
+    "typeOfWork": "Landscape Development",
+    "estimate": 650000.0,
+    "letDate": "01/14/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "1094-03-021"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0925-00-085",
+    "county": "Childress",
+    "highway": "Various",
+    "projectName": "2027 District Wide Striping",
+    "projectDescription": "2027 District Wide Striping",
+    "projectType": "Hazard Elimination & Safety",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "estimate": 1500000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0925-00-085"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0016-05-133",
+    "county": "Comal",
+    "highway": "IH 35",
+    "projectName": "0016-05-133; IH 35; OV",
+    "projectDescription": "Base Repair, Mill, Inlay & Pavement Markings on Mainlanes and on Frontage Rds. From SL 337. to Guadalupe River",
+    "projectType": "Resurface Roadway",
+    "typeOfWork": "Resurface Roadway",
+    "estimate": 16478233.9,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0016-05-133"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0906-00-273",
+    "county": "Ector",
+    "highway": "Various",
+    "projectName": "BRIDGE MAINTENANCE PROGRAM (2027) NORTH",
+    "projectDescription": "BRIDGE MAINTENANCE PROGRAM (2027) - NORTH SEGMENT",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 2000000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0906-00-273"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-316",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 30",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-316"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-51-001",
+    "county": "El Paso",
+    "highway": "IH0010",
+    "projectName": "WAO - Miscellaneous Concrete",
+    "projectDescription": "Miscellaneous Concrete Repair",
+    "projectType": "MISCELLANEOUS CONCRETE REPAIR",
+    "typeOfWork": "MISCELLANEOUS CONCRETE REPAIR",
+    "estimate": 1.0,
+    "letDate": "01/05/2027",
+    "subCSJs": [
+      "6512-51-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-380",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 165",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1528420.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-380"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-341",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 59",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 768552.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-341"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6506-73-001",
+    "county": "Kaufman",
+    "highway": "US0175",
+    "projectName": "KRAO HERBICIDE SOUTH",
+    "projectDescription": "WICK HERBICIDE, BROADCAST APPLICATION, AND PAVEMENT EDGES",
+    "projectType": "HERBICIDE/INSECTICIDE",
+    "typeOfWork": "HERBICIDE/INSECTICIDE",
+    "estimate": 587520.0,
+    "letDate": "01/13/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6506-73-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6500-69-001",
+    "county": "Comanche",
+    "highway": "SH0016",
+    "projectName": "Comanche, Eastland, Stephens Tree&Brush",
+    "projectDescription": "Tree trimming and brush removal for Comanche, Eastland and Stephens Counties",
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "estimate": 900000.0,
+    "letDate": "01/10/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6500-69-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0322-01-053",
+    "county": "Bastrop",
+    "highway": "SH 95",
+    "projectName": "SH 95 - FM 1441 to Hoffman Rd",
+    "projectDescription": "Install Continuous Turn Lane, Profile Edgeline Markings, Profile Centerline Markings",
     "projectType": "Highway Improvement",
     "typeOfWork": "Highway Improvement",
-    "estimate": 13829904.63,
+    "estimate": 5313235.7,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0322-01-053"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "Various Bridge Repairs",
+    "county": "Harris",
+    "subCSJs": [
+      "6505-43-001"
+    ],
+    "projectName": "Various Bridge Repairs in Harris County",
+    "highway": "IH0610",
+    "subCSJCount": 1,
+    "estimate": 3500000.0,
+    "letDate": "01/06/2027",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6505-43-001"
+  },
+  {
+    "csj": "6507-47-001",
+    "county": "Houston",
+    "highway": "US0287",
+    "projectName": "Houston Tree & Brush Removal",
+    "projectDescription": "In the Houston County there is a Tree Trimming and Brush Removal Contract if needed.",
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "estimate": 285315.0,
+    "letDate": "01/20/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6507-47-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-318",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 32",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 445213.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-318"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0495-03-070",
+    "county": "Van Zandt",
+    "highway": "IH 20",
+    "projectName": "IH 20, SH19 - FM 17, Frontage Road",
+    "projectDescription": "CONSTRUCT 2 LANE CONTINUOUS FRONTAGE ROAD WEST BOUND (WB) ON NEW LOCATION",
+    "projectType": "Construct Frontage Roads",
+    "typeOfWork": "Construct Frontage Roads",
+    "estimate": 7353202.12,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0495-03-070"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-62-001",
+    "county": "El Paso",
+    "highway": "IH0010",
+    "projectName": "EAO  Flexible Base - MMC",
+    "projectDescription": "Flexible Base - MMC",
+    "projectType": "FLEXIBLE BASE",
+    "typeOfWork": "FLEXIBLE BASE",
+    "estimate": 1.0,
+    "letDate": "01/13/2027",
+    "subCSJs": [
+      "6512-62-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6508-15-001",
+    "county": "Dallas",
+    "highway": "US0080",
+    "projectName": "VIVDS Iteris 2027",
+    "projectDescription": "Video Imaging Vehicle Detection System Components (Materials Only)",
+    "projectType": "ROW Traffic Materials",
+    "typeOfWork": "ROW Traffic Materials",
+    "estimate": 150000.0,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0024-08-152"
+      "6508-15-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0063-04-069",
+    "county": "Panola",
+    "highway": "US 59",
+    "projectName": "US 59 from FM 2517 to Murvaul Creek",
+    "projectDescription": "Resurface Existing 4-lane Highway",
+    "projectType": "Resurface Roadway",
+    "typeOfWork": "Resurface Roadway",
+    "estimate": 5242917.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0063-04-069",
+      "0063-05-041"
+    ],
+    "subCSJCount": 2
+  },
+  {
+    "csj": "0128-04-045",
+    "county": "McCulloch",
+    "highway": "US 190",
+    "projectName": "US 190 from East Main Street to US 87",
+    "projectDescription": "REHABILITATE EXISTING ROADWAY TO INCLUDE CONCRETE PAVEMENT REPAIR, STORM DRAIN, AND PAVEMENT MARKINGS.",
+    "projectType": "Rehabilitate Existing Roadway",
+    "typeOfWork": "Rehabilitate Existing Roadway",
+    "estimate": 3275000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0128-04-045"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-378",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 163",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 375858.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-378"
     ],
     "subCSJCount": 1
   },
@@ -1948,301 +1929,18 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-381",
+    "csj": "5000-00-320",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 167",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1528420.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-381"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-36-001",
-    "county": "McLennan",
-    "highway": "SH0006",
-    "projectName": "FY 27 HOT MIX - MCLENNAN AND HILL",
-    "projectDescription": "HOT MIX - MATERIALS ONLY",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 1500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-36-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-329",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 47",
+    "projectName": "NEVI - NCTCOG - Study Area 34",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774317.5,
+    "estimate": 445213.75,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-329"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-83-001",
-    "county": "Kimble",
-    "highway": "US0377",
-    "projectName": "Misc Pavement Repair South FY 27",
-    "projectDescription": "PAVEMENT REPAIR SOUTH FY 27",
-    "projectType": "ASPHALT PAVEMENT REPAIR",
-    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
-    "estimate": 2000000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-83-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-20-001",
-    "county": "Bowie",
-    "highway": "US0059",
-    "projectName": "CO Prefab Pavement Markings",
-    "projectDescription": "Callout Prefabricated Pavement Markings (Handwork) Task #19I19714",
-    "projectType": "PAVEMENT MARKINGS",
-    "typeOfWork": "PAVEMENT MARKINGS",
-    "estimate": 250000.0,
-    "letDate": "01/13/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-20-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "projectDescription": "Various Bridge Repairs",
-    "county": "Harris",
-    "subCSJs": [
-      "6505-43-001"
-    ],
-    "projectName": "Various Bridge Repairs in Harris County",
-    "highway": "IH0610",
-    "subCSJCount": 1,
-    "estimate": 3500000.0,
-    "letDate": "01/06/2027",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "csj": "6505-43-001"
-  },
-  {
-    "csj": "6512-51-001",
-    "county": "El Paso",
-    "highway": "IH0010",
-    "projectName": "WAO - Miscellaneous Concrete",
-    "projectDescription": "Miscellaneous Concrete Repair",
-    "projectType": "MISCELLANEOUS CONCRETE REPAIR",
-    "typeOfWork": "MISCELLANEOUS CONCRETE REPAIR",
-    "estimate": 1.0,
-    "letDate": "01/05/2027",
-    "subCSJs": [
-      "6512-51-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-380",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 165",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1528420.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-380"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-330",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 48",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772272.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-330"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-364",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 86",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772643.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-364"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-313",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 27",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-313"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6506-57-001",
-    "county": "Kaufman",
-    "highway": "US0080",
-    "projectName": "KRAO REFL PVMNT MRKING FY'27 - 2",
-    "projectDescription": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "estimate": 332097.34,
-    "letDate": "01/13/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6506-57-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "ASPHALT PAVEMENT REPAIR",
-    "projectDescription": "Asphalt Pavement Repair",
-    "county": "McLennan",
-    "subCSJs": [
-      "6503-87-001"
-    ],
-    "projectName": "HHSC Facility Repairs",
-    "highway": "MR0680",
-    "subCSJCount": 1,
-    "estimate": 500000.0,
-    "letDate": "01/13/2027",
-    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
-    "csj": "6503-87-001"
-  },
-  {
-    "csj": "5000-00-300",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 14",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-300"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-06-001",
-    "county": "Medina",
-    "highway": "US0090",
-    "projectName": "Hondo HMA",
-    "projectDescription": "HMA material only.",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 560660.0,
-    "letDate": "01/26/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-06-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1530-01-012",
-    "county": "Scurry",
-    "highway": "FM 1609",
-    "projectName": "WIDEN FM 1609 US 180 TO SH 350",
-    "projectDescription": "WIDEN ROADWAY",
-    "projectType": "Widen Road - Add Shoulders",
-    "typeOfWork": "Widen Road - Add Shoulders",
-    "estimate": 6720505.7,
-    "letDate": "01/06/2027",
-    "subCSJs": [
-      "1530-01-012"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6508-51-001",
-    "county": "Johnson",
-    "highway": "SH0174",
-    "projectName": "FY2027 - Call-Out Striping - Johnson",
-    "projectDescription": "6508-51-001 is Reflectorized Pavement Markings for FY2027 in Johnson County",
-    "projectType": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "typeOfWork": "REFLECTORIZED PAVEMENT MARKINGS & MARKERS",
-    "estimate": 520961.54,
-    "letDate": "01/20/2027",
-    "subCSJs": [
-      "6508-51-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-353",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 71",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772520.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-353"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6497-16-001",
-    "county": "Lubbock",
-    "highway": "US0082",
-    "projectName": "FY27 Lubbock Concrete Repair",
-    "projectDescription": "FY27 Lubbock Concrete Repair",
-    "projectType": "CURB & GUTTER MAINT",
-    "typeOfWork": "CURB & GUTTER MAINT",
-    "estimate": 500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6497-16-001"
+      "5000-00-320"
     ],
     "subCSJCount": 1
   },
@@ -2263,146 +1961,193 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-352",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 70",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 770970.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-352"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6502-78-001",
-    "county": "Ellis",
-    "highway": "IH0035E",
-    "projectName": "Crash Cushion Attenuator Repair 09 0127",
-    "projectDescription": "Crash Cushion Attenuator Repair in the Ellis County Maintenance Section.",
-    "projectType": "CRASH CUSHION ATTENUATOR REPAIR",
-    "typeOfWork": "CRASH CUSHION ATTENUATOR REPAIR",
-    "estimate": 798600.0,
-    "letDate": "01/13/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6502-78-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "3312-02-019",
-    "county": "Galveston",
-    "highway": "FM 270",
-    "projectName": "FM 270, FM 518 to FM 646-1",
-    "projectDescription": "Base Repair, Milling, Overlay, and Pavement Markings",
-    "projectType": "Surfacing/Roadway Restoration",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "estimate": 3803740.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "3312-02-019"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-369",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 92",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 865000.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-369"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-363",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 85",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774503.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-363"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-342",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 60",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772396.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-342"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-345",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 63",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772272.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-345"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-323",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 37",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772520.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-323"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0718-01-077",
-    "county": "Denton",
-    "highway": "FM 156",
-    "projectName": "FM156 at Chaplin Dr",
-    "projectDescription": "Install Traffic Signal,  Safety Lighting at Intersection",
-    "projectType": "Install Traffic Signal",
-    "typeOfWork": "Install Traffic Signal",
-    "estimate": 504589.75,
+    "csj": "0024-08-152",
+    "county": "Bexar",
+    "highway": "US 90",
+    "projectName": "US 90: 0024-08-152; SFT",
+    "projectDescription": "Center Barrier Replacement and Continuous Illumination",
+    "projectType": "Highway Improvement",
+    "typeOfWork": "Highway Improvement",
+    "estimate": 14064758.88,
     "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0718-01-077"
+      "0024-08-152"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "1062-02-030",
+    "county": "Harris",
+    "highway": "FM 1485",
+    "projectName": "FM 1485, Mont CL to Huffman-New Caney Rd",
+    "projectDescription": "Base Repair, Tack Coat, Overlay, Rumble Strips, Pavement Markings, Metal Beam Guard Fence, and Signs",
+    "projectType": "Surfacing/Roadway Restoration",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "estimate": 724764.17,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "1062-02-030"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0906-00-296",
+    "county": "Ector",
+    "highway": "Various",
+    "projectName": "BRIDGE MAINTENANCE PROGRAM (2027) SOUTH",
+    "projectDescription": "BRIDGE MAINTENANCE PROGRAM (2027) - SOUTH SEGMENT",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 2000000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0906-00-296"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "projectDescription": "FY 2027 BPM",
+    "county": "El Paso",
+    "subCSJs": [
+      "6492-55-001"
+    ],
+    "projectName": "FY 2027 BPM",
+    "highway": "IH0010",
+    "subCSJCount": 1,
+    "estimate": 1.0,
+    "letDate": "01/06/2027",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "csj": "6492-55-001"
+  },
+  {
+    "csj": "6510-48-001",
+    "county": "Bexar",
+    "highway": "IH0035",
+    "projectName": "Floresville Mowing",
+    "projectDescription": "Floresville mowing",
+    "projectType": "MOWING HIGHWAY RIGHT OF WAY",
+    "typeOfWork": "MOWING HIGHWAY RIGHT OF WAY",
+    "estimate": 631000.0,
+    "letDate": "01/12/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-48-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0908-00-135",
+    "county": "Taylor",
+    "highway": "Various",
+    "projectName": "FY 27 Retrace Striping",
+    "projectDescription": "Rettrace Striping from FY 26 Seal Coat with Thermal",
+    "projectType": "Preventive Maintenance",
+    "typeOfWork": "Preventive Maintenance",
+    "estimate": 2223712.41,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0908-00-135"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-337",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 55",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 768737.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-337"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-05-001",
+    "county": "Bandera",
+    "highway": "SH0016",
+    "projectName": "Bandera LRA",
+    "projectDescription": "LRA material only.",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 300000.0,
+    "letDate": "01/26/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-05-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-28-001",
+    "county": "Cameron",
+    "highway": "BU0077W",
+    "projectName": "6512-28-001 Hot Mix",
+    "projectDescription": "Hot Mix",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 100000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-28-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6496-59-001",
+    "county": "Bastrop",
+    "highway": "SH0021",
+    "projectName": "FY 27 East LRA",
+    "projectDescription": "For the delivery of Limestone Rock Asphalt",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 600000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6496-59-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-00-001",
+    "county": "Guadalupe",
+    "highway": "US0090",
+    "projectName": "Seguin LRA FY27",
+    "projectDescription": "LRA material only.",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 909925.0,
+    "letDate": "01/19/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-00-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0648-01-034",
+    "county": "Robertson",
+    "highway": "FM 50",
+    "projectName": "FM 50 UPRR GRADE SEPERATION",
+    "projectDescription": "Construct Grade Separation at UPRR",
+    "projectType": "Highway/Railroad Improvement",
+    "typeOfWork": "Highway/Railroad Improvement",
+    "estimate": 13000000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0648-01-034"
     ],
     "subCSJCount": 1
   },
@@ -2489,66 +2234,386 @@
     "subCSJCount": 1
   },
   {
-    "csj": "6496-59-001",
-    "county": "Bastrop",
-    "highway": "SH0021",
-    "projectName": "FY 27 East LRA",
-    "projectDescription": "For the delivery of Limestone Rock Asphalt",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 600000.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6496-59-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-00-001",
-    "county": "Guadalupe",
-    "highway": "US0090",
-    "projectName": "Seguin LRA FY27",
-    "projectDescription": "LRA material only.",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 909925.0,
-    "letDate": "01/19/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-00-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0648-01-034",
-    "county": "Robertson",
-    "highway": "FM 50",
-    "projectName": "FM 50 UPRR GRADE SEPERATION",
-    "projectDescription": "Construct Grade Separation at UPRR",
-    "projectType": "Highway/Railroad Improvement",
-    "typeOfWork": "Highway/Railroad Improvement",
-    "estimate": 13000000.0,
+    "csj": "6512-38-001",
+    "county": "Bosque",
+    "highway": "SH0006",
+    "projectName": "FY 2027 HOT MIX - BOSQUE AND HAMILTON",
+    "projectDescription": "HOT MIX - MATERIALS ONLY",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 1500000.0,
     "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0648-01-034"
+      "6512-38-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0912-37-267",
-    "county": "Montgomery",
+    "csj": "5500-00-151",
+    "county": "Travis",
     "highway": "Various",
-    "projectName": "Montgomery County Signal/ITS Upgrades",
-    "projectDescription": "Replace/upgrade 129 signal cabinets, controllers, and radar detection. Install new advanced transportation monitoring system and purchase/install 364 new advanced pedestrian buttons where none exist currently, and pavement markings and crosswalks.",
-    "projectType": "Traffic Signal Improvements",
-    "typeOfWork": "Traffic Signal Improvements",
-    "estimate": 11205000.0,
-    "letDate": "01/15/2027",
+    "projectName": "SH 99 West Road at Grand Parkway Tollway",
+    "projectDescription": "Deceleration Lane",
+    "projectType": "Donation",
+    "typeOfWork": "Donation",
+    "estimate": 6628.0,
+    "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0912-37-267"
+      "5500-00-151"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-357",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 75",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773883.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-357"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-294",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 8",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1862485.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-294"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6500-70-001",
+    "county": "Lampasas",
+    "highway": "US0281",
+    "projectName": "Lampasas, Mills, and San Saba Tree brush",
+    "projectDescription": "TREE TRIMMING AND BRUSH REMOVAL FOR LAMPASAS, MILLS, AND SAN SABA",
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "estimate": 900000.0,
+    "letDate": "01/10/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6500-70-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-335",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 53",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774503.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-335"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-350",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 68",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773883.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-350"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-381",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 167",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1528420.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-381"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-36-001",
+    "county": "McLennan",
+    "highway": "SH0006",
+    "projectName": "FY 27 HOT MIX - MCLENNAN AND HILL",
+    "projectDescription": "HOT MIX - MATERIALS ONLY",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 1500000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-36-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "1685-05-141",
+    "county": "Harris",
+    "highway": "SH 6",
+    "projectName": "SH 6, US 290 to FM 529 LED Lights",
+    "projectDescription": "Install LED Safety Lighting",
+    "projectType": "Install/Upgrade Roadway Lighting",
+    "typeOfWork": "Install/Upgrade Roadway Lighting",
+    "estimate": 2312543.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "1685-05-141"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-385",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 187",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 538687.5,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-385"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-374",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 97",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 767870.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-374"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-358",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 77",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774317.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-358"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-356",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 74",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 768552.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-356"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0598-02-133",
+    "county": "Brazoria",
+    "highway": "SH 288",
+    "projectName": "SH 288 SB; at FM 1462",
+    "projectDescription": "Rehabilitate Bridge and Approaches (NBI No. 120200059802203)",
+    "projectType": "Bridge Maintenance",
+    "typeOfWork": "Bridge Maintenance",
+    "estimate": 232815.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0598-02-133",
+      "0598-02-134"
+    ],
+    "subCSJCount": 2
+  },
+  {
+    "csj": "5000-00-330",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 48",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772272.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-330"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-364",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 86",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772643.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-364"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-65-001",
+    "county": "Palo Pinto",
+    "highway": "IH0020",
+    "projectName": "FY 27 - BPM Palo Pinto",
+    "projectDescription": "6512-65-001 is Bridge Preventative Maintenance for FY 2027 in Palo Pinto County.",
+    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
+    "estimate": 750000.0,
+    "letDate": "01/20/2027",
+    "subCSJs": [
+      "6512-65-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-44-001",
+    "county": "Kimble",
+    "highway": "US0377",
+    "projectName": "DISTRICTWIDE SWEEPING FY 27",
+    "projectDescription": "DISTRICTWIDE SWEEPING FY 27",
+    "projectType": "SWEEPING AND DEBRIS REMOVAL",
+    "typeOfWork": "SWEEPING AND DEBRIS REMOVAL",
+    "estimate": 300000.0,
+    "letDate": "01/12/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-44-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-10-001",
+    "county": "Uvalde",
+    "highway": "US0090",
+    "projectName": "Uvalde LRA",
+    "projectDescription": "LRA materials only.",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 1050600.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-10-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-310",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 24",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-310"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-306",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 20",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-306"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6487-46-001",
+    "county": "Jasper",
+    "highway": "US0096",
+    "projectName": "2027 OA FDCR & CONCRETE RAIL REPAIR",
+    "projectDescription": "REPAIR CONCRETE PAVEMENT AND TRAFFIC RAIL",
+    "projectType": "FULL DEPTH CONCRETE REPAIR",
+    "typeOfWork": "FULL DEPTH CONCRETE REPAIR",
+    "estimate": 200000.0,
+    "letDate": "01/12/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6487-46-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0079-02-059",
+    "county": "Comanche",
+    "highway": "US 67",
+    "projectName": "Comanche Co Courthouse Restoration LOSA",
+    "projectDescription": "Removal of existing parallel parking, replace with curb & gutter, sidewalk, and pedestrian rail",
+    "projectType": "Removal And/Or Replacement And/Or Disposal",
+    "typeOfWork": "Removal And/Or Replacement And/Or Disposal",
+    "estimate": 240000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0079-02-059"
     ],
     "subCSJCount": 1
   },
@@ -2617,70 +2682,6 @@
     "subCSJCount": 1
   },
   {
-    "csj": "6512-38-001",
-    "county": "Bosque",
-    "highway": "SH0006",
-    "projectName": "FY 2027 HOT MIX - BOSQUE AND HAMILTON",
-    "projectDescription": "HOT MIX - MATERIALS ONLY",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 1500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-38-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5500-00-151",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "SH 99 West Road at Grand Parkway Tollway",
-    "projectDescription": "Deceleration Lane",
-    "projectType": "Donation",
-    "typeOfWork": "Donation",
-    "estimate": 6628.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5500-00-151"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-357",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 75",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773883.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-357"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6500-66-001",
-    "county": "Harris",
-    "highway": "SL0008",
-    "projectName": "6500-66-001 Bridge Repairs FY 27",
-    "projectDescription": "Bridge repairs on various highways in Harris County.",
-    "projectType": "BRIDGE REPAIR",
-    "typeOfWork": "BRIDGE REPAIR",
-    "estimate": 1287000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6500-66-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
     "csj": "5000-00-370",
     "county": "Travis",
     "highway": "Various",
@@ -2697,90 +2698,10 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0912-72-838",
-    "county": "Harris",
-    "highway": "ELYSIAN ST",
-    "projectName": "Elysian: McKee to Brooks",
-    "projectDescription": "Retrofit existing TxDOT viaduct to incorporate a 20 foot wide shared use path (SUP).  The SUP will provide overall connectivity to existing and programmed trails in the vicinity.  Scope includes intersection tie-ins at N & S ends of the viaduct",
-    "projectType": "Bicycle And Pedestrian Improvements",
-    "typeOfWork": "Bicycle And Pedestrian Improvements",
-    "estimate": 9500000.0,
-    "letDate": "01/15/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0912-72-838"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-29-001",
-    "county": "Zapata",
-    "highway": "SH0016",
-    "projectName": "6512-29-001 Hot Mix",
-    "projectDescription": "Hot Mix",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 100000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-29-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6508-99-001",
-    "county": "Harris",
-    "highway": "IH0045",
-    "projectName": "RMC 6508-99-001 Bundle Bid",
-    "projectDescription": "Various repair items on I 45 in Harris County.",
-    "projectType": "BUNDLED BID",
-    "typeOfWork": "BUNDLED BID",
-    "estimate": 1900000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6508-99-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-385",
+    "csj": "5000-00-329",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 187",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 538687.5,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-385"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-374",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 97",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 767870.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-374"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-358",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 77",
+    "projectName": "NEVI - NCTCOG - Study Area 47",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
@@ -2788,39 +2709,150 @@
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-358"
+      "5000-00-329"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "6507-47-001",
-    "county": "Houston",
-    "highway": "US0287",
-    "projectName": "Houston Tree & Brush Removal",
-    "projectDescription": "In the Houston County there is a Tree Trimming and Brush Removal Contract if needed.",
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
-    "estimate": 285315.0,
-    "letDate": "01/20/2027",
+    "csj": "6510-83-001",
+    "county": "Kimble",
+    "highway": "US0377",
+    "projectName": "Misc Pavement Repair South FY 27",
+    "projectDescription": "PAVEMENT REPAIR SOUTH FY 27",
+    "projectType": "ASPHALT PAVEMENT REPAIR",
+    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
+    "estimate": 2000000.0,
+    "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6507-47-001"
+      "6510-83-001"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-318",
+    "csj": "6512-20-001",
+    "county": "Bowie",
+    "highway": "US0059",
+    "projectName": "CO Prefab Pavement Markings",
+    "projectDescription": "Callout Prefabricated Pavement Markings (Handwork) Task #19I19714",
+    "projectType": "PAVEMENT MARKINGS",
+    "typeOfWork": "PAVEMENT MARKINGS",
+    "estimate": 250000.0,
+    "letDate": "01/13/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-20-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-99-001",
+    "county": "Bexar",
+    "highway": "IH0410",
+    "projectName": "FY 28 Districtwide Pavement Markings",
+    "projectDescription": "DISTRICTWIDE CALLOUT PAVEMENT MARKINGS",
+    "projectType": "PAVEMENT MARKINGS",
+    "typeOfWork": "PAVEMENT MARKINGS",
+    "estimate": 1500000.0,
+    "letDate": "01/06/2027",
+    "subCSJs": [
+      "6510-99-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6477-95-001",
+    "county": "Harris",
+    "highway": "US0290",
+    "projectName": "Long Line 2025",
+    "projectDescription": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "estimate": 2396705.05,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6477-95-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-347",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 32",
+    "projectName": "NEVI - NCTCOG - Study Area 65",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 445213.75,
+    "estimate": 772520.0,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-318"
+      "5000-00-347"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-321",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 35",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-321"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6502-78-001",
+    "county": "Ellis",
+    "highway": "IH0035E",
+    "projectName": "Crash Cushion Attenuator Repair 09 0127",
+    "projectDescription": "Crash Cushion Attenuator Repair in the Ellis County Maintenance Section.",
+    "projectType": "CRASH CUSHION ATTENUATOR REPAIR",
+    "typeOfWork": "CRASH CUSHION ATTENUATOR REPAIR",
+    "estimate": 798600.0,
+    "letDate": "01/13/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6502-78-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "3312-02-019",
+    "county": "Galveston",
+    "highway": "FM 270",
+    "projectName": "FM 270, FM 518 to FM 646-1",
+    "projectDescription": "Base Repair, Milling, Overlay, and Pavement Markings",
+    "projectType": "Surfacing/Roadway Restoration",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "estimate": 3803740.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "3312-02-019"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-369",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 92",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 865000.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-369"
     ],
     "subCSJCount": 1
   },
@@ -2868,6 +2900,132 @@
     "monthCode": "2027-01",
     "subCSJs": [
       "6508-14-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-73-001",
+    "county": "Cherokee",
+    "highway": "FM0747",
+    "projectName": "FY27 Culvert Repair - District Wide",
+    "projectDescription": "Repair culverts in various locations in the Tyler District.",
+    "projectType": "CULVERT REPAIR",
+    "typeOfWork": "CULVERT REPAIR",
+    "estimate": 200000.0,
+    "letDate": "01/14/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-73-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0265-03-042",
+    "county": "Bastrop",
+    "highway": "SH 71",
+    "projectName": "SH 71 AT POPE BEND RD.",
+    "projectDescription": "CONSTRUCT 4-LANE OVERPASS WITH 2-LANE EB & WB FRONTAGE ROADS",
+    "projectType": "HIGHWAY IMPROVEMENT",
+    "typeOfWork": "HIGHWAY IMPROVEMENT",
+    "estimate": 56243003.63,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0265-03-042"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-353",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 71",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772520.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-353"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6497-16-001",
+    "county": "Lubbock",
+    "highway": "US0082",
+    "projectName": "FY27 Lubbock Concrete Repair",
+    "projectDescription": "FY27 Lubbock Concrete Repair",
+    "projectType": "CURB & GUTTER MAINT",
+    "typeOfWork": "CURB & GUTTER MAINT",
+    "estimate": 500000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6497-16-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "ASPHALT PAVEMENT REPAIR",
+    "projectDescription": "Asphalt Pavement Repair",
+    "county": "McLennan",
+    "subCSJs": [
+      "6503-87-001"
+    ],
+    "projectName": "HHSC Facility Repairs",
+    "highway": "MR0680",
+    "subCSJCount": 1,
+    "estimate": 500000.0,
+    "letDate": "01/13/2027",
+    "typeOfWork": "ASPHALT PAVEMENT REPAIR",
+    "csj": "6503-87-001"
+  },
+  {
+    "csj": "5000-00-300",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 14",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-300"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-06-001",
+    "county": "Medina",
+    "highway": "US0090",
+    "projectName": "Hondo HMA",
+    "projectDescription": "HMA material only.",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 560660.0,
+    "letDate": "01/26/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-06-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "1530-01-012",
+    "county": "Scurry",
+    "highway": "FM 1609",
+    "projectName": "WIDEN FM 1609 US 180 TO SH 350",
+    "projectDescription": "WIDEN ROADWAY",
+    "projectType": "Widen Road - Add Shoulders",
+    "typeOfWork": "Widen Road - Add Shoulders",
+    "estimate": 6720505.7,
+    "letDate": "01/06/2027",
+    "subCSJs": [
+      "1530-01-012"
     ],
     "subCSJCount": 1
   },
@@ -2951,51 +3109,95 @@
     "subCSJCount": 1
   },
   {
-    "csj": "6508-15-001",
-    "county": "Dallas",
-    "highway": "US0080",
-    "projectName": "VIVDS Iteris 2027",
-    "projectDescription": "Video Imaging Vehicle Detection System Components (Materials Only)",
-    "projectType": "ROW Traffic Materials",
-    "typeOfWork": "ROW Traffic Materials",
-    "estimate": 150000.0,
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "projectDescription": "Tree Trimming and Brush Removal",
+    "county": "Fort Bend",
+    "subCSJs": [
+      "6495-06-001"
+    ],
+    "projectName": "RMC 6495-06-001",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 200000.0,
     "letDate": "01/07/2027",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "csj": "6495-06-001"
+  },
+  {
+    "csj": "5000-00-290",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 4",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1862485.0,
+    "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6508-15-001"
+      "5000-00-290"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0063-04-069",
-    "county": "Panola",
-    "highway": "US 59",
-    "projectName": "US 59 from FM 2517 to Murvaul Creek",
-    "projectDescription": "Resurface Existing 4-lane Highway",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 5242917.0,
-    "letDate": "01/07/2027",
+    "csj": "5000-00-332",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 50",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774503.75,
+    "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0063-04-069",
-      "0063-05-041"
+      "5000-00-332"
     ],
-    "subCSJCount": 2
+    "subCSJCount": 1
   },
   {
-    "csj": "6496-63-001",
-    "county": "Burnet",
-    "highway": "US0281",
-    "projectName": "FY 27 Burnet Co. Guardrail",
-    "projectDescription": "Repair/replace/upgrade MBGF",
-    "projectType": "METAL BEAM GUARD FENCE REPAIR",
-    "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
-    "estimate": 1500000.0,
-    "letDate": "01/07/2027",
+    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
+    "projectDescription": "SIGNAL MAINTENANCE & REPAIR (ON-CALL)",
+    "county": "Smith",
+    "subCSJs": [
+      "6504-74-001"
+    ],
+    "projectName": "Districtwide Signal Maintenance - Repair",
+    "highway": "US0069",
+    "subCSJCount": 1,
+    "estimate": 500000.0,
+    "letDate": "01/12/2027",
+    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
+    "csj": "6504-74-001"
+  },
+  {
+    "projectType": "CONCRETE STRUCTURE REPAIR",
+    "projectDescription": "FULL-DEPTH & SPALL CONCRETE PAVEMENT REPAIR",
+    "county": "Fort Bend",
+    "subCSJs": [
+      "6494-60-001"
+    ],
+    "projectName": "RMC 6494-60-001",
+    "highway": "US0059",
+    "subCSJCount": 1,
+    "estimate": 1175000.0,
+    "letDate": "01/06/2027",
+    "typeOfWork": "CONCRETE STRUCTURE REPAIR",
+    "csj": "6494-60-001"
+  },
+  {
+    "csj": "0912-00-720",
+    "county": "Harris",
+    "highway": "Various",
+    "projectName": "Regional Vanpool/METRO Star  FY 25/FY 26",
+    "projectDescription": "Regional Vanpool & METRO Star Vanpool (FY 2025 & 2026)",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 4000000.0,
+    "letDate": "01/15/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "6496-63-001"
+      "0912-00-720"
     ],
     "subCSJCount": 1
   },
@@ -3077,131 +3279,38 @@
     "csj": "6495-07-001"
   },
   {
-    "csj": "5000-00-339",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 57",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774876.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-339"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-287",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 1",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774993.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-287"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "projectDescription": "Tree Trimming and Brush Removal",
-    "county": "Fort Bend",
-    "subCSJs": [
-      "6495-06-001"
-    ],
-    "projectName": "RMC 6495-06-001",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 200000.0,
-    "letDate": "01/07/2027",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
-    "csj": "6495-06-001"
-  },
-  {
-    "projectType": "RIPRAP REPAIR",
-    "projectDescription": "VARIOUS WORK",
-    "county": "Uvalde",
-    "subCSJs": [
-      "6507-85-001"
-    ],
-    "projectName": "UVALDE REGION FLOOD REPAIR",
-    "highway": "RM1050",
-    "subCSJCount": 1,
-    "estimate": 1000000.0,
-    "letDate": "01/07/2027",
-    "typeOfWork": "RIPRAP REPAIR",
-    "csj": "6507-85-001"
-  },
-  {
-    "csj": "0136-05-049",
-    "county": "Lamar",
-    "highway": "SH 19",
-    "projectName": "SH19 Overlay",
+    "csj": "0445-01-072",
+    "county": "Gonzales",
+    "highway": "UA 90",
+    "projectName": "UA 90 Overlay 3003-2",
     "projectDescription": "Overlay",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 13004091.31,
+    "projectType": "Surfacing/Roadway Restoration",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "estimate": 11566434.58,
     "letDate": "01/06/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0136-04-053",
-      "0136-05-049",
-      "0136-06-057"
+      "0027-03-078",
+      "0445-01-072",
+      "0445-02-074"
     ],
     "subCSJCount": 3
   },
   {
-    "csj": "5000-00-328",
+    "csj": "5000-00-373",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 46",
+    "projectName": "NEVI - NCTCOG - Study Area 96",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773636.25,
+    "estimate": 774813.75,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-328"
+      "5000-00-373"
     ],
     "subCSJCount": 1
-  },
-  {
-    "csj": "6512-37-001",
-    "county": "Bell",
-    "highway": "SH0036",
-    "projectName": "FY 2027 HOT MIX - BELL AND CORYELL",
-    "projectDescription": "HOT MIX - MATERIALS ONLY",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 1500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-37-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "DELINEATOR, OBJ MRK & MAILBOX MAINT",
-    "projectDescription": "Delineator and Mailbox Repair",
-    "county": "Montgomery",
-    "subCSJs": [
-      "6507-33-001"
-    ],
-    "projectName": "Delineators and Mailbox RMC 6507-33-001",
-    "highway": "IH0045",
-    "subCSJCount": 1,
-    "estimate": 223412.0,
-    "letDate": "01/06/2027",
-    "typeOfWork": "DELINEATOR, OBJ MRK & MAILBOX MAINT",
-    "csj": "6507-33-001"
   },
   {
     "csj": "5500-00-139",
@@ -3236,80 +3345,59 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-290",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 4",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1862485.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-290"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-332",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 50",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774503.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-332"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "TRAFFIC SIGNAL MAINTENANCE",
-    "projectDescription": "SIGNAL MAINTENANCE & REPAIR (ON-CALL)",
-    "county": "Smith",
-    "subCSJs": [
-      "6504-74-001"
-    ],
-    "projectName": "Districtwide Signal Maintenance - Repair",
-    "highway": "US0069",
-    "subCSJCount": 1,
-    "estimate": 500000.0,
-    "letDate": "01/12/2027",
-    "typeOfWork": "TRAFFIC SIGNAL MAINTENANCE",
-    "csj": "6504-74-001"
-  },
-  {
-    "projectType": "CONCRETE STRUCTURE REPAIR",
-    "projectDescription": "FULL-DEPTH & SPALL CONCRETE PAVEMENT REPAIR",
+    "projectType": "REFLECTIVE PAVEMENT MARKINGS (GRAPHICS)",
+    "projectDescription": "Reflective Pavement Markings (Graphics)",
     "county": "Fort Bend",
     "subCSJs": [
-      "6494-60-001"
+      "6495-02-001"
     ],
-    "projectName": "RMC 6494-60-001",
+    "projectName": "RMC 6495-02-001",
     "highway": "US0059",
     "subCSJCount": 1,
-    "estimate": 1175000.0,
-    "letDate": "01/06/2027",
-    "typeOfWork": "CONCRETE STRUCTURE REPAIR",
-    "csj": "6494-60-001"
+    "estimate": 575000.0,
+    "letDate": "01/05/2027",
+    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (GRAPHICS)",
+    "csj": "6495-02-001"
   },
   {
-    "csj": "0912-00-720",
-    "county": "Harris",
-    "highway": "Various",
-    "projectName": "Regional Vanpool/METRO Star  FY 25/FY 26",
-    "projectDescription": "Regional Vanpool & METRO Star Vanpool (FY 2025 & 2026)",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 4000000.0,
+    "csj": "A002-00-087",
+    "county": "Liberty",
+    "highway": "FM 1413",
+    "projectName": "RIVER RANCH PARKWAY-LIBERTY COUNTY",
+    "projectDescription": "New road between SH 146 and FM 1409.The location would be South of Dayton in the River Ranch area and be an extension of FM 1413 as it currently ends at SH 146.",
+    "projectType": "Construct New Road",
+    "typeOfWork": "Construct New Road",
+    "estimate": 1000000.0,
     "letDate": "01/15/2027",
+    "subCSJs": [],
+    "subCSJCount": 0
+  },
+  {
+    "csj": "A002-09-184",
+    "county": "Lampasas",
+    "highway": "US 190",
+    "projectName": "IH 14 Big Divide to City of Lometa",
+    "projectDescription": "This is a proposed Route Study to determine the location of future Interstate 14 between the City of Copperas Cove and the City of Lometa.",
+    "projectType": "Feasibility Study",
+    "typeOfWork": "Feasibility Study",
+    "estimate": 2000000.0,
+    "letDate": "01/02/2027",
+    "subCSJs": [],
+    "subCSJCount": 0
+  },
+  {
+    "csj": "6496-63-001",
+    "county": "Burnet",
+    "highway": "US0281",
+    "projectName": "FY 27 Burnet Co. Guardrail",
+    "projectDescription": "Repair/replace/upgrade MBGF",
+    "projectType": "METAL BEAM GUARD FENCE REPAIR",
+    "typeOfWork": "METAL BEAM GUARD FENCE REPAIR",
+    "estimate": 1500000.0,
+    "letDate": "01/07/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0912-00-720"
+      "6496-63-001"
     ],
     "subCSJCount": 1
   },
@@ -3378,6 +3466,196 @@
     "subCSJCount": 1
   },
   {
+    "csj": "0912-37-267",
+    "county": "Montgomery",
+    "highway": "Various",
+    "projectName": "Montgomery County Signal/ITS Upgrades",
+    "projectDescription": "Replace/upgrade 129 signal cabinets, controllers, and radar detection. Install new advanced transportation monitoring system and purchase/install 364 new advanced pedestrian buttons where none exist currently, and pavement markings and crosswalks.",
+    "projectType": "Traffic Signal Improvements",
+    "typeOfWork": "Traffic Signal Improvements",
+    "estimate": 11205000.0,
+    "letDate": "01/15/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0912-37-267"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "projectDescription": "Reflective pavement marking repairs on various highways located in Fort Bend County.",
+    "county": "Fort Bend",
+    "subCSJs": [
+      "6495-05-001"
+    ],
+    "projectName": "RMC 6495-05-001",
+    "highway": "US 59",
+    "subCSJCount": 1,
+    "estimate": 557000.0,
+    "letDate": "01/05/2027",
+    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "csj": "6495-05-001"
+  },
+  {
+    "csj": "6502-85-001",
+    "county": "Harris",
+    "highway": "FM1093",
+    "projectName": "FY27 Restripe FM 1093",
+    "projectDescription": "Restripe Longline",
+    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
+    "estimate": 100000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6502-85-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-299",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 13",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 659493.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-299"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0172-09-047",
+    "county": "Tarrant",
+    "highway": "US 287",
+    "projectName": "US 287; FM 157 to Heritage Pkwy",
+    "projectDescription": "Diamond Grinding and Pavement Markings",
+    "projectType": "Reconstruct Existing Roadway",
+    "typeOfWork": "Reconstruct Existing Roadway",
+    "estimate": 4029170.17,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0172-09-047"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6500-66-001",
+    "county": "Harris",
+    "highway": "SL0008",
+    "projectName": "6500-66-001 Bridge Repairs FY 27",
+    "projectDescription": "Bridge repairs on various highways in Harris County.",
+    "projectType": "BRIDGE REPAIR",
+    "typeOfWork": "BRIDGE REPAIR",
+    "estimate": 1287000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6500-66-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5500-00-156",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "Delta Sands Drainage and Support",
+    "projectDescription": "Acquire fee for drainage strip next to proposed turn lanes",
+    "projectType": "Donation",
+    "typeOfWork": "Donation",
+    "estimate": 7500.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5500-00-156"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
+    "projectDescription": "Tree and Brush Removal",
+    "county": "Galveston",
+    "subCSJs": [
+      "6504-64-001"
+    ],
+    "projectName": "FY 27 Tree and Brush Removal",
+    "highway": "SH0146",
+    "subCSJCount": 1,
+    "estimate": 400000.0,
+    "letDate": "01/06/2027",
+    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
+    "csj": "6504-64-001"
+  },
+  {
+    "csj": "5000-00-340",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 58",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773387.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-340"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-363",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 85",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774503.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-363"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-342",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 60",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772396.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-342"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-382",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 170",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1528420.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-382"
+    ],
+    "subCSJCount": 1
+  },
+  {
     "csj": "0212-02-048",
     "county": "Walker",
     "highway": "SH 30",
@@ -3392,24 +3670,6 @@
       "0212-02-048"
     ],
     "subCSJCount": 1
-  },
-  {
-    "csj": "0445-01-072",
-    "county": "Gonzales",
-    "highway": "UA 90",
-    "projectName": "UA 90 Overlay 3003-2",
-    "projectDescription": "Overlay",
-    "projectType": "Surfacing/Roadway Restoration",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "estimate": 7200000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0027-03-078",
-      "0445-01-072",
-      "0445-02-074"
-    ],
-    "subCSJCount": 3
   },
   {
     "csj": "6510-70-001",
@@ -3428,10 +3688,74 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-348",
+    "csj": "5000-00-339",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 66",
+    "projectName": "NEVI - NCTCOG - Study Area 57",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774876.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-339"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-287",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 1",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774993.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-287"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-297",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 11",
+    "projectDescription": "Install 12 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1135083.75,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-297"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-334",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 52",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 774380.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-334"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-351",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 69",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
@@ -3439,38 +3763,7 @@
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-348"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-326",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 44",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772767.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-326"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-52-001",
-    "county": "El Paso",
-    "highway": "IH0010",
-    "projectName": "WAO - Flexible Pavement",
-    "projectDescription": "Flexible Pavement Structure Repair",
-    "projectType": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
-    "typeOfWork": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
-    "estimate": 1.0,
-    "letDate": "01/05/2027",
-    "subCSJs": [
-      "6512-52-001"
+      "5000-00-351"
     ],
     "subCSJCount": 1
   },
@@ -3539,334 +3832,6 @@
     "subCSJCount": 1
   },
   {
-    "csj": "0908-00-135",
-    "county": "Taylor",
-    "highway": "Various",
-    "projectName": "FY 27 Retrace Striping",
-    "projectDescription": "Rettrace Striping from FY 26 Seal Coat with Thermal",
-    "projectType": "Preventive Maintenance",
-    "typeOfWork": "Preventive Maintenance",
-    "estimate": 2223712.41,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0908-00-135"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-337",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 55",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 768737.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-337"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-05-001",
-    "county": "Bandera",
-    "highway": "SH0016",
-    "projectName": "Bandera LRA",
-    "projectDescription": "LRA material only.",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 300000.0,
-    "letDate": "01/26/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-05-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-28-001",
-    "county": "Cameron",
-    "highway": "BU0077W",
-    "projectName": "6512-28-001 Hot Mix",
-    "projectDescription": "Hot Mix",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 100000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-28-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0495-03-070",
-    "county": "Van Zandt",
-    "highway": "IH 20",
-    "projectName": "IH 20, SH19 - FM 17, Frontage Road",
-    "projectDescription": "CONSTRUCT 2 LANE CONTINUOUS FRONTAGE ROAD WEST BOUND (WB) ON NEW LOCATION",
-    "projectType": "Construct Frontage Roads",
-    "typeOfWork": "Construct Frontage Roads",
-    "estimate": 11500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0495-03-070"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-62-001",
-    "county": "El Paso",
-    "highway": "IH0010",
-    "projectName": "EAO  Flexible Base - MMC",
-    "projectDescription": "Flexible Base - MMC",
-    "projectType": "FLEXIBLE BASE",
-    "typeOfWork": "FLEXIBLE BASE",
-    "estimate": 1.0,
-    "letDate": "01/13/2027",
-    "subCSJs": [
-      "6512-62-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "REFLECTIVE PAVEMENT MARKINGS (GRAPHICS)",
-    "projectDescription": "Reflective Pavement Markings (Graphics)",
-    "county": "Fort Bend",
-    "subCSJs": [
-      "6495-02-001"
-    ],
-    "projectName": "RMC 6495-02-001",
-    "highway": "US0059",
-    "subCSJCount": 1,
-    "estimate": 575000.0,
-    "letDate": "01/05/2027",
-    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (GRAPHICS)",
-    "csj": "6495-02-001"
-  },
-  {
-    "csj": "A002-09-184",
-    "county": "Lampasas",
-    "highway": "US 190",
-    "projectName": "IH 14 Big Divide to City of Lometa",
-    "projectDescription": "This is a proposed Route Study to determine the location of future Interstate 14 between the City of Copperas Cove and the City of Lometa.",
-    "projectType": "Feasibility Study",
-    "typeOfWork": "Feasibility Study",
-    "estimate": 2000000.0,
-    "letDate": "01/02/2027",
-    "subCSJs": [],
-    "subCSJCount": 0
-  },
-  {
-    "csj": "A002-00-087",
-    "county": "Liberty",
-    "highway": "FM 1413",
-    "projectName": "RIVER RANCH PARKWAY-LIBERTY COUNTY",
-    "projectDescription": "New road between SH 146 and FM 1409.The location would be South of Dayton in the River Ranch area and be an extension of FM 1413 as it currently ends at SH 146.",
-    "projectType": "Construct New Road",
-    "typeOfWork": "Construct New Road",
-    "estimate": 1000000.0,
-    "letDate": "01/15/2027",
-    "subCSJs": [],
-    "subCSJCount": 0
-  },
-  {
-    "csj": "5000-00-359",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 78",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 772272.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-359"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-293",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 7",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1862485.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-293"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0922-33-217",
-    "county": "Webb",
-    "highway": "LOWRY LN",
-    "projectName": "Lowry Lane at Drainage Ditch",
-    "projectDescription": "FOR THE REPLACEMENT OF OFF-SYSTEM BRIDGE LOWRY LN AT DRAINAGE DITCH",
-    "projectType": "Bridge Replacement",
-    "typeOfWork": "Bridge Replacement",
-    "estimate": 700000.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0922-33-217"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-331",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 49",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773636.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-331"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-305",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 19",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-305"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-360",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 80",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774380.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-360"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6508-90-001",
-    "county": "Val Verde",
-    "highway": "US0277",
-    "projectName": "R&R EX Structure at US277(Vacas Street)",
-    "projectDescription": "Replacement of existing crossing structure located at US277(Vacas Street) in Val Verde County.",
-    "projectType": "BRIDGE REPLACEMENT",
-    "typeOfWork": "BRIDGE REPLACEMENT",
-    "estimate": 500000.0,
-    "letDate": "01/14/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6508-90-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1094-03-021",
-    "county": "Johnson",
-    "highway": "FM 731",
-    "projectName": "FY 26 GR - FM 731",
-    "projectDescription": "FY 2026 Green Ribbon Project: Landscape Enhancement- FM 731 from S Towne Dr to Greenridge Dr City of Burleson",
-    "projectType": "Landscape Development",
-    "typeOfWork": "Landscape Development",
-    "estimate": 650000.0,
-    "letDate": "01/14/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "1094-03-021"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0925-00-085",
-    "county": "Childress",
-    "highway": "Various",
-    "projectName": "2027 District Wide Striping",
-    "projectDescription": "2027 District Wide Striping",
-    "projectType": "Hazard Elimination & Safety",
-    "typeOfWork": "Hazard Elimination & Safety",
-    "estimate": 1500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0925-00-085"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0016-05-133",
-    "county": "Comal",
-    "highway": "IH 35",
-    "projectName": "0016-05-133; IH 35; OV",
-    "projectDescription": "Base Repair, Mill, Inlay & Pavement Markings on Mainlanes and on Frontage Rds. From SL 337. to Guadalupe River",
-    "projectType": "Resurface Roadway",
-    "typeOfWork": "Resurface Roadway",
-    "estimate": 16478233.9,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0016-05-133"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0906-00-273",
-    "county": "Ector",
-    "highway": "Various",
-    "projectName": "BRIDGE MAINTENANCE PROGRAM (2027) NORTH",
-    "projectDescription": "BRIDGE MAINTENANCE PROGRAM (2027) - NORTH SEGMENT",
-    "projectType": "Bridge Maintenance",
-    "typeOfWork": "Bridge Maintenance",
-    "estimate": 2000000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0906-00-273"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-373",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 96",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774813.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-373"
-    ],
-    "subCSJCount": 1
-  },
-  {
     "csj": "5000-00-377",
     "county": "Travis",
     "highway": "Various",
@@ -3899,18 +3864,34 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-340",
+    "csj": "5000-00-301",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 58",
+    "projectName": "NEVI - NCTCOG - Study Area 15",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 773387.5,
+    "estimate": 659493.75,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-340"
+      "5000-00-301"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-291",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 5",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 768552.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-291"
     ],
     "subCSJCount": 1
   },
@@ -3977,6 +3958,309 @@
     "subCSJCount": 1
   },
   {
+    "csj": "0136-05-049",
+    "county": "Lamar",
+    "highway": "SH 19",
+    "projectName": "SH19 Overlay",
+    "projectDescription": "Overlay",
+    "projectType": "Preventive Maintenance",
+    "typeOfWork": "Preventive Maintenance",
+    "estimate": 13004091.31,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0136-04-053",
+      "0136-05-049",
+      "0136-06-057"
+    ],
+    "subCSJCount": 3
+  },
+  {
+    "csj": "5000-00-344",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 62",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 767436.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-344"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0902-20-242",
+    "county": "Wise",
+    "highway": "Various",
+    "projectName": "HSIP Wise.Jack Countywide 2028",
+    "projectDescription": "Install LED Roadside signs at multiple intersection locations",
+    "projectType": "Hazard Elimination & Safety",
+    "typeOfWork": "Hazard Elimination & Safety",
+    "estimate": 276184.71,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0902-20-242"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6510-07-001",
+    "county": "Bexar",
+    "highway": "IH0010",
+    "projectName": "West Bexar LRA",
+    "projectDescription": "LRA material only.",
+    "projectType": "LIMESTONE ROCK ASPHALT",
+    "typeOfWork": "LIMESTONE ROCK ASPHALT",
+    "estimate": 120000.0,
+    "letDate": "01/26/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6510-07-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "RIPRAP REPAIR",
+    "projectDescription": "VARIOUS WORK",
+    "county": "Uvalde",
+    "subCSJs": [
+      "6507-85-001"
+    ],
+    "projectName": "UVALDE REGION FLOOD REPAIR",
+    "highway": "RM1050",
+    "subCSJCount": 1,
+    "estimate": 1000000.0,
+    "letDate": "01/07/2027",
+    "typeOfWork": "RIPRAP REPAIR",
+    "csj": "6507-85-001"
+  },
+  {
+    "csj": "5000-00-328",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 46",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 773636.25,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-328"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-37-001",
+    "county": "Bell",
+    "highway": "SH0036",
+    "projectName": "FY 2027 HOT MIX - BELL AND CORYELL",
+    "projectDescription": "HOT MIX - MATERIALS ONLY",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 1500000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-37-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "projectType": "DELINEATOR, OBJ MRK & MAILBOX MAINT",
+    "projectDescription": "Delineator and Mailbox Repair",
+    "county": "Montgomery",
+    "subCSJs": [
+      "6507-33-001"
+    ],
+    "projectName": "Delineators and Mailbox RMC 6507-33-001",
+    "highway": "IH0045",
+    "subCSJCount": 1,
+    "estimate": 223412.0,
+    "letDate": "01/06/2027",
+    "typeOfWork": "DELINEATOR, OBJ MRK & MAILBOX MAINT",
+    "csj": "6507-33-001"
+  },
+  {
+    "csj": "0527-06-022",
+    "county": "Fort Bend",
+    "highway": "FM 360",
+    "projectName": "FM 360: IH 69 to SH 36",
+    "projectDescription": "Base Repair, Planing, Seal Coat, Tack Coat, Overlay, Pavement Markings, and Signing",
+    "projectType": "Surfacing/Roadway Restoration",
+    "typeOfWork": "Surfacing/Roadway Restoration",
+    "estimate": 3815251.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0527-06-022"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-324",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 38",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 771590.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-324"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0912-72-838",
+    "county": "Harris",
+    "highway": "ELYSIAN ST",
+    "projectName": "Elysian: McKee to Brooks",
+    "projectDescription": "Retrofit existing TxDOT viaduct to incorporate a 20 foot wide shared use path (SUP).  The SUP will provide overall connectivity to existing and programmed trails in the vicinity.  Scope includes intersection tie-ins at N & S ends of the viaduct",
+    "projectType": "Bicycle And Pedestrian Improvements",
+    "typeOfWork": "Bicycle And Pedestrian Improvements",
+    "estimate": 9500000.0,
+    "letDate": "01/15/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0912-72-838"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-29-001",
+    "county": "Zapata",
+    "highway": "SH0016",
+    "projectName": "6512-29-001 Hot Mix",
+    "projectDescription": "Hot Mix",
+    "projectType": "HOT MIX",
+    "typeOfWork": "HOT MIX",
+    "estimate": 100000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6512-29-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6508-99-001",
+    "county": "Harris",
+    "highway": "IH0045",
+    "projectName": "RMC 6508-99-001 Bundle Bid",
+    "projectDescription": "Various repair items on I 45 in Harris County.",
+    "projectType": "BUNDLED BID",
+    "typeOfWork": "BUNDLED BID",
+    "estimate": 1900000.0,
+    "letDate": "01/06/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "6508-99-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0718-01-077",
+    "county": "Denton",
+    "highway": "FM 156",
+    "projectName": "FM156 at Chaplin Dr",
+    "projectDescription": "Install Traffic Signal,  Safety Lighting at Intersection",
+    "projectType": "Install Traffic Signal",
+    "typeOfWork": "Install Traffic Signal",
+    "estimate": 504589.75,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0718-01-077"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "1718-07-051",
+    "county": "Midland",
+    "highway": "SH 349",
+    "projectName": "SH349_GatewayBlvd_Signal",
+    "projectDescription": "INSTALL TRAFFIC SIGNAL",
+    "projectType": "Install Traffic Signal",
+    "typeOfWork": "Install Traffic Signal",
+    "estimate": 278974.4,
+    "letDate": "01/02/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "1718-07-051"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-352",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 70",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 770970.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-352"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-348",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 66",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 767870.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-348"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-326",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 44",
+    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 772767.5,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-326"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "6512-52-001",
+    "county": "El Paso",
+    "highway": "IH0010",
+    "projectName": "WAO - Flexible Pavement",
+    "projectDescription": "Flexible Pavement Structure Repair",
+    "projectType": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
+    "typeOfWork": "FLEXIBLE PAVEMENT STRUCTURE REPAIR",
+    "estimate": 1.0,
+    "letDate": "01/05/2027",
+    "subCSJs": [
+      "6512-52-001"
+    ],
+    "subCSJCount": 1
+  },
+  {
     "csj": "1685-02-058",
     "county": "Harris",
     "highway": "FM 1960",
@@ -4026,225 +4310,66 @@
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-297",
+    "csj": "5000-00-359",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 11",
-    "projectDescription": "Install 12 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1135083.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-297"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-334",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 52",
+    "projectName": "NEVI - NCTCOG - Study Area 78",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 774380.0,
+    "estimate": 772272.5,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-334"
+      "5000-00-359"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-351",
+    "csj": "5000-00-293",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 69",
+    "projectName": "NEVI - NCTCOG - Study Area 7",
+    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
+    "projectType": "Transportation Non-Roadway",
+    "typeOfWork": "Transportation Non-Roadway",
+    "estimate": 1862485.0,
+    "letDate": "01/04/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "5000-00-293"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "0922-33-217",
+    "county": "Webb",
+    "highway": "LOWRY LN",
+    "projectName": "Lowry Lane at Drainage Ditch",
+    "projectDescription": "FOR THE REPLACEMENT OF OFF-SYSTEM BRIDGE LOWRY LN AT DRAINAGE DITCH",
+    "projectType": "Bridge Replacement",
+    "typeOfWork": "Bridge Replacement",
+    "estimate": 700000.0,
+    "letDate": "01/07/2027",
+    "monthCode": "2027-01",
+    "subCSJs": [
+      "0922-33-217"
+    ],
+    "subCSJCount": 1
+  },
+  {
+    "csj": "5000-00-331",
+    "county": "Travis",
+    "highway": "Various",
+    "projectName": "NEVI - NCTCOG - Study Area 49",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 767870.0,
+    "estimate": 773636.25,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-351"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-301",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 15",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-301"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-291",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 5",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 768552.5,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-291"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-320",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 34",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 445213.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-320"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "1718-07-051",
-    "county": "Midland",
-    "highway": "SH 349",
-    "projectName": "SH349_GatewayBlvd_Signal",
-    "projectDescription": "INSTALL TRAFFIC SIGNAL",
-    "projectType": "Install Traffic Signal",
-    "typeOfWork": "Install Traffic Signal",
-    "estimate": 278974.4,
-    "letDate": "01/02/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "1718-07-051"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5500-00-156",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "Delta Sands Drainage and Support",
-    "projectDescription": "Acquire fee for drainage strip next to proposed turn lanes",
-    "projectType": "Donation",
-    "typeOfWork": "Donation",
-    "estimate": 7500.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5500-00-156"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "TREE TRIMMING AND BRUSH REMOVAL",
-    "projectDescription": "Tree and Brush Removal",
-    "county": "Galveston",
-    "subCSJs": [
-      "6504-64-001"
-    ],
-    "projectName": "FY 27 Tree and Brush Removal",
-    "highway": "SH0146",
-    "subCSJCount": 1,
-    "estimate": 400000.0,
-    "letDate": "01/06/2027",
-    "typeOfWork": "TREE TRIMMING AND BRUSH REMOVAL",
-    "csj": "6504-64-001"
-  },
-  {
-    "csj": "6508-62-001",
-    "county": "Houston",
-    "highway": "US0287",
-    "projectName": "2027 HOUSTON DITCH CLEANING",
-    "projectDescription": "DITCH AND CULVERT CLEANING",
-    "projectType": "DITCH CLEANING AND RESHAPING",
-    "typeOfWork": "DITCH CLEANING AND RESHAPING",
-    "estimate": 332092.0,
-    "letDate": "01/20/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6508-62-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6512-35-001",
-    "county": "Falls",
-    "highway": "SH0007",
-    "projectName": "FY 2027 HOT MIX - FALLS AND LIMESTONE",
-    "projectDescription": "HOT MIX - MATERIALS ONLY",
-    "projectType": "HOT MIX",
-    "typeOfWork": "HOT MIX",
-    "estimate": 1500000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6512-35-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-319",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 33",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-319"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-344",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 62",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 767436.25,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-344"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6510-07-001",
-    "county": "Bexar",
-    "highway": "IH0010",
-    "projectName": "West Bexar LRA",
-    "projectDescription": "LRA material only.",
-    "projectType": "LIMESTONE ROCK ASPHALT",
-    "typeOfWork": "LIMESTONE ROCK ASPHALT",
-    "estimate": 120000.0,
-    "letDate": "01/26/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6510-07-001"
+      "5000-00-331"
     ],
     "subCSJCount": 1
   },
@@ -4296,26 +4421,10 @@
     "subCSJCount": 1
   },
   {
-    "csj": "1685-05-141",
-    "county": "Harris",
-    "highway": "SH 6",
-    "projectName": "SH 6, US 290 to FM 529 LED Lights",
-    "projectDescription": "Install LED Safety Lighting",
-    "projectType": "Install/Upgrade Roadway Lighting",
-    "typeOfWork": "Install/Upgrade Roadway Lighting",
-    "estimate": 2312543.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "1685-05-141"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-316",
+    "csj": "5000-00-305",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 30",
+    "projectName": "NEVI - NCTCOG - Study Area 19",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
@@ -4323,134 +4432,39 @@
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-316"
+      "5000-00-305"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "5000-00-382",
+    "csj": "5000-00-360",
     "county": "Travis",
     "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 170",
-    "projectDescription": "Install 8 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 1528420.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-382"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "6495-76-001",
-    "county": "Potter",
-    "highway": "IH0040",
-    "projectName": "FY 27 Bridge Cyclic Maint Amarillo Urban",
-    "projectDescription": "FY 27 Bridge Cyclic Maintenance 9 Amarillo Urban Structure Group",
-    "projectType": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "typeOfWork": "BRIDGE PREVENTATIVE MAINTENANCE",
-    "estimate": 1000000.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6495-76-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "projectDescription": "Reflective pavement marking repairs on various highways located in Fort Bend County.",
-    "county": "Fort Bend",
-    "subCSJs": [
-      "6495-05-001"
-    ],
-    "projectName": "RMC 6495-05-001",
-    "highway": "US 59",
-    "subCSJCount": 1,
-    "estimate": 557000.0,
-    "letDate": "01/05/2027",
-    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "csj": "6495-05-001"
-  },
-  {
-    "csj": "6502-85-001",
-    "county": "Harris",
-    "highway": "FM1093",
-    "projectName": "FY27 Restripe FM 1093",
-    "projectDescription": "Restripe Longline",
-    "projectType": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "typeOfWork": "REFLECTIVE PAVEMENT MARKINGS (LONG LINE)",
-    "estimate": 100000.0,
-    "letDate": "01/06/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "6502-85-001"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-299",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 13",
+    "projectName": "NEVI - NCTCOG - Study Area 80",
     "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
     "projectType": "Transportation Non-Roadway",
     "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 659493.75,
+    "estimate": 774380.0,
     "letDate": "01/04/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "5000-00-299"
+      "5000-00-360"
     ],
     "subCSJCount": 1
   },
   {
-    "csj": "0172-09-047",
-    "county": "Tarrant",
-    "highway": "US 287",
-    "projectName": "US 287; FM 157 to Heritage Pkwy",
-    "projectDescription": "Diamond Grinding and Pavement Markings",
-    "projectType": "Reconstruct Existing Roadway",
-    "typeOfWork": "Reconstruct Existing Roadway",
-    "estimate": 4029170.17,
-    "letDate": "01/06/2027",
+    "csj": "6508-90-001",
+    "county": "Val Verde",
+    "highway": "US0277",
+    "projectName": "R&R EX Structure at US277(Vacas Street)",
+    "projectDescription": "Replacement of existing crossing structure located at US277(Vacas Street) in Val Verde County.",
+    "projectType": "BRIDGE REPLACEMENT",
+    "typeOfWork": "BRIDGE REPLACEMENT",
+    "estimate": 500000.0,
+    "letDate": "01/14/2027",
     "monthCode": "2027-01",
     "subCSJs": [
-      "0172-09-047"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "0527-06-022",
-    "county": "Fort Bend",
-    "highway": "FM 360",
-    "projectName": "FM 360: IH 69 to SH 36",
-    "projectDescription": "Base Repair, Planing, Seal Coat, Tack Coat, Overlay, Pavement Markings, and Signing",
-    "projectType": "Surfacing/Roadway Restoration",
-    "typeOfWork": "Surfacing/Roadway Restoration",
-    "estimate": 3815251.0,
-    "letDate": "01/07/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "0527-06-022"
-    ],
-    "subCSJCount": 1
-  },
-  {
-    "csj": "5000-00-324",
-    "county": "Travis",
-    "highway": "Various",
-    "projectName": "NEVI - NCTCOG - Study Area 38",
-    "projectDescription": "Install 4 Direct Current Fast Charge ports plus 5 years of Operations and Maintenance.",
-    "projectType": "Transportation Non-Roadway",
-    "typeOfWork": "Transportation Non-Roadway",
-    "estimate": 771590.0,
-    "letDate": "01/04/2027",
-    "monthCode": "2027-01",
-    "subCSJs": [
-      "5000-00-324"
+      "6508-90-001"
     ],
     "subCSJCount": 1
   }
