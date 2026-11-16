@@ -3459,10 +3459,19 @@
                                 highway: item.highway,
                                 projectName: item.projectName || item.projectType,
                                 projectType: item.projectType,
+                                typeOfWork: item.typeOfWork || item.projectType,
                                 letDate: item.letDate,
                                 engEstTotal: item.estimate || 0,
                                 isPreBid: true,
-                                statusNote: "Scheduled Pre-Bid Proposal"
+                                statusNote: "Scheduled Pre-Bid Proposal",
+                                category: item.category,
+                                letType: item.letType,
+                                stateProjectNumber: item.stateProjectNumber,
+                                contractNum: item.contractNumber,
+                                projectId: item.projectId,
+                                proposalUrl: item.proposalUrl,
+                                planUrl: item.planUrl,
+                                planVolumes: item.planVolumes
                             },
                             bidders: [],
                             items: cachedItems
@@ -3507,6 +3516,14 @@
                     if (monthlyMatch.highway && monthlyMatch.highway !== 'N/A') data.metadata.highway = monthlyMatch.highway;
                     if (monthlyMatch.projectType) data.metadata.projectType = monthlyMatch.projectType;
                     if (monthlyMatch.estimate && monthlyMatch.estimate > 0) data.metadata.engEstTotal = monthlyMatch.estimate;
+                    if (monthlyMatch.category) data.metadata.category = monthlyMatch.category;
+                    if (monthlyMatch.letType) data.metadata.letType = monthlyMatch.letType;
+                    if (monthlyMatch.stateProjectNumber) data.metadata.stateProjectNumber = monthlyMatch.stateProjectNumber;
+                    if (monthlyMatch.contractNumber) data.metadata.contractNum = monthlyMatch.contractNumber;
+                    if (monthlyMatch.projectId) data.metadata.projectId = monthlyMatch.projectId;
+                    if (monthlyMatch.proposalUrl) data.metadata.proposalUrl = monthlyMatch.proposalUrl;
+                    if (monthlyMatch.planUrl) data.metadata.planUrl = monthlyMatch.planUrl;
+                    if (monthlyMatch.planVolumes) data.metadata.planVolumes = monthlyMatch.planVolumes;
                     if (monthlyMatch.items && monthlyMatch.items.length > 0 && (!data.items || data.items.length === 0)) {
                         data.items = monthlyMatch.items;
                     }
@@ -3528,7 +3545,7 @@
             }
         }
 
-        function getTxDOTFtpUrls(csj, county, letDate, projectType) {
+        function getTxDOTFtpUrls(csj, county, letDate, projectType, letType, category) {
             let year = "2026";
             let monthNum = "09";
             let monthName = "September";
@@ -3575,7 +3592,8 @@
             const makeCatUrls = (catName) => {
                 const base = `https://ftp.txdot.gov/plans/${catName}/${year}/${monthFolder}`;
                 const plansFolder = `${base}/${monthNum}%20Plans/`;
-                const propFolderDirName = catName === 'Local-Let-Maintenance' ? `${monthNum}%20Proposal` : `${monthNum}%20Proposals`;
+                const mNum = parseInt(monthNum, 10);
+                const propFolderDirName = (catName === 'Local-Let-Maintenance' && mNum < 12) ? `${monthNum}%20Proposal` : `${monthNum}%20Proposals`;
                 const proposalsFolder = `${base}/${propFolderDirName}/`;
                 
                 let directPlan1 = plansFolder;
@@ -3605,15 +3623,31 @@
             const local = makeCatUrls('Local-Let-Maintenance');
             const rootPlans = `https://ftp.txdot.gov/plans/`;
 
-            // Determine primary category recommendation based on CSJ & projectType
+            // Determine primary category recommendation based on category, letType, CSJ & projectType
             let primaryCat = 'State-Let-Construction';
             const pTypeStr = ((projectType || '') + ' ' + (county || '')).toLowerCase();
-            if (cleanCSJ.startsWith('6') || pTypeStr.includes('maintenance') || pTypeStr.includes('mmc') || pTypeStr.includes('rmc') || pTypeStr.includes('sup')) {
-                if (pTypeStr.includes('local') || pTypeStr.includes('district let')) {
-                    primaryCat = 'Local-Let-Maintenance';
-                } else {
-                    primaryCat = 'State-Let-Maintenance';
-                }
+            const letTypeStr = (letType || '').toLowerCase();
+            const catStr = (category || '').trim();
+
+            const isMaterialLocal = (catStr === 'Local-Let-Maintenance') ||
+                letTypeStr.includes('local') || letTypeStr.includes('district') ||
+                pTypeStr.includes('local') || pTypeStr.includes('district let') ||
+                pTypeStr.includes('mmc') ||
+                pTypeStr.includes('aggregate') || pTypeStr.includes('hot mix') ||
+                pTypeStr.includes('emulsion') || pTypeStr.includes('asphalt') ||
+                pTypeStr.includes('limestone rock') || pTypeStr.includes('lra') ||
+                pTypeStr.includes('winter weather') || pTypeStr.includes('cement') ||
+                pTypeStr.includes('rock') || pTypeStr.includes('flexible base');
+
+            const isStateMaintenance = (catStr === 'State-Let-Maintenance') ||
+                cleanCSJ.startsWith('6') || cleanCSJ.startsWith('5') ||
+                letTypeStr.includes('statewide let') ||
+                pTypeStr.includes('maintenance') || pTypeStr.includes('rmc') || pTypeStr.includes('bmc') || pTypeStr.includes('sup');
+
+            if (isMaterialLocal) {
+                primaryCat = 'Local-Let-Maintenance';
+            } else if (isStateMaintenance) {
+                primaryCat = 'State-Let-Maintenance';
             } else {
                 primaryCat = 'State-Let-Construction';
             }
@@ -3666,6 +3700,25 @@
                 const item = currentMonthlyList ? currentMonthlyList.find(p => p.csj === csj) : null;
                 const targetCcsj = item ? (item.ccsj || '') : '';
                 const itemCounty = item ? (item.county || '').trim().toLowerCase() : '';
+
+                // 1. Check item and currentProjectData.metadata first
+                if (item && item.proposalUrl) {
+                    foundPropUrl = item.proposalUrl;
+                    foundPropName = item.proposalName || (item.county + ' ' + item.csj + ' Proposal.pdf');
+                }
+                if (item && item.planUrl) {
+                    foundPlanUrl = item.planUrl;
+                    foundPlanName = item.planName || (item.county + ' ' + item.csj + ' Plans.pdf');
+                }
+                if (item && item.planVolumes) {
+                    foundPlanVolumes = item.planVolumes;
+                }
+                if (currentProjectData && currentProjectData.metadata) {
+                    const cMeta = currentProjectData.metadata;
+                    if (!foundPropUrl && cMeta.proposalUrl) foundPropUrl = cMeta.proposalUrl;
+                    if (!foundPlanUrl && cMeta.planUrl) foundPlanUrl = cMeta.planUrl;
+                    if (!foundPlanVolumes && cMeta.planVolumes) foundPlanVolumes = cMeta.planVolumes;
+                }
 
                 // Load proposals map JSON
                 const propMapPaths = [
@@ -3756,7 +3809,14 @@
                     } catch (e) {}
                 }
 
-                const ftpUrls = getTxDOTFtpUrls(csj, item ? item.county : '', item ? item.letDate : '', item ? item.projectType : '');
+                const metaRef = (currentProjectData && currentProjectData.metadata) ? currentProjectData.metadata : null;
+                const countyRef = item ? item.county : (metaRef ? metaRef.county : '');
+                const letDateRef = item ? item.letDate : (metaRef ? metaRef.letDate : '');
+                const pTypeRef = item ? item.projectType : (metaRef ? metaRef.projectType : '');
+                const letTypeRef = item ? item.letType : (metaRef ? metaRef.letType : '');
+                const catRef = item ? item.category : (metaRef ? metaRef.category : '');
+
+                const ftpUrls = getTxDOTFtpUrls(csj, countyRef, letDateRef, pTypeRef, letTypeRef, catRef);
                 
                 let projectYear = 2026;
                 if (m && typeof m === 'string' && m.includes('-')) {
@@ -3785,8 +3845,8 @@
                     : ((ftpUrls && ftpUrls.primaryCat === 'Local-Let-Maintenance') ? 'local' : 'construction');
                 const activeCatObj = ftpUrls ? ftpUrls[activeCatKey] : null;
 
-                const fallbackPropUrl = activeCatObj ? activeCatObj.proposalsFolder : (ftpUrls ? ftpUrls.construction.proposalsFolder : 'https://ftp.txdot.gov/plans/');
-                const fallbackPlanUrl = activeCatObj ? activeCatObj.plansFolder : (ftpUrls ? ftpUrls.construction.plansFolder : 'https://ftp.txdot.gov/plans/');
+                const fallbackPropUrl = activeCatObj ? (activeCatObj.directProposal || activeCatObj.proposalsFolder) : (ftpUrls ? ftpUrls.construction.directProposal : 'https://ftp.txdot.gov/plans/');
+                const fallbackPlanUrl = activeCatObj ? (activeCatObj.directPlan2 || activeCatObj.plansFolder) : (ftpUrls ? ftpUrls.construction.directPlan2 : 'https://ftp.txdot.gov/plans/');
 
                 const isDirectPropPdf = Boolean(foundPropUrl && (foundPropUrl.toLowerCase().endsWith('.pdf') || foundPropUrl.toLowerCase().includes('.pdf')));
                 const isDirectPlanPdf = Boolean(foundPlanUrl && (foundPlanUrl.toLowerCase().endsWith('.pdf') || foundPlanUrl.toLowerCase().includes('.pdf')));
@@ -3794,11 +3854,11 @@
                 const finalPropUrl = isDirectPropPdf ? foundPropUrl : fallbackPropUrl;
                 const finalPlanUrl = isDirectPlanPdf ? foundPlanUrl : fallbackPlanUrl;
 
-                const propLabel = isDirectPropPdf ? 'Project Proposal 📄' : 'TxDOT Proposals 📂';
-                const propTitle = isDirectPropPdf ? 'Open TxDOT Official Proposal PDF' : 'Exact Proposal PDF not yet published by TxDOT for this letting date. Click to browse TxDOT official Proposals folder for this month.';
+                const propLabel = 'Project Proposal 📄';
+                const propTitle = isDirectPropPdf ? 'Open TxDOT Official Proposal PDF' : 'Open TxDOT Official Proposal PDF (Direct Link)';
 
-                const planLabel = isDirectPlanPdf ? (foundPlanVolumes && foundPlanVolumes.length > 1 ? `Project Plans (${foundPlanVolumes.length} Vols) 📄` : 'Project Plans 📄') : 'TxDOT Plans 📂';
-                const planTitle = isDirectPlanPdf ? 'Open TxDOT Official Plans PDF' : 'Exact Plans PDF not yet published by TxDOT for this letting date. Click to browse TxDOT official Plans folder for this month.';
+                const planLabel = isDirectPlanPdf ? (foundPlanVolumes && foundPlanVolumes.length > 1 ? `Project Plans (${foundPlanVolumes.length} Vols) 📄` : 'Project Plans 📄') : 'Project Plans 📄';
+                const planTitle = isDirectPlanPdf ? 'Open TxDOT Official Plans PDF' : 'Open TxDOT Official Plans PDF (Direct Link)';
 
                 ['actionPropPdfBtn', 'actionPropPdfBtnEst', 'actionPropPdfBtnBidTab'].forEach(id => {
                     const btn = document.getElementById(id);
@@ -3973,7 +4033,13 @@
             }
 
             // Contract Type resolution
-            if (!meta.contractType || meta.contractType === "WAIVED MATERIALS") {
+            if (meta.letType) {
+                meta.contractType = meta.letType.toUpperCase();
+            } else if (meta.category === 'Local-Let-Maintenance') {
+                meta.contractType = "LOCAL DISTRICT LET";
+            } else if (meta.category === 'State-Let-Maintenance') {
+                meta.contractType = "STATEWIDE LET (MAINTENANCE)";
+            } else if (!meta.contractType || meta.contractType === "WAIVED MATERIALS" || meta.contractType === "STATE") {
                 const isFed = meta.isFederal || (meta.projectId && meta.projectId.startsWith('F')) || (projName.includes('SAFETY') || projName.includes('HAZARD') || itemText.includes('SAFETY'));
                 meta.contractType = isFed ? "FEDERAL" : "STATE";
             }
@@ -4711,28 +4777,30 @@
                                 (hasCompletedItems && isPastBidDate);
 
             // Generate TxDOT FTP 2026 Plan & Proposal URLs across categories
-            const ftpUrls = getTxDOTFtpUrls(meta.csj, meta.county, meta.letDate, meta.projectType);
+            const ftpUrls = getTxDOTFtpUrls(meta.csj, meta.county, meta.letDate, meta.projectType, meta.letType, meta.category);
 
             // Active category object
             const activeCatObj = ftpUrls[ftpUrls.primaryCat === 'State-Let-Maintenance' ? 'maintenance' : (ftpUrls.primaryCat === 'Local-Let-Maintenance' ? 'local' : 'construction')];
 
             if (activeCatObj) {
+                const initialProp = meta.proposalUrl || activeCatObj.directProposal || activeCatObj.proposalsFolder;
+                const initialPlan = meta.planUrl || activeCatObj.directPlan2 || activeCatObj.plansFolder;
                 ['actionPropPdfBtn', 'actionPropPdfBtnEst', 'actionPropPdfBtnBidTab'].forEach(id => {
                     const btn = document.getElementById(id);
                     if (btn) {
-                        btn.href = activeCatObj.proposalsFolder;
-                        btn.title = "TxDOT Official Proposals Directory";
+                        btn.href = initialProp;
+                        btn.title = "Open TxDOT Official Proposal PDF";
                         const span = btn.querySelector('span');
-                        if (span) span.innerText = 'TxDOT Proposals 📂';
+                        if (span) span.innerText = 'Project Proposal 📄';
                     }
                 });
                 ['actionPlanPdfBtn', 'actionPlanPdfBtnEst', 'actionPlanPdfBtnBidTab'].forEach(id => {
                     const btn = document.getElementById(id);
                     if (btn) {
-                        btn.href = activeCatObj.plansFolder;
-                        btn.title = "TxDOT Official Plans Directory";
+                        btn.href = initialPlan;
+                        btn.title = "Open TxDOT Official Plans PDF";
                         const span = btn.querySelector('span');
-                        if (span) span.innerText = 'TxDOT Plans 📂';
+                        if (span) span.innerText = 'Project Plans 📄';
                     }
                 });
             }

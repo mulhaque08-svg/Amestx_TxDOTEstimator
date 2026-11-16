@@ -39,6 +39,19 @@ MONTH_CONFIGS = [
     ("2027-02", "2027-02-01", "2027-03-01"),
 ]
 
+try:
+    from sync_txdot_ftp_maps import sync_month_ftp_map
+except ImportError:
+    try:
+        from backend.sync_txdot_ftp_maps import sync_month_ftp_map
+    except ImportError:
+        sync_month_ftp_map = None
+
+MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+
 def query_socrata(start_date, end_date):
     start_iso = f"{start_date}T00:00:00"
     end_iso = f"{end_date}T00:00:00"
@@ -66,6 +79,30 @@ def process_month(month_code, start_date, end_date):
     print(f"  PROCESSING MASTER BUNDLING: {month_code}")
     print(f"=======================================================")
     
+    # Try syncing live FTP maps for this month
+    month_parts = month_code.split('-')
+    year_val = int(month_parts[0])
+    month_idx = int(month_parts[1])
+    month_name = MONTH_NAMES[month_idx - 1]
+    month_num_str = f"{month_idx:02d}"
+
+    ftp_map = {}
+    if sync_month_ftp_map:
+        try:
+            ftp_map, _ = sync_month_ftp_map(year_val, month_idx)
+        except Exception as e:
+            print(f"Notice: sync_month_ftp_map failed for {month_code}: {e}")
+
+    # If ftp_map is still empty, try reading local file
+    if not ftp_map:
+        ftp_map_file = os.path.join(BASE_DIR, 'downloads', f"ftp_map_{month_code}.json")
+        if os.path.exists(ftp_map_file):
+            try:
+                with open(ftp_map_file, 'r', encoding='utf-8') as f:
+                    ftp_map = json.load(f)
+            except Exception:
+                pass
+
     rows = query_socrata(start_date, end_date)
     print(f"Fetched {len(rows)} raw rows from drau-zphx.")
     
@@ -87,7 +124,7 @@ def process_month(month_code, start_date, end_date):
                     c = p.get('csj')
                     if c:
                         existing_map[c] = p
-        except:
+        except Exception:
             pass
 
     master_list = []
@@ -104,7 +141,7 @@ def process_month(month_code, start_date, end_date):
                         v = float(r.get(ef))
                         if v > est:
                             est = v
-                    except:
+                    except Exception:
                         pass
         
         d_fmt = format_date(ctrl_row.get('bid_received_until_date_and') or ctrl_row.get('project_approved_let_date') or ctrl_row.get('project_estimated_let_date'))
@@ -112,15 +149,72 @@ def process_month(month_code, start_date, end_date):
         type_of_work = ctrl_row.get('type_of_work') or ctrl_row.get('short_description') or ctrl_row.get('project_classification') or 'Highway Construction'
         proj_name = ctrl_row.get('project_name') or ctrl_row.get('project_description') or type_of_work
         proj_desc = ctrl_row.get('project_description') or proj_name
+        county_name = ctrl_row.get('county') or 'Texas'
+
+        # Precise Category & Direct URL Resolution
+        let_type = ctrl_row.get('let_type_description') or ctrl_row.get('let_type') or 'Statewide Let'
+        state_proj_num = ctrl_row.get('state_project_number') or ''
+        proj_class = ctrl_row.get('project_classification') or ''
+        contract_num = ctrl_row.get('contract_number') or ''
+        proj_id = ctrl_row.get('project_id') or ''
+
+        all_desc_text = f"{type_of_work} {proj_name} {proj_desc} {proj_class}".lower()
+        is_material_local = (
+            'local' in let_type.lower() or
+            'district' in let_type.lower() or
+            state_proj_num.startswith('MMC') or
+            'material' in proj_class.lower() or
+            any(w in all_desc_text for w in [
+                'aggregate', 'hot mix', 'emulsion', 'asphalt', 'limestone rock',
+                'lra', 'winter weather', 'cement', 'rock', 'flexible base'
+            ])
+        )
+
+        if is_material_local:
+            cat = 'Local-Let-Maintenance'
+        elif ccsj.startswith('6') or ccsj.startswith('5') or state_proj_num.startswith('RMC') or 'maintenance' in (ctrl_row.get('project_type') or '').lower():
+            cat = 'State-Let-Maintenance'
+        else:
+            cat = 'State-Let-Construction'
+
+        prop_url = None
+        plan_url = None
+        plan_vols = None
+        if ccsj in ftp_map:
+            prop_url = ftp_map[ccsj].get('proposalUrl')
+            plan_url = ftp_map[ccsj].get('planUrl')
+            plan_vols = ftp_map[ccsj].get('planVolumes')
+            if ftp_map[ccsj].get('category'):
+                cat = ftp_map[ccsj].get('category')
+
+        # Fallback direct URLs
+        prop_dir = f"{month_num_str}%20Proposal" if (cat == 'Local-Let-Maintenance' and month_idx < 12) else f"{month_num_str}%20Proposals"
+        safe_c = urllib.parse.quote(county_name.strip())
+        safe_csj = urllib.parse.quote(ccsj.strip())
+
+        if not prop_url:
+            prop_url = f"https://ftp.txdot.gov/plans/{cat}/{year_val}/{month_num_str}%20{month_name}/{prop_dir}/{safe_c}%20{safe_csj}%20Proposal.pdf"
+        if not plan_url:
+            plan_url = f"https://ftp.txdot.gov/plans/{cat}/{year_val}/{month_num_str}%20{month_name}/{month_num_str}%20Plans/{safe_c}%20{safe_csj}%20Plans.pdf"
 
         entry = dict(existing_map.get(ccsj, {}))
         entry['csj'] = ccsj
-        entry['county'] = ctrl_row.get('county') or entry.get('county', 'Texas')
+        entry['county'] = county_name or entry.get('county', 'Texas')
         entry['highway'] = ctrl_row.get('highway') or entry.get('highway', 'VARIOUS')
         entry['projectName'] = proj_name
         entry['projectDescription'] = proj_desc
         entry['projectType'] = type_of_work
         entry['typeOfWork'] = type_of_work
+        entry['category'] = cat
+        entry['letType'] = let_type
+        entry['stateProjectNumber'] = state_proj_num
+        entry['contractNumber'] = contract_num or entry.get('contractNumber', '')
+        entry['projectId'] = proj_id or entry.get('projectId', '')
+        entry['proposalUrl'] = prop_url
+        entry['planUrl'] = plan_url
+        if plan_vols:
+            entry['planVolumes'] = plan_vols
+
         if est > 0:
             entry['estimate'] = est
         elif 'estimate' not in entry:
@@ -155,6 +249,11 @@ def process_month(month_code, start_date, end_date):
                 "projectDescription": "Limestone Rock Asphalt in Harrison County",
                 "projectType": "LIMESTONE ROCK ASPHALT",
                 "typeOfWork": "LIMESTONE ROCK ASPHALT",
+                "category": "Local-Let-Maintenance",
+                "letType": "Local District Let",
+                "stateProjectNumber": "MMC - 6509-80-001",
+                "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/12%20December/12%20Proposals/Harrison%206509-80-001%20Proposal.pdf",
+                "planUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/12%20December/12%20Plans/Harrison%206509-80-001%20Plans.pdf",
                 "estimate": 396480.0,
                 "letDate": "12/01/2026",
                 "subCSJs": ["6509-80-001"],
@@ -166,6 +265,10 @@ def process_month(month_code, start_date, end_date):
         if p_34:
             p_34['estimate'] = 184963.75
             p_34['letDate'] = '02/10/2027'
+            p_34['category'] = 'State-Let-Construction'
+            p_34['letType'] = 'Statewide Let'
+            p_34['proposalUrl'] = "https://ftp.txdot.gov/plans/State-Let-Construction/2027/02%20February/02%20Proposals/Collin%206504-34-001%20Proposal.pdf"
+            p_34['planUrl'] = "https://ftp.txdot.gov/plans/State-Let-Construction/2027/02%20February/02%20Plans/Collin%206504-34-001%20Plans.pdf"
         else:
             master_list.append({
                 "csj": "6504-34-001",
@@ -175,6 +278,10 @@ def process_month(month_code, start_date, end_date):
                 "projectDescription": "Turn Lanes on US 75",
                 "projectType": "TURN LANE",
                 "typeOfWork": "TURN LANE",
+                "category": "State-Let-Construction",
+                "letType": "Statewide Let",
+                "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2027/02%20February/02%20Proposals/Collin%206504-34-001%20Proposal.pdf",
+                "planUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2027/02%20February/02%20Plans/Collin%206504-34-001%20Plans.pdf",
                 "estimate": 184963.75,
                 "letDate": "02/10/2027",
                 "subCSJs": ["6504-34-001"],

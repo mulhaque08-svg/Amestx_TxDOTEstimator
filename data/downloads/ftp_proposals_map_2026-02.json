@@ -1,0 +1,690 @@
+{
+  "0446-06-018": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Austin%200446-06-018%20Proposal.pdf",
+    "proposalName": "Austin 0446-06-018 Proposal.pdf"
+  },
+  "0017-09-106": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Bexar%200017-09-106%20Proposal.pdf",
+    "proposalName": "Bexar 0017-09-106 Proposal.pdf"
+  },
+  "0073-02-090": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Bexar%200073-02-090%20Proposal.pdf",
+    "proposalName": "Bexar 0073-02-090 Proposal.pdf"
+  },
+  "0073-02-095": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Bexar%200073-02-095%20Proposal.pdf",
+    "proposalName": "Bexar 0073-02-095 Proposal.pdf"
+  },
+  "0915-00-279": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Bexar%200915-00-279%20Proposal.pdf",
+    "proposalName": "Bexar 0915-00-279 Proposal.pdf"
+  },
+  "0054-07-094": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Brown%200054-07-094%20Proposal.pdf",
+    "proposalName": "Brown 0054-07-094 Proposal.pdf"
+  },
+  "0150-05-051": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Burnet%200150-05-051%20Proposal.pdf",
+    "proposalName": "Burnet 0150-05-051 Proposal.pdf"
+  },
+  "0913-19-032": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Calhoun%200913-19-032%20Proposal.pdf",
+    "proposalName": "Calhoun 0913-19-032 Proposal.pdf"
+  },
+  "0220-07-072": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Cameron%200220-07-072%20Proposal.pdf",
+    "proposalName": "Cameron 0220-07-072 Proposal.pdf"
+  },
+  "0062-03-048": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Cass%200062-03-048%20Proposal.pdf",
+    "proposalName": "Cass 0062-03-048 Proposal.pdf"
+  },
+  "0026-06-033": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Colorado%200026-06-033%20Proposal.pdf",
+    "proposalName": "Colorado 0026-06-033 Proposal.pdf"
+  },
+  "0815-01-053": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Cooke%200815-01-053%20Proposal.pdf",
+    "proposalName": "Cooke 0815-01-053 Proposal.pdf"
+  },
+  "0009-03-051": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Dallas%200009-03-051%20Proposal.pdf",
+    "proposalName": "Dallas 0009-03-051 Proposal.pdf"
+  },
+  "0918-00-433": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Dallas%200918-00-433%20Proposal.pdf",
+    "proposalName": "Dallas 0918-00-433 Proposal.pdf"
+  },
+  "0918-47-445": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Dallas%200918-47-445%20Proposal.pdf",
+    "proposalName": "Dallas 0918-47-445 Proposal.pdf"
+  },
+  "2374-03-100": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Dallas%202374-03-100%20Proposal.pdf",
+    "proposalName": "Dallas 2374-03-100 Proposal.pdf"
+  },
+  "0913-00-128": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/De%20Witt%200913-00-128%20Proposal.pdf",
+    "proposalName": "De Witt 0913-00-128 Proposal.pdf"
+  },
+  "2552-04-059": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/El%20Paso%202552-04-059%20Proposal.pdf",
+    "proposalName": "El Paso 2552-04-059 Proposal.pdf"
+  },
+  "0048-03-099": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Ellis%200048-03-099%20Proposal.pdf",
+    "proposalName": "Ellis 0048-03-099 Proposal.pdf"
+  },
+  "2921-01-010": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Ellis%202921-01-010%20Proposal.pdf",
+    "proposalName": "Ellis 2921-01-010 Proposal.pdf"
+  },
+  "0902-49-069": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Erath%200902-49-069%20Proposal.pdf",
+    "proposalName": "Erath 0902-49-069 Proposal.pdf"
+  },
+  "0902-49-074": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Erath%200902-49-074%20Proposal.pdf",
+    "proposalName": "Erath 0902-49-074 Proposal.pdf"
+  },
+  "0209-03-053": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Falls%200209-03-053%20Proposal.pdf",
+    "proposalName": "Falls 0209-03-053 Proposal.pdf"
+  },
+  "0098-03-037": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Foard%200098-03-037%20Proposal.pdf",
+    "proposalName": "Foard 0098-03-037 Proposal.pdf"
+  },
+  "0912-34-207": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Fort%20Bend%200912-34-207%20Proposal.pdf",
+    "proposalName": "Fort Bend 0912-34-207 Proposal.pdf"
+  },
+  "0912-34-213": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Fort%20Bend%200912-34-213%20Proposal.pdf",
+    "proposalName": "Fort Bend 0912-34-213 Proposal.pdf"
+  },
+  "0057-05-033": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Freestone%200057-05-033%20Proposal.pdf",
+    "proposalName": "Freestone 0057-05-033 Proposal.pdf"
+  },
+  "0912-73-235": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Galveston%200912-73-235%20Proposal.pdf",
+    "proposalName": "Galveston 0912-73-235 Proposal.pdf"
+  },
+  "0138-08-033": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Gregg%200138-08-033%20Proposal.pdf",
+    "proposalName": "Gregg 0138-08-033 Proposal.pdf"
+  },
+  "0910-07-091": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Gregg%200910-07-091%20Proposal.pdf",
+    "proposalName": "Gregg 0910-07-091 Proposal.pdf"
+  },
+  "0366-02-096": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Guadalupe%200366-02-096%20Proposal.pdf",
+    "proposalName": "Guadalupe 0366-02-096 Proposal.pdf"
+  },
+  "0920-03-080": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Hardin%200920-03-080%20Proposal.pdf",
+    "proposalName": "Hardin 0920-03-080 Proposal.pdf"
+  },
+  "0050-06-092": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Harris%200050-06-092%20Proposal.pdf",
+    "proposalName": "Harris 0050-06-092 Proposal.pdf"
+  },
+  "0912-72-597": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Harris%200912-72-597%20Proposal.pdf",
+    "proposalName": "Harris 0912-72-597 Proposal.pdf"
+  },
+  "0976-01-047": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Harris%200976-01-047%20Proposal.pdf",
+    "proposalName": "Harris 0976-01-047 Proposal.pdf"
+  },
+  "1685-01-108": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Harris%201685-01-108%20Proposal.pdf",
+    "proposalName": "Harris 1685-01-108 Proposal.pdf"
+  },
+  "2642-02-029": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Harrison%202642-02-029%20Proposal.pdf",
+    "proposalName": "Harrison 2642-02-029 Proposal.pdf"
+  },
+  "2121-06-062": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Hudspeth%202121-06-062%20Propoal.pdf",
+    "proposalName": "Hudspeth 2121-06-062 Propoal.pdf"
+  },
+  "0072-03-020": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Kerr%200072-03-020%20Proposal.pdf",
+    "proposalName": "Kerr 0072-03-020 Proposal.pdf"
+  },
+  "0901-00-067": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Lamar%200901-00-067%20Proposal.pdf",
+    "proposalName": "Lamar 0901-00-067 Proposal.pdf"
+  },
+  "0445-02-068": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Lavaca%200445-02-068%20Proposal.pdf",
+    "proposalName": "Lavaca 0445-02-068 Proposal.pdf"
+  },
+  "0338-12-011": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Liberty%200338-12-011%20Proposal.pdf",
+    "proposalName": "Liberty 0338-12-011 Proposal.pdf"
+  },
+  "0905-00-127": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Lubbock%200905-00-127%20Proposal.pdf",
+    "proposalName": "Lubbock 0905-00-127 Proposal.pdf"
+  },
+  "0905-00-128": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Lubbock%200905-00-128%20Proposal.pdf",
+    "proposalName": "Lubbock 0905-00-128 Proposal.pdf"
+  },
+  "0918-18-142": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Navarro%200918-18-142%20Proposal.pdf",
+    "proposalName": "Navarro 0918-18-142 Proposal.pdf"
+  },
+  "0053-15-069": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Nolan%200053-15-069%20Proposal.pdf",
+    "proposalName": "Nolan 0053-15-069 Proposal.pdf"
+  },
+  "0074-06-247": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Nueces%200074-06-247%20Proposal.pdf",
+    "proposalName": "Nueces 0074-06-247 Proposal.pdf"
+  },
+  "0250-02-051": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Palo%20Pinto%200250-02-051%20Proposal.pdf",
+    "proposalName": "Palo Pinto 0250-02-051 Proposal.pdf"
+  },
+  "0902-39-048": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Palo%20Pinto%200902-39-048%20Proposal.pdf",
+    "proposalName": "Palo Pinto 0902-39-048 Proposal.pdf"
+  },
+  "0140-03-052": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Pecos%200140-03-052%20Proposal.pdf",
+    "proposalName": "Pecos 0140-03-052 Proposal.pdf"
+  },
+  "0176-04-088": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Polk%200176-04-088%20Proposal.pdf",
+    "proposalName": "Polk 0176-04-088 Proposal.pdf"
+  },
+  "0904-02-051": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Potter%200904-02-051%20Proposal.pdf",
+    "proposalName": "Potter 0904-02-051 Proposal.pdf"
+  },
+  "0077-01-032": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Reagan%200077-01-032%20Proposal.pdf",
+    "proposalName": "Reagan 0077-01-032 Proposal.pdf"
+  },
+  "0103-01-046": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Reeves%200103-01-046%20Proposal.pdf",
+    "proposalName": "Reeves 0103-01-046 Proposal.pdf"
+  },
+  "0180-02-048": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Refugio%200180-02-048%20Proposal.pdf",
+    "proposalName": "Refugio 0180-02-048 Proposal.pdf"
+  },
+  "1015-01-024": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Rockwall%201015-01-024%20Proposal.pdf",
+    "proposalName": "Rockwall 1015-01-024 Proposal.pdf"
+  },
+  "0450-02-014": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Rusk%200450-02-014%20Proposal.pdf",
+    "proposalName": "Rusk 0450-02-014 Proposal.pdf"
+  },
+  "0101-04-130": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/San%20Patricio%200101-04-130%20Proposal.pdf",
+    "proposalName": "San Patricio 0101-04-130 Proposal.pdf"
+  },
+  "1549-03-031": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/San%20Patricio%201549-03-031%20Proposal.pdf",
+    "proposalName": "San Patricio 1549-03-031 Proposal.pdf"
+  },
+  "0910-00-125": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Smith%200910-00-125%20Proposal.pdf",
+    "proposalName": "Smith 0910-00-125 Proposal.pdf"
+  },
+  "2398-01-064": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Taylor%202398-01-064%20Proposal.pdf",
+    "proposalName": "Taylor 2398-01-064 Proposal.pdf"
+  },
+  "0361-01-038": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Throckmorton%200361-01-038%20Proposal.pdf",
+    "proposalName": "Throckmorton 0361-01-038 Proposal.pdf"
+  },
+  "0015-11-075": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Travis%200015-11-075%20Proposal.pdf",
+    "proposalName": "Travis 0015-11-075 Proposal.pdf"
+  },
+  "0914-00-482": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Travis%200914-00-482%20Proposal.pdf",
+    "proposalName": "Travis 0914-00-482 Proposal.pdf"
+  },
+  "0914-00-560": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Travis%200914-00-560%20Proposal.pdf",
+    "proposalName": "Travis 0914-00-560 Proposal.pdf"
+  },
+  "0495-03-068": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Van%20Zandt%200495-03-068%20Proposal.pdf",
+    "proposalName": "Van Zandt 0495-03-068 Proposal.pdf"
+  },
+  "3047-02-012": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Waller%203047-02-012%20Proposal.pdf",
+    "proposalName": "Waller 3047-02-012 Proposal.pdf"
+  },
+  "0043-08-090": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Wichita%200043-08-090%20Proposal.pdf",
+    "proposalName": "Wichita 0043-08-090 Proposal.pdf"
+  },
+  "1201-02-026": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Williamson%201201-02-026%20Proposal.pdf",
+    "proposalName": "Williamson 1201-02-026 Proposal.pdf"
+  },
+  "1755-03-010": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Williamson%201755-03-010%20Proposal.pdf",
+    "proposalName": "Williamson 1755-03-010 Proposal.pdf"
+  },
+  "0134-11-034": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Wise%200134-11-034%20Proposal.pdf",
+    "proposalName": "Wise 0134-11-034 Proposal.pdf"
+  },
+  "0902-20-097": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Construction/2026/02%20February/02%20Proposals/Wise%200902-20-097%20Proposal.pdf",
+    "proposalName": "Wise 0902-20-097 Proposal.pdf"
+  },
+  "6494-87-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Brown%206494-87-001%20Proposal.pdf",
+    "proposalName": "Brown 6494-87-001 Proposal.pdf"
+  },
+  "6492-05-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Fort%20Bend%206492-05-001%20Proposal.pdf",
+    "proposalName": "Fort Bend 6492-05-001 Proposal.pdf"
+  },
+  "6491-95-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Hidalgo%206491-95-001%20Proposal.pdf",
+    "proposalName": "Hidalgo 6491-95-001 Proposal.pdf"
+  },
+  "6488-21-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Jefferson%206488-21-001%20Proposal.pdf",
+    "proposalName": "Jefferson 6488-21-001 Proposal.pdf"
+  },
+  "6492-36-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Lamar%206492-36-001%20Proposal.pdf",
+    "proposalName": "Lamar 6492-36-001 Proposal.pdf"
+  },
+  "6493-60-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Montgomery%206493-60-001%20Proposal.pdf",
+    "proposalName": "Montgomery 6493-60-001 Proposal.pdf"
+  },
+  "6483-15-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/State-Let-Maintenance/2026/02%20February/02%20Proposals/Travis%206483-15-001%20Proposal.pdf",
+    "proposalName": "Travis 6483-15-001 Proposal.pdf"
+  },
+  "6493-84-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Andrews%206493-84-001%20Proposal.pdf",
+    "proposalName": "Andrews 6493-84-001 Proposal.pdf"
+  },
+  "6485-65-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Archer%206485-65-001%20Proposal.pdf",
+    "proposalName": "Archer 6485-65-001 Proposal.pdf"
+  },
+  "6495-18-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Archer%206495-18-001%20Proposal.pdf",
+    "proposalName": "Archer 6495-18-001 Proposal.pdf"
+  },
+  "6494-46-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Austin%206494-46-001%20Proposal.pdf",
+    "proposalName": "Austin 6494-46-001 Proposal.pdf"
+  },
+  "6497-58-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Bee%206497-58-001%20Proposal.pdf",
+    "proposalName": "Bee 6497-58-001 Proposal.pdf"
+  },
+  "6497-59-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Bee%206497-59-001%20Proposal.pdf",
+    "proposalName": "Bee 6497-59-001 Proposal.pdf"
+  },
+  "6490-98-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Bowie%206490-98-001%20Proposal.pdf",
+    "proposalName": "Bowie 6490-98-001 Proposal.pdf"
+  },
+  "6490-99-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Bowie%206490-99-001%20Proposal.pdf",
+    "proposalName": "Bowie 6490-99-001 Proposal.pdf"
+  },
+  "6496-03-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Brazos%206496-03-001%20Proposal.pdf",
+    "proposalName": "Brazos 6496-03-001 Proposal.pdf"
+  },
+  "6496-30-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Brazos%206496-30-001%20Proposal.pdf",
+    "proposalName": "Brazos 6496-30-001 Proposal.pdf"
+  },
+  "6496-33-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Brazos%206496-33-001%20Proposal.pdf",
+    "proposalName": "Brazos 6496-33-001 Proposal.pdf"
+  },
+  "6496-37-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Brazos%206496-37-001%20Proposal.pdf",
+    "proposalName": "Brazos 6496-37-001 Proposal.pdf"
+  },
+  "6490-95-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Cass%206490-95-001%20Proposal.pdf",
+    "proposalName": "Cass 6490-95-001 Proposal.pdf"
+  },
+  "6492-57-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Castro%206492-57-001%20Proposal.pdf",
+    "proposalName": "Castro 6492-57-001 Proposal.pdf"
+  },
+  "6487-26-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Chambers%206487-26-001%20Proposal.pdf",
+    "proposalName": "Chambers 6487-26-001 Proposal.pdf"
+  },
+  "6466-51-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Collin%206466-51-001%20Proposal.pdf",
+    "proposalName": "Collin 6466-51-001 Proposal.pdf"
+  },
+  "6492-85-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Collin%206492-85-001%20Proposal.pdf",
+    "proposalName": "Collin 6492-85-001 Proposal.pdf"
+  },
+  "6494-51-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Colorado%206494-51-001%20Proposal.pdf",
+    "proposalName": "Colorado 6494-51-001 Proposal.pdf"
+  },
+  "6494-52-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Colorado%206494-52-001%20Proposal.pdf",
+    "proposalName": "Colorado 6494-52-001 Proposal.pdf"
+  },
+  "6495-97-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Dawson%206495-97-001%20Proposal.pdf",
+    "proposalName": "Dawson 6495-97-001 Proposal.pdf"
+  },
+  "6488-34-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206488-34-001%20Proposal.pdf",
+    "proposalName": "Denton 6488-34-001 Proposal.pdf"
+  },
+  "6488-36-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206488-36-001%20Proposal.pdf",
+    "proposalName": "Denton 6488-36-001 Proposal.pdf"
+  },
+  "6488-37-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206488-37-001%20Proposal.pdf",
+    "proposalName": "Denton 6488-37-001 Proposal.pdf"
+  },
+  "6491-90-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206491-90-001%20Proposal.pdf",
+    "proposalName": "Denton 6491-90-001 Proposal.pdf"
+  },
+  "6491-91-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206491-91-001%20Proposal.pdf",
+    "proposalName": "Denton 6491-91-001 Proposal.pdf"
+  },
+  "6492-62-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Denton%206492-62-001%20Proposal.pdf",
+    "proposalName": "Denton 6492-62-001 Proposal.pdf"
+  },
+  "6494-88-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Eastland%206494-88-001%20Proposal.pdf",
+    "proposalName": "Eastland 6494-88-001 Proposal.pdf"
+  },
+  "6492-35-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/El%20Paso%206492-35-001%20Proposal.pdf",
+    "proposalName": "El Paso 6492-35-001 Proposal.pdf"
+  },
+  "6491-76-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Ellis%206491-76-001%20Proposal.pdf",
+    "proposalName": "Ellis 6491-76-001 Proposal.pdf"
+  },
+  "6493-89-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Ellis%206493-89-001%20Proposal.pdf",
+    "proposalName": "Ellis 6493-89-001 Proposal.pdf"
+  },
+  "6496-93-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Fannin%206496-93-001%20Proposal.pdf",
+    "proposalName": "Fannin 6496-93-001 Proposal.pdf"
+  },
+  "6484-45-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Fort%20Bend%206484-45-001%20Proposal.pdf",
+    "proposalName": "Fort Bend 6484-45-001 Proposal.pdf"
+  },
+  "6492-82-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Fort%20Bend%206492-82-001%20Proposal.pdf",
+    "proposalName": "Fort Bend 6492-82-001 Proposal.pdf"
+  },
+  "6493-57-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Franklin%206493-57-001%20Proposal.pdf",
+    "proposalName": "Franklin 6493-57-001 Proposal.pdf"
+  },
+  "6496-97-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Franklin%206496-97-001%20Proposal.pdf",
+    "proposalName": "Franklin 6496-97-001 Proposal.pdf"
+  },
+  "6496-36-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Freestone%206496-36-001%20Proposal.pdf",
+    "proposalName": "Freestone 6496-36-001 Proposal.pdf"
+  },
+  "6496-91-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Freestone%206496-91-001%20Proposal.pdf",
+    "proposalName": "Freestone 6496-91-001 Proposal.pdf"
+  },
+  "6496-43-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Gaines%206496-43-001%20Proposal.pdf",
+    "proposalName": "Gaines 6496-43-001 Proposal.pdf"
+  },
+  "6492-56-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Garza%206492-56-001%20Proposal.pdf",
+    "proposalName": "Garza 6492-56-001 Proposal.pdf"
+  },
+  "6496-90-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Gregg%206496-90-001%20Proposal.pdf",
+    "proposalName": "Gregg 6496-90-001 Proposal.pdf"
+  },
+  "6492-70-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Harris%206492-70-001%20Proposal.pdf",
+    "proposalName": "Harris 6492-70-001 Proposal.pdf"
+  },
+  "6490-96-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Harrison%206490-96-001%20Proposal.pdf",
+    "proposalName": "Harrison 6490-96-001 Proposal.pdf"
+  },
+  "6493-56-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Hopkins%206493-56-001%20Proposal.pdf",
+    "proposalName": "Hopkins 6493-56-001 Proposal.pdf"
+  },
+  "6494-24-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Hopkins%206494-24-001%20Proposal.pdf",
+    "proposalName": "Hopkins 6494-24-001 Proposal.pdf"
+  },
+  "6496-18-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Houston%206496-18-001%20Proposal.pdf",
+    "proposalName": "Houston 6496-18-001 Proposal.pdf"
+  },
+  "6494-64-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Howard%206494-64-001%20Proposal.pdf",
+    "proposalName": "Howard 6494-64-001 Proposal.pdf"
+  },
+  "6492-29-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Hunt%206492-29-001%20Proposal.pdf",
+    "proposalName": "Hunt 6492-29-001 Proposal.pdf"
+  },
+  "6492-30-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Hunt%206492-30-001%20Proposal.pdf",
+    "proposalName": "Hunt 6492-30-001 Proposal.pdf"
+  },
+  "6493-58-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Hunt%206493-58-001%20Proposal.pdf",
+    "proposalName": "Hunt 6493-58-001 Proposal.pdf"
+  },
+  "6497-62-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Jim%20Wells%206497-62-001%20Proposal.pdf",
+    "proposalName": "Jim Wells 6497-62-001 Proposal.pdf"
+  },
+  "6492-71-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Kaufman%206492-71-001%20Proposal.pdf",
+    "proposalName": "Kaufman 6492-71-001 Proposal.pdf"
+  },
+  "6492-77-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Kaufman%206492-77-001%20Proposal.pdf",
+    "proposalName": "Kaufman 6492-77-001 Proposal.pdf"
+  },
+  "6492-81-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Kaufman%206492-81-001%20Proposal.pdf",
+    "proposalName": "Kaufman 6492-81-001 Proposal.pdf"
+  },
+  "6485-41-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Liberty%206485-41-001%20Proposal.pdf",
+    "proposalName": "Liberty 6485-41-001 Proposal.pdf"
+  },
+  "6497-63-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Live%20Oak%206497-63-001%20Proposl.pdf",
+    "proposalName": "Live Oak 6497-63-001 Proposl.pdf"
+  },
+  "6492-58-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Lubbock%206492-58-001%20Proposal.pdf",
+    "proposalName": "Lubbock 6492-58-001 Proposal.pdf"
+  },
+  "6492-59-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Lubbock%206492-59-001%20Proposal.pdf",
+    "proposalName": "Lubbock 6492-59-001 Proposal.pdf"
+  },
+  "6490-94-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Marion%206490-94-001%20Proposal.pdf",
+    "proposalName": "Marion 6490-94-001 Proposal.pdf"
+  },
+  "6494-49-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Matagorda%206494-49-001%20Proposal.pdf",
+    "proposalName": "Matagorda 6494-49-001 Proposal.pdf"
+  },
+  "6494-50-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Matagorda%206494-50-001%20Proposal.pdf",
+    "proposalName": "Matagorda 6494-50-001 Proposal.pdf"
+  },
+  "6496-45-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Milam%206496-45-001%20Proposal.pdf",
+    "proposalName": "Milam 6496-45-001 Proposal.pdf"
+  },
+  "6495-22-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Montague%206495-22-001%20Proposal.pdf",
+    "proposalName": "Montague 6495-22-001 Proposal.pdf"
+  },
+  "6480-91-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Montgomery%206480-91-001%20Proposal.pdf",
+    "proposalName": "Montgomery 6480-91-001 Proposal.pdf"
+  },
+  "6490-92-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Morris%206490-92-001%20Proposal.pdf",
+    "proposalName": "Morris 6490-92-001 Proposal.pdf"
+  },
+  "6491-01-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Nacogdoches%206491-01-001%20Proposal.pdf",
+    "proposalName": "Nacogdoches 6491-01-001 Proposal.pdf"
+  },
+  "6492-33-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Nacogdoches%206492-33-001%20Proposal.pdf",
+    "proposalName": "Nacogdoches 6492-33-001 Proposal.pdf"
+  },
+  "6491-19-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Navarro%206491-19-001%20Proposal.pdf",
+    "proposalName": "Navarro 6491-19-001 Proposal.pdf"
+  },
+  "6491-39-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Navarro%206491-39-001%20Proposal.pdf",
+    "proposalName": "Navarro 6491-39-001 Proposal.pdf"
+  },
+  "6497-60-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Nueces%206497-60-001%20Proposal.pdf",
+    "proposalName": "Nueces 6497-60-001 Proposal.pdf"
+  },
+  "6490-91-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Panola%206490-91-001%20Proposal.pdf",
+    "proposalName": "Panola 6490-91-001 Proposal.pdf"
+  },
+  "6497-42-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Pecos%206497-42-001%20Proposal.pdf",
+    "proposalName": "Pecos 6497-42-001 Proposal.pdf"
+  },
+  "6493-59-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Rains%206493-59-001%20Proposal.pdf",
+    "proposalName": "Rains 6493-59-001 Proposal.pdf"
+  },
+  "6493-81-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Reeves%206493-81-001%20Proposal.pdf",
+    "proposalName": "Reeves 6493-81-001 Proposal.pdf"
+  },
+  "6494-47-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Reeves%206494-47-001%20Proposal.pdf",
+    "proposalName": "Reeves 6494-47-001 Proposal.pdf"
+  },
+  "6497-61-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/San%20Patricio%20Proposal%206497-61-001.pdf",
+    "proposalName": "San Patricio Proposal 6497-61-001.pdf"
+  },
+  "6494-19-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Taylor%206494-19-001%20Proposal.pdf",
+    "proposalName": "Taylor 6494-19-001 Proposal.pdf"
+  },
+  "6490-97-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Titus%206490-97-001%20Proposal.pdf",
+    "proposalName": "Titus 6490-97-001 Proposal.pdf"
+  },
+  "6484-29-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Travis%206484-29-001%20Proposal.pdf",
+    "proposalName": "Travis 6484-29-001 Proposal.pdf"
+  },
+  "6488-07-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Trinity%206488-07-001%20Proposal.pdf",
+    "proposalName": "Trinity 6488-07-001 Proposal.pdf"
+  },
+  "6490-93-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Upshur%206490-93-001%20Proposal.pdf",
+    "proposalName": "Upshur 6490-93-001 Proposal.pdf"
+  },
+  "6494-76-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Walker%206494-76-001%20Proposal.pdf",
+    "proposalName": "Walker 6494-76-001 Proposal.pdf"
+  },
+  "6494-30-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-30-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-30-001 Proposal.pdf"
+  },
+  "6494-32-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-32-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-32-001 Proposal.pdf"
+  },
+  "6494-33-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-33-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-33-001 Proposal.pdf"
+  },
+  "6494-34-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-34-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-34-001 Proposal.pdf"
+  },
+  "6494-36-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-36-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-36-001 Proposal.pdf"
+  },
+  "6494-37-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-37-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-37-001 Proposal.pdf"
+  },
+  "6494-38-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-38-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-38-001 Proposal.pdf"
+  },
+  "6494-39-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-39-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-39-001 Proposal.pdf"
+  },
+  "6494-44-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-44-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-44-001 Proposal.pdf"
+  },
+  "6494-45-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206494-45-001%20Proposal.pdf",
+    "proposalName": "Wharton 6494-45-001 Proposal.pdf"
+  },
+  "6496-00-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wharton%206496-00-001%20Proposal.pdf",
+    "proposalName": "Wharton 6496-00-001 Proposal.pdf"
+  },
+  "6495-24-001": {
+    "proposalUrl": "https://ftp.txdot.gov/plans/Local-Let-Maintenance/2026/02%20February/02%20Proposals/Wichita%206495-24-001%20Proposal.pdf",
+    "proposalName": "Wichita 6495-24-001 Proposal.pdf"
+  }
+}

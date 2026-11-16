@@ -82,65 +82,69 @@ def sync_month_ftp_map(year=2026, month_num=11):
             proposals_map = {}
 
     for cat in CATEGORIES:
-        # Proposals URL
-        prop_dir = f"{month_str} Proposal" if cat == 'Local-Let-Maintenance' else f"{month_str} Proposals"
-        url_prop = f"https://ftp.txdot.gov/plans/{cat}/{year}/{urllib.parse.quote(month_folder)}/{urllib.parse.quote(prop_dir)}/"
-        
-        # Plans URL
-        plan_dir = f"{month_str} Plans"
-        url_plan = f"https://ftp.txdot.gov/plans/{cat}/{year}/{urllib.parse.quote(month_folder)}/{urllib.parse.quote(plan_dir)}/"
+        # Check both singular "Proposal" and plural "Proposals"
+        prop_dirs = [f"{month_str} Proposal", f"{month_str} Proposals"]
+        plan_dirs = [f"{month_str} Plan", f"{month_str} Plans"]
 
-        # Crawl proposals
-        prop_links = fetch_links_from_url(url_prop)
-        print(f"  [{cat}] Proposals found: {len(prop_links)}")
-        for link in prop_links:
-            dec = urllib.parse.unquote(link).strip()
-            # Clean leading slash or query params
-            if dec.startswith('/'):
-                dec = dec.split('/')[-1]
-            m = CSJ_REGEX.search(dec)
-            if m:
-                csj = m.group(1)
-                full_url = urllib.parse.urljoin(url_prop, link)
-                
-                proposals_map[csj] = {
-                    'proposalUrl': full_url,
-                    'proposalName': dec
-                }
-                
-                if csj not in ftp_map:
-                    ftp_map[csj] = {}
-                ftp_map[csj]['proposalUrl'] = full_url
-                ftp_map[csj]['proposalName'] = dec
+        # Crawl proposals from all candidate directories
+        for prop_dir in prop_dirs:
+            url_prop = f"https://ftp.txdot.gov/plans/{cat}/{year}/{urllib.parse.quote(month_folder)}/{urllib.parse.quote(prop_dir)}/"
+            prop_links = fetch_links_from_url(url_prop)
+            if prop_links:
+                print(f"  [{cat}] Proposals found in '{prop_dir}': {len(prop_links)}")
+            for link in prop_links:
+                dec = urllib.parse.unquote(link).strip()
+                if dec.startswith('/'):
+                    dec = dec.split('/')[-1]
+                m = CSJ_REGEX.search(dec)
+                if m:
+                    csj = m.group(1)
+                    full_url = urllib.parse.urljoin(url_prop, link)
+                    
+                    proposals_map[csj] = {
+                        'proposalUrl': full_url,
+                        'proposalName': dec,
+                        'category': cat
+                    }
+                    
+                    if csj not in ftp_map:
+                        ftp_map[csj] = {}
+                    ftp_map[csj]['proposalUrl'] = full_url
+                    ftp_map[csj]['proposalName'] = dec
+                    ftp_map[csj]['category'] = cat
 
-        # Crawl plans
-        plan_links = fetch_links_from_url(url_plan)
-        print(f"  [{cat}] Plans found: {len(plan_links)}")
-        for link in plan_links:
-            dec = urllib.parse.unquote(link).strip()
-            if dec.startswith('/'):
-                dec = dec.split('/')[-1]
-            m = CSJ_REGEX.search(dec)
-            if m:
-                csj = m.group(1)
-                full_url = urllib.parse.urljoin(url_plan, link)
-                
-                if csj not in ftp_map:
-                    ftp_map[csj] = {}
-                
-                # Check for volume 2, volume 3, etc.
-                if 'vol' in dec.lower() or 'volume' in dec.lower():
-                    if 'planVolumes' not in ftp_map[csj]:
-                        ftp_map[csj]['planVolumes'] = []
-                    ftp_map[csj]['planVolumes'].append({
-                        'title': dec,
-                        'url': full_url
-                    })
-                
-                # If first plan or main plan
-                if 'planUrl' not in ftp_map[csj] or not ('vol' in dec.lower()):
-                    ftp_map[csj]['planUrl'] = full_url
-                    ftp_map[csj]['planName'] = dec
+        # Crawl plans from all candidate directories
+        for plan_dir in plan_dirs:
+            url_plan = f"https://ftp.txdot.gov/plans/{cat}/{year}/{urllib.parse.quote(month_folder)}/{urllib.parse.quote(plan_dir)}/"
+            plan_links = fetch_links_from_url(url_plan)
+            if plan_links:
+                print(f"  [{cat}] Plans found in '{plan_dir}': {len(plan_links)}")
+            for link in plan_links:
+                dec = urllib.parse.unquote(link).strip()
+                if dec.startswith('/'):
+                    dec = dec.split('/')[-1]
+                m = CSJ_REGEX.search(dec)
+                if m:
+                    csj = m.group(1)
+                    full_url = urllib.parse.urljoin(url_plan, link)
+                    
+                    if csj not in ftp_map:
+                        ftp_map[csj] = {}
+                    ftp_map[csj]['category'] = cat
+                    
+                    # Check for volume 2, volume 3, etc.
+                    if 'vol' in dec.lower() or 'volume' in dec.lower():
+                        if 'planVolumes' not in ftp_map[csj]:
+                            ftp_map[csj]['planVolumes'] = []
+                        ftp_map[csj]['planVolumes'].append({
+                            'title': dec,
+                            'url': full_url
+                        })
+                    
+                    # If first plan or main plan
+                    if 'planUrl' not in ftp_map[csj] or not ('vol' in dec.lower()):
+                        ftp_map[csj]['planUrl'] = full_url
+                        ftp_map[csj]['planName'] = dec
 
     print(f"Total Unique CSJs with Proposals ({month_key}): {len(proposals_map)}")
     print(f"Total Unique CSJs with Plans/Proposals in FTP map ({month_key}): {len(ftp_map)}")
