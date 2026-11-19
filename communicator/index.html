@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Amestx Communicator - Real-Time Job Site Voice Translator</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MQTT over WebSockets for Real-Time 2-Phone Sync -->
+    <script src="https://unpkg.com/mqtt@5.3.5/dist/mqtt.min.js"></script>
+    
+    <!-- QRCode.js for 1-Second Instant Pairing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="appContainer" class="app-layout">
+        
+        <!-- TOP APP HEADER -->
+        <header class="app-header">
+            <div class="header-left">
+                <a href="../" class="back-link" title="Return to TxDOT Estimator">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Estimator</span>
+                </a>
+                <div class="brand-title">
+                    <span class="brand-name">AMESTX</span>
+                    <span class="brand-tag">COMMUNICATOR</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div id="connectionStatusBadge" class="status-badge disconnected" title="Connection Status">
+                    <span class="status-dot"></span>
+                    <span id="statusText">Disconnected</span>
+                </div>
+                <button id="btnOpenPairing" class="header-icon-btn" title="Pair Phones / Room PIN">
+                    <i class="fa-solid fa-link"></i>
+                    <span id="headerRoomPin">Pair</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- SUB-BAR: ACTIVE LANGUAGES & AUDIO TOGGLE -->
+        <div class="lang-bar">
+            <div class="lang-pill me-lang">
+                <span class="lang-role">I Speak:</span>
+                <select id="myLanguageSelect" class="lang-select">
+                    <option value="en-US" selected>🇺🇸 English (US)</option>
+                    <option value="es-US">🇲🇽 Spanish (Español)</option>
+                    <option value="vi-VN">🇻🇳 Vietnamese</option>
+                    <option value="fr-FR">🇫🇷 French</option>
+                    <option value="pt-BR">🇧🇷 Portuguese</option>
+                    <option value="zh-CN">🇨🇳 Chinese</option>
+                    <option value="ar-SA">🇸🇦 Arabic</option>
+                </select>
+            </div>
+
+            <div class="swap-icon" id="btnSwapLanguages" title="Swap Spoken Languages">
+                <i class="fa-solid fa-right-left"></i>
+            </div>
+
+            <div class="lang-pill partner-lang">
+                <span class="lang-role">Partner Speaks:</span>
+                <select id="partnerLanguageSelect" class="lang-select">
+                    <option value="es-US" selected>🇲🇽 Spanish (Español)</option>
+                    <option value="en-US">🇺🇸 English (US)</option>
+                    <option value="vi-VN">🇻🇳 Vietnamese</option>
+                    <option value="fr-FR">🇫🇷 French</option>
+                    <option value="pt-BR">🇧🇷 Portuguese</option>
+                    <option value="zh-CN">🇨🇳 Chinese</option>
+                    <option value="ar-SA">🇸🇦 Arabic</option>
+                </select>
+            </div>
+
+            <button id="btnVoiceAutoRead" class="audio-toggle-btn active" title="Toggle Auto Voice Readout">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+        </div>
+
+        <!-- MAIN CONVERSATION CHAT FEED -->
+        <main class="chat-feed" id="chatFeed">
+            <div class="welcome-card" id="welcomeCard">
+                <div class="welcome-icon">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <i class="fa-solid fa-arrows-left-right"></i>
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3>Connect 2 Phones for Live Translation</h3>
+                <p>Sit face-to-face. Speak into your phone, and your words appear on your partner's phone translated into their language!</p>
+                <div class="welcome-action">
+                    <button id="btnStartPairingHero" class="btn-primary">
+                        <i class="fa-solid fa-qrcode"></i> Connect With 4-Digit Code
+                    </button>
+                </div>
+            </div>
+            <!-- Dynamic Messages inserted here -->
+        </main>
+
+        <!-- QUICK CONSTRUCTION PHRASES CHIPS -->
+        <div class="quick-phrases-bar">
+            <span class="quick-label"><i class="fa-solid fa-bolt"></i> Quick:</span>
+            <div class="chips-scroll">
+                <button class="chip" data-text="Good morning! How are you today?">👷 Good morning</button>
+                <button class="chip" data-text="Please stop the work right now.">🛑 Stop work</button>
+                <button class="chip" data-text="The concrete truck has arrived.">🚚 Concrete arrived</button>
+                <button class="chip" data-text="Be very careful here, safety first.">⚠️ Be careful</button>
+                <button class="chip" data-text="We need to measure this section again.">📐 Measure this</button>
+                <button class="chip" data-text="Do you need any more materials or tools?">🔨 Need tools?</button>
+                <button class="chip" data-text="Everything is finished and approved.">✅ All done</button>
+                <button class="chip" data-text="Let's take a 15 minute break.">⏱️ Break time</button>
+            </div>
+        </div>
+
+        <!-- LIVE SPEECH TRANSCRIPTION BANNER -->
+        <div class="interim-banner" id="interimBanner">
+            <div class="mic-wave-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span id="interimText">Listening to your voice...</span>
+        </div>
+
+        <!-- BOTTOM SPEAKING / CONTROLS DECK -->
+        <footer class="bottom-deck">
+            <!-- TEXT TYPING TOGGLE -->
+            <button id="btnToggleType" class="deck-btn-secondary" title="Type message instead of speaking">
+                <i class="fa-solid fa-keyboard"></i>
+            </button>
+
+            <!-- GIANT WALKIE-TALKIE PUSH-TO-TALK BUTTON -->
+            <div class="talk-button-wrapper">
+                <button id="btnPushToTalk" class="btn-giant-talk">
+                    <div class="talk-inner-circle">
+                        <i class="fa-solid fa-microphone" id="talkMicIcon"></i>
+                        <span id="talkButtonText">HOLD OR TAP TO TALK</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- CLEAR CHAT HISTORY -->
+            <button id="btnClearChat" class="deck-btn-secondary" title="Clear conversation history">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </footer>
+
+        <!-- KEYBOARD INPUT DRAWER (FOR NOISY SITES) -->
+        <div class="type-drawer" id="typeDrawer">
+            <div class="type-input-group">
+                <input type="text" id="typeTextInput" placeholder="Type a message (e.g. 'Pour concrete here')...">
+                <button id="btnSendTyped" class="btn-send"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- 4-DIGIT PAIRING MODAL -->
+        <div class="modal-overlay" id="pairingModal">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2><i class="fa-solid fa-link"></i> Connect Two Phones</h2>
+                    <button class="btn-close-modal" id="btnCloseModal">&times;</button>
+                </div>
+
+                <div class="modal-tabs">
+                    <button class="modal-tab active" id="tabCreateRoom">👑 Create Room (Phone 1)</button>
+                    <button class="modal-tab" id="tabJoinRoom">🔗 Join Room (Phone 2)</button>
+                </div>
+
+                <!-- TAB 1: CREATE ROOM (HOST) -->
+                <div class="tab-pane active" id="paneCreateRoom">
+                    <p class="tab-subtitle">Share this 4-Digit PIN or let your partner scan the QR code:</p>
+                    
+                    <div class="pin-display-box">
+                        <span class="pin-label">ROOM PIN</span>
+                        <div class="pin-digits" id="createdPinDigits">----</div>
+                    </div>
+
+                    <div class="qr-container">
+                        <div id="qrCodeContainer"></div>
+                        <span class="qr-hint">Scan with Camera on Phone 2 to connect instantly</span>
+                    </div>
+
+                    <div class="share-actions">
+                        <button id="btnCopyShareLink" class="btn-secondary">
+                            <i class="fa-solid fa-copy"></i> Copy Direct Link
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: JOIN ROOM (PARTNER) -->
+                <div class="tab-pane" id="paneJoinRoom">
+                    <p class="tab-subtitle">Enter the 4-Digit PIN shown on your partner's phone:</p>
+                    
+                    <div class="pin-input-row">
+                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD1" autofocus>
+                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD2">
+                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD3">
+                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD4">
+                    </div>
+
+                    <button id="btnSubmitJoinPin" class="btn-primary btn-block">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Connect to Partner
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔒 HOST APPROVAL GATEKEEPER MODAL (PREVENTS STRANGERS FROM CONNECTING) -->
+        <div class="modal-overlay" id="approvalModal">
+            <div class="modal-card approval-card">
+                <div class="approval-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2>Pairing Request</h2>
+                <p id="approvalPartnerDesc">A phone speaking <strong id="reqPartnerLang">Spanish</strong> wants to connect to your private session.</p>
+                <div class="approval-pin-tag">PIN: <span id="reqPartnerPin">----</span></div>
+                
+                <div class="approval-buttons">
+                    <button id="btnDeclinePairing" class="btn-decline">
+                        <i class="fa-solid fa-xmark"></i> Decline
+                    </button>
+                    <button id="btnAcceptPairing" class="btn-accept">
+                        <i class="fa-solid fa-check"></i> Accept & Lock (1-to-1)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

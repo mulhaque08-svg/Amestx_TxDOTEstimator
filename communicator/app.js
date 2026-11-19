@@ -1,0 +1,768 @@
+/**
+ * Amestx Communicator - Real-Time Job Site Voice Translator
+ * Two-Phone Peer Sync over WebSockets (MQTT) + Web Speech API + Instant Translation
+ */
+
+class AmestxCommunicator {
+    constructor() {
+        this.roomPin = null;
+        this.senderId = 'user_' + Math.random().toString(36).substring(2, 9);
+        this.isHost = false;
+        this.isSessionLocked = false;
+        this.partnerId = null;
+        this.pendingRequestData = null;
+        this.isConnected = false;
+        this.isPartnerConnected = false;
+        this.autoVoiceRead = true;
+        
+        // Default Languages: Me = English, Partner = Spanish
+        this.myLang = 'en-US';
+        this.partnerLang = 'es-US';
+
+        this.mqttClient = null;
+        this.mqttBrokerUrl = 'wss://broker.emqx.io:8084/mqtt'; // Public SSL WebSocket Broker
+        this.mqttTopic = null;
+
+        // Speech Recognition
+        this.recognition = null;
+        this.isRecording = false;
+        this.speechTranscript = '';
+
+        this.initDOM();
+        this.initSpeechRecognition();
+        this.initEventListeners();
+        this.checkUrlRoomParam();
+    }
+
+    initDOM() {
+        // Badges & Buttons
+        this.statusBadge = document.getElementById('connectionStatusBadge');
+        this.statusText = document.getElementById('statusText');
+        this.btnOpenPairing = document.getElementById('btnOpenPairing');
+        this.headerRoomPin = document.getElementById('headerRoomPin');
+        
+        // Security Approval Modal
+        this.approvalModal = document.getElementById('approvalModal');
+        this.reqPartnerLang = document.getElementById('reqPartnerLang');
+        this.reqPartnerPin = document.getElementById('reqPartnerPin');
+        this.btnAcceptPairing = document.getElementById('btnAcceptPairing');
+        this.btnDeclinePairing = document.getElementById('btnDeclinePairing');
+        
+        // Languages
+        this.myLanguageSelect = document.getElementById('myLanguageSelect');
+        this.partnerLanguageSelect = document.getElementById('partnerLanguageSelect');
+        this.btnSwapLanguages = document.getElementById('btnSwapLanguages');
+        this.btnVoiceAutoRead = document.getElementById('btnVoiceAutoRead');
+
+        // Chat
+        this.chatFeed = document.getElementById('chatFeed');
+        this.welcomeCard = document.getElementById('welcomeCard');
+        this.btnStartPairingHero = document.getElementById('btnStartPairingHero');
+
+        // Controls
+        this.btnPushToTalk = document.getElementById('btnPushToTalk');
+        this.talkButtonText = document.getElementById('talkButtonText');
+        this.talkMicIcon = document.getElementById('talkMicIcon');
+        this.interimBanner = document.getElementById('interimBanner');
+        this.interimText = document.getElementById('interimText');
+
+        // Quick Chips & Typing
+        this.chips = document.querySelectorAll('.chip');
+        this.btnToggleType = document.getElementById('btnToggleType');
+        this.typeDrawer = document.getElementById('typeDrawer');
+        this.typeTextInput = document.getElementById('typeTextInput');
+        this.btnSendTyped = document.getElementById('btnSendTyped');
+        this.btnClearChat = document.getElementById('btnClearChat');
+
+        // Modal
+        this.pairingModal = document.getElementById('pairingModal');
+        this.btnCloseModal = document.getElementById('btnCloseModal');
+        this.tabCreateRoom = document.getElementById('tabCreateRoom');
+        this.tabJoinRoom = document.getElementById('tabJoinRoom');
+        this.paneCreateRoom = document.getElementById('paneCreateRoom');
+        this.paneJoinRoom = document.getElementById('paneJoinRoom');
+        
+        this.createdPinDigits = document.getElementById('createdPinDigits');
+        this.qrCodeContainer = document.getElementById('qrCodeContainer');
+        this.btnCopyShareLink = document.getElementById('btnCopyShareLink');
+        
+        this.pinInputs = [
+            document.getElementById('pinD1'),
+            document.getElementById('pinD2'),
+            document.getElementById('pinD3'),
+            document.getElementById('pinD4')
+        ];
+        this.btnSubmitJoinPin = document.getElementById('btnSubmitJoinPin');
+    }
+
+    initSpeechRecognition() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            this.recognition = new SpeechRecognition();
+            this.recognition.continuous = false;
+            this.recognition.interimResults = true;
+            this.recognition.lang = this.myLang;
+
+            this.recognition.onstart = () => {
+                this.isRecording = true;
+                this.btnPushToTalk.classList.add('recording');
+                this.talkButtonText.textContent = "LISTENING...";
+                this.interimBanner.classList.add('active');
+                this.interimText.textContent = "Listening to your voice...";
+                this.vibrate([80]);
+            };
+
+            this.recognition.onresult = (event) => {
+                let interim = '';
+                let final = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        final += event.results[i][0].transcript;
+                    } else {
+                        interim += event.results[i][0].transcript;
+                    }
+                }
+
+                if (interim) {
+                    this.interimText.textContent = `"${interim}"`;
+                }
+
+                if (final) {
+                    this.speechTranscript = final;
+                    this.interimText.textContent = `"${final}"`;
+                }
+            };
+
+            this.recognition.onerror = (event) => {
+                console.warn('Speech recognition error:', event.error);
+                this.stopRecording();
+                if (event.error === 'not-allowed') {
+                    alert("Please allow Microphone access in your browser to speak.");
+                }
+            };
+
+            this.recognition.onend = () => {
+                this.stopRecording();
+                if (this.speechTranscript && this.speechTranscript.trim().length > 0) {
+                    this.handleOutgoingMessage(this.speechTranscript.trim());
+                    this.speechTranscript = '';
+                }
+            };
+        } else {
+            console.warn("Web Speech API not supported on this browser.");
+        }
+    }
+
+    initEventListeners() {
+        // Modal Controls
+        this.btnOpenPairing.addEventListener('click', () => this.openPairingModal());
+        this.btnStartPairingHero.addEventListener('click', () => this.openPairingModal());
+        this.btnCloseModal.addEventListener('click', () => this.closePairingModal());
+
+        this.tabCreateRoom.addEventListener('click', () => {
+            this.tabCreateRoom.classList.add('active');
+            this.tabJoinRoom.classList.remove('active');
+            this.paneCreateRoom.classList.add('active');
+            this.paneJoinRoom.classList.remove('active');
+        });
+
+        this.tabJoinRoom.addEventListener('click', () => {
+            this.tabJoinRoom.classList.add('active');
+            this.tabCreateRoom.classList.remove('active');
+            this.paneJoinRoom.classList.add('active');
+            this.paneCreateRoom.classList.remove('active');
+            this.pinInputs[0].focus();
+        });
+
+        // 4-Digit Input auto-advancement
+        this.pinInputs.forEach((input, idx) => {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (val.length >= 1) {
+                    input.value = val.slice(-1);
+                    if (idx < 3) {
+                        this.pinInputs[idx + 1].focus();
+                    } else {
+                        this.handleJoinFromInputs();
+                    }
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && idx > 0) {
+                    this.pinInputs[idx - 1].focus();
+                }
+            });
+        });
+
+        this.btnSubmitJoinPin.addEventListener('click', () => this.handleJoinFromInputs());
+
+        // Security Approval Modal Buttons
+        this.btnAcceptPairing.addEventListener('click', () => this.acceptPairingRequest());
+        this.btnDeclinePairing.addEventListener('click', () => this.declinePairingRequest());
+
+        // Copy Share Link
+        this.btnCopyShareLink.addEventListener('click', () => {
+            const url = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`✅ Link copied with PIN ${this.roomPin}!\n\nSend this link to your partner to connect instantly.`);
+            }).catch(() => {
+                prompt("Copy this direct connection link:", url);
+            });
+        });
+
+        // Language Selectors
+        this.myLanguageSelect.addEventListener('change', (e) => {
+            this.myLang = e.target.value;
+            if (this.recognition) this.recognition.lang = this.myLang;
+            this.broadcastHandshake();
+        });
+
+        this.partnerLanguageSelect.addEventListener('change', (e) => {
+            this.partnerLang = e.target.value;
+        });
+
+        this.btnSwapLanguages.addEventListener('click', () => {
+            const temp = this.myLang;
+            this.myLang = this.partnerLang;
+            this.partnerLang = temp;
+
+            this.myLanguageSelect.value = this.myLang;
+            this.partnerLanguageSelect.value = this.partnerLang;
+
+            if (this.recognition) this.recognition.lang = this.myLang;
+            this.broadcastHandshake();
+            this.vibrate([50]);
+        });
+
+        // Audio Auto-Speak Toggle
+        this.btnVoiceAutoRead.addEventListener('click', () => {
+            this.autoVoiceRead = !this.autoVoiceRead;
+            this.btnVoiceAutoRead.classList.toggle('active', this.autoVoiceRead);
+            this.btnVoiceAutoRead.querySelector('i').className = this.autoVoiceRead ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        });
+
+        // Giant Push-To-Talk Button (Both Tap & Hold Supported)
+        this.btnPushToTalk.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.startRecording();
+        });
+        this.btnPushToTalk.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.stopRecording();
+        });
+
+        this.btnPushToTalk.addEventListener('mousedown', () => {
+            this.startRecording();
+        });
+        this.btnPushToTalk.addEventListener('mouseup', () => {
+            this.stopRecording();
+        });
+
+        // Keyboard Drawer
+        this.btnToggleType.addEventListener('click', () => {
+            this.typeDrawer.classList.toggle('open');
+            if (this.typeDrawer.classList.contains('open')) {
+                this.typeTextInput.focus();
+            }
+        });
+
+        this.btnSendTyped.addEventListener('click', () => this.sendTypedMessage());
+        this.typeTextInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.sendTypedMessage();
+        });
+
+        // Quick Phrase Chips
+        this.chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const text = chip.getAttribute('data-text');
+                this.handleOutgoingMessage(text);
+                this.vibrate([60]);
+            });
+        });
+
+        // Clear Chat
+        this.btnClearChat.addEventListener('click', () => {
+            if (confirm("Clear all conversation messages?")) {
+                const msgs = this.chatFeed.querySelectorAll('.chat-msg');
+                msgs.forEach(m => m.remove());
+                this.welcomeCard.style.display = 'block';
+            }
+        });
+    }
+
+    checkUrlRoomParam() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomFromUrl = urlParams.get('room');
+        if (roomFromUrl && roomFromUrl.length === 4) {
+            this.isHost = false;
+            this.connectToRoom(roomFromUrl);
+        } else {
+            // Auto open pairing modal on first load if no room
+            this.openPairingModal();
+        }
+    }
+
+    openPairingModal() {
+        if (!this.roomPin) {
+            this.generateNewRoomPin();
+        }
+        this.pairingModal.classList.add('open');
+    }
+
+    closePairingModal() {
+        this.pairingModal.classList.remove('open');
+    }
+
+    generateNewRoomPin() {
+        this.isHost = true;
+        this.isSessionLocked = false;
+        this.partnerId = null;
+        this.roomPin = Math.floor(1000 + Math.random() * 9000).toString();
+        this.createdPinDigits.textContent = this.roomPin;
+        this.renderQrCode();
+        this.connectToRoom(this.roomPin);
+    }
+
+    renderQrCode() {
+        if (!window.QRCode) return;
+        this.qrCodeContainer.innerHTML = '';
+        const targetUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+        new QRCode(this.qrCodeContainer, {
+            text: targetUrl,
+            width: 150,
+            height: 150,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    }
+
+    handleJoinFromInputs() {
+        const pin = this.pinInputs.map(input => input.value).join('');
+        if (pin.length === 4) {
+            this.isHost = false;
+            this.closePairingModal();
+            this.connectToRoom(pin);
+        } else {
+            alert("Please enter a valid 4-digit PIN.");
+        }
+    }
+
+    connectToRoom(pin) {
+        this.roomPin = pin;
+        this.headerRoomPin.textContent = `PIN: ${pin}`;
+        this.mqttTopic = `amestx/communicator/room/${pin}`;
+
+        this.updateConnectionStatus('waiting', `PIN: ${pin} (Waiting)`);
+
+        if (this.mqttClient) {
+            try { this.mqttClient.end(); } catch (e) {}
+        }
+
+        console.log(`Connecting to MQTT broker for room ${pin}...`);
+        
+        try {
+            this.mqttClient = mqtt.connect(this.mqttBrokerUrl, {
+                clientId: this.senderId,
+                clean: true,
+                reconnectPeriod: 2000
+            });
+
+            this.mqttClient.on('connect', () => {
+                console.log('Connected to MQTT WebSocket Broker!');
+                this.isConnected = true;
+                
+                this.mqttClient.subscribe(this.mqttTopic, (err) => {
+                    if (!err) {
+                        console.log(`Subscribed to topic: ${this.mqttTopic}`);
+                        if (this.isHost) {
+                            this.updateConnectionStatus('waiting', `PIN: ${this.roomPin} (Waiting)`);
+                        } else {
+                            this.updateConnectionStatus('waiting', `Requesting to Pair...`);
+                            this.sendPairRequest();
+                        }
+                    }
+                });
+            });
+
+            this.mqttClient.on('message', (topic, payload) => {
+                try {
+                    const data = JSON.parse(payload.toString());
+                    if (data.senderId !== this.senderId) {
+                        this.handleIncomingMqttMessage(data);
+                    }
+                } catch (e) {
+                    console.error("Failed to parse message:", e);
+                }
+            });
+
+            this.mqttClient.on('error', (err) => {
+                console.warn('MQTT Connection Error:', err);
+            });
+
+            this.mqttClient.on('close', () => {
+                this.isConnected = false;
+                this.updateConnectionStatus('disconnected', 'Disconnected');
+            });
+
+        } catch (err) {
+            console.error("MQTT Connect exception:", err);
+        }
+    }
+
+    sendPairRequest() {
+        if (!this.mqttClient || !this.isConnected) return;
+        const payload = {
+            type: 'PAIR_REQUEST',
+            senderId: this.senderId,
+            language: this.myLang,
+            pin: this.roomPin,
+            timestamp: Date.now()
+        };
+        this.mqttClient.publish(this.mqttTopic, JSON.stringify(payload));
+    }
+
+    broadcastHandshake() {
+        if (!this.mqttClient || !this.isConnected) return;
+        const payload = {
+            type: 'HANDSHAKE',
+            senderId: this.senderId,
+            language: this.myLang,
+            timestamp: Date.now()
+        };
+        this.mqttClient.publish(this.mqttTopic, JSON.stringify(payload));
+    }
+
+    handleIncomingMqttMessage(data) {
+        // If message has a specific target recipient and it's not me, ignore
+        if (data.targetId && data.targetId !== this.senderId) return;
+
+        // 1. Host receives PAIR_REQUEST from Phone 2
+        if (data.type === 'PAIR_REQUEST') {
+            if (!this.isHost) return;
+
+            // If session is ALREADY LOCKED to another partner -> REJECT ANY 3RD PARTY!
+            if (this.isSessionLocked) {
+                this.mqttClient.publish(this.mqttTopic, JSON.stringify({
+                    type: 'PAIR_REJECTED',
+                    targetId: data.senderId,
+                    senderId: this.senderId,
+                    reason: 'LOCKED'
+                }));
+                return;
+            }
+
+            // Prompt Host for Approval (Gatekeeper Protection)
+            this.pendingRequestData = data;
+            this.reqPartnerLang.textContent = this.getLangShortName(data.language);
+            this.reqPartnerPin.textContent = this.roomPin;
+            this.approvalModal.classList.add('open');
+            this.vibrate([150, 80, 150]);
+            return;
+        }
+
+        // 2. Partner receives PAIR_ACCEPTED from Host
+        if (data.type === 'PAIR_ACCEPTED') {
+            this.partnerId = data.senderId;
+            this.isSessionLocked = true;
+            this.isPartnerConnected = true;
+            this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+
+            if (data.hostLang && data.hostLang !== this.myLang) {
+                this.partnerLang = data.hostLang;
+                this.partnerLanguageSelect.value = data.hostLang;
+            }
+
+            this.vibrate([100, 50, 100]);
+            this.speakText("Connected and locked", this.myLang);
+            return;
+        }
+
+        // 3. Partner receives PAIR_REJECTED
+        if (data.type === 'PAIR_REJECTED') {
+            if (data.reason === 'LOCKED') {
+                alert("🚫 This session is locked!\n\nA private 1-on-1 conversation is already active between two other phones.");
+            } else {
+                alert("❌ The host declined the pairing request.");
+            }
+            this.updateConnectionStatus('disconnected', 'Rejected');
+            if (this.mqttClient) {
+                try { this.mqttClient.end(); } catch (e) {}
+            }
+            return;
+        }
+
+        // 4. HANDSHAKE (Language sync)
+        if (data.type === 'HANDSHAKE') {
+            if (data.language && data.language !== this.myLang) {
+                this.partnerLang = data.language;
+                this.partnerLanguageSelect.value = data.language;
+            }
+            return;
+        }
+
+        // 5. CHAT_MESSAGE: Strict 1-to-1 Security Check
+        if (data.type === 'CHAT_MESSAGE') {
+            // Drop rogue messages from anyone other than my approved partner
+            if (this.isSessionLocked && this.partnerId && data.senderId !== this.partnerId) {
+                console.warn("Security Alert: Blocked unauthorized third-party message!");
+                return;
+            }
+
+            this.isPartnerConnected = true;
+            this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+            this.renderIncomingMessage(data);
+        }
+    }
+
+    acceptPairingRequest() {
+        if (!this.pendingRequestData) return;
+
+        const data = this.pendingRequestData;
+        this.partnerId = data.senderId;
+        this.isSessionLocked = true;
+        this.isPartnerConnected = true;
+
+        if (data.language && data.language !== this.myLang) {
+            this.partnerLang = data.language;
+            this.partnerLanguageSelect.value = data.language;
+        }
+
+        // Send confirmation back to partner
+        this.mqttClient.publish(this.mqttTopic, JSON.stringify({
+            type: 'PAIR_ACCEPTED',
+            targetId: data.senderId,
+            senderId: this.senderId,
+            hostLang: this.myLang
+        }));
+
+        this.approvalModal.classList.remove('open');
+        this.closePairingModal();
+        this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+        this.vibrate([100, 50, 100]);
+        this.speakText("Partner connected and locked", this.myLang);
+    }
+
+    declinePairingRequest() {
+        if (!this.pendingRequestData) return;
+
+        this.mqttClient.publish(this.mqttTopic, JSON.stringify({
+            type: 'PAIR_REJECTED',
+            targetId: this.pendingRequestData.senderId,
+            senderId: this.senderId,
+            reason: 'DECLINED'
+        }));
+
+        this.pendingRequestData = null;
+        this.approvalModal.classList.remove('open');
+    }
+
+    updateConnectionStatus(state, label) {
+        this.statusBadge.className = `status-badge ${state}`;
+        this.statusText.textContent = label;
+    }
+
+    startRecording() {
+        if (!this.recognition) {
+            this.typeDrawer.classList.add('open');
+            this.typeTextInput.focus();
+            return;
+        }
+
+        try {
+            this.speechTranscript = '';
+            this.recognition.start();
+        } catch (e) {
+            // Already started or busy
+        }
+    }
+
+    stopRecording() {
+        if (this.recognition && this.isRecording) {
+            this.isRecording = false;
+            this.btnPushToTalk.classList.remove('recording');
+            this.talkButtonText.textContent = "HOLD OR TAP TO TALK";
+            this.interimBanner.classList.remove('active');
+            try { this.recognition.stop(); } catch (e) {}
+        }
+    }
+
+    sendTypedMessage() {
+        const text = this.typeTextInput.value.trim();
+        if (text) {
+            this.handleOutgoingMessage(text);
+            this.typeTextInput.value = '';
+        }
+    }
+
+    async handleOutgoingMessage(originalText) {
+        if (!originalText) return;
+
+        this.welcomeCard.style.display = 'none';
+
+        // Translate to partner language
+        const targetLangCode = this.partnerLang.split('-')[0];
+        const sourceLangCode = this.myLang.split('-')[0];
+
+        let translatedText = originalText;
+        try {
+            translatedText = await this.translateText(originalText, sourceLangCode, targetLangCode);
+        } catch (e) {
+            console.warn("Translation fallback:", e);
+        }
+
+        const msgData = {
+            id: 'msg_' + Date.now(),
+            type: 'CHAT_MESSAGE',
+            senderId: this.senderId,
+            originalText: originalText,
+            translatedText: translatedText,
+            sourceLang: this.myLang,
+            targetLang: this.partnerLang,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        // Render in my own chat feed
+        this.renderMyMessage(msgData);
+
+        // Publish to partner over MQTT
+        if (this.mqttClient && this.isConnected) {
+            this.mqttClient.publish(this.mqttTopic, JSON.stringify(msgData));
+        } else {
+            console.warn("MQTT not connected, cannot transmit message.");
+        }
+    }
+
+    async translateText(text, fromLang, toLang) {
+        if (fromLang === toLang) return text;
+
+        try {
+            // Free Instant Google Translate Endpoint
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data && data[0] && data[0][0] && data[0][0][0]) {
+                let full = '';
+                data[0].forEach(item => { if (item[0]) full += item[0]; });
+                return full || text;
+            }
+        } catch (err) {
+            // Fallback to MyMemory Free API
+            try {
+                const memUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
+                const res = await fetch(memUrl);
+                const json = await res.json();
+                if (json && json.responseData && json.responseData.translatedText) {
+                    return json.responseData.translatedText;
+                }
+            } catch (e) {}
+        }
+
+        return text;
+    }
+
+    renderMyMessage(msg) {
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-msg me';
+        bubble.innerHTML = `
+            <div class="msg-header">
+                <span>YOU (${this.getLangShortName(this.myLang)})</span>
+                <span class="msg-time">${msg.timestamp}</span>
+            </div>
+            <div class="msg-translated">${this.escapeHtml(msg.originalText)}</div>
+            <div class="msg-original">
+                <span>Trans: ${this.escapeHtml(msg.translatedText)}</span>
+                <button class="btn-replay-audio" title="Play Speech"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+        `;
+
+        bubble.querySelector('.btn-replay-audio').addEventListener('click', () => {
+            this.speakText(msg.translatedText, this.partnerLang);
+        });
+
+        this.chatFeed.appendChild(bubble);
+        this.scrollToBottom();
+    }
+
+    renderIncomingMessage(msg) {
+        this.welcomeCard.style.display = 'none';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-msg partner';
+        bubble.innerHTML = `
+            <div class="msg-header">
+                <span>PARTNER (${this.getLangShortName(msg.sourceLang)})</span>
+                <span class="msg-time">${msg.timestamp}</span>
+            </div>
+            <div class="msg-translated">${this.escapeHtml(msg.translatedText)}</div>
+            <div class="msg-original">
+                <span>Orig: ${this.escapeHtml(msg.originalText)}</span>
+                <button class="btn-replay-audio" title="Replay Speech"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+        `;
+
+        bubble.querySelector('.btn-replay-audio').addEventListener('click', () => {
+            this.speakText(msg.translatedText, this.myLang);
+        });
+
+        this.chatFeed.appendChild(bubble);
+        this.scrollToBottom();
+
+        // Auto Speak out loud in my language
+        if (this.autoVoiceRead) {
+            this.speakText(msg.translatedText, this.myLang);
+        }
+        this.vibrate([100, 50, 100]);
+    }
+
+    speakText(text, langCode) {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = langCode;
+        utterance.rate = 1.0;
+
+        // Try to pick matching voice
+        const voices = window.speechSynthesis.getVoices();
+        const matchingVoice = voices.find(v => v.lang.startsWith(langCode.substring(0, 2)));
+        if (matchingVoice) utterance.voice = matchingVoice;
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    scrollToBottom() {
+        this.chatFeed.scrollTop = this.chatFeed.scrollHeight;
+    }
+
+    getLangShortName(code) {
+        if (code.startsWith('en')) return 'English';
+        if (code.startsWith('es')) return 'Español';
+        if (code.startsWith('vi')) return 'Tiếng Việt';
+        if (code.startsWith('fr')) return 'Français';
+        if (code.startsWith('pt')) return 'Português';
+        if (code.startsWith('zh')) return '中文';
+        if (code.startsWith('ar')) return 'العربية';
+        return code;
+    }
+
+    escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    vibrate(pattern) {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(pattern);
+        }
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    window.communicatorApp = new AmestxCommunicator();
+});
