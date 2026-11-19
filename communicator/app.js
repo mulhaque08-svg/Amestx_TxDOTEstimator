@@ -97,7 +97,7 @@ class AmestxCommunicator {
         this.btnSendSmsInvite = document.getElementById('btnSendSmsInvite');
         this.btnShareNativeInvite = document.getElementById('btnShareNativeInvite');
 
-        // Invitation Arrival Modal (For Worker Opening Link)
+        // Invitation Arrival Modal (For Friend Opening Link)
         this.invitedArrivalModal = document.getElementById('invitedArrivalModal');
         this.invitedRoomPinDisplay = document.getElementById('invitedRoomPinDisplay');
         this.invitedMyLangSelect = document.getElementById('invitedMyLangSelect');
@@ -205,7 +205,9 @@ class AmestxCommunicator {
         });
 
         // Invite Buttons
-        this.btnHeaderInvite.addEventListener('click', () => this.triggerInviteShare());
+        if (this.btnHeaderInvite) {
+            this.btnHeaderInvite.addEventListener('click', () => this.triggerInviteShare());
+        }
         if (this.btnInviteHero) {
             this.btnInviteHero.addEventListener('click', () => this.openPairingModal());
         }
@@ -367,14 +369,12 @@ class AmestxCommunicator {
         this.roomPin = pin;
         this.headerRoomPin.textContent = `PIN: ${pin}`;
         this.btnDisconnect.style.display = 'inline-flex';
-        if (this.isHost) {
-            this.btnHeaderInvite.style.display = 'inline-flex';
-        } else {
+        if (this.btnHeaderInvite) {
             this.btnHeaderInvite.style.display = 'none';
         }
         this.mqttTopic = `amestx/communicator/room/${pin}`;
 
-        this.updateConnectionStatus('waiting', `PIN: ${pin} (Waiting)`);
+        this.updateConnectionStatus('waiting', `PIN: ${pin}`);
 
         if (this.mqttClient) {
             try { this.mqttClient.end(); } catch (e) {}
@@ -487,7 +487,7 @@ class AmestxCommunicator {
             this.partnerId = data.senderId;
             this.isSessionLocked = true;
             this.isPartnerConnected = true;
-            this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+            this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
 
             if (data.hostLang && data.hostLang !== this.myLang) {
                 this.partnerLang = data.hostLang;
@@ -567,8 +567,8 @@ class AmestxCommunicator {
 
         this.approvalModal.classList.remove('open');
         this.closePairingModal();
-        this.btnHeaderInvite.style.display = 'none';
-        this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+        if (this.btnHeaderInvite) this.btnHeaderInvite.style.display = 'none';
+        this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
         this.vibrate([100, 50, 100]);
         this.speakText("Partner connected and locked", this.myLang);
     }
@@ -613,8 +613,8 @@ class AmestxCommunicator {
 
         this.headerRoomPin.textContent = 'Pair';
         this.btnDisconnect.style.display = 'none';
-        this.btnHeaderInvite.style.display = 'none';
-        this.updateConnectionStatus('disconnected', 'Disconnected');
+        if (this.btnHeaderInvite) this.btnHeaderInvite.style.display = 'none';
+        this.updateConnectionStatus('disconnected', 'Off');
 
         // Reset URL without reload
         if (window.history.replaceState) {
@@ -670,6 +670,18 @@ class AmestxCommunicator {
     updateConnectionStatus(state, label) {
         this.statusBadge.className = `status-badge ${state}`;
         this.statusText.textContent = label;
+
+        if (state === 'locked') {
+            // When connected 1-to-1, replace Pair with End so End is guaranteed visible on all mobile screens
+            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'none';
+            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
+        } else if (state === 'waiting') {
+            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
+            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
+        } else { // disconnected
+            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
+            if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
+        }
     }
 
     startRecording() {

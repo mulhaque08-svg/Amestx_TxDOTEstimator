@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Amestx Communicator - Real-Time Job Site Voice Translator</title>
     
     <!-- Google Fonts -->
@@ -29,7 +32,7 @@
     <meta name="apple-mobile-web-app-title" content="Amestx Comm">
     <meta name="theme-color" content="#0a0e17">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=4.0">
 </head>
 <body>
     <div id="appContainer" class="app-layout">
@@ -39,7 +42,7 @@
             <div class="header-left">
                 <a href="../" class="back-link" title="Return to TxDOT Estimator">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span>Estimator</span>
+                    <span class="back-text">Estimator</span>
                 </a>
                 <div class="brand-title">
                     <span class="brand-name">AMESTX</span>
@@ -50,15 +53,11 @@
             <div class="header-right">
                 <div id="connectionStatusBadge" class="status-badge disconnected" title="Connection Status">
                     <span class="status-dot"></span>
-                    <span id="statusText">Disconnected</span>
+                    <span id="statusText">Off</span>
                 </div>
                 <button id="btnOpenPairing" class="header-icon-btn" title="Pair Phones / Room PIN">
                     <i class="fa-solid fa-link"></i>
                     <span id="headerRoomPin">Pair</span>
-                </button>
-                <button id="btnHeaderInvite" class="header-invite-btn" title="Invite Partner via Text / SMS" style="display: none;">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>Invite</span>
                 </button>
                 <button id="btnDisconnect" class="header-disconnect-btn" title="Disconnect & End Session" style="display: none;">
                     <i class="fa-solid fa-phone-slash"></i>
@@ -264,7 +263,7 @@
             </div>
         </div>
 
-        <!-- 📬 INVITATION ARRIVAL MODAL (WHEN WORKER OPENS THE TEXT MESSAGE LINK) -->
+        <!-- 📬 INVITATION ARRIVAL MODAL (WHEN FRIEND OPENS THE TEXT MESSAGE LINK) -->
         <div class="modal-overlay" id="invitedArrivalModal">
             <div class="modal-card invited-card">
                 <div class="invited-icon">
@@ -298,6 +297,6 @@
 
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=4.0"></script>
 </body>
 </html>
