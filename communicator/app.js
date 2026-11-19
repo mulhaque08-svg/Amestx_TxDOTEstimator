@@ -869,6 +869,8 @@ class AmestxCommunicator {
     getLangShortName(code) {
         if (code.startsWith('en')) return 'English';
         if (code.startsWith('es')) return 'Español';
+        if (code.startsWith('ur')) return 'اردو (Urdu)';
+        if (code.startsWith('hi')) return 'हिन्दी (Hindi)';
         if (code.startsWith('vi')) return 'Tiếng Việt';
         if (code.startsWith('fr')) return 'Français';
         if (code.startsWith('pt')) return 'Português';
