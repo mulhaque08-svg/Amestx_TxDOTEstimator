@@ -19,6 +19,15 @@
     <!-- QRCode.js for 1-Second Instant Pairing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
+    <!-- PWA & Mobile App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Amestx Comm">
+    <meta name="theme-color" content="#0a0e17">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -45,6 +54,14 @@
                 <button id="btnOpenPairing" class="header-icon-btn" title="Pair Phones / Room PIN">
                     <i class="fa-solid fa-link"></i>
                     <span id="headerRoomPin">Pair</span>
+                </button>
+                <button id="btnHeaderInvite" class="header-invite-btn" title="Invite Partner via Text / SMS" style="display: none;">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Invite</span>
+                </button>
+                <button id="btnDisconnect" class="header-disconnect-btn" title="Disconnect & End Session" style="display: none;">
+                    <i class="fa-solid fa-phone-slash"></i>
+                    <span>End</span>
                 </button>
             </div>
         </header>
@@ -99,6 +116,9 @@
                 <div class="welcome-action">
                     <button id="btnStartPairingHero" class="btn-primary">
                         <i class="fa-solid fa-qrcode"></i> Connect With 4-Digit Code
+                    </button>
+                    <button id="btnInviteHero" class="btn-invite-hero">
+                        <i class="fa-solid fa-paper-plane"></i> Text Invite to Worker
                     </button>
                 </div>
             </div>
@@ -186,6 +206,20 @@
                         <span class="qr-hint">Scan with Camera on Phone 2 to connect instantly</span>
                     </div>
 
+                    <!-- ✉️ TEXT INVITE SECTION -->
+                    <div class="invite-box">
+                        <span class="invite-title"><i class="fa-solid fa-comment-sms"></i> Text Invite to Worker's Phone:</span>
+                        <div class="invite-input-row">
+                            <input type="tel" id="invitePhoneInput" placeholder="Worker's cell # (optional)">
+                            <button id="btnSendSmsInvite" class="btn-sms-send" title="Send SMS Text">
+                                <i class="fa-solid fa-paper-plane"></i> Send Text
+                            </button>
+                        </div>
+                        <button id="btnShareNativeInvite" class="btn-share-native">
+                            <i class="fa-solid fa-share-nodes"></i> Share via Messages / WhatsApp
+                        </button>
+                    </div>
+
                     <div class="share-actions">
                         <button id="btnCopyShareLink" class="btn-secondary">
                             <i class="fa-solid fa-copy"></i> Copy Direct Link
@@ -229,6 +263,36 @@
                         <i class="fa-solid fa-check"></i> Accept & Lock (1-to-1)
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- 📬 INVITATION ARRIVAL MODAL (WHEN WORKER OPENS THE TEXT MESSAGE LINK) -->
+        <div class="modal-overlay" id="invitedArrivalModal">
+            <div class="modal-card invited-card">
+                <div class="invited-icon">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h2>You're Invited to Talk!</h2>
+                <p>Your partner invited you to a live voice translation session.</p>
+                
+                <div class="pin-display-box">
+                    <span class="pin-label">SESSION PIN</span>
+                    <div class="pin-digits" id="invitedRoomPinDisplay">----</div>
+                </div>
+
+                <div class="invited-lang-picker">
+                    <label>I Speak:</label>
+                    <select id="invitedMyLangSelect" class="lang-select">
+                        <option value="es-US" selected>🇲🇽 Spanish (Español)</option>
+                        <option value="en-US">🇺🇸 English (US)</option>
+                        <option value="vi-VN">🇻🇳 Vietnamese</option>
+                        <option value="fr-FR">🇫🇷 French</option>
+                    </select>
+                </div>
+
+                <button id="btnAcceptInvitation" class="btn-primary btn-block" style="margin-top: 16px;">
+                    <i class="fa-solid fa-link"></i> Connect & Pair With Partner
+                </button>
             </div>
         </div>
 

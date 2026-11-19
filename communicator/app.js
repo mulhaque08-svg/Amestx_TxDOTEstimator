@@ -40,6 +40,7 @@ class AmestxCommunicator {
         this.statusText = document.getElementById('statusText');
         this.btnOpenPairing = document.getElementById('btnOpenPairing');
         this.headerRoomPin = document.getElementById('headerRoomPin');
+        this.btnDisconnect = document.getElementById('btnDisconnect');
         
         // Security Approval Modal
         this.approvalModal = document.getElementById('approvalModal');
@@ -93,6 +94,20 @@ class AmestxCommunicator {
             document.getElementById('pinD4')
         ];
         this.btnSubmitJoinPin = document.getElementById('btnSubmitJoinPin');
+
+        // Invite Feature Elements
+        this.btnHeaderInvite = document.getElementById('btnHeaderInvite');
+        this.btnInviteHero = document.getElementById('btnInviteHero');
+        this.invitePhoneInput = document.getElementById('invitePhoneInput');
+        this.btnSendSmsInvite = document.getElementById('btnSendSmsInvite');
+        this.btnShareNativeInvite = document.getElementById('btnShareNativeInvite');
+
+        // Invitation Arrival Modal (For Worker Opening Link)
+        this.invitedArrivalModal = document.getElementById('invitedArrivalModal');
+        this.invitedRoomPinDisplay = document.getElementById('invitedRoomPinDisplay');
+        this.invitedMyLangSelect = document.getElementById('invitedMyLangSelect');
+        this.btnAcceptInvitation = document.getElementById('btnAcceptInvitation');
+        this.pendingInvitedRoom = null;
     }
 
     initSpeechRecognition() {
@@ -202,6 +217,22 @@ class AmestxCommunicator {
         this.btnAcceptPairing.addEventListener('click', () => this.acceptPairingRequest());
         this.btnDeclinePairing.addEventListener('click', () => this.declinePairingRequest());
 
+        // Disconnect / End Call Button
+        this.btnDisconnect.addEventListener('click', () => {
+            if (confirm("Disconnect and end this communication session?")) {
+                this.endSession(true);
+            }
+        });
+
+        // Invite Buttons
+        this.btnHeaderInvite.addEventListener('click', () => this.triggerInviteShare());
+        if (this.btnInviteHero) {
+            this.btnInviteHero.addEventListener('click', () => this.openPairingModal());
+        }
+        this.btnSendSmsInvite.addEventListener('click', () => this.sendSmsInvite());
+        this.btnShareNativeInvite.addEventListener('click', () => this.triggerInviteShare());
+        this.btnAcceptInvitation.addEventListener('click', () => this.handleAcceptInvitedArrival());
+
         // Copy Share Link
         this.btnCopyShareLink.addEventListener('click', () => {
             const url = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
@@ -297,7 +328,9 @@ class AmestxCommunicator {
         const roomFromUrl = urlParams.get('room');
         if (roomFromUrl && roomFromUrl.length === 4) {
             this.isHost = false;
-            this.connectToRoom(roomFromUrl);
+            this.pendingInvitedRoom = roomFromUrl;
+            this.invitedRoomPinDisplay.textContent = roomFromUrl;
+            this.invitedArrivalModal.classList.add('open');
         } else {
             // Auto open pairing modal on first load if no room
             this.openPairingModal();
@@ -353,6 +386,12 @@ class AmestxCommunicator {
     connectToRoom(pin) {
         this.roomPin = pin;
         this.headerRoomPin.textContent = `PIN: ${pin}`;
+        this.btnDisconnect.style.display = 'inline-flex';
+        if (this.isHost) {
+            this.btnHeaderInvite.style.display = 'inline-flex';
+        } else {
+            this.btnHeaderInvite.style.display = 'none';
+        }
         this.mqttTopic = `amestx/communicator/room/${pin}`;
 
         this.updateConnectionStatus('waiting', `PIN: ${pin} (Waiting)`);
@@ -514,6 +553,14 @@ class AmestxCommunicator {
             this.isPartnerConnected = true;
             this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
             this.renderIncomingMessage(data);
+            return;
+        }
+
+        // 6. SESSION_ENDED: Partner disconnected
+        if (data.type === 'SESSION_ENDED') {
+            alert("Your partner ended the session and disconnected.");
+            this.endSession(false);
+            return;
         }
     }
 
@@ -540,6 +587,7 @@ class AmestxCommunicator {
 
         this.approvalModal.classList.remove('open');
         this.closePairingModal();
+        this.btnHeaderInvite.style.display = 'none';
         this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
         this.vibrate([100, 50, 100]);
         this.speakText("Partner connected and locked", this.myLang);
@@ -557,6 +605,86 @@ class AmestxCommunicator {
 
         this.pendingRequestData = null;
         this.approvalModal.classList.remove('open');
+    }
+
+    endSession(broadcast = true) {
+        if (broadcast && this.mqttClient && this.isConnected && this.mqttTopic) {
+            try {
+                this.mqttClient.publish(this.mqttTopic, JSON.stringify({
+                    type: 'SESSION_ENDED',
+                    senderId: this.senderId
+                }));
+            } catch (e) {}
+        }
+
+        this.isSessionLocked = false;
+        this.partnerId = null;
+        this.isPartnerConnected = false;
+        this.roomPin = null;
+        this.isHost = false;
+        this.pendingRequestData = null;
+        this.pendingInvitedRoom = null;
+
+        if (this.mqttClient) {
+            try { this.mqttClient.end(); } catch (e) {}
+            this.mqttClient = null;
+            this.isConnected = false;
+        }
+
+        this.headerRoomPin.textContent = 'Pair';
+        this.btnDisconnect.style.display = 'none';
+        this.btnHeaderInvite.style.display = 'none';
+        this.updateConnectionStatus('disconnected', 'Disconnected');
+
+        // Reset URL without reload
+        if (window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        if (this.approvalModal) this.approvalModal.classList.remove('open');
+        if (this.pairingModal) this.pairingModal.classList.remove('open');
+        if (this.invitedArrivalModal) this.invitedArrivalModal.classList.remove('open');
+
+        this.speakText("Session ended. Disconnected.", this.myLang);
+    }
+
+    handleAcceptInvitedArrival() {
+        if (!this.pendingInvitedRoom) return;
+        this.myLang = this.invitedMyLangSelect.value;
+        this.myLanguageSelect.value = this.myLang;
+        if (this.recognition) this.recognition.lang = this.myLang;
+
+        this.invitedArrivalModal.classList.remove('open');
+        this.connectToRoom(this.pendingInvitedRoom);
+    }
+
+    sendSmsInvite() {
+        if (!this.roomPin) return;
+        const rawPhone = this.invitePhoneInput ? this.invitePhoneInput.value : '';
+        const phone = rawPhone.replace(/[^0-9+]/g, '');
+        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+        const msg = `Join my Amestx live translation session (PIN: ${this.roomPin}): ${directUrl}`;
+        
+        // Universal SMS URL compatible with iOS Safari & Android Chrome
+        const smsUrl = phone ? `sms:${phone}?&body=${encodeURIComponent(msg)}` : `sms:?&body=${encodeURIComponent(msg)}`;
+        window.location.href = smsUrl;
+    }
+
+    triggerInviteShare() {
+        if (!this.roomPin) return;
+        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+        const text = `Join my Amestx live translation session (PIN: ${this.roomPin})`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'Amestx Communicator',
+                text: text,
+                url: directUrl
+            }).catch(() => {});
+        } else {
+            const smsUrl = `sms:?&body=${encodeURIComponent(text + ": " + directUrl)}`;
+            window.location.href = smsUrl;
+        }
     }
 
     updateConnectionStatus(state, label) {

@@ -186,6 +186,48 @@ body, html {
     color: #000;
 }
 
+.header-disconnect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--accent-red);
+    color: #fca5a5;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header-disconnect-btn:active {
+    background: var(--accent-red);
+    color: #000;
+}
+
+.header-invite-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header-invite-btn:active {
+    background: var(--accent-cyan);
+    color: #000;
+}
+
 /* 2. SUB-BAR: LANGUAGES & AUDIO */
 .lang-bar {
     display: flex;
@@ -900,3 +942,123 @@ body, html {
     color: #86efac;
     border-color: #10b981;
 }
+
+/* 10. INVITE BOX & INVITATION ARRIVAL */
+.btn-invite-hero {
+    background: var(--bg-card-inner);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.invite-box {
+    background: var(--bg-card-inner);
+    border: 1px dashed var(--accent-cyan);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.invite-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.invite-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.invite-input-row input {
+    flex: 1;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: #ffffff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    font-family: var(--font-mono);
+}
+
+.invite-input-row input:focus {
+    border-color: var(--accent-cyan);
+}
+
+.btn-sms-send {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, #0096c7 100%);
+    border: none;
+    color: #000;
+    font-weight: 800;
+    font-size: 12px;
+    padding: 0 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-share-native {
+    width: 100%;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--accent-green);
+    color: #86efac;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-share-native:active {
+    background: var(--accent-green);
+    color: #000;
+}
+
+.invited-card {
+    text-align: center;
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 32px var(--accent-cyan-glow);
+}
+
+.invited-icon {
+    font-size: 42px;
+    color: var(--accent-cyan);
+    margin-bottom: 12px;
+}
+
+.invited-lang-picker {
+    text-align: left;
+    margin-top: 14px;
+}
+
+.invited-lang-picker label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
