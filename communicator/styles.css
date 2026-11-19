@@ -391,6 +391,91 @@ body, html {
     margin-bottom: 20px;
 }
 
+.welcome-action {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.btn-invite-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-invite-hero:active {
+    transform: scale(0.98);
+    background: #047857;
+}
+
+.welcome-sms-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.welcome-phone-input {
+    flex: 1;
+    background: rgba(10, 14, 23, 0.8);
+    border: 1px solid var(--border-color);
+    color: #ffffff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    outline: none;
+}
+
+.welcome-phone-input:focus {
+    border-color: var(--accent-cyan);
+}
+
+.btn-sms-submit {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.btn-sms-submit:active {
+    background: var(--accent-cyan);
+    color: #000;
+}
+
+.btn-subtle-pin {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 6px 0;
+    transition: color 0.2s;
+}
+
+.btn-subtle-pin:hover {
+    color: var(--accent-cyan);
+}
+
 /* CHAT MESSAGE BUBBLES */
 .chat-msg {
     display: flex;

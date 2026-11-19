@@ -32,7 +32,7 @@
     <meta name="apple-mobile-web-app-title" content="Amestx Comm">
     <meta name="theme-color" content="#0a0e17">
     
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
     <div id="appContainer" class="app-layout">
@@ -111,18 +111,22 @@
         <main class="chat-feed" id="chatFeed">
             <div class="welcome-card" id="welcomeCard">
                 <div class="welcome-icon">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <i class="fa-solid fa-arrows-left-right"></i>
-                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <i class="fa-solid fa-comments"></i>
                 </div>
-                <h3>Connect 2 Phones for Live Translation</h3>
-                <p>Sit face-to-face. Speak into your phone, and your words appear on your partner's phone translated into their language!</p>
+                <h3>Real-Time Voice Translator</h3>
+                <p>Speak into your phone — your friend hears & reads it translated in theirs!</p>
                 <div class="welcome-action">
-                    <button id="btnStartPairingHero" class="btn-primary">
-                        <i class="fa-solid fa-qrcode"></i> Connect With 4-Digit Code
+                    <button id="btnInviteHero" class="btn-primary btn-invite-hero">
+                        <i class="fa-solid fa-paper-plane"></i> Invite Friend (SMS / WhatsApp)
                     </button>
-                    <button id="btnInviteHero" class="btn-invite-hero">
-                        <i class="fa-solid fa-paper-plane"></i> Send Invite to Friend
+                    <div class="welcome-sms-row">
+                        <input type="tel" id="welcomePhoneInput" placeholder="Friend's cell # (optional)" class="welcome-phone-input">
+                        <button id="btnWelcomeSendSms" class="btn-sms-submit">
+                            <i class="fa-solid fa-paper-plane"></i> Text Link
+                        </button>
+                    </div>
+                    <button id="btnStartPairingHero" class="btn-subtle-pin">
+                        <i class="fa-solid fa-qrcode"></i> In-Person? Connect via 4-Digit PIN / QR
                     </button>
                 </div>
             </div>
@@ -164,7 +168,7 @@
                 <button id="btnPushToTalk" class="btn-giant-talk">
                     <div class="talk-inner-circle">
                         <i class="fa-solid fa-microphone" id="talkMicIcon"></i>
-                        <span id="talkButtonText">HOLD OR TAP TO TALK</span>
+                        <span id="talkButtonText">TAP TO TALK</span>
                     </div>
                 </button>
             </div>
@@ -297,6 +301,6 @@
 
     </div>
 
-    <script src="app.js?v=4.0"></script>
+    <script src="app.js?v=5.0"></script>
 </body>
 </html>

@@ -23,12 +23,16 @@ class AmestxCommunicator {
         this.mqttBrokerUrl = 'wss://broker.emqx.io:8084/mqtt'; // Public SSL WebSocket Broker
         this.mqttTopic = null;
 
-        // Speech Recognition
+        // Speech Recognition & Audio State
         this.recognition = null;
         this.isRecording = false;
+        this.isStartingRec = false;
         this.speechTranscript = '';
+        this.silenceTimeout = null;
+        this.audioUnlocked = false;
 
         this.initDOM();
+        this.initAudioUnlock();
         this.initSpeechRecognition();
         this.initEventListeners();
         this.checkUrlRoomParam();
@@ -93,6 +97,8 @@ class AmestxCommunicator {
         // Invite Feature Elements
         this.btnHeaderInvite = document.getElementById('btnHeaderInvite');
         this.btnInviteHero = document.getElementById('btnInviteHero');
+        this.welcomePhoneInput = document.getElementById('welcomePhoneInput');
+        this.btnWelcomeSendSms = document.getElementById('btnWelcomeSendSms');
         this.invitePhoneInput = document.getElementById('invitePhoneInput');
         this.btnSendSmsInvite = document.getElementById('btnSendSmsInvite');
         this.btnShareNativeInvite = document.getElementById('btnShareNativeInvite');
@@ -105,6 +111,22 @@ class AmestxCommunicator {
         this.pendingInvitedRoom = null;
     }
 
+    initAudioUnlock() {
+        const unlock = () => {
+            if (this.audioUnlocked) return;
+            this.audioUnlocked = true;
+            try {
+                if ('speechSynthesis' in window) {
+                    const silentUtterance = new SpeechSynthesisUtterance(' ');
+                    silentUtterance.volume = 0.01;
+                    window.speechSynthesis.speak(silentUtterance);
+                }
+            } catch (e) {}
+        };
+        window.addEventListener('touchstart', unlock, { once: true, passive: true });
+        window.addEventListener('click', unlock, { once: true, passive: true });
+    }
+
     initSpeechRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
@@ -115,11 +137,12 @@ class AmestxCommunicator {
 
             this.recognition.onstart = () => {
                 this.isRecording = true;
+                this.isStartingRec = false;
                 this.btnPushToTalk.classList.add('recording');
-                this.talkButtonText.textContent = "LISTENING...";
+                this.talkButtonText.textContent = "LISTENING... (TAP TO SEND)";
                 this.interimBanner.classList.add('active');
                 this.interimText.textContent = "Listening to your voice...";
-                this.vibrate([80]);
+                this.vibrate([60]);
             };
 
             this.recognition.onresult = (event) => {
@@ -139,25 +162,42 @@ class AmestxCommunicator {
                 }
 
                 if (final) {
-                    this.speechTranscript = final;
-                    this.interimText.textContent = `"${final}"`;
+                    this.speechTranscript = (this.speechTranscript ? this.speechTranscript + ' ' : '') + final;
+                    this.interimText.textContent = `"${this.speechTranscript}"`;
                 }
+
+                // Automatic silence detector: if user pauses speaking for 1.8 seconds, auto-send!
+                clearTimeout(this.silenceTimeout);
+                this.silenceTimeout = setTimeout(() => {
+                    if (this.isRecording && this.speechTranscript && this.speechTranscript.trim().length > 0) {
+                        console.log("Auto-sending after speech pause...");
+                        this.stopRecordingAndSend();
+                    }
+                }, 1800);
             };
 
             this.recognition.onerror = (event) => {
-                console.warn('Speech recognition error:', event.error);
-                this.stopRecording();
+                console.warn('Speech recognition event error:', event.error);
+                clearTimeout(this.silenceTimeout);
+                this.isRecording = false;
+                this.isStartingRec = false;
+                this.btnPushToTalk.classList.remove('recording');
+                this.talkButtonText.textContent = "TAP TO TALK";
+                this.interimBanner.classList.remove('active');
+
                 if (event.error === 'not-allowed') {
-                    alert("Please allow Microphone access in your browser to speak.");
+                    alert("Microphone permission was not allowed.\nPlease allow microphone access in your browser settings to speak.");
+                } else if (event.error === 'no-speech') {
+                    this.interimText.textContent = "No speech detected. Tap mic to try again.";
                 }
             };
 
             this.recognition.onend = () => {
-                this.stopRecording();
-                if (this.speechTranscript && this.speechTranscript.trim().length > 0) {
-                    this.handleOutgoingMessage(this.speechTranscript.trim());
-                    this.speechTranscript = '';
-                }
+                clearTimeout(this.silenceTimeout);
+                this.isRecording = false;
+                this.isStartingRec = false;
+                this.btnPushToTalk.classList.remove('recording');
+                this.finishAndSendTranscript();
             };
         } else {
             console.warn("Web Speech API not supported on this browser.");
@@ -209,7 +249,10 @@ class AmestxCommunicator {
             this.btnHeaderInvite.addEventListener('click', () => this.triggerInviteShare());
         }
         if (this.btnInviteHero) {
-            this.btnInviteHero.addEventListener('click', () => this.openPairingModal());
+            this.btnInviteHero.addEventListener('click', () => this.triggerInviteShare());
+        }
+        if (this.btnWelcomeSendSms) {
+            this.btnWelcomeSendSms.addEventListener('click', () => this.sendWelcomeSms());
         }
         this.btnSendSmsInvite.addEventListener('click', () => this.sendSmsInvite());
         this.btnShareNativeInvite.addEventListener('click', () => this.triggerInviteShare());
@@ -256,22 +299,46 @@ class AmestxCommunicator {
             this.btnVoiceAutoRead.querySelector('i').className = this.autoVoiceRead ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
         });
 
-        // Giant Push-To-Talk Button (Both Tap & Hold Supported)
-        this.btnPushToTalk.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.startRecording();
-        });
-        this.btnPushToTalk.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.stopRecording();
-        });
+        // Voice Recording Button: Tap to Talk / Hold to Talk supported seamlessly
+        let pressTimer = null;
+        let isLongPress = false;
 
-        this.btnPushToTalk.addEventListener('mousedown', () => {
+        const handleTalkDown = (e) => {
+            if (e && e.type === 'touchstart') e.preventDefault();
+            this.initAudioUnlock();
+
+            // If already recording in tap toggle mode, a tap stops and sends immediately!
+            if (this.isRecording) {
+                this.stopRecordingAndSend();
+                return;
+            }
+
+            isLongPress = false;
+            clearTimeout(pressTimer);
+            pressTimer = setTimeout(() => {
+                isLongPress = true;
+            }, 350);
+
             this.startRecording();
-        });
-        this.btnPushToTalk.addEventListener('mouseup', () => {
-            this.stopRecording();
-        });
+        };
+
+        const handleTalkUp = (e) => {
+            if (e && e.type === 'touchend') e.preventDefault();
+            clearTimeout(pressTimer);
+
+            if (isLongPress) {
+                // User held down like a walkie-talkie for >350ms: release sends it!
+                this.stopRecordingAndSend();
+            } else {
+                // User tapped: keep listening until they tap again or pause speaking!
+                console.log("Tap-to-talk listening...");
+            }
+        };
+
+        this.btnPushToTalk.addEventListener('touchstart', handleTalkDown, { passive: false });
+        this.btnPushToTalk.addEventListener('touchend', handleTalkUp, { passive: false });
+        this.btnPushToTalk.addEventListener('mousedown', handleTalkDown);
+        this.btnPushToTalk.addEventListener('mouseup', handleTalkUp);
 
         // Keyboard Drawer
         this.btnToggleType.addEventListener('click', () => {
@@ -310,12 +377,12 @@ class AmestxCommunicator {
         const roomFromUrl = urlParams.get('room');
         if (roomFromUrl && roomFromUrl.length === 4) {
             this.isHost = false;
-            this.pendingInvitedRoom = roomFromUrl;
-            this.invitedRoomPinDisplay.textContent = roomFromUrl;
-            this.invitedArrivalModal.classList.add('open');
+            // DIRECT INSTANT AUTO-JOIN (Zero modals, zero PIN entry!)
+            console.log(`Auto-joining invited room ${roomFromUrl}...`);
+            this.connectToRoom(roomFromUrl);
         } else {
-            // Auto open pairing modal on first load if no room
-            this.openPairingModal();
+            // Silently generate room PIN in background so Host is ready to invite with 1 tap!
+            this.generateNewRoomPin();
         }
     }
 
@@ -473,12 +540,29 @@ class AmestxCommunicator {
                 return;
             }
 
-            // Prompt Host for Approval (Gatekeeper Protection)
-            this.pendingRequestData = data;
-            this.reqPartnerLang.textContent = this.getLangShortName(data.language);
-            this.reqPartnerPin.textContent = this.roomPin;
-            this.approvalModal.classList.add('open');
-            this.vibrate([150, 80, 150]);
+            // AUTO-CONNECT FRIEND INSTANTLY (Zero friction, no annoying popups!)
+            this.partnerId = data.senderId;
+            this.isSessionLocked = true;
+            this.isPartnerConnected = true;
+
+            if (data.language && data.language !== this.myLang) {
+                this.partnerLang = data.language;
+                this.partnerLanguageSelect.value = data.language;
+            }
+
+            this.mqttClient.publish(this.mqttTopic, JSON.stringify({
+                type: 'PAIR_ACCEPTED',
+                targetId: data.senderId,
+                senderId: this.senderId,
+                hostLang: this.myLang
+            }));
+
+            if (this.approvalModal) this.approvalModal.classList.remove('open');
+            this.closePairingModal();
+            this.welcomeCard.style.display = 'none';
+            this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
+            this.vibrate([100, 50, 100]);
+            this.speakText("Friend connected! Ready to talk.", this.myLang);
             return;
         }
 
@@ -487,6 +571,8 @@ class AmestxCommunicator {
             this.partnerId = data.senderId;
             this.isSessionLocked = true;
             this.isPartnerConnected = true;
+            this.welcomeCard.style.display = 'none';
+            this.closePairingModal();
             this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
 
             if (data.hostLang && data.hostLang !== this.myLang) {
@@ -495,7 +581,7 @@ class AmestxCommunicator {
             }
 
             this.vibrate([100, 50, 100]);
-            this.speakText("Connected and locked", this.myLang);
+            this.speakText("Connected to friend! Ready to talk.", this.myLang);
             return;
         }
 
@@ -684,6 +770,17 @@ class AmestxCommunicator {
         }
     }
 
+    sendWelcomeSms() {
+        if (!this.roomPin) return;
+        const rawPhone = this.welcomePhoneInput ? this.welcomePhoneInput.value : '';
+        const phone = rawPhone.replace(/[^0-9+]/g, '');
+        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+        const msg = `Join my live voice translation on Amestx: ${directUrl}`;
+        
+        const smsUrl = phone ? `sms:${phone}?&body=${encodeURIComponent(msg)}` : `sms:?&body=${encodeURIComponent(msg)}`;
+        window.location.href = smsUrl;
+    }
+
     startRecording() {
         if (!this.recognition) {
             this.typeDrawer.classList.add('open');
@@ -691,21 +788,44 @@ class AmestxCommunicator {
             return;
         }
 
+        if (this.isRecording || this.isStartingRec) return;
+        this.isStartingRec = true;
+        this.speechTranscript = '';
+
         try {
-            this.speechTranscript = '';
+            this.recognition.lang = this.myLang;
             this.recognition.start();
         } catch (e) {
-            // Already started or busy
+            console.warn("Speech recognition start issue:", e);
+            this.isStartingRec = false;
         }
     }
 
-    stopRecording() {
-        if (this.recognition && this.isRecording) {
+    stopRecordingAndSend() {
+        clearTimeout(this.silenceTimeout);
+        if (!this.recognition) return;
+
+        if (this.isRecording || this.isStartingRec) {
             this.isRecording = false;
+            this.isStartingRec = false;
             this.btnPushToTalk.classList.remove('recording');
-            this.talkButtonText.textContent = "HOLD OR TAP TO TALK";
+            this.talkButtonText.textContent = "SENDING...";
             this.interimBanner.classList.remove('active');
-            try { this.recognition.stop(); } catch (e) {}
+
+            try {
+                this.recognition.stop();
+            } catch (e) {
+                this.finishAndSendTranscript();
+            }
+        }
+    }
+
+    finishAndSendTranscript() {
+        this.talkButtonText.textContent = "TAP TO TALK";
+        if (this.speechTranscript && this.speechTranscript.trim().length > 0) {
+            const textToSend = this.speechTranscript.trim();
+            this.speechTranscript = '';
+            this.handleOutgoingMessage(textToSend);
         }
     }
 
@@ -840,18 +960,21 @@ class AmestxCommunicator {
 
     speakText(text, langCode) {
         if (!('speechSynthesis' in window)) return;
-        window.speechSynthesis.cancel();
+        try {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = langCode;
+            utterance.rate = 1.0;
 
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = langCode;
-        utterance.rate = 1.0;
+            const voices = window.speechSynthesis.getVoices();
+            if (voices && voices.length > 0) {
+                const matchingVoice = voices.find(v => v.lang.startsWith(langCode.substring(0, 2)));
+                if (matchingVoice) utterance.voice = matchingVoice;
+            }
 
-        // Try to pick matching voice
-        const voices = window.speechSynthesis.getVoices();
-        const matchingVoice = voices.find(v => v.lang.startsWith(langCode.substring(0, 2)));
-        if (matchingVoice) utterance.voice = matchingVoice;
-
-        window.speechSynthesis.speak(utterance);
+            window.speechSynthesis.speak(utterance);
+        } catch (e) {
+            console.warn("Speech synthesis error:", e);
+        }
     }
 
     scrollToBottom() {
