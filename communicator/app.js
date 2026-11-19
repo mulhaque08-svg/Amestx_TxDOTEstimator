@@ -78,11 +78,6 @@ class AmestxCommunicator {
         // Modal
         this.pairingModal = document.getElementById('pairingModal');
         this.btnCloseModal = document.getElementById('btnCloseModal');
-        this.tabCreateRoom = document.getElementById('tabCreateRoom');
-        this.tabJoinRoom = document.getElementById('tabJoinRoom');
-        this.paneCreateRoom = document.getElementById('paneCreateRoom');
-        this.paneJoinRoom = document.getElementById('paneJoinRoom');
-        
         this.createdPinDigits = document.getElementById('createdPinDigits');
         this.qrCodeContainer = document.getElementById('qrCodeContainer');
         this.btnCopyShareLink = document.getElementById('btnCopyShareLink');
@@ -174,21 +169,6 @@ class AmestxCommunicator {
         this.btnOpenPairing.addEventListener('click', () => this.openPairingModal());
         this.btnStartPairingHero.addEventListener('click', () => this.openPairingModal());
         this.btnCloseModal.addEventListener('click', () => this.closePairingModal());
-
-        this.tabCreateRoom.addEventListener('click', () => {
-            this.tabCreateRoom.classList.add('active');
-            this.tabJoinRoom.classList.remove('active');
-            this.paneCreateRoom.classList.add('active');
-            this.paneJoinRoom.classList.remove('active');
-        });
-
-        this.tabJoinRoom.addEventListener('click', () => {
-            this.tabJoinRoom.classList.add('active');
-            this.tabCreateRoom.classList.remove('active');
-            this.paneJoinRoom.classList.add('active');
-            this.paneCreateRoom.classList.remove('active');
-            this.pinInputs[0].focus();
-        });
 
         // 4-Digit Input auto-advancement
         this.pinInputs.forEach((input, idx) => {

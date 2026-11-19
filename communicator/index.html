@@ -192,60 +192,53 @@
                     <button class="btn-close-modal" id="btnCloseModal">&times;</button>
                 </div>
 
-                <div class="modal-tabs">
-                    <button class="modal-tab active" id="tabCreateRoom">👑 Create Room (Phone 1)</button>
-                    <button class="modal-tab" id="tabJoinRoom">🔗 Join Room (Phone 2)</button>
-                </div>
-
-                <!-- TAB 1: CREATE ROOM (HOST) -->
-                <div class="tab-pane active" id="paneCreateRoom">
-                    <p class="tab-subtitle">Share this 4-Digit PIN or let your partner scan the QR code:</p>
+                <!-- ONE UNIFIED PAIRING SCREEN (NO CONFUSING TABS) -->
+                <div class="unified-pair-body">
                     
-                    <div class="pin-display-box">
-                        <span class="pin-label">ROOM PIN</span>
+                    <!-- SECTION 1: YOUR ROOM PIN & INVITE -->
+                    <div class="pair-card-section">
+                        <span class="section-badge"><i class="fa-solid fa-key"></i> YOUR SESSION PIN</span>
                         <div class="pin-digits" id="createdPinDigits">----</div>
-                    </div>
-
-                    <div class="qr-container">
-                        <div id="qrCodeContainer"></div>
-                        <span class="qr-hint">Scan with Camera on Phone 2 to connect instantly</span>
-                    </div>
-
-                    <!-- ✉️ TEXT INVITE SECTION -->
-                    <div class="invite-box">
-                        <span class="invite-title"><i class="fa-solid fa-comment-sms"></i> Text Invite to Worker's Phone:</span>
-                        <div class="invite-input-row">
-                            <input type="tel" id="invitePhoneInput" placeholder="Worker's cell # (optional)">
-                            <button id="btnSendSmsInvite" class="btn-sms-send" title="Send SMS Text">
-                                <i class="fa-solid fa-paper-plane"></i> Send Text
+                        
+                        <!-- ✉️ TEXT INVITE SECTION -->
+                        <div class="invite-box">
+                            <div class="invite-input-row">
+                                <input type="tel" id="invitePhoneInput" placeholder="Worker's cell # (optional)">
+                                <button id="btnSendSmsInvite" class="btn-sms-send" title="Send SMS Text">
+                                    <i class="fa-solid fa-paper-plane"></i> Text Invite
+                                </button>
+                            </div>
+                            <button id="btnShareNativeInvite" class="btn-share-native">
+                                <i class="fa-solid fa-share-nodes"></i> Share via Messages / WhatsApp
                             </button>
                         </div>
-                        <button id="btnShareNativeInvite" class="btn-share-native">
-                            <i class="fa-solid fa-share-nodes"></i> Share via Messages / WhatsApp
+
+                        <!-- TOGGLEABLE / COMPACT QR CODE -->
+                        <div class="qr-container">
+                            <div id="qrCodeContainer"></div>
+                            <span class="qr-hint">Scan with Camera on other phone to pair</span>
+                        </div>
+                    </div>
+
+                    <!-- DIVIDER -->
+                    <div class="pair-divider">
+                        <span>OR ENTER PARTNER'S PIN</span>
+                    </div>
+
+                    <!-- SECTION 2: JOIN WITH PARTNER'S PIN -->
+                    <div class="pair-card-section join-section">
+                        <div class="pin-input-row">
+                            <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD1" placeholder="-">
+                            <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD2" placeholder="-">
+                            <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD3" placeholder="-">
+                            <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD4" placeholder="-">
+                        </div>
+
+                        <button id="btnSubmitJoinPin" class="btn-primary btn-block">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i> Connect to Partner's PIN
                         </button>
                     </div>
 
-                    <div class="share-actions">
-                        <button id="btnCopyShareLink" class="btn-secondary">
-                            <i class="fa-solid fa-copy"></i> Copy Direct Link
-                        </button>
-                    </div>
-                </div>
-
-                <!-- TAB 2: JOIN ROOM (PARTNER) -->
-                <div class="tab-pane" id="paneJoinRoom">
-                    <p class="tab-subtitle">Enter the 4-Digit PIN shown on your partner's phone:</p>
-                    
-                    <div class="pin-input-row">
-                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD1" autofocus>
-                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD2">
-                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD3">
-                        <input type="number" pattern="[0-9]*" maxlength="1" class="pin-digit-input" id="pinD4">
-                    </div>
-
-                    <button id="btnSubmitJoinPin" class="btn-primary btn-block">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Connect to Partner
-                    </button>
                 </div>
             </div>
         </div>
