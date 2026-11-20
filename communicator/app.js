@@ -452,14 +452,11 @@ class AmestxCommunicator {
 
     connectToRoom(pin) {
         this.roomPin = pin;
-        this.headerRoomPin.textContent = `PIN: ${pin}`;
-        this.btnDisconnect.style.display = 'inline-flex';
-        if (this.btnHeaderInvite) {
-            this.btnHeaderInvite.style.display = 'none';
-        }
+        if (this.headerRoomPin) this.headerRoomPin.textContent = `PIN: ${pin}`;
+        if (this.btnHeaderInvite) this.btnHeaderInvite.style.display = 'none';
         this.mqttTopic = `amestx/communicator/room/${pin}`;
 
-        this.updateConnectionStatus('waiting', `PIN: ${pin}`);
+        this.updateConnectionStatus('waiting', 'Ready');
 
         if (this.mqttClient) {
             try { this.mqttClient.end(); } catch (e) {}
@@ -482,9 +479,9 @@ class AmestxCommunicator {
                     if (!err) {
                         console.log(`Subscribed to topic: ${this.mqttTopic}`);
                         if (this.isHost) {
-                            this.updateConnectionStatus('waiting', `PIN: ${this.roomPin} (Waiting)`);
+                            this.updateConnectionStatus('waiting', 'Ready');
                         } else {
-                            this.updateConnectionStatus('waiting', `Requesting to Pair...`);
+                            this.updateConnectionStatus('waiting', 'Connecting...');
                             this.sendPairRequest();
                         }
                     }
@@ -578,7 +575,7 @@ class AmestxCommunicator {
             if (this.approvalModal) this.approvalModal.classList.remove('open');
             this.closePairingModal();
             this.welcomeCard.style.display = 'none';
-            this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
+            this.updateConnectionStatus('locked', 'Connected');
             this.vibrate([100, 50, 100]);
             this.speakText("Friend connected! Ready to talk.", this.myLang);
             return;
@@ -591,7 +588,7 @@ class AmestxCommunicator {
             this.isPartnerConnected = true;
             this.welcomeCard.style.display = 'none';
             this.closePairingModal();
-            this.updateConnectionStatus('locked', `🔒 ${this.roomPin}`);
+            this.updateConnectionStatus('locked', 'Connected');
 
             if (data.hostLang && data.hostLang !== this.myLang) {
                 this.partnerLang = data.hostLang;
