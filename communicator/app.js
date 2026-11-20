@@ -31,6 +31,10 @@ class AmestxCommunicator {
         this.silenceTimeout = null;
         this.audioUnlocked = false;
 
+        // Message Deduplication & Sending Lock
+        this.receivedMessageIds = new Set();
+        this.isSendingMessage = false;
+
         this.initDOM();
         this.initAudioUnlock();
         this.initSpeechRecognition();
@@ -353,10 +357,15 @@ class AmestxCommunicator {
             }
         };
 
-        this.btnPushToTalk.addEventListener('touchstart', handleTalkDown, { passive: false });
-        this.btnPushToTalk.addEventListener('touchend', handleTalkUp, { passive: false });
-        this.btnPushToTalk.addEventListener('mousedown', handleTalkDown);
-        this.btnPushToTalk.addEventListener('mouseup', handleTalkUp);
+        if (this.btnPushToTalk) {
+            if ('ontouchstart' in window) {
+                this.btnPushToTalk.addEventListener('touchstart', handleTalkDown, { passive: false });
+                this.btnPushToTalk.addEventListener('touchend', handleTalkUp, { passive: false });
+            } else {
+                this.btnPushToTalk.addEventListener('mousedown', handleTalkDown);
+                this.btnPushToTalk.addEventListener('mouseup', handleTalkUp);
+            }
+        }
 
         // Keyboard Drawer
         this.btnToggleType.addEventListener('click', () => {
@@ -631,8 +640,12 @@ class AmestxCommunicator {
                 return;
             }
 
+            // Deduplication: prevent rendering or speaking duplicate messages
+            if (this.receivedMessageIds.has(data.id)) return;
+            this.receivedMessageIds.add(data.id);
+
             this.isPartnerConnected = true;
-            this.updateConnectionStatus('locked', `🔒 Locked 1-to-1 (${this.roomPin})`);
+            this.updateConnectionStatus('locked', 'Connected');
             this.renderIncomingMessage(data);
             return;
         }
@@ -756,20 +769,22 @@ class AmestxCommunicator {
             this.generateNewRoomPin();
         }
         const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-        const msg = `Join my live voice translation on Amestx: ${directUrl}`;
+        const inviteIntro = `Join my live voice translation on Amestx:`;
+        const fullMsg = `${inviteIntro} ${directUrl}`;
 
         if (navigator.share) {
+            // Passing inviteIntro without duplicating URL: messaging apps (WhatsApp, SMS) automatically append the url property!
             navigator.share({
                 title: 'Amestx Communicator',
-                text: msg,
+                text: inviteIntro,
                 url: directUrl
             }).catch((err) => {
                 if (err && err.name !== 'AbortError') {
-                    this.fallbackShare(directUrl, msg);
+                    this.fallbackShare(directUrl, fullMsg);
                 }
             });
         } else {
-            this.fallbackShare(directUrl, msg);
+            this.fallbackShare(directUrl, fullMsg);
         }
     }
 
@@ -795,12 +810,13 @@ class AmestxCommunicator {
         if (this.statusText) this.statusText.textContent = label;
 
         if (state === 'locked') {
-            // When connected 1-to-1, replace Pair with End so End is guaranteed visible on all mobile screens
+            // When connected 1-to-1, replace Pair with Disconnect button
             if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'none';
             if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
         } else if (state === 'waiting') {
+            // When ready / waiting, show both PIN and Disconnect button so user can exit anytime
             if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
-            if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
+            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
         } else { // disconnected
             if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
             if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
@@ -880,7 +896,13 @@ class AmestxCommunicator {
     }
 
     async handleOutgoingMessage(originalText) {
-        if (!originalText) return;
+        if (!originalText || !originalText.trim()) return;
+        originalText = originalText.trim();
+
+        // Prevent accidental duplicate firing
+        if (this.isSendingMessage) return;
+        this.isSendingMessage = true;
+        setTimeout(() => { this.isSendingMessage = false; }, 500);
 
         this.welcomeCard.style.display = 'none';
 
