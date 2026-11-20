@@ -206,43 +206,48 @@ class AmestxCommunicator {
 
     initEventListeners() {
         // Modal Controls
-        this.btnOpenPairing.addEventListener('click', () => this.openPairingModal());
-        this.btnStartPairingHero.addEventListener('click', () => this.openPairingModal());
-        this.btnCloseModal.addEventListener('click', () => this.closePairingModal());
+        if (this.btnOpenPairing) this.btnOpenPairing.addEventListener('click', () => this.openPairingModal());
+        if (this.btnStartPairingHero) this.btnStartPairingHero.addEventListener('click', () => this.openPairingModal());
+        if (this.btnCloseModal) this.btnCloseModal.addEventListener('click', () => this.closePairingModal());
 
         // 4-Digit Input auto-advancement
-        this.pinInputs.forEach((input, idx) => {
-            input.addEventListener('input', (e) => {
-                const val = e.target.value;
-                if (val.length >= 1) {
-                    input.value = val.slice(-1);
-                    if (idx < 3) {
-                        this.pinInputs[idx + 1].focus();
-                    } else {
-                        this.handleJoinFromInputs();
+        if (this.pinInputs) {
+            this.pinInputs.forEach((input, idx) => {
+                if (!input) return;
+                input.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    if (val.length >= 1) {
+                        input.value = val.slice(-1);
+                        if (idx < 3 && this.pinInputs[idx + 1]) {
+                            this.pinInputs[idx + 1].focus();
+                        } else {
+                            this.handleJoinFromInputs();
+                        }
                     }
-                }
-            });
+                });
 
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && !input.value && idx > 0) {
-                    this.pinInputs[idx - 1].focus();
-                }
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !input.value && idx > 0 && this.pinInputs[idx - 1]) {
+                        this.pinInputs[idx - 1].focus();
+                    }
+                });
             });
-        });
+        }
 
-        this.btnSubmitJoinPin.addEventListener('click', () => this.handleJoinFromInputs());
+        if (this.btnSubmitJoinPin) this.btnSubmitJoinPin.addEventListener('click', () => this.handleJoinFromInputs());
 
         // Security Approval Modal Buttons
-        this.btnAcceptPairing.addEventListener('click', () => this.acceptPairingRequest());
-        this.btnDeclinePairing.addEventListener('click', () => this.declinePairingRequest());
+        if (this.btnAcceptPairing) this.btnAcceptPairing.addEventListener('click', () => this.acceptPairingRequest());
+        if (this.btnDeclinePairing) this.btnDeclinePairing.addEventListener('click', () => this.declinePairingRequest());
 
         // Disconnect / End Call Button
-        this.btnDisconnect.addEventListener('click', () => {
-            if (confirm("Disconnect and end this communication session?")) {
-                this.endSession(true);
-            }
-        });
+        if (this.btnDisconnect) {
+            this.btnDisconnect.addEventListener('click', () => {
+                if (confirm("Disconnect and end this communication session?")) {
+                    this.endSession(true);
+                }
+            });
+        }
 
         // Invite Buttons
         if (this.btnHeaderInvite) {
@@ -251,22 +256,35 @@ class AmestxCommunicator {
         if (this.btnInviteHero) {
             this.btnInviteHero.addEventListener('click', () => this.triggerInviteShare());
         }
+        if (this.welcomePhoneInput) {
+            this.welcomePhoneInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.sendWelcomeSms();
+            });
+        }
         if (this.btnWelcomeSendSms) {
             this.btnWelcomeSendSms.addEventListener('click', () => this.sendWelcomeSms());
         }
-        this.btnSendSmsInvite.addEventListener('click', () => this.sendSmsInvite());
-        this.btnShareNativeInvite.addEventListener('click', () => this.triggerInviteShare());
-        this.btnAcceptInvitation.addEventListener('click', () => this.handleAcceptInvitedArrival());
+        if (this.btnSendSmsInvite) {
+            this.btnSendSmsInvite.addEventListener('click', () => this.sendSmsInvite());
+        }
+        if (this.btnShareNativeInvite) {
+            this.btnShareNativeInvite.addEventListener('click', () => this.triggerInviteShare());
+        }
+        if (this.btnAcceptInvitation) {
+            this.btnAcceptInvitation.addEventListener('click', () => this.handleAcceptInvitedArrival());
+        }
 
-        // Copy Share Link
-        this.btnCopyShareLink.addEventListener('click', () => {
-            const url = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-            navigator.clipboard.writeText(url).then(() => {
-                alert(`✅ Link copied with PIN ${this.roomPin}!\n\nSend this link to your partner to connect instantly.`);
-            }).catch(() => {
-                prompt("Copy this direct connection link:", url);
+        // Copy Share Link (Guarded)
+        if (this.btnCopyShareLink) {
+            this.btnCopyShareLink.addEventListener('click', () => {
+                const url = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert(`✅ Link copied with PIN ${this.roomPin}!\n\nSend this link to your partner to connect instantly.`);
+                }).catch(() => {
+                    prompt("Copy this direct connection link:", url);
+                });
             });
-        });
+        }
 
         // Language Selectors
         this.myLanguageSelect.addEventListener('change', (e) => {
@@ -737,25 +755,47 @@ class AmestxCommunicator {
     }
 
     triggerInviteShare() {
-        if (!this.roomPin) return;
+        if (!this.roomPin) {
+            this.generateNewRoomPin();
+        }
         const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-        const text = `Join my Amestx live translation session (PIN: ${this.roomPin})`;
+        const msg = `Join my live voice translation on Amestx: ${directUrl}`;
 
         if (navigator.share) {
             navigator.share({
                 title: 'Amestx Communicator',
-                text: text,
+                text: msg,
                 url: directUrl
-            }).catch(() => {});
+            }).catch((err) => {
+                if (err && err.name !== 'AbortError') {
+                    this.fallbackShare(directUrl, msg);
+                }
+            });
         } else {
-            const smsUrl = `sms:?&body=${encodeURIComponent(text + ": " + directUrl)}`;
-            window.location.href = smsUrl;
+            this.fallbackShare(directUrl, msg);
+        }
+    }
+
+    fallbackShare(directUrl, msg) {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            window.location.href = `sms:?&body=${encodeURIComponent(msg)}`;
+        } else {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(directUrl).then(() => {
+                    alert(`✅ Invite link copied to clipboard!\n\nSend this link to your friend:\n${directUrl}`);
+                }).catch(() => {
+                    prompt("Copy and send this invite link to your friend:", directUrl);
+                });
+            } else {
+                prompt("Copy and send this invite link to your friend:", directUrl);
+            }
         }
     }
 
     updateConnectionStatus(state, label) {
-        this.statusBadge.className = `status-badge ${state}`;
-        this.statusText.textContent = label;
+        if (this.statusBadge) this.statusBadge.className = `status-badge ${state}`;
+        if (this.statusText) this.statusText.textContent = label;
 
         if (state === 'locked') {
             // When connected 1-to-1, replace Pair with End so End is guaranteed visible on all mobile screens
@@ -763,7 +803,7 @@ class AmestxCommunicator {
             if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
         } else if (state === 'waiting') {
             if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
-            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
+            if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
         } else { // disconnected
             if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
             if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
@@ -771,14 +811,19 @@ class AmestxCommunicator {
     }
 
     sendWelcomeSms() {
-        if (!this.roomPin) return;
+        if (!this.roomPin) {
+            this.generateNewRoomPin();
+        }
         const rawPhone = this.welcomePhoneInput ? this.welcomePhoneInput.value : '';
         const phone = rawPhone.replace(/[^0-9+]/g, '');
         const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
         const msg = `Join my live voice translation on Amestx: ${directUrl}`;
         
-        const smsUrl = phone ? `sms:${phone}?&body=${encodeURIComponent(msg)}` : `sms:?&body=${encodeURIComponent(msg)}`;
-        window.location.href = smsUrl;
+        if (phone) {
+            window.location.href = `sms:${phone}?&body=${encodeURIComponent(msg)}`;
+        } else {
+            this.triggerInviteShare();
+        }
     }
 
     startRecording() {
