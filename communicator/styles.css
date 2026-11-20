@@ -127,17 +127,14 @@ body, html {
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 8px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 700;
     font-family: var(--font-mono);
     border: 1px solid transparent;
-    max-width: 95px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-shrink: 1;
+    flex-shrink: 0;
 }
 
 .status-dot {
@@ -166,12 +163,12 @@ body, html {
     animation: pulse 1.2s infinite;
 }
 
-.status-badge.connected {
-    background: rgba(16, 185, 129, 0.15);
+.status-badge.connected, .status-badge.locked {
+    background: rgba(16, 185, 129, 0.2);
     color: #86efac;
-    border-color: rgba(16, 185, 129, 0.4);
+    border-color: rgba(16, 185, 129, 0.5);
 }
-.status-badge.connected .status-dot {
+.status-badge.connected .status-dot, .status-badge.locked .status-dot {
     background: var(--accent-green);
     box-shadow: 0 0 8px var(--accent-green);
 }
@@ -238,9 +235,8 @@ body, html {
         display: none !important;
     }
     .status-badge {
-        max-width: 75px;
-        font-size: 10px;
-        padding: 4px 6px;
+        font-size: 11px;
+        padding: 4px 8px;
     }
     .header-icon-btn {
         padding: 5px 8px;
@@ -397,6 +393,30 @@ body, html {
     gap: 12px;
     max-width: 320px;
     margin: 0 auto;
+}
+
+.btn-whatsapp-direct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    transition: all 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-whatsapp-direct:active {
+    transform: scale(0.98);
+    background: #075E54;
 }
 
 .btn-invite-hero {
@@ -1091,9 +1111,27 @@ body, html {
 
 /* 10. INVITE BOX & INVITATION ARRIVAL */
 .btn-invite-hero {
-    background: var(--bg-card-inner);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0, 229, 255, 0.12);
     border: 1px solid var(--accent-cyan);
     color: var(--accent-cyan);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-invite-hero:active {
+    background: var(--accent-cyan);
+    color: #000;
+}
     font-weight: 700;
     padding: 12px 18px;
     border-radius: 10px;

@@ -32,7 +32,7 @@
     <meta name="apple-mobile-web-app-title" content="Amestx Comm">
     <meta name="theme-color" content="#0a0e17">
     
-    <link rel="stylesheet" href="styles.css?v=5.3">
+    <link rel="stylesheet" href="styles.css?v=6.0">
 </head>
 <body>
     <div id="appContainer" class="app-layout">
@@ -51,15 +51,11 @@
             </div>
 
             <div class="header-right">
-                <div id="connectionStatusBadge" class="status-badge disconnected" title="Connection Status">
+                <div id="connectionStatusBadge" class="status-badge waiting" title="Call Status">
                     <span class="status-dot"></span>
-                    <span id="statusText">Off</span>
+                    <span id="statusText">Ready</span>
                 </div>
-                <button id="btnOpenPairing" class="header-icon-btn" title="Pair Phones / Room PIN">
-                    <i class="fa-solid fa-link"></i>
-                    <span id="headerRoomPin">Pair</span>
-                </button>
-                <button id="btnDisconnect" class="header-disconnect-btn" title="Disconnect & End Session" style="display: none;">
+                <button id="btnDisconnect" class="header-disconnect-btn" title="End / Disconnect Call">
                     <i class="fa-solid fa-phone-slash"></i>
                     <span>Disconnect</span>
                 </button>
@@ -111,22 +107,27 @@
         <main class="chat-feed" id="chatFeed">
             <div class="welcome-card" id="welcomeCard">
                 <div class="welcome-icon">
-                    <i class="fa-solid fa-comments"></i>
+                    <i class="fa-solid fa-phone-volume"></i>
                 </div>
-                <h3>Real-Time Voice Translator</h3>
-                <p>Speak into your phone — your friend hears & reads it translated in theirs!</p>
+                <h3>Live Voice Translation Call</h3>
+                <p>Speak in your language — your friend hears & reads it in theirs!</p>
                 <div class="welcome-action">
-                    <button id="btnInviteHero" class="btn-primary btn-invite-hero">
-                        <i class="fa-solid fa-paper-plane"></i> Invite Friend (SMS / WhatsApp)
+                    <!-- WhatsApp 1-Tap Invite -->
+                    <button id="btnInviteWhatsApp" class="btn-whatsapp-direct">
+                        <i class="fa-brands fa-whatsapp"></i> Send Call Link via WhatsApp
                     </button>
+
+                    <!-- SMS Text Message 1-Tap Invite -->
                     <div class="welcome-sms-row">
                         <input type="tel" id="welcomePhoneInput" placeholder="Friend's cell # (optional)" class="welcome-phone-input">
                         <button id="btnWelcomeSendSms" class="btn-sms-submit">
-                            <i class="fa-solid fa-paper-plane"></i> Text Link
+                            <i class="fa-solid fa-comment-sms"></i> Text Link
                         </button>
                     </div>
-                    <button id="btnStartPairingHero" class="btn-subtle-pin">
-                        <i class="fa-solid fa-qrcode"></i> In-Person? Connect via 4-Digit PIN / QR
+
+                    <!-- Native Share (Other Apps / Copy Link) -->
+                    <button id="btnInviteHero" class="btn-primary btn-invite-hero">
+                        <i class="fa-solid fa-share-nodes"></i> Share Call Link (Other Apps)
                     </button>
                 </div>
             </div>
@@ -301,6 +302,6 @@
 
     </div>
 
-    <script src="app.js?v=5.3"></script>
+    <script src="app.js?v=6.0"></script>
 </body>
 </html>

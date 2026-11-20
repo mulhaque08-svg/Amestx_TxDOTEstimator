@@ -28,6 +28,7 @@ class AmestxCommunicator {
         this.isRecording = false;
         this.isStartingRec = false;
         this.speechTranscript = '';
+        this.currentInterim = '';
         this.silenceTimeout = null;
         this.audioUnlocked = false;
 
@@ -100,6 +101,7 @@ class AmestxCommunicator {
 
         // Invite Feature Elements
         this.btnHeaderInvite = document.getElementById('btnHeaderInvite');
+        this.btnInviteWhatsApp = document.getElementById('btnInviteWhatsApp');
         this.btnInviteHero = document.getElementById('btnInviteHero');
         this.welcomePhoneInput = document.getElementById('welcomePhoneInput');
         this.btnWelcomeSendSms = document.getElementById('btnWelcomeSendSms');
@@ -161,19 +163,23 @@ class AmestxCommunicator {
                     }
                 }
 
-                if (interim) {
-                    this.interimText.textContent = `"${interim}"`;
-                }
+                this.currentInterim = interim;
 
                 if (final) {
                     this.speechTranscript = (this.speechTranscript ? this.speechTranscript + ' ' : '') + final;
-                    this.interimText.textContent = `"${this.speechTranscript}"`;
+                    this.currentInterim = '';
+                }
+
+                const liveDisplay = ((this.speechTranscript || '') + ' ' + (interim || '')).trim();
+                if (liveDisplay) {
+                    this.interimText.textContent = `"${liveDisplay}"`;
                 }
 
                 // Automatic silence detector: if user pauses speaking for 1.8 seconds, auto-send!
                 clearTimeout(this.silenceTimeout);
                 this.silenceTimeout = setTimeout(() => {
-                    if (this.isRecording && this.speechTranscript && this.speechTranscript.trim().length > 0) {
+                    const fullSpoken = ((this.speechTranscript || '') + ' ' + (this.currentInterim || '')).trim();
+                    if (this.isRecording && fullSpoken.length > 0) {
                         console.log("Auto-sending after speech pause...");
                         this.stopRecordingAndSend();
                     }
@@ -247,10 +253,15 @@ class AmestxCommunicator {
         // Disconnect / End Call Button
         if (this.btnDisconnect) {
             this.btnDisconnect.addEventListener('click', () => {
-                if (confirm("Disconnect and end this communication session?")) {
+                if (confirm("Disconnect and end this call?")) {
                     this.endSession(true);
                 }
             });
+        }
+
+        // Direct WhatsApp 1-Tap Invite Button
+        if (this.btnInviteWhatsApp) {
+            this.btnInviteWhatsApp.addEventListener('click', () => this.sendWhatsAppInvite());
         }
 
         // Invite Buttons
@@ -281,11 +292,11 @@ class AmestxCommunicator {
         // Copy Share Link (Guarded)
         if (this.btnCopyShareLink) {
             this.btnCopyShareLink.addEventListener('click', () => {
-                const url = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+                const url = this.getCallUrl();
                 navigator.clipboard.writeText(url).then(() => {
-                    alert(`✅ Link copied with PIN ${this.roomPin}!\n\nSend this link to your partner to connect instantly.`);
+                    alert(`✅ Call link copied to clipboard!\n\nSend this link to your friend:\n${url}`);
                 }).catch(() => {
-                    prompt("Copy this direct connection link:", url);
+                    prompt("Copy this direct call link:", url);
                 });
             });
         }
@@ -401,14 +412,14 @@ class AmestxCommunicator {
 
     checkUrlRoomParam() {
         const urlParams = new URLSearchParams(window.location.search);
-        const roomFromUrl = urlParams.get('room');
-        if (roomFromUrl && roomFromUrl.length === 4) {
+        const callFromUrl = urlParams.get('call') || urlParams.get('room');
+        if (callFromUrl && callFromUrl.length >= 4) {
             this.isHost = false;
             // DIRECT INSTANT AUTO-JOIN (Zero modals, zero PIN entry!)
-            console.log(`Auto-joining invited room ${roomFromUrl}...`);
-            this.connectToRoom(roomFromUrl);
+            console.log(`Auto-joining call ${callFromUrl}...`);
+            this.connectToRoom(callFromUrl);
         } else {
-            // Silently generate room PIN in background so Host is ready to invite with 1 tap!
+            // Silently generate call session in background so Host is ready to invite with 1 tap!
             this.generateNewRoomPin();
         }
     }
@@ -437,7 +448,7 @@ class AmestxCommunicator {
     renderQrCode() {
         if (!window.QRCode) return;
         this.qrCodeContainer.innerHTML = '';
-        const targetUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
+        const targetUrl = `${window.location.origin}${window.location.pathname}?call=${this.roomPin}`;
         new QRCode(this.qrCodeContainer, {
             text: targetUrl,
             width: 150,
@@ -461,7 +472,7 @@ class AmestxCommunicator {
 
     connectToRoom(pin) {
         this.roomPin = pin;
-        if (this.headerRoomPin) this.headerRoomPin.textContent = `PIN: ${pin}`;
+        if (this.headerRoomPin) this.headerRoomPin.textContent = `Call: ${pin}`;
         if (this.btnHeaderInvite) this.btnHeaderInvite.style.display = 'none';
         this.mqttTopic = `amestx/communicator/room/${pin}`;
 
@@ -471,7 +482,7 @@ class AmestxCommunicator {
             try { this.mqttClient.end(); } catch (e) {}
         }
 
-        console.log(`Connecting to MQTT broker for room ${pin}...`);
+        console.log(`Connecting to MQTT broker for call ${pin}...`);
         
         try {
             this.mqttClient = mqtt.connect(this.mqttBrokerUrl, {
@@ -492,6 +503,17 @@ class AmestxCommunicator {
                         } else {
                             this.updateConnectionStatus('waiting', 'Connecting...');
                             this.sendPairRequest();
+
+                            // Auto-retry handshake up to 4 times every 1.2s in case host was connecting
+                            let retries = 0;
+                            const retryTimer = setInterval(() => {
+                                retries++;
+                                if (this.isPartnerConnected || retries >= 4 || !this.isConnected) {
+                                    clearInterval(retryTimer);
+                                } else {
+                                    this.sendPairRequest();
+                                }
+                            }, 1200);
                         }
                     }
                 });
@@ -514,7 +536,7 @@ class AmestxCommunicator {
 
             this.mqttClient.on('close', () => {
                 this.isConnected = false;
-                this.updateConnectionStatus('disconnected', 'Disconnected');
+                this.updateConnectionStatus('disconnected', 'Off');
             });
 
         } catch (err) {
@@ -554,7 +576,7 @@ class AmestxCommunicator {
             if (!this.isHost) return;
 
             // If session is ALREADY LOCKED to another partner -> REJECT ANY 3RD PARTY!
-            if (this.isSessionLocked) {
+            if (this.isSessionLocked && this.partnerId && data.senderId !== this.partnerId) {
                 this.mqttClient.publish(this.mqttTopic, JSON.stringify({
                     type: 'PAIR_REJECTED',
                     targetId: data.senderId,
@@ -564,7 +586,7 @@ class AmestxCommunicator {
                 return;
             }
 
-            // AUTO-CONNECT FRIEND INSTANTLY (Zero friction, no annoying popups!)
+            // AUTO-CONNECT FRIEND INSTANTLY (Zero friction, no pairing screens!)
             this.partnerId = data.senderId;
             this.isSessionLocked = true;
             this.isPartnerConnected = true;
@@ -582,11 +604,12 @@ class AmestxCommunicator {
             }));
 
             if (this.approvalModal) this.approvalModal.classList.remove('open');
-            this.closePairingModal();
-            this.welcomeCard.style.display = 'none';
-            this.updateConnectionStatus('locked', 'Connected');
+            if (this.pairingModal) this.pairingModal.classList.remove('open');
+            if (this.invitedArrivalModal) this.invitedArrivalModal.classList.remove('open');
+            if (this.welcomeCard) this.welcomeCard.style.display = 'none';
+            this.updateConnectionStatus('locked', 'In Call');
             this.vibrate([100, 50, 100]);
-            this.speakText("Friend connected! Ready to talk.", this.myLang);
+            this.speakText("Friend joined call. Ready to talk.", this.myLang);
             return;
         }
 
@@ -595,9 +618,10 @@ class AmestxCommunicator {
             this.partnerId = data.senderId;
             this.isSessionLocked = true;
             this.isPartnerConnected = true;
-            this.welcomeCard.style.display = 'none';
-            this.closePairingModal();
-            this.updateConnectionStatus('locked', 'Connected');
+            if (this.welcomeCard) this.welcomeCard.style.display = 'none';
+            if (this.pairingModal) this.pairingModal.classList.remove('open');
+            if (this.invitedArrivalModal) this.invitedArrivalModal.classList.remove('open');
+            this.updateConnectionStatus('locked', 'In Call');
 
             if (data.hostLang && data.hostLang !== this.myLang) {
                 this.partnerLang = data.hostLang;
@@ -605,18 +629,18 @@ class AmestxCommunicator {
             }
 
             this.vibrate([100, 50, 100]);
-            this.speakText("Connected to friend! Ready to talk.", this.myLang);
+            this.speakText("Connected to call. Ready to talk.", this.myLang);
             return;
         }
 
         // 3. Partner receives PAIR_REJECTED
         if (data.type === 'PAIR_REJECTED') {
             if (data.reason === 'LOCKED') {
-                alert("🚫 This session is locked!\n\nA private 1-on-1 conversation is already active between two other phones.");
+                alert("🚫 This call is already active between two other phones.");
             } else {
-                alert("❌ The host declined the pairing request.");
+                alert("❌ Call connection was declined.");
             }
-            this.updateConnectionStatus('disconnected', 'Rejected');
+            this.updateConnectionStatus('disconnected', 'Off');
             if (this.mqttClient) {
                 try { this.mqttClient.end(); } catch (e) {}
             }
@@ -645,14 +669,14 @@ class AmestxCommunicator {
             this.receivedMessageIds.add(data.id);
 
             this.isPartnerConnected = true;
-            this.updateConnectionStatus('locked', 'Connected');
+            this.updateConnectionStatus('locked', 'In Call');
             this.renderIncomingMessage(data);
             return;
         }
 
         // 6. SESSION_ENDED: Partner disconnected
         if (data.type === 'SESSION_ENDED') {
-            alert("Your partner ended the session and disconnected.");
+            alert("Call ended by your friend.");
             this.endSession(false);
             return;
         }
@@ -725,10 +749,8 @@ class AmestxCommunicator {
             this.isConnected = false;
         }
 
-        this.headerRoomPin.textContent = 'Pair';
-        this.btnDisconnect.style.display = 'none';
+        if (this.headerRoomPin) this.headerRoomPin.textContent = 'Call';
         if (this.btnHeaderInvite) this.btnHeaderInvite.style.display = 'none';
-        this.updateConnectionStatus('disconnected', 'Off');
 
         // Reset URL without reload
         if (window.history.replaceState) {
@@ -738,8 +760,12 @@ class AmestxCommunicator {
         if (this.approvalModal) this.approvalModal.classList.remove('open');
         if (this.pairingModal) this.pairingModal.classList.remove('open');
         if (this.invitedArrivalModal) this.invitedArrivalModal.classList.remove('open');
+        if (this.welcomeCard) this.welcomeCard.style.display = 'block';
 
-        this.speakText("Session ended. Disconnected.", this.myLang);
+        this.speakText("Call ended.", this.myLang);
+
+        // Instantly generate a fresh call room so Host is ready for the next call!
+        this.generateNewRoomPin();
     }
 
     handleAcceptInvitedArrival() {
@@ -752,56 +778,82 @@ class AmestxCommunicator {
         this.connectToRoom(this.pendingInvitedRoom);
     }
 
-    sendSmsInvite() {
-        if (!this.roomPin) return;
-        const rawPhone = this.invitePhoneInput ? this.invitePhoneInput.value : '';
+    getCallUrl() {
+        if (!this.roomPin) {
+            this.generateNewRoomPin();
+        }
+        return `${window.location.origin}${window.location.pathname}?call=${this.roomPin}`;
+    }
+
+    sendWhatsAppInvite() {
+        const callUrl = this.getCallUrl();
+        const msg = `Join my live voice translation call on Amestx:\n${callUrl}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+        window.location.href = whatsappUrl;
+    }
+
+    sendWelcomeSms() {
+        const rawPhone = this.welcomePhoneInput ? this.welcomePhoneInput.value.trim() : '';
         const phone = rawPhone.replace(/[^0-9+]/g, '');
-        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-        const msg = `Join my Amestx live translation session (PIN: ${this.roomPin}): ${directUrl}`;
+        const callUrl = this.getCallUrl();
+        const msg = `Join my live voice translation call on Amestx: ${callUrl}`;
         
-        // Universal SMS URL compatible with iOS Safari & Android Chrome
-        const smsUrl = phone ? `sms:${phone}?&body=${encodeURIComponent(msg)}` : `sms:?&body=${encodeURIComponent(msg)}`;
+        // iOS requires '&body=' when a number is present; Android requires '?body='
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        let smsUrl;
+        if (phone) {
+            smsUrl = isIOS ? `sms:${phone}&body=${encodeURIComponent(msg)}` : `sms:${phone}?body=${encodeURIComponent(msg)}`;
+        } else {
+            smsUrl = isIOS ? `sms:&body=${encodeURIComponent(msg)}` : `sms:?body=${encodeURIComponent(msg)}`;
+        }
+        window.location.href = smsUrl;
+    }
+
+    sendSmsInvite() {
+        const rawPhone = this.invitePhoneInput ? this.invitePhoneInput.value.trim() : '';
+        const phone = rawPhone.replace(/[^0-9+]/g, '');
+        const callUrl = this.getCallUrl();
+        const msg = `Join my live voice translation call on Amestx: ${callUrl}`;
+        
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        let smsUrl;
+        if (phone) {
+            smsUrl = isIOS ? `sms:${phone}&body=${encodeURIComponent(msg)}` : `sms:${phone}?body=${encodeURIComponent(msg)}`;
+        } else {
+            smsUrl = isIOS ? `sms:&body=${encodeURIComponent(msg)}` : `sms:?body=${encodeURIComponent(msg)}`;
+        }
         window.location.href = smsUrl;
     }
 
     triggerInviteShare() {
-        if (!this.roomPin) {
-            this.generateNewRoomPin();
-        }
-        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-        const inviteIntro = `Join my live voice translation on Amestx:`;
-        const fullMsg = `${inviteIntro} ${directUrl}`;
+        const callUrl = this.getCallUrl();
+        const fullMsg = `Join my live voice translation call on Amestx: ${callUrl}`;
 
         if (navigator.share) {
-            // Passing inviteIntro without duplicating URL: messaging apps (WhatsApp, SMS) automatically append the url property!
+            // Avoid duplicate links: pass clean title & url property
             navigator.share({
-                title: 'Amestx Communicator',
-                text: inviteIntro,
-                url: directUrl
+                title: 'Amestx Communicator Call',
+                text: 'Join my live voice translation call on Amestx:',
+                url: callUrl
             }).catch((err) => {
                 if (err && err.name !== 'AbortError') {
-                    this.fallbackShare(directUrl, fullMsg);
+                    this.fallbackShare(callUrl, fullMsg);
                 }
             });
         } else {
-            this.fallbackShare(directUrl, fullMsg);
+            this.fallbackShare(callUrl, fullMsg);
         }
     }
 
     fallbackShare(directUrl, msg) {
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (isMobile) {
-            window.location.href = `sms:?&body=${encodeURIComponent(msg)}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(directUrl).then(() => {
+                alert(`✅ Call link copied to clipboard!\n\nSend this link to your friend:\n${directUrl}`);
+            }).catch(() => {
+                prompt("Copy and send this call link to your friend:", directUrl);
+            });
         } else {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(directUrl).then(() => {
-                    alert(`✅ Invite link copied to clipboard!\n\nSend this link to your friend:\n${directUrl}`);
-                }).catch(() => {
-                    prompt("Copy and send this invite link to your friend:", directUrl);
-                });
-            } else {
-                prompt("Copy and send this invite link to your friend:", directUrl);
-            }
+            prompt("Copy and send this call link to your friend:", directUrl);
         }
     }
 
@@ -809,33 +861,18 @@ class AmestxCommunicator {
         if (this.statusBadge) this.statusBadge.className = `status-badge ${state}`;
         if (this.statusText) this.statusText.textContent = label;
 
-        if (state === 'locked') {
-            // When connected 1-to-1, replace Pair with Disconnect button
-            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'none';
-            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
-        } else if (state === 'waiting') {
-            // When ready / waiting, show both PIN and Disconnect button so user can exit anytime
-            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
-            if (this.btnDisconnect) this.btnDisconnect.style.display = 'inline-flex';
-        } else { // disconnected
-            if (this.btnOpenPairing) this.btnOpenPairing.style.display = 'inline-flex';
-            if (this.btnDisconnect) this.btnDisconnect.style.display = 'none';
+        // Disconnect / End Call button is visible during Ready and In Call
+        if (this.btnDisconnect) {
+            if (state === 'locked' || state === 'waiting') {
+                this.btnDisconnect.style.display = 'inline-flex';
+            } else {
+                this.btnDisconnect.style.display = 'none';
+            }
         }
-    }
 
-    sendWelcomeSms() {
-        if (!this.roomPin) {
-            this.generateNewRoomPin();
-        }
-        const rawPhone = this.welcomePhoneInput ? this.welcomePhoneInput.value : '';
-        const phone = rawPhone.replace(/[^0-9+]/g, '');
-        const directUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomPin}`;
-        const msg = `Join my live voice translation on Amestx: ${directUrl}`;
-        
-        if (phone) {
-            window.location.href = `sms:${phone}?&body=${encodeURIComponent(msg)}`;
-        } else {
-            this.triggerInviteShare();
+        // Never display old PIN / Pair button in header
+        if (this.btnOpenPairing) {
+            this.btnOpenPairing.style.display = 'none';
         }
     }
 
@@ -880,10 +917,15 @@ class AmestxCommunicator {
 
     finishAndSendTranscript() {
         this.talkButtonText.textContent = "TAP TO TALK";
-        if (this.speechTranscript && this.speechTranscript.trim().length > 0) {
-            const textToSend = this.speechTranscript.trim();
-            this.speechTranscript = '';
-            this.handleOutgoingMessage(textToSend);
+        let fullText = (this.speechTranscript || '').trim();
+        if (this.currentInterim && this.currentInterim.trim()) {
+            fullText = (fullText ? fullText + ' ' : '') + this.currentInterim.trim();
+        }
+        this.speechTranscript = '';
+        this.currentInterim = '';
+
+        if (fullText && fullText.length > 0) {
+            this.handleOutgoingMessage(fullText);
         }
     }
 
@@ -1025,6 +1067,7 @@ class AmestxCommunicator {
     speakText(text, langCode) {
         if (!('speechSynthesis' in window)) return;
         try {
+            window.speechSynthesis.cancel(); // Clear any stalled utterance to avoid audio freeze
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = langCode;
             utterance.rate = 1.0;
