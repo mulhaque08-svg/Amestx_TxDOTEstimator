@@ -35,11 +35,13 @@ class AmestxCommunicator {
         // Message Deduplication & Sending Lock
         this.receivedMessageIds = new Set();
         this.isSendingMessage = false;
+        this.outgoingQueue = [];
 
         this.initDOM();
         this.initAudioUnlock();
         this.initSpeechRecognition();
         this.initEventListeners();
+        this.initWakeWatchdog();
         this.checkUrlRoomParam();
     }
 
@@ -488,17 +490,33 @@ class AmestxCommunicator {
             this.mqttClient = mqtt.connect(this.mqttBrokerUrl, {
                 clientId: this.senderId,
                 clean: true,
-                reconnectPeriod: 2000
+                keepalive: 15,
+                reconnectPeriod: 1500,
+                connectTimeout: 6000
             });
 
             this.mqttClient.on('connect', () => {
                 console.log('Connected to MQTT WebSocket Broker!');
                 this.isConnected = true;
                 
+                // Flush any messages that were queued while offline
+                if (this.outgoingQueue && this.outgoingQueue.length > 0) {
+                    console.log(`Flushing ${this.outgoingQueue.length} queued messages...`);
+                    while (this.outgoingQueue.length > 0) {
+                        const queuedMsg = this.outgoingQueue.shift();
+                        try {
+                            this.mqttClient.publish(this.mqttTopic, JSON.stringify(queuedMsg));
+                        } catch (qe) {}
+                    }
+                }
+
                 this.mqttClient.subscribe(this.mqttTopic, (err) => {
                     if (!err) {
                         console.log(`Subscribed to topic: ${this.mqttTopic}`);
-                        if (this.isHost) {
+                        if (this.isPartnerConnected) {
+                            this.updateConnectionStatus('locked', 'In Call');
+                            this.broadcastHandshake();
+                        } else if (this.isHost) {
                             this.updateConnectionStatus('waiting', 'Ready');
                         } else {
                             this.updateConnectionStatus('waiting', 'Connecting...');
@@ -973,21 +991,32 @@ class AmestxCommunicator {
         // Render in my own chat feed
         this.renderMyMessage(msgData);
 
-        // Publish to partner over MQTT
+        // Publish to partner over MQTT or queue for automatic flush
         if (this.mqttClient && this.isConnected) {
-            this.mqttClient.publish(this.mqttTopic, JSON.stringify(msgData));
+            try {
+                this.mqttClient.publish(this.mqttTopic, JSON.stringify(msgData));
+            } catch (err) {
+                console.warn("Publish failed, queuing for retry:", err);
+                this.outgoingQueue.push(msgData);
+                this.checkAndReviveConnection();
+            }
         } else {
-            console.warn("MQTT not connected, cannot transmit message.");
+            console.warn("MQTT temporarily disconnected. Queued message and reviving connection...");
+            this.outgoingQueue.push(msgData);
+            this.checkAndReviveConnection();
         }
     }
 
     async translateText(text, fromLang, toLang) {
         if (fromLang === toLang) return text;
 
+        // 1. Primary: Instant Google Translate with 2000ms hard timeout (prevents app freezes)
         try {
-            // Free Instant Google Translate Endpoint
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2000);
             const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`;
-            const response = await fetch(url);
+            const response = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
             const data = await response.json();
             
             if (data && data[0] && data[0][0] && data[0][0][0]) {
@@ -996,18 +1025,59 @@ class AmestxCommunicator {
                 return full || text;
             }
         } catch (err) {
-            // Fallback to MyMemory Free API
-            try {
-                const memUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
-                const res = await fetch(memUrl);
-                const json = await res.json();
-                if (json && json.responseData && json.responseData.translatedText) {
-                    return json.responseData.translatedText;
-                }
-            } catch (e) {}
+            console.warn("Primary translation timeout/error, attempting secondary...");
         }
 
+        // 2. Secondary: MyMemory with 2000ms hard timeout
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2000);
+            const memUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
+            const res = await fetch(memUrl, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            const json = await res.json();
+            if (json && json.responseData && json.responseData.translatedText) {
+                return json.responseData.translatedText;
+            }
+        } catch (e) {
+            console.warn("Secondary translation timeout/error:", e);
+        }
+
+        // Fallback: If APIs time out or are offline, instantly return original text without freezing
         return text;
+    }
+
+    initWakeWatchdog() {
+        // Revive connection whenever user unlocks phone or switches back to browser tab
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                console.log("App resumed from background. Checking connection health...");
+                this.checkAndReviveConnection();
+            }
+        });
+
+        window.addEventListener('online', () => {
+            console.log("Device network back online. Reviving connection...");
+            this.checkAndReviveConnection();
+        });
+
+        // Periodic heartbeat ping every 15 seconds to keep mobile cellular carrier socket alive
+        setInterval(() => {
+            if (this.roomPin && this.isConnected && this.mqttClient) {
+                this.broadcastHandshake();
+            }
+        }, 15000);
+    }
+
+    checkAndReviveConnection() {
+        if (!this.roomPin) return;
+        if (!this.mqttClient || !this.isConnected || !this.mqttClient.connected) {
+            console.log("Reviving dead/sleeping connection for call", this.roomPin);
+            this.updateConnectionStatus('waiting', 'Reconnecting...');
+            this.connectToRoom(this.roomPin);
+        } else {
+            this.broadcastHandshake();
+        }
     }
 
     renderMyMessage(msg) {
