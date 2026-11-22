@@ -257,6 +257,17 @@ async def voice_outbound(request: Request):
     parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
     to_number = parsed.get("To", [""])[0]
 
+    # Block emergency numbers to prevent accidental $75 Twilio fee
+    digits_only = re.sub(r'[^0-9]', '', to_number)
+    if digits_only in ['911', '1911', '933', '112', '999']:
+        logger.warning(f"Blocked emergency call attempt to {digits_only}")
+        twiml = """<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say voice="Polly.Joanna">Emergency 911 calls are not supported through Amestx Voice. Please hang up and dial 911 directly from your mobile phone or landline.</Say>
+    <Hangup/>
+</Response>"""
+        return PlainResponse(content=twiml, media_type="application/xml")
+
     # Clean destination phone number
     clean_number = re.sub(r'[^0-9+]', '', to_number)
     if not clean_number.startswith("+"):

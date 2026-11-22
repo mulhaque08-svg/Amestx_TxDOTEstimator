@@ -495,6 +495,10 @@
                     </button>
                 </div>
 
+                <p class="text-[10px] text-slate-400 text-center mt-3">
+                    Emergency (911) calling is not supported. In an emergency, dial 911 from your phone.
+                </p>
+
             </div>
 
             <!-- Tab 2: 2-Way SMS & AI Translation Panel -->
@@ -727,6 +731,11 @@
             if (!isCalling) {
                 if (!number) {
                     alert("Please enter a phone number to dial.");
+                    return;
+                }
+                const cleanDigits = number.replace(/\D/g, '');
+                if (['911', '1911', '933', '112', '999'].includes(cleanDigits)) {
+                    alert("Emergency (911) calling is not supported on Amestx Voice.\n\nPlease dial 911 directly from your mobile phone or landline.");
                     return;
                 }
                 isCalling = true;
