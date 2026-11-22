@@ -379,6 +379,27 @@
         </div>
     </section>
 
+    <!-- Incoming Call Pop-up Modal (Twilio WebRTC Inbound) -->
+    <div id="incomingCallModal" class="fixed inset-0 z-[100] bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 text-center max-w-sm w-full shadow-2xl text-white animate-pulse">
+            <div class="w-20 h-20 bg-blue-600/20 border-2 border-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                <span class="text-3xl">📞</span>
+            </div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-1">Incoming Call • Amestx Voice</h3>
+            <div id="incomingCallerNumber" class="text-2xl font-black font-mono tracking-wider mb-2 text-white">Caller Calling...</div>
+            <p class="text-xs text-slate-400 mb-6">Toll-Free Line: +1 (844) 826-3789</p>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="declineIncomingCall()" class="bg-red-600 hover:bg-red-700 text-white font-extrabold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 transition text-sm">
+                    <span>🔴 Decline</span>
+                </button>
+                <button onclick="answerIncomingCall()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition text-sm">
+                    <span>🟢 Answer</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Interactive Web Dialer Modal -->
     <div id="dialerModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6">
         <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[92vh]">
@@ -588,14 +609,35 @@
         let isCalling = false;
         let twilioDevice = null;
         let activeCall = null;
+        let incomingConnection = null;
+        let ringtoneInterval = null;
+
+        function playRingtone() {
+            try {
+                const ctx = getAudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+                let on = true;
+                ringtoneInterval = setInterval(() => {
+                    if (on) playTone(440, 480);
+                    on = !on;
+                }, 800);
+            } catch(e) {}
+        }
+
+        function stopRingtone() {
+            if (ringtoneInterval) {
+                clearInterval(ringtoneInterval);
+                ringtoneInterval = null;
+            }
+        }
 
         // Initialize Twilio WebRTC Device
         async function initTwilioDevice() {
             if (twilioDevice) return;
             const status = document.getElementById('callStatus');
             try {
-                status.textContent = "Connecting to Amestx Voice Engine...";
-                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/token?identity=amestx_web_" + Math.floor(Math.random() * 1000));
+                if (status) status.textContent = "Connecting to Amestx Voice Engine...";
+                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/token?identity=amestx_agent");
                 const data = await res.json();
                 if (data && data.token) {
                     twilioDevice = new Twilio.Device(data.token, {
@@ -604,22 +646,77 @@
                     });
 
                     twilioDevice.on('registered', () => {
-                        status.textContent = "Amestx Phone Line Active • 1-844-826-3789";
-                        status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-600 mb-1";
+                        if (status) {
+                            status.textContent = "Amestx Phone Line Active • 1-844-826-3789";
+                            status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-600 mb-1";
+                        }
+                    });
+
+                    twilioDevice.on('incoming', (call) => {
+                        incomingConnection = call;
+                        const fromNumber = call.parameters.From || "Incoming Caller";
+                        document.getElementById('incomingCallerNumber').textContent = fromNumber;
+                        document.getElementById('incomingCallModal').classList.remove('hidden');
+                        playRingtone();
+
+                        call.on('cancel', () => {
+                            stopRingtone();
+                            document.getElementById('incomingCallModal').classList.add('hidden');
+                            incomingConnection = null;
+                        });
+                        call.on('disconnect', () => {
+                            stopRingtone();
+                            document.getElementById('incomingCallModal').classList.add('hidden');
+                            incomingConnection = null;
+                        });
                     });
 
                     twilioDevice.on('error', (err) => {
                         console.warn("Twilio Device notice:", err);
-                        status.textContent = "Ready to Call • Line Ready";
+                        if (status) status.textContent = "Ready to Call • Line Ready";
                     });
 
                     twilioDevice.register();
                 }
             } catch (err) {
                 console.warn("Twilio Device registration fallback:", err);
-                status.textContent = "Ready to Call";
+                if (status) status.textContent = "Ready to Call";
             }
         }
+
+        function answerIncomingCall() {
+            stopRingtone();
+            document.getElementById('incomingCallModal').classList.add('hidden');
+            if (incomingConnection) {
+                incomingConnection.accept();
+                activeCall = incomingConnection;
+                openDialerModal(true);
+                const status = document.getElementById('callStatus');
+                if (status) {
+                    status.textContent = "Connected • Inbound Call Active";
+                    status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-500 mb-1";
+                }
+                const btn = document.getElementById('callToggleBtn');
+                if (btn) btn.className = "flex-1 h-14 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 transition";
+                const btnText = document.getElementById('callBtnText');
+                if (btnText) btnText.textContent = "End Call";
+                isCalling = true;
+            }
+        }
+
+        function declineIncomingCall() {
+            stopRingtone();
+            document.getElementById('incomingCallModal').classList.add('hidden');
+            if (incomingConnection) {
+                incomingConnection.reject();
+                incomingConnection = null;
+            }
+        }
+
+        // Auto-initialize background device for incoming calls
+        window.addEventListener('DOMContentLoaded', () => {
+            initTwilioDevice();
+        });
 
         async function toggleCall() {
             const status = document.getElementById('callStatus');
@@ -694,13 +791,21 @@
             const status = document.getElementById('callStatus');
             const btn = document.getElementById('callToggleBtn');
             const btnText = document.getElementById('callBtnText');
-            status.textContent = "Call Ended • Line Ready";
-            status.className = "text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1";
-            btn.className = "flex-1 h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition";
-            btnText.textContent = "Call";
+            if (status) {
+                status.textContent = "Call Ended • Line Ready";
+                status.className = "text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1";
+            }
+            if (btn) btn.className = "flex-1 h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition";
+            if (btnText) btnText.textContent = "Call";
         }
 
-        function openDialerModal() {
+        function openDialerModal(bypassAuth = false) {
+            const isSubscribed = localStorage.getItem('amestx_subscribed');
+            if (!isSubscribed && !bypassAuth) {
+                alert("🔒 Subscriber Access Only\n\nPlease complete your registration below or choose a plan to activate and unlock your dedicated Amestx business line.");
+                document.getElementById('quote-section').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
             document.getElementById('dialerModal').classList.remove('hidden');
             initTwilioDevice();
         }
@@ -817,8 +922,9 @@
             const company = document.getElementById('custCompany').value;
             const area = document.getElementById('custAreaCode').value;
 
-            alert(`Welcome to Amestx Voice, ${first}!\n\nYour new business number with area code (${area}) has been allocated for ${company}.\n\nOpening your web dialer now...`);
-            openDialerModal();
+            localStorage.setItem('amestx_subscribed', 'true');
+            alert(`🎉 Welcome to Amestx Voice, ${first}!\n\nYour business line (+1 844-826-3789) is now active for ${company}.\n\nOpening your web dialer now...`);
+            openDialerModal(true);
         }
 
         function selectPlan(planName, price) {
