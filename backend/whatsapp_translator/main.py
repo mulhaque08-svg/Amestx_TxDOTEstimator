@@ -5,9 +5,10 @@ import urllib.parse
 import urllib.request
 import json
 import logging
+import datetime
 from typing import Optional
 from fastapi import FastAPI, Request
-from fastapi.responses import Response as PlainResponse, FileResponse
+from fastapi.responses import Response as PlainResponse, FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import VoiceGrant
@@ -396,6 +397,230 @@ def get_audio(filename: str):
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="audio/mpeg", headers={"Cache-Control": "public, max-age=86400"})
     return PlainResponse(content="Audio not found", status_code=404)
+
+# ==========================================
+# 4. 15-DAY FREE TRIAL REGISTRATION & MONITORING
+# ==========================================
+TRIALS_FILE = os.path.join(os.path.dirname(__file__), "trials_db.json")
+
+def load_trials():
+    if os.path.exists(TRIALS_FILE):
+        try:
+            with open(TRIALS_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+    return []
+
+def save_trials(trials):
+    try:
+        with open(TRIALS_FILE, "w", encoding="utf-8") as f:
+            json.dump(trials, f, indent=2)
+    except Exception as e:
+        logger.error(f"Error saving trials: {e}")
+
+@app.post("/trial/register")
+async def register_trial(request: Request):
+    """
+    Registers a new 15-day free trial user.
+    """
+    try:
+        data = await request.json()
+    except Exception:
+        body = await request.body()
+        data = urllib.parse.parse_qs(body.decode("utf-8", errors="replace"))
+        data = {k: v[0] if isinstance(v, list) else v for k, v in data.items()}
+
+    email = (data.get("email") or "").strip().lower()
+    first_name = (data.get("firstName") or data.get("first_name") or "").strip()
+    last_name = (data.get("lastName") or data.get("last_name") or "").strip()
+    phone = (data.get("phone") or "").strip()
+    company = (data.get("company") or "").strip()
+    area_code = (data.get("areaCode") or data.get("area_code") or "844").strip()
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    expires_at = now + datetime.timedelta(days=15)
+
+    trials = load_trials()
+    existing = next((t for t in trials if t.get("email") == email and email), None)
+    if existing:
+        try:
+            exp = datetime.datetime.fromisoformat(existing.get("expires_at"))
+            days_left = max(0, int((exp - now).total_seconds() // 86400))
+        except Exception:
+            days_left = 0
+        return {
+            "status": "existing",
+            "message": f"Welcome back, {existing.get('first_name', 'User')}! You have {days_left} days remaining in your trial.",
+            "trial": existing,
+            "days_left": days_left,
+            "is_valid": days_left > 0
+        }
+
+    trial_record = {
+        "id": str(uuid.uuid4())[:8],
+        "first_name": first_name or "Subscriber",
+        "last_name": last_name,
+        "full_name": f"{first_name} {last_name}".strip() or "Subscriber",
+        "email": email,
+        "phone": phone,
+        "company": company or "Independent",
+        "area_code": area_code,
+        "started_at": now.isoformat(),
+        "expires_at": expires_at.isoformat(),
+        "days_total": 15,
+        "status": "active"
+    }
+    trials.append(trial_record)
+    save_trials(trials)
+    logger.info(f"New 15-day trial registered: {email} | {trial_record['full_name']} | {company} | {phone}")
+    return {
+        "status": "success",
+        "message": f"Welcome to your 15-day free trial, {trial_record['full_name']}!",
+        "trial": trial_record,
+        "days_left": 15,
+        "is_valid": True
+    }
+
+@app.get("/trial/list")
+def list_trials():
+    """
+    Returns the list of all trial registrations and their remaining days.
+    """
+    trials = load_trials()
+    now = datetime.datetime.now(datetime.timezone.utc)
+    results = []
+    for t in trials:
+        try:
+            exp = datetime.datetime.fromisoformat(t.get("expires_at"))
+            diff_sec = (exp - now).total_seconds()
+            days_left = max(0, int(diff_sec // 86400))
+            is_active = diff_sec > 0
+        except Exception:
+            days_left = 0
+            is_active = False
+        results.append({
+            **t,
+            "days_left": days_left,
+            "is_active": is_active
+        })
+    return {
+        "total_trials": len(results),
+        "active_trials": sum(1 for r in results if r["is_active"]),
+        "trials": sorted(results, key=lambda x: x.get("started_at", ""), reverse=True)
+    }
+
+@app.get("/trial/dashboard")
+def trial_dashboard():
+    """
+    Web dashboard to monitor all 15-day free trial users and expiration dates.
+    """
+    trials = load_trials()
+    now = datetime.datetime.now(datetime.timezone.utc)
+    rows_html = ""
+    active_count = 0
+    for t in sorted(trials, key=lambda x: x.get("started_at", ""), reverse=True):
+        try:
+            exp = datetime.datetime.fromisoformat(t.get("expires_at"))
+            diff_sec = (exp - now).total_seconds()
+            days_left = max(0, int(diff_sec // 86400))
+            is_active = diff_sec > 0
+        except Exception:
+            days_left = 0
+            is_active = False
+        if is_active:
+            active_count += 1
+            badge = f'<span style="background:#dcfce7;color:#15803d;padding:4px 10px;border-radius:12px;font-weight:700;font-size:11px;">Active ({days_left}d left)</span>'
+        else:
+            badge = '<span style="background:#fee2e2;color:#b91c1c;padding:4px 10px;border-radius:12px;font-weight:700;font-size:11px;">Expired</span>'
+        started = t.get("started_at", "")[:10]
+        expires = t.get("expires_at", "")[:10]
+        rows_html += f"""
+        <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:12px;font-weight:600;">{t.get('full_name')}</td>
+            <td style="padding:12px;"><a href="mailto:{t.get('email')}" style="color:#2563eb;text-decoration:none;">{t.get('email')}</a></td>
+            <td style="padding:12px;"><a href="tel:{t.get('phone')}" style="color:#2563eb;text-decoration:none;">{t.get('phone')}</a></td>
+            <td style="padding:12px;">{t.get('company')}</td>
+            <td style="padding:12px;color:#64748b;">{started}</td>
+            <td style="padding:12px;color:#64748b;">{expires}</td>
+            <td style="padding:12px;">{badge}</td>
+        </tr>
+        """
+    if not rows_html:
+        rows_html = '<tr><td colspan="7" style="padding:32px;text-align:center;color:#64748b;font-weight:500;">No trial registrations yet.</td></tr>'
+
+    html = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Amestx Voice • 15-Day Trial Monitor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #0f172a; padding: 32px 16px; margin: 0; }}
+            .container {{ max-width: 1040px; margin: 0 auto; }}
+            .card {{ background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }}
+            h1 {{ margin: 0 0 6px 0; font-size: 24px; font-weight: 800; }}
+            .stats {{ display: flex; gap: 16px; margin: 24px 0; flex-wrap: wrap; }}
+            .stat-box {{ background: #f1f5f9; padding: 18px 24px; border-radius: 14px; flex: 1; min-width: 180px; }}
+            .stat-val {{ font-size: 32px; font-weight: 900; color: #1e40af; }}
+            .stat-label {{ font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }}
+            table {{ width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }}
+            th {{ background: #f8fafc; padding: 12px; font-size: 11px; text-transform: uppercase; color: #475569; letter-spacing: 0.5px; border-bottom: 2px solid #e2e8f0; font-weight: 800; }}
+            .refresh-btn {{ background: #2563eb; color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; transition: 0.2s; }}
+            .refresh-btn:hover {{ background: #1d4ed8; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <h1>📞 Amestx Voice — Trial Users Monitor</h1>
+                        <p style="color:#64748b;margin:0;font-size:13px;">Live monitoring of 15-day free trial registrations, company info, and expiration dates.</p>
+                    </div>
+                    <button onclick="location.reload()" class="refresh-btn">🔄 Refresh Data</button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-val">{len(trials)}</div>
+                        <div class="stat-label">Total Users Registered</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val" style="color:#15803d;">{active_count}</div>
+                        <div class="stat-label">Active 15-Day Trials</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val" style="color:#b91c1c;">{len(trials) - active_count}</div>
+                        <div class="stat-label">Expired Trials</div>
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subscriber Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Company</th>
+                                <th>Started Date</th>
+                                <th>Expires Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows_html}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return HTMLResponse(content=html)
 
 if __name__ == "__main__":
     import uvicorn
