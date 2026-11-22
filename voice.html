@@ -433,9 +433,10 @@
             </form>
 
             <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span>Testing or existing user?</span>
-                <button type="button" onclick="unlockDirectAccess()" class="text-blue-600 font-extrabold hover:underline">
-                    Unlock as Admin / Subscriber
+                <span>Existing subscriber or admin?</span>
+                <button type="button" onclick="unlockDirectAccess()" class="text-blue-600 font-extrabold hover:underline flex items-center gap-1">
+                    <span>🔒</span>
+                    <span>Sign In</span>
                 </button>
             </div>
         </div>
@@ -791,8 +792,13 @@
             }
         }
 
-        // Auto-initialize background device for incoming calls
+        // Auto-initialize background device for incoming calls & check admin URL key
         window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const adminKey = urlParams.get('admin');
+            if (adminKey === 'Amestx2026' || adminKey === '844826') {
+                localStorage.setItem('amestx_subscribed', 'true');
+            }
             initTwilioDevice();
         });
 
@@ -967,10 +973,34 @@
         }
 
         function unlockDirectAccess() {
-            localStorage.setItem('amestx_subscribed', 'true');
-            closeTrialModal();
-            openDialerModal(true);
-            alert("🔓 Access Unlocked!\n\nYou are now in full access mode. Opening your web dialer now.");
+            const input = prompt("🔐 Amestx Security Verification\n\nEnter Admin Password or your registered subscriber email:");
+            if (!input) return;
+
+            const trimmed = input.trim();
+            // Admin password verification for owner (you)
+            if (trimmed === "Amestx2026" || trimmed === "Amestx@2026" || trimmed === "844826") {
+                localStorage.setItem('amestx_subscribed', 'true');
+                closeTrialModal();
+                openDialerModal(true);
+                alert("🔓 Admin Verification Successful!\n\nPermanent owner access unlocked. Opening web dialer now.");
+                return;
+            }
+
+            // Check if user entered their registered trial email
+            const rawTrial = localStorage.getItem('amestx_trial');
+            if (rawTrial) {
+                try {
+                    const t = JSON.parse(rawTrial);
+                    if (t.email && t.email.toLowerCase() === trimmed.toLowerCase()) {
+                        closeTrialModal();
+                        openDialerModal(true);
+                        alert(`Welcome back, ${t.firstName || 'Subscriber'}!\n\nYour 15-day trial session has been verified.`);
+                        return;
+                    }
+                } catch(e) {}
+            }
+
+            alert("❌ Access Denied: Invalid Admin Password or unregistered email.");
         }
 
         function openDialerModal(bypassAuth = false) {
