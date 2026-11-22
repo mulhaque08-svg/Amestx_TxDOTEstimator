@@ -1,0 +1,6 @@
+fastapi>=0.110.0
+uvicorn>=0.28.0
+requests>=2.31.0
+google-cloud-speech>=2.26.0
+google-cloud-texttospeech>=2.16.0
+twilio>=9.0.0

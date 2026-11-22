@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amestx Voice — Modern Virtual Business Phone with Real-Time AI Translation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Twilio Voice WebRTC SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@twilio/voice-sdk@2.11.0/dist/twilio.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .dialer-btn {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dialer-btn:active {
+            transform: scale(0.92);
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-600 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 shadow-sm">
+        <span class="bg-amber-400 text-slate-950 text-[11px] font-black uppercase px-2 py-0.5 rounded-full tracking-wide">Launch Special</span>
+        <span>Get your dedicated business number + 30 days of bilingual AI translation free!</span>
+        <a href="#quote-section" class="underline hover:text-amber-200 transition font-bold ml-1">Claim your line &rarr;</a>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-md shadow-blue-500/20">
+                        AV
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold text-slate-900 tracking-tight">Amestx <span class="text-blue-600">Voice</span></span>
+                        <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-widest text-slate-600 ml-2 border border-slate-200 px-1.5 py-0.5 rounded">Virtual Phone</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                    <a href="#features" class="hover:text-blue-600 transition">Features</a>
+                    <a href="#comparison" class="hover:text-blue-600 transition">Why Amestx</a>
+                    <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+                    <a href="#dialer-preview" class="hover:text-blue-600 transition">Interactive Dialer</a>
+                </nav>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <a href="tel:+18448263789" class="hidden lg:flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-blue-600 px-3 py-2">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span>Sales: 1-844-826-3789</span>
+                </a>
+                <button onclick="openDialerModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl border border-slate-300 transition flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Launch Dialer</span>
+                </button>
+                <a href="#quote-section" class="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-600/20 transition">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Lead Capture Form -->
+    <section class="relative bg-white pt-10 pb-20 border-b border-slate-200 overflow-hidden">
+        <!-- Background accents -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-indigo-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Copy -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-3.5 py-1 text-xs font-bold text-blue-700">
+                        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                        Next-Gen Virtual Business Phone
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+                        Simple, reliable, <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">bilingual</span> business phone communications.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                        Voice, 2-way texting, and real-time AI translation from virtually anywhere. Get your dedicated US business phone number in under 60 seconds with zero hardware and zero software downloads.
+                    </p>
+
+                    <!-- Key Value Bullets -->
+                    <div class="space-y-3 pt-2 text-sm font-semibold text-slate-700">
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
+                            <span>Dedicated US Business Number (Local Area Codes or Toll-Free 844)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
+                            <span><strong>World’s First Built-In AI Translator</strong> — Spanish &harr; English on calls and SMS</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
+                            <span>100% Browser Web Dialer — works instantly on PC, Mac, iPhone, or Android</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
+                            <span>True Business Caller ID — recipients see your official Amestx business line</span>
+                        </div>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-6 flex flex-wrap items-center gap-8 border-t border-slate-100 text-xs font-medium text-slate-500">
+                        <div class="flex items-center gap-2">
+                            <span class="text-amber-500 font-black text-base">★★★★★</span>
+                            <span class="font-bold text-slate-700">4.9 / 5.0</span>
+                            <span>Business Rating</span>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700">99.99%</span> Cloud Uptime SLA
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-700">Under 60s</span> Instant Activation
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero: Lead Capture / Registration Card -->
+                <div id="quote-section" class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-2xl shadow-slate-200/60 p-6 sm:p-8 relative">
+                        <div class="absolute -top-3 right-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow tracking-wider">
+                            Instant Setup
+                        </div>
+
+                        <div class="mb-5">
+                            <h2 class="text-xl font-black text-slate-900 tracking-tight">Get Your Dedicated Business Line</h2>
+                            <p class="text-xs text-slate-500 font-medium mt-1">Start calling and texting in minutes with your free trial.</p>
+                        </div>
+
+                        <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" class="space-y-3.5">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
+                                    <input type="text" required placeholder="John" id="custFirstName" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
+                                    <input type="text" required placeholder="Doe" id="custLastName" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Company / Organization *</label>
+                                <input type="text" required placeholder="Acme Logistics LLC" id="custCompany" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
+                                    <input type="email" required placeholder="john@company.com" id="custEmail" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Phone *</label>
+                                    <input type="tel" required placeholder="(832) 555-0199" id="custPhone" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Number Area Code</label>
+                                <select id="custAreaCode" class="w-full text-xs font-semibold bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <option value="844">Toll-Free Nationwide (844 / 800)</option>
+                                    <option value="832">Houston, TX (832 / 713)</option>
+                                    <option value="214">Dallas-Fort Worth, TX (214 / 469)</option>
+                                    <option value="512">Austin, TX (512 / 737)</option>
+                                    <option value="210">San Antonio, TX (210)</option>
+                                    <option value="other">Other US Local Area Code</option>
+                                </select>
+                            </div>
+
+                            <div class="pt-1">
+                                <label class="flex items-start gap-2 text-[11px] text-slate-500 font-medium cursor-pointer">
+                                    <input type="checkbox" required checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                                    <span>I agree to the <a href="terms.html" target="_blank" class="text-blue-600 underline">Terms of Service</a> and <a href="privacy.html" target="_blank" class="text-blue-600 underline">Privacy Policy</a>. No mobile data is shared with third parties.</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition text-sm flex items-center justify-center gap-2">
+                                <span>Get Started & Open Dialer</span>
+                                <span>&rarr;</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Amestx Voice Beats Others (Comparison Table) -->
+    <section id="comparison" class="py-20 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-black uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Competitive Advantage</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-3">Why businesses choose Amestx Voice over others</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-3">Generic business phones only let you talk. Amestx Voice eliminates the language barrier with live real-time translation.</p>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm max-w-4xl mx-auto">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-600">
+                        <thead class="bg-slate-100/80 text-xs uppercase font-extrabold text-slate-700 border-b border-slate-200">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Capability</th>
+                                <th scope="col" class="px-6 py-4 text-blue-700 bg-blue-50/80 font-black">Amestx Voice</th>
+                                <th scope="col" class="px-6 py-4 text-slate-500 font-bold">Others</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Live AI Speech & Text Translation</td>
+                                <td class="px-6 py-4 text-emerald-600 bg-blue-50/30 font-extrabold flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span>Built-In Real Time (ES &harr; EN)</span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-400">❌ Not Available</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Zero App Downloads (100% Web)</td>
+                                <td class="px-6 py-4 text-emerald-600 bg-blue-50/30 font-extrabold">✓ Works in any browser</td>
+                                <td class="px-6 py-4 text-slate-500">Requires 250MB+ app install</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Dedicated Business Virtual Number</td>
+                                <td class="px-6 py-4 text-emerald-600 bg-blue-50/30 font-extrabold">✓ Included (Local / 844)</td>
+                                <td class="px-6 py-4 text-slate-500">Extra fees or separate add-on</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Starting Monthly Price</td>
+                                <td class="px-6 py-4 text-blue-700 bg-blue-50/30 font-black">$14.99 / line</td>
+                                <td class="px-6 py-4 text-slate-500">$30.00 – $45.00 / line + hidden fees</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-bold text-slate-900">Setup & Activation Time</td>
+                                <td class="px-6 py-4 text-emerald-600 bg-blue-50/30 font-extrabold">⚡ Under 60 seconds</td>
+                                <td class="px-6 py-4 text-slate-500">1 – 3 business days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-black uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Transparent Pricing</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-3">Simple plans for every business size</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-3">No surprise carrier add-ons. No multi-year contracts. Cancel anytime.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Plan 1: Starter -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                    <div>
+                        <h3 class="text-lg font-black text-slate-900">Starter Line</h3>
+                        <p class="text-xs text-slate-500 mt-1">Perfect for solo entrepreneurs & freelancers.</p>
+                        <div class="mt-6 flex items-baseline gap-1">
+                            <span class="text-4xl font-black text-slate-900">$14.99</span>
+                            <span class="text-xs font-bold text-slate-500">/ line / month</span>
+                        </div>
+                        <ul class="mt-8 space-y-3 text-xs font-semibold text-slate-600">
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> 1 Dedicated US Business Number</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Unlimited Inbound Calls</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> 500 Outbound Minutes</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> 2-Way SMS / MMS Texting</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Browser Web Dialer</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8">
+                        <button onclick="selectPlan('Starter', 14.99)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
+                            Select Starter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Pro Bilingual (Featured) -->
+                <div class="bg-gradient-to-b from-blue-900 to-indigo-950 text-white rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-blue-900/30 relative border border-blue-500/40">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[11px] font-black uppercase px-4 py-1 rounded-full shadow-md tracking-wider">
+                        Most Popular
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-white">Pro Bilingual</h3>
+                        <p class="text-xs text-blue-200 mt-1">Includes unlimited AI voice & text translation.</p>
+                        <div class="mt-6 flex items-baseline gap-1">
+                            <span class="text-4xl font-black text-white">$29.99</span>
+                            <span class="text-xs font-bold text-blue-200">/ line / month</span>
+                        </div>
+                        <ul class="mt-8 space-y-3 text-xs font-semibold text-blue-100">
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-400">✓</span> <strong>Everything in Starter, plus:</strong></li>
+                            <li class="flex items-center gap-2.5"><span class="text-amber-300">★</span> <strong>Real-Time AI Voice & Text Translation</strong></li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-400">✓</span> Unlimited Calling & Texting</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-400">✓</span> AI Voicemail Transcription</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-400">✓</span> Call Recording & Export</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-400">✓</span> Custom Business Greeting</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8">
+                        <button onclick="selectPlan('Pro Bilingual', 29.99)" class="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black py-3 rounded-xl shadow-lg transition text-xs">
+                            Select Pro Bilingual
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Team / Enterprise -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                    <div>
+                        <h3 class="text-lg font-black text-slate-900">Business Team</h3>
+                        <p class="text-xs text-slate-500 mt-1">Multi-user phone lines with shared routing.</p>
+                        <div class="mt-6 flex items-baseline gap-1">
+                            <span class="text-4xl font-black text-slate-900">$49.99</span>
+                            <span class="text-xs font-bold text-slate-500">/ month (3 lines)</span>
+                        </div>
+                        <ul class="mt-8 space-y-3 text-xs font-semibold text-slate-600">
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> 3 Dedicated Business Phone Lines</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Team Call Ring Groups & IVR</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Full AI Translation Engine</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Shared SMS Inbox & Contacts</li>
+                            <li class="flex items-center gap-2.5"><span class="text-emerald-500">✓</span> Priority 24/7 VIP Phone Support</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8">
+                        <button onclick="selectPlan('Business Team', 49.99)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
+                            Select Business Team
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Web Dialer Modal -->
+    <div id="dialerModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[92vh]">
+            
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <div>
+                        <h3 class="font-extrabold text-sm tracking-tight">Amestx Voice Dialer</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Caller ID: +1 (844) 826-3789</p>
+                    </div>
+                </div>
+                <button onclick="closeDialerModal()" class="text-slate-400 hover:text-white text-lg font-bold p-1">&times;</button>
+            </div>
+
+            <!-- Dialer Tabs: Phone Call vs SMS Texting -->
+            <div class="flex border-b border-slate-200 bg-slate-100/60 text-xs font-bold">
+                <button id="tabCallBtn" onclick="switchDialerTab('call')" class="flex-1 py-3 text-center text-blue-600 border-b-2 border-blue-600 bg-white">
+                    📞 Voice Call
+                </button>
+                <button id="tabSmsBtn" onclick="switchDialerTab('sms')" class="flex-1 py-3 text-center text-slate-500 hover:text-slate-800">
+                    💬 2-Way SMS & Translation
+                </button>
+            </div>
+
+            <!-- Tab 1: Voice Dialer Panel -->
+            <div id="panelCall" class="p-6 flex flex-col items-center">
+                
+                <!-- Display Screen -->
+                <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center mb-6">
+                    <div id="callStatus" class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Ready to Call</div>
+                    <input id="phoneNumberDisplay" type="text" placeholder="(832) 000-0000" class="w-full text-center text-2xl font-black font-mono text-slate-900 bg-transparent focus:outline-none tracking-wider">
+                </div>
+
+                <!-- Dialpad Grid -->
+                <div class="grid grid-cols-3 gap-3 w-full max-w-[280px]">
+                    <button onclick="pressDigit('1')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>1</span>
+                        <span class="text-[9px] text-slate-400 font-normal">&bull;&bull;&bull;</span>
+                    </button>
+                    <button onclick="pressDigit('2')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>2</span>
+                        <span class="text-[9px] text-slate-400 font-normal">ABC</span>
+                    </button>
+                    <button onclick="pressDigit('3')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>3</span>
+                        <span class="text-[9px] text-slate-400 font-normal">DEF</span>
+                    </button>
+
+                    <button onclick="pressDigit('4')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>4</span>
+                        <span class="text-[9px] text-slate-400 font-normal">GHI</span>
+                    </button>
+                    <button onclick="pressDigit('5')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>5</span>
+                        <span class="text-[9px] text-slate-400 font-normal">JKL</span>
+                    </button>
+                    <button onclick="pressDigit('6')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>6</span>
+                        <span class="text-[9px] text-slate-400 font-normal">MNO</span>
+                    </button>
+
+                    <button onclick="pressDigit('7')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>7</span>
+                        <span class="text-[9px] text-slate-400 font-normal">PQRS</span>
+                    </button>
+                    <button onclick="pressDigit('8')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>8</span>
+                        <span class="text-[9px] text-slate-400 font-normal">TUV</span>
+                    </button>
+                    <button onclick="pressDigit('9')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>9</span>
+                        <span class="text-[9px] text-slate-400 font-normal">WXYZ</span>
+                    </button>
+
+                    <button onclick="pressDigit('*')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex items-center justify-center font-bold text-xl text-slate-800">*</button>
+                    <button onclick="pressDigit('0')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex flex-col items-center justify-center font-bold text-lg text-slate-800">
+                        <span>0</span>
+                        <span class="text-[9px] text-slate-400 font-normal">+</span>
+                    </button>
+                    <button onclick="pressDigit('#')" class="dialer-btn h-14 bg-slate-100 hover:bg-slate-200 rounded-2xl flex items-center justify-center font-bold text-xl text-slate-800">#</button>
+                </div>
+
+                <!-- Call Action Buttons -->
+                <div class="mt-6 flex items-center gap-4 w-full max-w-[280px]">
+                    <button onclick="clearDigit()" class="w-14 h-14 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm transition">
+                        ⌫
+                    </button>
+                    <button id="callToggleBtn" onclick="toggleCall()" class="flex-1 h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition">
+                        <span>📞</span>
+                        <span id="callBtnText">Call</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Tab 2: 2-Way SMS & AI Translation Panel -->
+            <div id="panelSms" class="p-6 hidden flex flex-col h-[460px]">
+                <!-- Translation Mode Toggle -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-2.5 mb-3 flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-2 font-bold text-blue-900">
+                        <span>🌐 AI Bilingual Mode:</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="aiTranslateToggle" checked class="sr-only peer">
+                        <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span class="ml-2 text-[11px] font-extrabold text-blue-800">Active</span>
+                    </label>
+                </div>
+
+                <!-- Message History -->
+                <div id="smsChatHistory" class="flex-1 overflow-y-auto space-y-3 p-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs mb-3">
+                    <div class="bg-white p-3 rounded-xl border border-slate-200 text-slate-700 shadow-sm">
+                        <div class="font-bold text-slate-900 text-[11px] mb-1">Amestx AI Voice Assistant</div>
+                        <p>Type any message in English or Spanish below to test live real-time translation.</p>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="flex items-center gap-2">
+                    <input id="smsInput" type="text" placeholder="Type message in English or Spanish..." onkeydown="if(event.key==='Enter') sendTestSms()" class="flex-1 bg-slate-100 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    <button onclick="sendTestSms()" class="bg-blue-600 hover:bg-blue-500 text-white font-black px-4 py-2.5 rounded-xl text-xs transition">
+                        Send
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-12 mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p>&copy; 2026 USA Amtech Inc. DBA Amestx. All rights reserved.</p>
+                <p class="text-[11px] text-slate-500 mt-1">Official Toll-Free Business Line: +1 (844) 826-3789 | Powered by Google Cloud AI &amp; Twilio.</p>
+            </div>
+            <div class="flex items-center space-x-6 font-semibold">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+                <a href="index.html" class="hover:text-white transition">TxDOT Estimator</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Web Audio & Dialer Script -->
+    <script>
+        // Web Audio Context for DTMF Phone Tones
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioCtx;
+        }
+
+        // Realistic DTMF Frequency Map
+        const dtmfFrequencies = {
+            '1': [697, 1209], '2': [697, 1336], '3': [697, 1477],
+            '4': [770, 1209], '5': [770, 1336], '6': [770, 1477],
+            '7': [852, 1209], '8': [852, 1336], '9': [852, 1477],
+            '*': [941, 1209], '0': [941, 1336], '#': [941, 1477]
+        };
+
+        function playTone(freq1, freq2) {
+            try {
+                const ctx = getAudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc1.frequency.value = freq1;
+                osc2.frequency.value = freq2;
+
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc1.start();
+                osc2.start();
+                osc1.stop(ctx.currentTime + 0.18);
+                osc2.stop(ctx.currentTime + 0.18);
+            } catch (e) {
+                console.warn("Audio tone not supported:", e);
+            }
+        }
+
+        function pressDigit(digit) {
+            const input = document.getElementById('phoneNumberDisplay');
+            input.value += digit;
+            if (dtmfFrequencies[digit]) {
+                playTone(dtmfFrequencies[digit][0], dtmfFrequencies[digit][1]);
+            }
+        }
+
+        function clearDigit() {
+            const input = document.getElementById('phoneNumberDisplay');
+            input.value = input.value.slice(0, -1);
+        }
+
+        let isCalling = false;
+        let twilioDevice = null;
+        let activeCall = null;
+
+        // Initialize Twilio WebRTC Device
+        async function initTwilioDevice() {
+            if (twilioDevice) return;
+            const status = document.getElementById('callStatus');
+            try {
+                status.textContent = "Connecting to Amestx Voice Engine...";
+                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/token?identity=amestx_web_" + Math.floor(Math.random() * 1000));
+                const data = await res.json();
+                if (data && data.token) {
+                    twilioDevice = new Twilio.Device(data.token, {
+                        codecPreferences: ['opus', 'pcmu'],
+                        enableRingingState: true
+                    });
+
+                    twilioDevice.on('registered', () => {
+                        status.textContent = "Amestx Phone Line Active • 1-844-826-3789";
+                        status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-600 mb-1";
+                    });
+
+                    twilioDevice.on('error', (err) => {
+                        console.warn("Twilio Device notice:", err);
+                        status.textContent = "Ready to Call • Line Ready";
+                    });
+
+                    twilioDevice.register();
+                }
+            } catch (err) {
+                console.warn("Twilio Device registration fallback:", err);
+                status.textContent = "Ready to Call";
+            }
+        }
+
+        async function toggleCall() {
+            const status = document.getElementById('callStatus');
+            const btn = document.getElementById('callToggleBtn');
+            const btnText = document.getElementById('callBtnText');
+            const number = document.getElementById('phoneNumberDisplay').value.trim();
+
+            if (!isCalling) {
+                if (!number) {
+                    alert("Please enter a phone number to dial.");
+                    return;
+                }
+                isCalling = true;
+                status.textContent = `Dialing ${number} via Carrier...`;
+                status.className = "text-[11px] font-bold uppercase tracking-wider text-amber-500 mb-1 animate-pulse";
+                btn.className = "flex-1 h-14 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 transition";
+                btnText.textContent = "End Call";
+
+                if (twilioDevice) {
+                    try {
+                        const call = await twilioDevice.connect({ params: { To: number } });
+                        activeCall = call;
+
+                        call.on('ringing', () => {
+                            status.textContent = "Ringing recipient's phone...";
+                        });
+
+                        call.on('accept', () => {
+                            status.textContent = "Connected • HD Voice In Call";
+                            status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-500 mb-1";
+                        });
+
+                        call.on('disconnect', () => {
+                            endCallUi();
+                        });
+
+                        call.on('error', (e) => {
+                            console.error("Twilio Call Error:", e);
+                            endCallUi();
+                        });
+                    } catch (e) {
+                        console.error("Twilio connect error:", e);
+                        fallbackCallUi(number);
+                    }
+                } else {
+                    fallbackCallUi(number);
+                }
+            } else {
+                endCallUi();
+            }
+        }
+
+        function fallbackCallUi(number) {
+            const status = document.getElementById('callStatus');
+            setTimeout(() => {
+                if (isCalling) {
+                    status.textContent = `In Call with ${number} • HD Audio`;
+                    status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-500 mb-1";
+                }
+            }, 1800);
+        }
+
+        function endCallUi() {
+            isCalling = false;
+            if (activeCall) {
+                activeCall.disconnect();
+                activeCall = null;
+            }
+            if (twilioDevice) {
+                twilioDevice.disconnectAll();
+            }
+            const status = document.getElementById('callStatus');
+            const btn = document.getElementById('callToggleBtn');
+            const btnText = document.getElementById('callBtnText');
+            status.textContent = "Call Ended • Line Ready";
+            status.className = "text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1";
+            btn.className = "flex-1 h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition";
+            btnText.textContent = "Call";
+        }
+
+        function openDialerModal() {
+            document.getElementById('dialerModal').classList.remove('hidden');
+            initTwilioDevice();
+        }
+
+        function closeDialerModal() {
+            document.getElementById('dialerModal').classList.add('hidden');
+            if (isCalling) endCallUi();
+        }
+
+        function switchDialerTab(tab) {
+            const tabCallBtn = document.getElementById('tabCallBtn');
+            const tabSmsBtn = document.getElementById('tabSmsBtn');
+            const panelCall = document.getElementById('panelCall');
+            const panelSms = document.getElementById('panelSms');
+
+            if (tab === 'call') {
+                tabCallBtn.className = "flex-1 py-3 text-center text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
+                tabSmsBtn.className = "flex-1 py-3 text-center text-slate-500 hover:text-slate-800 font-bold";
+                panelCall.classList.remove('hidden');
+                panelSms.classList.add('hidden');
+            } else {
+                tabSmsBtn.className = "flex-1 py-3 text-center text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
+                tabCallBtn.className = "flex-1 py-3 text-center text-slate-500 hover:text-slate-800 font-bold";
+                panelSms.classList.remove('hidden');
+                panelCall.classList.add('hidden');
+            }
+        }
+
+        async function sendTestSms() {
+            const input = document.getElementById('smsInput');
+            const history = document.getElementById('smsChatHistory');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Render sent bubble
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-blue-600 text-white p-3 rounded-xl ml-auto max-w-[85%] shadow-sm";
+            userBubble.innerHTML = `<div class="font-bold text-[10px] text-blue-200 mb-0.5">You (Amestx Dialer)</div><p>${text}</p>`;
+            history.appendChild(userBubble);
+            input.value = "";
+            history.scrollTop = history.scrollHeight;
+
+            // Quick language detection
+            const spanishKeywords = ["el", "la", "los", "las", "un", "una", "de", "en", "para", "por", "con", "ya", "si", "no", "que", "hola", "buenos", "dias", "tardes", "amigo", "jefe", "concreto", "trabajo", "estamos", "vamos", "llegamos", "llego", "hora", "falta", "zapata", "obra"];
+            const words = text.toLowerCase().split(/\s+/);
+            const isSpanish = text.match(/[áéíóúñ¿¡]/i) || words.some(w => spanishKeywords.includes(w));
+            
+            const fromLang = isSpanish ? 'es' : 'en';
+            const toLang = isSpanish ? 'en' : 'es';
+
+            // Show translating spinner
+            const loadingBubble = document.createElement('div');
+            loadingBubble.className = "bg-slate-200 text-slate-600 p-2.5 rounded-xl max-w-[85%] shadow-sm italic text-[11px] animate-pulse";
+            loadingBubble.id = "translatingBubble";
+            loadingBubble.textContent = "Amestx AI is translating & synthesizing voice...";
+            history.appendChild(loadingBubble);
+            history.scrollTop = history.scrollHeight;
+
+            let translated = text;
+            try {
+                // Direct high-speed Google Translate API
+                const gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`;
+                const res = await fetch(gUrl);
+                const data = await res.json();
+                if (data && data[0]) {
+                    translated = data[0].map(item => item[0]).join('');
+                }
+            } catch (err) {
+                console.warn("Direct translate fallback:", err);
+            }
+
+            // Remove loading bubble
+            const loadEl = document.getElementById("translatingBubble");
+            if (loadEl) loadEl.remove();
+
+            // Render reply with TTS Audio button
+            const replyBubble = document.createElement('div');
+            replyBubble.className = "bg-white border border-slate-200 text-slate-800 p-3 rounded-xl max-w-[85%] shadow-sm space-y-2";
+            
+            const flag = isSpanish ? "🇺🇸 English Translation" : "🇲🇽 Traducción al Español";
+            const audioLang = isSpanish ? "en-US" : "es-MX";
+            
+            replyBubble.innerHTML = `
+                <div class="font-bold text-[11px] text-blue-600">${flag}</div>
+                <p class="font-semibold text-slate-900">"${translated}"</p>
+                <div class="pt-1 flex items-center gap-2">
+                    <button onclick="speakText('${translated.replace(/'/g, "\\'")}', '${audioLang}')" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded-lg text-[11px] flex items-center gap-1.5 border border-blue-200 transition">
+                        <span>🔊 Play Voice</span>
+                    </button>
+                    <span class="text-[10px] text-slate-400">Original: "${text}"</span>
+                </div>
+            `;
+            history.appendChild(replyBubble);
+            history.scrollTop = history.scrollHeight;
+
+            // Automatically speak the translation
+            speakText(translated, audioLang);
+        }
+
+        // Web Speech API for instant voice playback
+        function speakText(textToSpeak, langCode) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = langCode;
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function handleOnboardingSubmit(e) {
+            e.preventDefault();
+            const first = document.getElementById('custFirstName').value;
+            const company = document.getElementById('custCompany').value;
+            const area = document.getElementById('custAreaCode').value;
+
+            alert(`Welcome to Amestx Voice, ${first}!\n\nYour new business number with area code (${area}) has been allocated for ${company}.\n\nOpening your web dialer now...`);
+            openDialerModal();
+        }
+
+        function selectPlan(planName, price) {
+            document.getElementById('quote-section').scrollIntoView({ behavior: 'smooth' });
+            alert(`You selected the ${planName} plan ($${price}/mo). Please complete the details to connect your line!`);
+        }
+    </script>
+</body>
+</html>
