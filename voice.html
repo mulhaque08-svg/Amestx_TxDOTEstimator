@@ -857,6 +857,10 @@
             const panel = document.getElementById('inCallTranslatePanel');
 
             if (isTranslateModeActive) {
+                // Ensure audio mixer is set up!
+                if (!inCallAudioContext || !inCallDestination) {
+                    await setupInCallAudioMixer(activeCall);
+                }
                 // 1. MUTE the caller's raw microphone to the listener!
                 if (inCallMicGain && inCallAudioContext) {
                     inCallMicGain.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
@@ -973,10 +977,22 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ text: text, source_lang: "en", target_lang: "es" })
                 });
-                const data = await res.json();
 
                 const placeholder = document.getElementById('translatingPlaceholder');
                 if (placeholder) placeholder.remove();
+
+                if (!res.ok) {
+                    if (log) {
+                        const errItem = document.createElement('div');
+                        errItem.className = "text-[10px] font-semibold text-amber-700 bg-amber-50 p-2 rounded-lg border border-amber-200";
+                        errItem.innerHTML = `⚠️ <strong>Server Revision Update Required</strong><br>The translation endpoint needs to be deployed to Cloud Run. Please run the 1-step deployment command in Cloud Shell.`;
+                        log.appendChild(errItem);
+                        log.scrollTop = log.scrollHeight;
+                    }
+                    return;
+                }
+
+                const data = await res.json();
 
                 if (data && data.translated_text) {
                     if (log) {
