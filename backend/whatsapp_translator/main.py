@@ -6,6 +6,7 @@ import urllib.request
 import json
 import logging
 import datetime
+import base64
 from typing import Optional
 from fastapi import FastAPI, Request
 from fastapi.responses import Response as PlainResponse, FileResponse, HTMLResponse
@@ -154,29 +155,65 @@ def synthesize_speech(text: str, target_lang: str) -> Optional[str]:
         logger.error(f"Fallback TTS: {e}")
     return None
 
-def transcribe_audio_bytes(audio_bytes: bytes) -> tuple[str, str]:
+def transcribe_audio_bytes(audio_bytes: bytes, source_lang: str = "es") -> tuple[str, str]:
     client = get_speech_client()
-    if not client:
-        return ("", "es")
+    if not client or not audio_bytes:
+        return ("", source_lang)
     try:
         from google.cloud import speech
         audio = speech.RecognitionAudio(content=audio_bytes)
-        config = speech.RecognitionConfig(
-            encoding=speech.RecognitionConfig.AudioEncoding.OGG_OPUS,
-            sample_rate_hertz=16000,
-            language_code="es-US",
-            alternative_language_codes=["en-US"],
-            enable_automatic_punctuation=True
-        )
+
+        # Detect audio container & format based on header magic bytes
+        if audio_bytes.startswith(b"RIFF") and b"WAVE" in audio_bytes[:16]:
+            sample_rate = 16000
+            try:
+                sample_rate = int.from_bytes(audio_bytes[24:28], byteorder="little")
+            except Exception:
+                sample_rate = 16000
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+                sample_rate_hertz=sample_rate,
+                language_code="es-US" if source_lang == "es" else "en-US",
+                alternative_language_codes=["es-MX", "es-ES", "en-US"] if source_lang == "es" else ["es-US"],
+                enable_automatic_punctuation=True
+            )
+        elif audio_bytes.startswith(b"\x1a\x45\xdf\xa3"):
+            # WebM container with Opus
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.WEBM_OPUS,
+                sample_rate_hertz=48000,
+                language_code="es-US" if source_lang == "es" else "en-US",
+                alternative_language_codes=["es-MX", "es-ES", "en-US"] if source_lang == "es" else ["es-US"],
+                enable_automatic_punctuation=True
+            )
+        elif audio_bytes.startswith(b"OggS"):
+            # Ogg container with Opus (WhatsApp audio)
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.OGG_OPUS,
+                sample_rate_hertz=16000,
+                language_code="es-US" if source_lang == "es" else "en-US",
+                alternative_language_codes=["en-US"],
+                enable_automatic_punctuation=True
+            )
+        else:
+            # Fallback raw PCM LINEAR16 16kHz
+            config = speech.RecognitionConfig(
+                encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+                sample_rate_hertz=16000,
+                language_code="es-US" if source_lang == "es" else "en-US",
+                alternative_language_codes=["es-MX", "en-US"],
+                enable_automatic_punctuation=True
+            )
+
         response = client.recognize(config=config, audio=audio)
         for result in response.results:
             if result.alternatives:
                 transcript = result.alternatives[0].transcript
-                detected_lang = result.language_code[:2] if result.language_code else "es"
+                detected_lang = result.language_code[:2] if result.language_code else source_lang
                 return (transcript, detected_lang)
     except Exception as e:
         logger.error(f"STT Error: {e}")
-    return ("", "es")
+    return ("", source_lang)
 
 def download_twilio_media(media_url: str) -> Optional[bytes]:
     try:
@@ -213,7 +250,7 @@ def health():
         "service": "Amestx Voice & AI Translation Engine",
         "version": "3.0.0",
         "number": CALLER_ID,
-        "endpoints": ["/token", "/voice/outbound", "/voice/inbound", "/whatsapp", "/sms", "/audio/{id}"]
+        "endpoints": ["/token", "/voice/outbound", "/voice/inbound", "/translate/speak", "/translate/audio", "/whatsapp", "/sms", "/audio/{id}"]
     }
 
 # ==========================================
@@ -342,6 +379,73 @@ async def api_translate_and_speak(request: Request):
         "translated_text": translated,
         "source_lang": source_lang,
         "target_lang": target_lang,
+        "audio_url": audio_url
+    }
+
+@app.post("/translate/audio")
+async def api_translate_audio(request: Request):
+    """
+    Receives incoming audio recorded from the live phone call (e.g. listener speaking Spanish),
+    transcribes it using Google Cloud Speech-to-Text,
+    translates it to English (or specified target language),
+    and synthesizes natural voice audio for the caller to hear in the web dialer.
+    """
+    audio_bytes = None
+    source_lang = "es"
+    target_lang = "en"
+
+    content_type = request.headers.get("content-type", "")
+    if "application/json" in content_type:
+        try:
+            data = await request.json()
+            if "audio_base64" in data and data["audio_base64"]:
+                raw_b64 = data["audio_base64"]
+                if "," in raw_b64:
+                    raw_b64 = raw_b64.split(",", 1)[1]
+                audio_bytes = base64.b64decode(raw_b64)
+            source_lang = data.get("source_lang", "es")
+            target_lang = data.get("target_lang", "en")
+        except Exception as e:
+            logger.error(f"Error parsing json audio: {e}")
+            return {"status": "error", "message": f"Malformed JSON: {e}"}, 400
+    else:
+        audio_bytes = await request.body()
+        params = request.query_params
+        source_lang = params.get("source_lang", "es")
+        target_lang = params.get("target_lang", "en")
+
+    if not audio_bytes or len(audio_bytes) < 80:
+        return {"status": "empty", "message": "No audio payload received"}, 400
+
+    transcript, detected = transcribe_audio_bytes(audio_bytes, source_lang=source_lang)
+    clean_transcript = transcript.strip()
+
+    if not clean_transcript:
+        logger.info("Speech recognition completed: no speech or silence detected.")
+        return {
+            "status": "no_speech",
+            "message": "No speech detected in audio segment",
+            "original_text": "",
+            "translated_text": "",
+            "audio_url": None
+        }
+
+    actual_source = detected if detected else source_lang
+    actual_target = target_lang
+    if actual_source == actual_target:
+        actual_target = "en" if actual_source == "es" else "es"
+
+    translated = translate_text(clean_transcript, actual_source, actual_target)
+    audio_url = synthesize_speech(translated, actual_target)
+
+    logger.info(f"Incoming Audio Translation: '{clean_transcript}' ({actual_source}) -> '{translated}' ({actual_target}) | audio: {audio_url}")
+
+    return {
+        "status": "success",
+        "original_text": clean_transcript,
+        "translated_text": translated,
+        "source_lang": actual_source,
+        "target_lang": actual_target,
         "audio_url": audio_url
     }
 

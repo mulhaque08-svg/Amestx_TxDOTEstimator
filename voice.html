@@ -522,17 +522,33 @@
 
                 <!-- In-Call Translation Live Panel (Shown when translator is active) -->
                 <div id="inCallTranslatePanel" class="w-full max-w-[280px] mb-4 hidden bg-gradient-to-b from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-3 text-xs">
-                    <div class="flex items-center justify-between text-[11px] font-bold text-blue-900 mb-2">
+                    <div class="flex items-center justify-between text-[11px] font-bold text-blue-900 mb-1.5">
                         <div class="flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Live Voice &harr; Spanish AI</span>
+                            <span>Bilingual AI (EN &harr; ES)</span>
                         </div>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-black">Mic Muted to Listener</span>
+                        <span id="listenerStatusPill" class="text-[10px] bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded font-bold flex items-center gap-1 border border-indigo-200">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+                            <span>Listening ES</span>
+                        </span>
+                    </div>
+
+                    <!-- Listener Audio Controls & Trigger Bar -->
+                    <div class="flex items-center justify-between mb-2 px-0.5">
+                        <span class="text-[10px] text-slate-500 font-semibold">Spanish Voice:</span>
+                        <div class="flex items-center gap-1.5">
+                            <button id="toggleDuckSpanishBtn" type="button" onclick="toggleDuckSpanish()" title="Toggle ducking or muting raw Spanish voice in caller ear" class="text-[10px] font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg hover:bg-blue-50 shadow-xs transition">
+                                🔈 Ducked (20%)
+                            </button>
+                            <button id="manualListenBtn" type="button" onclick="manualTranslateListener()" title="Manually record &amp; translate listener's Spanish sentence" class="text-[10px] font-bold text-indigo-700 bg-white border border-indigo-200 px-2 py-0.5 rounded-lg hover:bg-indigo-50 shadow-xs transition flex items-center gap-1">
+                                <span>🎙️</span><span>Translate</span>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Live Speech Recognition / Translation Output -->
-                    <div id="inCallSpeechLog" class="bg-white rounded-xl p-2.5 border border-blue-200/80 min-h-[50px] max-h-[90px] overflow-y-auto mb-2 text-slate-700 space-y-1">
-                        <p class="text-[11px] text-slate-400 italic">Speak into mic or type below. Listener will hear Spanish...</p>
+                    <div id="inCallSpeechLog" class="bg-white rounded-xl p-2.5 border border-blue-200/80 min-h-[60px] max-h-[110px] overflow-y-auto mb-2 text-slate-700 space-y-1.5">
+                        <p class="text-[11px] text-slate-400 italic">Speak English to listener, or listener speaks Spanish to you...</p>
                     </div>
 
                     <!-- Quick Voice Say Chips -->
@@ -749,6 +765,86 @@
         let isTranslateModeActive = false;
         let speechRecognizer = null;
 
+        // Direction 2: Remote Listener (Spanish -> English) Pipeline
+        let remoteAudioSource = null;
+        let remoteGainNode = null;
+        let remoteProcessorNode = null;
+        let isDuckSpanishActive = true;
+        let remoteDuckLevel = 0.20; // 20% background volume when translator is active
+        let isAiSpeakingToListener = false;
+        let isListenerSpeaking = false;
+        let listenerSilenceTimer = null;
+        let listenerPcmChunks = [];
+        let isManualRecordingListener = false;
+        let manualRecordTimeout = null;
+
+        // Audio WAV Encoder & Downsampler (16kHz Mono 16-bit PCM)
+        function floatTo16BitPCM(view, offset, input) {
+            for (let i = 0; i < input.length; i++, offset += 2) {
+                const s = Math.max(-1, Math.min(1, input[i]));
+                view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
+        }
+
+        function writeWavString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        function encodeWav(samples, sampleRate) {
+            const buffer = new ArrayBuffer(44 + samples.length * 2);
+            const view = new DataView(buffer);
+
+            writeWavString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + samples.length * 2, true);
+            writeWavString(view, 8, 'WAVE');
+            writeWavString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); // PCM format
+            view.setUint16(22, 1, true); // Mono
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true); // Byte rate
+            view.setUint16(32, 2, true); // Block align
+            view.setUint16(34, 16, true); // 16-bit
+            writeWavString(view, 36, 'data');
+            view.setUint32(40, samples.length * 2, true);
+
+            floatTo16BitPCM(view, 44, samples);
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        function downsampleBuffer(buffer, inputSampleRate, outputSampleRate) {
+            if (inputSampleRate === outputSampleRate) return buffer;
+            const sampleRateRatio = inputSampleRate / outputSampleRate;
+            const newLength = Math.round(buffer.length / sampleRateRatio);
+            const result = new Float32Array(newLength);
+            let offsetResult = 0;
+            let offsetBuffer = 0;
+            while (offsetResult < result.length) {
+                const nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+                let accum = 0, count = 0;
+                for (let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+                    accum += buffer[i];
+                    count++;
+                }
+                result[offsetResult] = count > 0 ? accum / count : buffer[offsetBuffer];
+                offsetResult++;
+                offsetBuffer = nextOffsetBuffer;
+            }
+            return result;
+        }
+
+        function applyDuckToTwilioAudio(ducked) {
+            try {
+                document.querySelectorAll('audio').forEach(el => {
+                    if (!el.dataset.amestxVoice) {
+                        el.volume = ducked ? 0.0 : 1.0;
+                    }
+                });
+            } catch(e) {}
+        }
+
         async function setupInCallAudioMixer(call) {
             try {
                 if (!inCallAudioContext) {
@@ -758,13 +854,13 @@
                     await inCallAudioContext.resume();
                 }
 
-                // Capture microphone stream for in-call mixing
+                // Capture microphone stream for caller voice
                 const micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
                 inCallMicSource = inCallAudioContext.createMediaStreamSource(micStream);
                 inCallMicGain = inCallAudioContext.createGain();
                 inCallDestination = inCallAudioContext.createMediaStreamDestination();
 
-                // Mic -> Gain Node -> Destination Stream
+                // Mic -> Gain Node -> Destination Stream (going to listener phone)
                 inCallMicSource.connect(inCallMicGain);
                 inCallMicGain.connect(inCallDestination);
 
@@ -782,13 +878,349 @@
                         await audioSender.replaceTrack(inCallDestination.stream.getAudioTracks()[0]);
                     }
                 }
+
+                // Setup listener pipeline
+                setupRemoteAudioPipeline(call);
                 console.log("In-call Web Audio mixer initialized. Normal voice mode by default.");
             } catch (err) {
                 console.warn("In-call audio mixer setup:", err);
             }
         }
 
+        function setupRemoteAudioPipeline(call) {
+            if (!call || !inCallAudioContext) return;
+            try {
+                let remoteStream = null;
+                if (typeof call.getRemoteStream === 'function') {
+                    remoteStream = call.getRemoteStream();
+                }
+                if ((!remoteStream || remoteStream.getAudioTracks().length === 0) && call._remoteStream) {
+                    remoteStream = call._remoteStream;
+                }
+                if ((!remoteStream || remoteStream.getAudioTracks().length === 0) && call.peerConnection) {
+                    const receivers = call.peerConnection.getReceivers();
+                    const audioReceivers = receivers.filter(r => r.track && r.track.kind === 'audio');
+                    if (audioReceivers.length > 0) {
+                        remoteStream = new MediaStream(audioReceivers.map(r => r.track));
+                    }
+                }
+
+                if (!remoteStream || remoteStream.getAudioTracks().length === 0) {
+                    console.log("Remote audio track pending WebRTC handshake. Listening on peerConnection...");
+                    if (call.peerConnection) {
+                        call.peerConnection.addEventListener('track', (e) => {
+                            if (e.track && e.track.kind === 'audio') {
+                                const s = e.streams && e.streams[0] ? e.streams[0] : new MediaStream([e.track]);
+                                attachRemoteStream(s);
+                            }
+                        });
+                    }
+                    return;
+                }
+
+                attachRemoteStream(remoteStream);
+            } catch(err) {
+                console.warn("setupRemoteAudioPipeline notice:", err);
+            }
+        }
+
+        function attachRemoteStream(stream) {
+            if (!inCallAudioContext || remoteAudioSource) return;
+            try {
+                remoteAudioSource = inCallAudioContext.createMediaStreamSource(stream);
+                remoteGainNode = inCallAudioContext.createGain();
+
+                // Set initial remote volume: normal (1.0) or ducked (0.20)
+                const targetGain = isTranslateModeActive ? (isDuckSpanishActive ? remoteDuckLevel : 0.0) : 1.0;
+                remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+
+                // Remote Stream -> Gain -> Caller Ear
+                remoteAudioSource.connect(remoteGainNode);
+                remoteGainNode.connect(inCallAudioContext.destination);
+
+                // Set up ScriptProcessor for Voice Activity Detection (VAD)
+                remoteProcessorNode = inCallAudioContext.createScriptProcessor(4096, 1, 1);
+                remoteAudioSource.connect(remoteProcessorNode);
+
+                // Silent dummy node to keep processor active
+                const dummyGain = inCallAudioContext.createGain();
+                dummyGain.gain.setValueAtTime(0, inCallAudioContext.currentTime);
+                remoteProcessorNode.connect(dummyGain);
+                dummyGain.connect(inCallAudioContext.destination);
+
+                remoteProcessorNode.onaudioprocess = processRemoteAudio;
+                console.log("Remote Spanish audio pipeline & VAD initialized successfully!");
+            } catch(e) {
+                console.warn("attachRemoteStream error:", e);
+            }
+        }
+
+        function processRemoteAudio(e) {
+            // Only process when AI Translate Mode is ACTIVE and AI is not currently speaking to listener
+            if (!isTranslateModeActive || isAiSpeakingToListener) {
+                return;
+            }
+
+            const inputData = e.inputBuffer.getChannelData(0);
+            const inputSampleRate = inCallAudioContext.sampleRate;
+
+            let sum = 0;
+            for (let i = 0; i < inputData.length; i++) {
+                sum += inputData[i] * inputData[i];
+            }
+            const rms = Math.sqrt(sum / inputData.length);
+            const SPEECH_THRESHOLD = 0.015;
+
+            if (isManualRecordingListener || rms >= SPEECH_THRESHOLD) {
+                if (!isListenerSpeaking) {
+                    isListenerSpeaking = true;
+                    updateListenerStatusPill("speaking");
+                }
+                if (listenerSilenceTimer) {
+                    clearTimeout(listenerSilenceTimer);
+                    listenerSilenceTimer = null;
+                }
+
+                const downsampled = downsampleBuffer(inputData, inputSampleRate, 16000);
+                listenerPcmChunks.push(downsampled);
+
+                // Safety ceiling: 8 seconds maximum per sentence
+                const totalSamples = listenerPcmChunks.reduce((acc, c) => acc + c.length, 0);
+                if (totalSamples > 16000 * 8) {
+                    finalizeAndTranslateListenerAudio();
+                }
+            } else if (isListenerSpeaking) {
+                // Trailing silence capture (up to 800ms)
+                const downsampled = downsampleBuffer(inputData, inputSampleRate, 16000);
+                listenerPcmChunks.push(downsampled);
+
+                if (!listenerSilenceTimer) {
+                    listenerSilenceTimer = setTimeout(() => {
+                        finalizeAndTranslateListenerAudio();
+                    }, 800);
+                }
+            }
+        }
+
+        async function finalizeAndTranslateListenerAudio() {
+            if (listenerSilenceTimer) {
+                clearTimeout(listenerSilenceTimer);
+                listenerSilenceTimer = null;
+            }
+            isListenerSpeaking = false;
+            isManualRecordingListener = false;
+
+            const chunks = listenerPcmChunks;
+            listenerPcmChunks = [];
+
+            if (!chunks || chunks.length === 0) {
+                updateListenerStatusPill("listening");
+                return;
+            }
+
+            const totalSamples = chunks.reduce((acc, c) => acc + c.length, 0);
+            if (totalSamples < 16000 * 0.4) {
+                // Less than 0.4s is likely a click or breath
+                updateListenerStatusPill("listening");
+                return;
+            }
+
+            updateListenerStatusPill("translating");
+
+            try {
+                const flattened = new Float32Array(totalSamples);
+                let offset = 0;
+                for (let i = 0; i < chunks.length; i++) {
+                    flattened.set(chunks[i], offset);
+                    offset += chunks[i].length;
+                }
+
+                const wavBlob = encodeWav(flattened, 16000);
+                const reader = new FileReader();
+                reader.readAsDataURL(wavBlob);
+                reader.onloadend = async () => {
+                    const base64Data = reader.result;
+                    try {
+                        const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/translate/audio", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                audio_base64: base64Data,
+                                source_lang: "es",
+                                target_lang: "en"
+                            })
+                        });
+
+                        if (!res.ok) {
+                            console.warn("Translate audio status:", res.status);
+                            updateListenerStatusPill("listening");
+                            return;
+                        }
+
+                        const data = await res.json();
+                        if (data && data.status === "success" && data.translated_text) {
+                            // 1. Output to chat log
+                            const log = document.getElementById('inCallSpeechLog');
+                            if (log) {
+                                const item = document.createElement('div');
+                                item.className = "text-[11px] font-bold text-slate-800 bg-blue-50/70 p-2 rounded-xl border border-blue-200/60";
+                                item.innerHTML = `
+                                    <div class="text-slate-600 font-semibold"><span class="text-blue-700 font-bold">🇲🇽 Listener (ES):</span> "${data.original_text}"</div>
+                                    <div class="text-emerald-800 font-extrabold mt-1"><span class="text-emerald-700 font-black">🇺🇸 English:</span> "${data.translated_text}"</div>
+                                `;
+                                log.appendChild(item);
+                                log.scrollTop = log.scrollHeight;
+                            }
+
+                            // 2. Speak English voice into caller's ear
+                            if (data.audio_url) {
+                                await playEnglishTranslationToCaller(data.audio_url);
+                            } else {
+                                speakEnglishFallback(data.translated_text);
+                            }
+                        }
+                    } catch(err) {
+                        console.error("Listener translation error:", err);
+                    } finally {
+                        updateListenerStatusPill("listening");
+                    }
+                };
+            } catch(e) {
+                console.error("Error encoding listener audio:", e);
+                updateListenerStatusPill("listening");
+            }
+        }
+
+        async function playEnglishTranslationToCaller(audioUrl) {
+            if (!inCallAudioContext) {
+                const a = new Audio(audioUrl);
+                a.dataset.amestxVoice = "true";
+                a.play();
+                return;
+            }
+            try {
+                const response = await fetch(audioUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await inCallAudioContext.decodeAudioData(arrayBuffer);
+
+                const sourceNode = inCallAudioContext.createBufferSource();
+                sourceNode.buffer = audioBuffer;
+
+                // Duck remote Spanish to 5% during English voice playback
+                if (remoteGainNode) {
+                    remoteGainNode.gain.setValueAtTime(0.05, inCallAudioContext.currentTime);
+                }
+
+                // Play directly to caller's ear
+                sourceNode.connect(inCallAudioContext.destination);
+
+                sourceNode.onended = () => {
+                    if (remoteGainNode && isTranslateModeActive) {
+                        const targetGain = isDuckSpanishActive ? remoteDuckLevel : 0.0;
+                        remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                    }
+                };
+
+                sourceNode.start(0);
+            } catch (err) {
+                console.warn("Direct buffer English error, fallback:", err);
+                const a = new Audio(audioUrl);
+                a.dataset.amestxVoice = "true";
+                a.play();
+            }
+        }
+
+        function speakEnglishFallback(text) {
+            try {
+                if ('speechSynthesis' in window) {
+                    const utter = new SpeechSynthesisUtterance(text);
+                    utter.lang = 'en-US';
+                    window.speechSynthesis.speak(utter);
+                }
+            } catch(e) {}
+        }
+
+        function toggleDuckSpanish() {
+            isDuckSpanishActive = !isDuckSpanishActive;
+            const btn = document.getElementById('toggleDuckSpanishBtn');
+            if (remoteGainNode && inCallAudioContext && isTranslateModeActive) {
+                const newGain = isDuckSpanishActive ? remoteDuckLevel : 0.0;
+                remoteGainNode.gain.setValueAtTime(newGain, inCallAudioContext.currentTime);
+            }
+            if (btn) {
+                if (isDuckSpanishActive) {
+                    btn.textContent = "🔈 Ducked (20%)";
+                    btn.className = "text-[10px] font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg hover:bg-blue-50 shadow-xs transition";
+                } else {
+                    btn.textContent = "🔇 Raw Spanish Muted";
+                    btn.className = "text-[10px] font-bold text-amber-800 bg-amber-50 border border-amber-300 px-2 py-0.5 rounded-lg hover:bg-amber-100 shadow-xs transition";
+                }
+            }
+        }
+
+        function manualTranslateListener() {
+            if (!isCalling || !isTranslateModeActive) {
+                alert("Please enable AI Translation first while in a call.");
+                return;
+            }
+            const btn = document.getElementById('manualListenBtn');
+            if (!isManualRecordingListener) {
+                isManualRecordingListener = true;
+                isListenerSpeaking = true;
+                listenerPcmChunks = [];
+                updateListenerStatusPill("speaking");
+                if (btn) {
+                    btn.className = "text-[10px] font-bold text-white bg-red-600 border border-red-700 px-2 py-0.5 rounded-lg shadow-xs transition animate-pulse flex items-center gap-1";
+                    btn.innerHTML = `<span>⏹️</span><span>Done</span>`;
+                }
+                manualRecordTimeout = setTimeout(() => {
+                    if (isManualRecordingListener) {
+                        manualTranslateListener();
+                    }
+                }, 4500);
+            } else {
+                if (manualRecordTimeout) clearTimeout(manualRecordTimeout);
+                if (btn) {
+                    btn.className = "text-[10px] font-bold text-indigo-700 bg-white border border-indigo-200 px-2 py-0.5 rounded-lg hover:bg-indigo-50 shadow-xs transition flex items-center gap-1";
+                    btn.innerHTML = `<span>🎙️</span><span>Translate</span>`;
+                }
+                finalizeAndTranslateListenerAudio();
+            }
+        }
+
+        function updateListenerStatusPill(state) {
+            const pill = document.getElementById('listenerStatusPill');
+            if (!pill) return;
+            if (state === "speaking") {
+                pill.className = "text-[10px] bg-emerald-100 text-emerald-900 px-1.5 py-0.5 rounded font-black flex items-center gap-1 animate-pulse border border-emerald-300";
+                pill.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-ping"></span><span>Listener Speaking</span>`;
+            } else if (state === "translating") {
+                pill.className = "text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-black flex items-center gap-1 border border-amber-300";
+                pill.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span><span>Translating ES→EN...</span>`;
+            } else {
+                pill.className = "text-[10px] bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded font-bold flex items-center gap-1 border border-indigo-200";
+                pill.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span><span>Listening ES</span>`;
+            }
+        }
+
         function teardownInCallAudioMixer() {
+            if (remoteProcessorNode) {
+                try { remoteProcessorNode.disconnect(); } catch(e) {}
+                remoteProcessorNode = null;
+            }
+            if (remoteGainNode) {
+                try { remoteGainNode.disconnect(); } catch(e) {}
+                remoteGainNode = null;
+            }
+            if (remoteAudioSource) {
+                try { remoteAudioSource.disconnect(); } catch(e) {}
+                remoteAudioSource = null;
+            }
+            applyDuckToTwilioAudio(false);
+            isListenerSpeaking = false;
+            isManualRecordingListener = false;
+            listenerPcmChunks = [];
+
             if (inCallMicGain) {
                 try { inCallMicGain.disconnect(); } catch(e) {}
                 inCallMicGain = null;
@@ -807,10 +1239,13 @@
         async function playAudioIntoCall(audioUrl) {
             if (!inCallAudioContext || !inCallDestination) {
                 const a = new Audio(audioUrl);
+                a.dataset.amestxVoice = "true";
                 a.play();
                 return;
             }
             try {
+                isAiSpeakingToListener = true; // Prevent AI self-translation
+
                 const response = await fetch(audioUrl);
                 const arrayBuffer = await response.arrayBuffer();
                 const audioBuffer = await inCallAudioContext.decodeAudioData(arrayBuffer);
@@ -827,11 +1262,19 @@
                 sourceNode.connect(monitorGain);
                 monitorGain.connect(inCallAudioContext.destination);
 
+                sourceNode.onended = () => {
+                    setTimeout(() => {
+                        isAiSpeakingToListener = false;
+                    }, 500);
+                };
+
                 sourceNode.start(0);
             } catch (err) {
+                isAiSpeakingToListener = false;
                 console.warn("Direct buffer audio error, trying fallback:", err);
                 try {
                     const fallbackAudio = new Audio(audioUrl);
+                    fallbackAudio.dataset.amestxVoice = "true";
                     fallbackAudio.crossOrigin = "anonymous";
                     const elementSource = inCallAudioContext.createMediaElementSource(fallbackAudio);
                     elementSource.connect(inCallDestination);
@@ -861,32 +1304,50 @@
                 if (!inCallAudioContext || !inCallDestination) {
                     await setupInCallAudioMixer(activeCall);
                 }
+                if (activeCall) {
+                    setupRemoteAudioPipeline(activeCall);
+                }
+
                 // 1. MUTE the caller's raw microphone to the listener!
                 if (inCallMicGain && inCallAudioContext) {
                     inCallMicGain.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
                 }
-                console.log("Translation mode ACTIVE: Mic muted to listener.");
 
-                // 2. Update UI
+                // 2. Duck/mute Twilio audio elements and set remote gain
+                applyDuckToTwilioAudio(true);
+                if (remoteGainNode && inCallAudioContext) {
+                    const targetGain = isDuckSpanishActive ? remoteDuckLevel : 0.0;
+                    remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                }
+                console.log("Translation mode ACTIVE: Mic muted to listener, remote Spanish ducked, bidirectional AI active.");
+
+                // 3. Update UI
                 if (btn) btn.className = "w-full py-2.5 px-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-950 text-xs font-black flex items-center justify-between transition shadow-md shadow-emerald-500/10";
                 if (dot) dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping";
-                if (label) label.textContent = "AI Translator: ACTIVE (Speaking Spanish)";
+                if (label) label.textContent = "AI Translator: ACTIVE (Bilingual Mode)";
                 if (badge) {
                     badge.className = "text-[10px] bg-emerald-600 text-white font-extrabold px-2 py-0.5 rounded-full";
-                    badge.textContent = "Mic Muted";
+                    badge.textContent = "Bilingual Live";
                 }
                 if (panel) panel.classList.remove('hidden');
 
-                // 3. Start listening to what caller says in English
+                // 4. Start listening to what caller says in English
                 startSpeechRecognition();
+                updateListenerStatusPill("listening");
             } else {
                 // 1. UNMUTE caller's microphone (Normal mode)
                 if (inCallMicGain && inCallAudioContext) {
                     inCallMicGain.gain.setValueAtTime(1.0, inCallAudioContext.currentTime);
                 }
-                console.log("Normal mode: Mic unmuted to listener.");
 
-                // 2. Update UI
+                // 2. Restore normal listener volume
+                applyDuckToTwilioAudio(false);
+                if (remoteGainNode && inCallAudioContext) {
+                    remoteGainNode.gain.setValueAtTime(1.0, inCallAudioContext.currentTime);
+                }
+                console.log("Normal mode: Mic unmuted to listener, listener full volume.");
+
+                // 3. Update UI
                 resetTranslatorButtonUi();
                 stopSpeechRecognition();
             }
