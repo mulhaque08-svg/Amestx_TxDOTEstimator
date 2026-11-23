@@ -504,9 +504,60 @@
             <div id="panelCall" class="p-6 flex flex-col items-center">
                 
                 <!-- Display Screen -->
-                <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center mb-6">
+                <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center mb-4">
                     <div id="callStatus" class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Ready to Call</div>
                     <input id="phoneNumberDisplay" type="text" placeholder="(832) 000-0000" class="w-full text-center text-2xl font-black font-mono text-slate-900 bg-transparent focus:outline-none tracking-wider">
+                </div>
+
+                <!-- Live AI Translation Mode Switch Button (Inside Dialer) -->
+                <div class="w-full max-w-[280px] mb-3">
+                    <button id="inCallTranslateBtn" onclick="toggleInCallTranslator()" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-extrabold flex items-center justify-between transition shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <span id="translateBtnDot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                            <span id="translateBtnLabel">AI Translation: OFF (Normal Voice)</span>
+                        </div>
+                        <span id="translateBtnBadge" class="text-[10px] bg-slate-200 text-slate-600 font-bold px-2 py-0.5 rounded-full">Tap to Enable</span>
+                    </button>
+                </div>
+
+                <!-- In-Call Translation Live Panel (Shown when translator is active) -->
+                <div id="inCallTranslatePanel" class="w-full max-w-[280px] mb-4 hidden bg-gradient-to-b from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-3 text-xs">
+                    <div class="flex items-center justify-between text-[11px] font-bold text-blue-900 mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Live Voice &harr; Spanish AI</span>
+                        </div>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-black">Mic Muted to Listener</span>
+                    </div>
+
+                    <!-- Live Speech Recognition / Translation Output -->
+                    <div id="inCallSpeechLog" class="bg-white rounded-xl p-2.5 border border-blue-200/80 min-h-[50px] max-h-[90px] overflow-y-auto mb-2 text-slate-700 space-y-1">
+                        <p class="text-[11px] text-slate-400 italic">Speak into mic or type below. Listener will hear Spanish...</p>
+                    </div>
+
+                    <!-- Quick Voice Say Chips -->
+                    <div class="flex flex-wrap gap-1 mb-2">
+                        <button onclick="speakInCallPhrase('Hello, can you hear me?')" class="bg-white hover:bg-blue-100 border border-blue-200 text-[10px] font-semibold text-slate-700 px-2 py-1 rounded-lg transition">
+                            "¿Me escucha?"
+                        </button>
+                        <button onclick="speakInCallPhrase('I am on my way to the jobsite.')" class="bg-white hover:bg-blue-100 border border-blue-200 text-[10px] font-semibold text-slate-700 px-2 py-1 rounded-lg transition">
+                            "Voy en camino"
+                        </button>
+                        <button onclick="speakInCallPhrase('What time will you arrive today?')" class="bg-white hover:bg-blue-100 border border-blue-200 text-[10px] font-semibold text-slate-700 px-2 py-1 rounded-lg transition">
+                            "¿A qué hora llega?"
+                        </button>
+                        <button onclick="speakInCallPhrase('Thank you, have a good day.')" class="bg-white hover:bg-blue-100 border border-blue-200 text-[10px] font-semibold text-slate-700 px-2 py-1 rounded-lg transition">
+                            "Muchas gracias"
+                        </button>
+                    </div>
+
+                    <!-- In-Call Type & Speak Input -->
+                    <div class="flex items-center gap-1.5">
+                        <input id="inCallTextInput" type="text" placeholder="Type in English &amp; speak in Spanish..." onkeydown="if(event.key==='Enter') sendInCallText()" class="flex-1 bg-white border border-blue-300 rounded-xl px-2.5 py-1.5 text-[11px] text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-600">
+                        <button onclick="sendInCallText()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-2.5 py-1.5 rounded-xl text-[11px] transition">
+                            Speak
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Dialpad Grid -->
@@ -690,6 +741,275 @@
         let incomingConnection = null;
         let ringtoneInterval = null;
 
+        // In-Call Live Audio Mixer & Translation Pipeline
+        let inCallAudioContext = null;
+        let inCallMicSource = null;
+        let inCallMicGain = null;
+        let inCallDestination = null;
+        let isTranslateModeActive = false;
+        let speechRecognizer = null;
+
+        async function setupInCallAudioMixer(call) {
+            try {
+                if (!inCallAudioContext) {
+                    inCallAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (inCallAudioContext.state === 'suspended') {
+                    await inCallAudioContext.resume();
+                }
+
+                // Capture microphone stream for in-call mixing
+                const micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+                inCallMicSource = inCallAudioContext.createMediaStreamSource(micStream);
+                inCallMicGain = inCallAudioContext.createGain();
+                inCallDestination = inCallAudioContext.createMediaStreamDestination();
+
+                // Mic -> Gain Node -> Destination Stream
+                inCallMicSource.connect(inCallMicGain);
+                inCallMicGain.connect(inCallDestination);
+
+                // Default: Normal conversation (Gain = 1.0, natural voice active)
+                inCallMicGain.gain.setValueAtTime(1.0, inCallAudioContext.currentTime);
+
+                // Inject our mixed stream into Twilio Call
+                if (call && typeof call._setInputTracksFromStream === 'function') {
+                    await call._setInputTracksFromStream(inCallDestination.stream);
+                }
+                if (call && call.peerConnection) {
+                    const senders = call.peerConnection.getSenders();
+                    const audioSender = senders.find(s => s.track && s.track.kind === 'audio');
+                    if (audioSender && inCallDestination.stream.getAudioTracks().length > 0) {
+                        await audioSender.replaceTrack(inCallDestination.stream.getAudioTracks()[0]);
+                    }
+                }
+                console.log("In-call Web Audio mixer initialized. Normal voice mode by default.");
+            } catch (err) {
+                console.warn("In-call audio mixer setup:", err);
+            }
+        }
+
+        function teardownInCallAudioMixer() {
+            if (inCallMicGain) {
+                try { inCallMicGain.disconnect(); } catch(e) {}
+                inCallMicGain = null;
+            }
+            if (inCallMicSource) {
+                try { inCallMicSource.disconnect(); } catch(e) {}
+                inCallMicSource = null;
+            }
+            if (inCallAudioContext) {
+                try { inCallAudioContext.close(); } catch(e) {}
+                inCallAudioContext = null;
+            }
+            inCallDestination = null;
+        }
+
+        async function playAudioIntoCall(audioUrl) {
+            if (!inCallAudioContext || !inCallDestination) {
+                const a = new Audio(audioUrl);
+                a.play();
+                return;
+            }
+            try {
+                const response = await fetch(audioUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await inCallAudioContext.decodeAudioData(arrayBuffer);
+
+                const sourceNode = inCallAudioContext.createBufferSource();
+                sourceNode.buffer = audioBuffer;
+
+                // 1. Pipe audio directly into call to the listener
+                sourceNode.connect(inCallDestination);
+
+                // 2. Play soft monitor to caller's ear
+                const monitorGain = inCallAudioContext.createGain();
+                monitorGain.gain.setValueAtTime(0.35, inCallAudioContext.currentTime);
+                sourceNode.connect(monitorGain);
+                monitorGain.connect(inCallAudioContext.destination);
+
+                sourceNode.start(0);
+            } catch (err) {
+                console.warn("Direct buffer audio error, trying fallback:", err);
+                try {
+                    const fallbackAudio = new Audio(audioUrl);
+                    fallbackAudio.crossOrigin = "anonymous";
+                    const elementSource = inCallAudioContext.createMediaElementSource(fallbackAudio);
+                    elementSource.connect(inCallDestination);
+                    elementSource.connect(inCallAudioContext.destination);
+                    fallbackAudio.play();
+                } catch(e) {
+                    console.error("Audio playback error:", e);
+                }
+            }
+        }
+
+        async function toggleInCallTranslator() {
+            if (!isCalling) {
+                alert("Please make or answer a call first. Once connected, tap this button to mute your mic and speak Spanish to the listener.");
+                return;
+            }
+
+            isTranslateModeActive = !isTranslateModeActive;
+            const btn = document.getElementById('inCallTranslateBtn');
+            const dot = document.getElementById('translateBtnDot');
+            const label = document.getElementById('translateBtnLabel');
+            const badge = document.getElementById('translateBtnBadge');
+            const panel = document.getElementById('inCallTranslatePanel');
+
+            if (isTranslateModeActive) {
+                // 1. MUTE the caller's raw microphone to the listener!
+                if (inCallMicGain && inCallAudioContext) {
+                    inCallMicGain.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
+                }
+                console.log("Translation mode ACTIVE: Mic muted to listener.");
+
+                // 2. Update UI
+                if (btn) btn.className = "w-full py-2.5 px-3 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-950 text-xs font-black flex items-center justify-between transition shadow-md shadow-emerald-500/10";
+                if (dot) dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping";
+                if (label) label.textContent = "AI Translator: ACTIVE (Speaking Spanish)";
+                if (badge) {
+                    badge.className = "text-[10px] bg-emerald-600 text-white font-extrabold px-2 py-0.5 rounded-full";
+                    badge.textContent = "Mic Muted";
+                }
+                if (panel) panel.classList.remove('hidden');
+
+                // 3. Start listening to what caller says in English
+                startSpeechRecognition();
+            } else {
+                // 1. UNMUTE caller's microphone (Normal mode)
+                if (inCallMicGain && inCallAudioContext) {
+                    inCallMicGain.gain.setValueAtTime(1.0, inCallAudioContext.currentTime);
+                }
+                console.log("Normal mode: Mic unmuted to listener.");
+
+                // 2. Update UI
+                resetTranslatorButtonUi();
+                stopSpeechRecognition();
+            }
+        }
+
+        function resetTranslatorButtonUi() {
+            const btn = document.getElementById('inCallTranslateBtn');
+            const dot = document.getElementById('translateBtnDot');
+            const label = document.getElementById('translateBtnLabel');
+            const badge = document.getElementById('translateBtnBadge');
+            const panel = document.getElementById('inCallTranslatePanel');
+
+            if (btn) btn.className = "w-full py-2 px-3 rounded-xl border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-extrabold flex items-center justify-between transition shadow-sm";
+            if (dot) dot.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
+            if (label) label.textContent = "AI Translation: OFF (Normal Voice)";
+            if (badge) {
+                badge.className = "text-[10px] bg-slate-200 text-slate-600 font-bold px-2 py-0.5 rounded-full";
+                badge.textContent = "Tap to Enable";
+            }
+            if (panel) panel.classList.add('hidden');
+        }
+
+        function startSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                const log = document.getElementById('inCallSpeechLog');
+                if (log) log.innerHTML = `<p class="text-[10px] text-amber-600">Speech recognition not supported in this browser. Use the quick buttons or type below to speak in Spanish.</p>`;
+                return;
+            }
+            if (!speechRecognizer) {
+                speechRecognizer = new SpeechRecognition();
+                speechRecognizer.continuous = true;
+                speechRecognizer.interimResults = false;
+                speechRecognizer.lang = 'en-US';
+
+                speechRecognizer.onresult = (event) => {
+                    if (!isTranslateModeActive) return;
+                    const last = event.results.length - 1;
+                    const spokenText = event.results[last][0].transcript.trim();
+                    if (spokenText) {
+                        handleSpokenTranslation(spokenText);
+                    }
+                };
+
+                speechRecognizer.onerror = (e) => {
+                    console.warn("Speech recognition notice:", e.error);
+                };
+
+                speechRecognizer.onend = () => {
+                    if (isTranslateModeActive && isCalling) {
+                        try { speechRecognizer.start(); } catch(e) {}
+                    }
+                };
+            }
+
+            try {
+                speechRecognizer.start();
+                console.log("Speech recognition started listening.");
+            } catch(e) {}
+        }
+
+        function stopSpeechRecognition() {
+            if (speechRecognizer) {
+                try { speechRecognizer.stop(); } catch(e) {}
+            }
+        }
+
+        async function handleSpokenTranslation(text) {
+            if (!text || !text.trim()) return;
+            const log = document.getElementById('inCallSpeechLog');
+            if (log) {
+                const item = document.createElement('div');
+                item.className = "text-[11px] font-bold text-slate-800";
+                item.textContent = `🇺🇸 You: "${text}"`;
+                log.appendChild(item);
+
+                const loading = document.createElement('div');
+                loading.className = "text-[10px] text-blue-600 animate-pulse";
+                loading.textContent = `⏳ Translating to Spanish & speaking to caller...`;
+                loading.id = "translatingPlaceholder";
+                log.appendChild(loading);
+                log.scrollTop = log.scrollHeight;
+            }
+
+            try {
+                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/translate/speak", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text: text, source_lang: "en", target_lang: "es" })
+                });
+                const data = await res.json();
+
+                const placeholder = document.getElementById('translatingPlaceholder');
+                if (placeholder) placeholder.remove();
+
+                if (data && data.translated_text) {
+                    if (log) {
+                        const item = document.createElement('div');
+                        item.className = "text-[11px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200";
+                        item.textContent = `🇲🇽 Spoken to listener: "${data.translated_text}"`;
+                        log.appendChild(item);
+                        log.scrollTop = log.scrollHeight;
+                    }
+                    if (data.audio_url) {
+                        await playAudioIntoCall(data.audio_url);
+                    }
+                }
+            } catch(err) {
+                console.error("Translation speak error:", err);
+                const placeholder = document.getElementById('translatingPlaceholder');
+                if (placeholder) placeholder.remove();
+            }
+        }
+
+        function speakInCallPhrase(phrase) {
+            handleSpokenTranslation(phrase);
+        }
+
+        function sendInCallText() {
+            const input = document.getElementById('inCallTextInput');
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = "";
+            handleSpokenTranslation(text);
+        }
+
         function playRingtone() {
             try {
                 const ctx = getAudioContext();
@@ -779,6 +1099,7 @@
                 const btnText = document.getElementById('callBtnText');
                 if (btnText) btnText.textContent = "End Call";
                 isCalling = true;
+                setupInCallAudioMixer(activeCall);
             }
         }
 
@@ -835,6 +1156,7 @@
                         call.on('accept', () => {
                             status.textContent = "Connected • HD Voice In Call";
                             status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-500 mb-1";
+                            setupInCallAudioMixer(call);
                         });
 
                         call.on('disconnect', () => {
@@ -869,6 +1191,11 @@
 
         function endCallUi() {
             isCalling = false;
+            isTranslateModeActive = false;
+            stopSpeechRecognition();
+            resetTranslatorButtonUi();
+            teardownInCallAudioMixer();
+
             if (activeCall) {
                 activeCall.disconnect();
                 activeCall = null;

@@ -301,6 +301,51 @@ async def voice_inbound(request: Request):
     return PlainResponse(content=twiml, media_type="application/xml")
 
 # ==========================================
+# 1.5 LIVE CALL TRANSLATION & SPEECH SYNTHESIS
+# ==========================================
+@app.post("/translate/speak")
+async def api_translate_and_speak(request: Request):
+    """
+    Receives text spoken/typed during a phone call, translates it,
+    synthesizes a natural voice audio file, and returns the audio URL
+    to be injected directly into the live phone call.
+    """
+    try:
+        data = await request.json()
+    except Exception:
+        body = await request.body()
+        data = urllib.parse.parse_qs(body.decode("utf-8", errors="replace"))
+        data = {k: v[0] if isinstance(v, list) else v for k, v in data.items()}
+
+    text = (data.get("text") or "").strip()
+    source_lang = data.get("source_lang", "auto")
+    target_lang = data.get("target_lang", "auto")
+
+    if not text:
+        return {"error": "Missing text parameter"}, 400
+
+    if source_lang == "auto" or not source_lang:
+        detected = detect_language(text)
+        source_lang = detected
+        target_lang = "es" if detected == "en" else "en"
+    elif target_lang == "auto" or not target_lang:
+        target_lang = "es" if source_lang == "en" else "en"
+
+    translated = translate_text(text, source_lang, target_lang)
+    audio_url = synthesize_speech(translated, target_lang)
+
+    logger.info(f"In-Call Translation: '{text}' ({source_lang}) -> '{translated}' ({target_lang}) | audio: {audio_url}")
+
+    return {
+        "status": "success",
+        "original_text": text,
+        "translated_text": translated,
+        "source_lang": source_lang,
+        "target_lang": target_lang,
+        "audio_url": audio_url
+    }
+
+# ==========================================
 # 2. WHATSAPP WEBHOOK (Unchanged & Dedicated)
 # ==========================================
 @app.post("/whatsapp")
