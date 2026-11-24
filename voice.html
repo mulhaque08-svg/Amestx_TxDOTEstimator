@@ -85,19 +85,35 @@
                 </nav>
             </div>
 
-            <!-- Header Action Buttons -->
-            <div class="flex items-center space-x-3 flex-shrink-0">
-                <a href="tel:+18448263789" class="hidden lg:flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 px-2 py-2 whitespace-nowrap flex-shrink-0">
+            <!-- Header Action Buttons (RingCentral Caliber) -->
+            <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+                <a href="tel:+18448263789" class="hidden xl:flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 px-2 py-2 whitespace-nowrap flex-shrink-0">
                     <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    <span class="whitespace-nowrap">Sales: 1-844-826-3789</span>
+                    <span class="whitespace-nowrap">1-844-826-3789</span>
                 </a>
-                <button onclick="checkAccessAndLaunchDialer()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold px-3.5 py-2.5 rounded-xl border border-slate-300 transition flex items-center gap-2 whitespace-nowrap flex-shrink-0">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Launch Dialer</span>
-                </button>
-                <a href="#quote-section" class="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-blue-600/20 transition whitespace-nowrap flex-shrink-0">
-                    Get Started
-                </a>
+
+                <!-- Logged Out Guest Buttons -->
+                <div id="headerGuestActions" class="flex items-center space-x-2 sm:space-x-3">
+                    <button onclick="openAuthModal('login')" class="text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-xs sm:text-sm font-bold px-3 sm:px-4 py-2.5 rounded-xl border border-slate-300 transition flex items-center gap-1.5 whitespace-nowrap shadow-sm">
+                        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                        <span>Log In</span>
+                    </button>
+                    <button onclick="openAuthModal('signup')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-blue-600/20 transition whitespace-nowrap flex items-center gap-1.5">
+                        <span>Start Free Trial</span>
+                        <span class="hidden sm:inline">&rarr;</span>
+                    </button>
+                </div>
+
+                <!-- Logged In User Pill (Dynamic) -->
+                <div id="headerUserActions" class="hidden flex items-center space-x-2 sm:space-x-2.5">
+                    <button onclick="openDialerModal(true)" class="bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="headerUserGreeting">Open Dialer</span>
+                    </button>
+                    <button onclick="logoutCustomer()" title="Sign Out of Amestx Voice" class="text-slate-500 hover:text-red-600 hover:bg-red-50 text-xs font-bold px-2.5 py-2.5 rounded-xl border border-slate-200 transition">
+                        Sign Out
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -202,8 +218,22 @@
                                 </div>
                             </div>
 
+                            <!-- Set Up Password -->
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Number Area Code</label>
+                                <div class="flex items-center justify-between mb-1">
+                                    <label class="block text-xs font-bold text-slate-700">Set Up Your Account Password *</label>
+                                    <span class="text-[10px] text-slate-400 font-medium">Min. 6 characters</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="password" required minlength="6" placeholder="Create your login password" id="custPassword" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <button type="button" onclick="togglePasswordVisibility('custPassword', 'heroEyeBtn')" id="heroEyeBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-xs">
+                                        👁️
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Business Number Area Code</label>
                                 <select id="custAreaCode" class="w-full text-xs font-semibold bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                     <option value="844">Toll-Free Nationwide (844 / 800)</option>
                                     <option value="832">Houston, TX (832 / 713)</option>
@@ -225,6 +255,10 @@
                                 <span>Start 15-Day Free Trial &amp; Open Dialer</span>
                                 <span>&rarr;</span>
                             </button>
+
+                            <div class="text-center pt-1.5 text-xs text-slate-500 font-medium">
+                                Already have an account? <button type="button" onclick="openAuthModal('login')" class="text-blue-600 font-bold underline hover:text-blue-800">Log In here</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -379,85 +413,165 @@
         </div>
     </section>
 
-    <!-- 15-Day Free Trial Quick Activation Modal -->
-    <div id="trialSignupModal" class="fixed inset-0 z-[90] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 sm:p-8 relative">
-            <button onclick="closeTrialModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl font-bold p-1">&times;</button>
+        <!-- RingCentral-Style Unified Authentication Modal (Log In & 15-Day Free Trial) -->
+    <div id="authModal" class="fixed inset-0 z-[90] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden relative my-auto">
             
-            <div class="text-center mb-6">
-                <span class="inline-block bg-blue-50 text-blue-700 text-[11px] font-black uppercase px-3 py-1 rounded-full border border-blue-200 mb-2">15-Day Free Trial</span>
-                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Unlock Amestx Web Dialer</h2>
-                <p class="text-xs text-slate-500 mt-1">Start making calls and testing real-time AI translation. No credit card required.</p>
+            <!-- Modal Close Button -->
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10">&times;</button>
+            
+            <!-- Modal Brand Header -->
+            <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+                <div class="flex items-center space-x-2.5 mb-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center text-white font-black text-sm shadow-sm">
+                        AV
+                    </div>
+                    <div>
+                        <span class="text-base font-extrabold text-slate-900 tracking-tight">Amestx <span class="text-blue-600">Voice</span></span>
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-500 ml-1 border border-slate-200 px-1 py-0.2 rounded">Virtual Business Phone</span>
+                    </div>
+                </div>
+
+                <!-- Segmented Tabs: Log In vs Start Free Trial -->
+                <div class="flex p-1 bg-slate-100 rounded-xl text-xs font-bold">
+                    <button id="authTabLogin" onclick="switchAuthTab('login')" class="flex-1 py-2 text-center rounded-lg transition text-slate-600 hover:text-slate-900">
+                        🔐 Log In
+                    </button>
+                    <button id="authTabSignup" onclick="switchAuthTab('signup')" class="flex-1 py-2 text-center rounded-lg transition bg-white text-blue-700 shadow-sm">
+                        ⚡ 15-Day Free Trial
+                    </button>
+                </div>
             </div>
 
-            <form id="quickTrialForm" onsubmit="handleQuickTrialSubmit(event)" class="space-y-3.5">
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
-                        <input type="text" id="quickTrialFirstName" required placeholder="John" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+            <div class="p-6">
+                <!-- TAB 1: LOG IN FORM -->
+                <div id="authPanelLogin" class="hidden">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-black text-slate-900 tracking-tight">Log In to Your Line</h3>
+                        <p class="text-xs text-slate-500 mt-1">Enter your email and password to access the web dialer.</p>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
-                        <input type="text" id="quickTrialLastName" required placeholder="Doe" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
-                    </div>
+
+                    <form id="loginForm" onsubmit="handleLoginFormSubmit(event)" class="space-y-3.5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Work Email or Mobile Phone *</label>
+                            <input type="text" id="loginEmail" required placeholder="name@company.com or (832) 000-0000" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-bold text-slate-700">Password *</label>
+                                <button type="button" onclick="openMasterKeyHint()" class="text-[11px] text-blue-600 hover:underline">Admin / Owner Key</button>
+                            </div>
+                            <div class="relative">
+                                <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <button type="button" onclick="togglePasswordVisibility('loginPassword', 'loginEyeBtn')" id="loginEyeBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-xs">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-[11px] text-slate-500 font-medium pt-1">
+                            <label class="flex items-center gap-1.5 cursor-pointer">
+                                <input type="checkbox" id="loginRememberMe" checked class="rounded text-blue-600 focus:ring-blue-500">
+                                <span>Remember this device</span>
+                            </label>
+                            <span class="text-slate-400">Owner master: <code class="text-blue-700 font-bold">Amestx2026</code></span>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition text-sm flex items-center justify-center gap-2">
+                            <span>Log In &amp; Open Web Dialer</span>
+                            <span>&rarr;</span>
+                        </button>
+
+                        <div class="text-center pt-2 text-xs text-slate-500">
+                            Don't have an account? <button type="button" onclick="switchAuthTab('signup')" class="text-blue-600 font-bold underline hover:text-blue-800">Start 15-Day Free Trial</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Company / Organization *</label>
-                    <input type="text" id="quickTrialCompany" required placeholder="Acme Logistics LLC" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
-                        <input type="email" id="quickTrialEmail" required placeholder="john@company.com" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                <!-- TAB 2: 15-DAY FREE TRIAL SIGN UP FORM -->
+                <div id="authPanelSignup">
+                    <div class="mb-4">
+                        <div class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full mb-1">
+                            <span>⚡ Instant Activation</span>
+                            <span>•</span>
+                            <span>No Credit Card</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-900 tracking-tight">Start Your 15-Day Free Trial</h3>
+                        <p class="text-xs text-slate-500 mt-1">Get your dedicated line + real-time bilingual AI translation.</p>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Phone *</label>
-                        <input type="tel" id="quickTrialPhone" required placeholder="(832) 555-0199" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
-                    </div>
+
+                    <form id="signupModalForm" onsubmit="handleSignupModalSubmit(event)" class="space-y-3">
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
+                                <input type="text" id="signupFirstName" required placeholder="John" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
+                                <input type="text" id="signupLastName" required placeholder="Doe" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Company / Organization *</label>
+                            <input type="text" id="signupCompany" required placeholder="Acme Logistics LLC" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
+                                <input type="email" id="signupEmail" required placeholder="john@company.com" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Phone *</label>
+                                <input type="tel" id="signupPhone" required placeholder="(832) 555-0199" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                        </div>
+
+                        <!-- Set Up Password -->
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-bold text-slate-700">Set Up Password *</label>
+                                <span class="text-[10px] text-slate-400 font-medium">Min. 6 chars</span>
+                            </div>
+                            <div class="relative">
+                                <input type="password" id="signupPassword" required minlength="6" placeholder="Choose your account password" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <button type="button" onclick="togglePasswordVisibility('signupPassword', 'signupEyeBtn')" id="signupEyeBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-xs">
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Line Area Code</label>
+                            <select id="signupAreaCode" class="w-full text-xs font-semibold bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <option value="844">Toll-Free Nationwide (844 / 800)</option>
+                                <option value="832">Houston, TX (832 / 713)</option>
+                                <option value="214">Dallas-Fort Worth, TX (214 / 469)</option>
+                                <option value="512">Austin, TX (512 / 737)</option>
+                                <option value="210">San Antonio, TX (210)</option>
+                                <option value="other">Other US Local Area Code</option>
+                            </select>
+                        </div>
+
+                        <div class="pt-0.5">
+                            <label class="flex items-start gap-2 text-[11px] text-slate-500 font-medium cursor-pointer">
+                                <input type="checkbox" required checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+                                <span>I agree to start my 15-day free trial. No contracts, cancel anytime.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition text-sm flex items-center justify-center gap-2">
+                            <span>Create Account &amp; Open Web Dialer</span>
+                            <span>&rarr;</span>
+                        </button>
+
+                        <div class="text-center pt-1.5 text-xs text-slate-500">
+                            Already have an account? <button type="button" onclick="switchAuthTab('login')" class="text-blue-600 font-bold underline hover:text-blue-800">Log In</button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="pt-1">
-                    <label class="flex items-start gap-2 text-[11px] text-slate-500 font-medium cursor-pointer">
-                        <input type="checkbox" required checked class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
-                        <span>I agree to start my 15-day free trial. No contract, cancel anytime.</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition text-sm flex items-center justify-center gap-2 mt-2">
-                    <span>Start 15-Day Free Trial &amp; Open Dialer</span>
-                    <span>&rarr;</span>
-                </button>
-            </form>
-
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span>Existing subscriber or admin?</span>
-                <button type="button" onclick="unlockDirectAccess()" class="text-blue-600 font-extrabold hover:underline flex items-center gap-1">
-                    <span>🔒</span>
-                    <span>Sign In</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Incoming Call Pop-up Modal (Twilio WebRTC Inbound) -->
-    <div id="incomingCallModal" class="fixed inset-0 z-[100] bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 text-center max-w-sm w-full shadow-2xl text-white animate-pulse">
-            <div class="w-20 h-20 bg-blue-600/20 border-2 border-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                <span class="text-3xl">📞</span>
-            </div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-1">Incoming Call • Amestx Voice</h3>
-            <div id="incomingCallerNumber" class="text-2xl font-black font-mono tracking-wider mb-2 text-white">Caller Calling...</div>
-            <p class="text-xs text-slate-400 mb-6">Toll-Free Line: +1 (844) 826-3789</p>
-
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="declineIncomingCall()" class="bg-red-600 hover:bg-red-700 text-white font-extrabold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 transition text-sm">
-                    <span>🔴 Decline</span>
-                </button>
-                <button onclick="answerIncomingCall()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition text-sm">
-                    <span>🟢 Answer</span>
-                </button>
             </div>
         </div>
     </div>
@@ -466,19 +580,28 @@
     <div id="dialerModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6">
         <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[92vh]">
             
-            <!-- Modal Header -->
-            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h3 class="font-extrabold text-sm tracking-tight">Amestx Voice Dialer</h3>
-                            <span id="trialBadge" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black px-2 py-0.5 rounded-full">15-Day Trial</span>
+            <!-- Modal Header (RingCentral Caliber) -->
+            <div class="bg-slate-900 text-white px-5 sm:px-6 py-3.5 flex items-center justify-between border-b border-slate-800">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h3 class="font-extrabold text-sm tracking-tight whitespace-nowrap">Amestx Voice Dialer</h3>
+                            <span id="trialBadge" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black px-2 py-0.5 rounded-full whitespace-nowrap">15-Day Trial</span>
                         </div>
-                        <p class="text-[11px] text-slate-400 font-mono">Caller ID: +1 (844) 826-3789</p>
+                        <div class="flex items-center gap-2 text-[11px] text-slate-400">
+                            <span class="font-mono">Caller ID: +1 (844) 826-3789</span>
+                            <span>•</span>
+                            <span id="dialerCustomerName" class="text-slate-300 font-semibold truncate max-w-[160px] sm:max-w-[200px]">Active Line</span>
+                        </div>
                     </div>
                 </div>
-                <button onclick="closeDialerModal()" class="text-slate-400 hover:text-white text-lg font-bold p-1">&times;</button>
+                <div class="flex items-center space-x-2 flex-shrink-0">
+                    <button onclick="logoutCustomer()" title="Sign Out of Amestx Voice" class="text-[11px] font-bold text-slate-400 hover:text-red-400 hover:bg-slate-800 px-2 py-1 rounded-lg border border-slate-700 transition">
+                        Sign Out
+                    </button>
+                    <button onclick="closeDialerModal()" class="text-slate-400 hover:text-white text-xl font-bold p-1 leading-none">&times;</button>
+                </div>
             </div>
 
             <!-- Trial Countdown Banner -->
@@ -1692,14 +1815,43 @@
         }
 
         // ==========================================
-        // 15-DAY FREE TRIAL & ACCESS CONTROL
         // ==========================================
+        // RINGCENTRAL-STYLE AUTHENTICATION & TRIAL ENGINE
+        // ==========================================
+
+        // Get currently active user or subscriber session
+        function getCurrentUser() {
+            try {
+                const cur = localStorage.getItem('amestx_current_user');
+                if (cur) return JSON.parse(cur);
+            } catch(e) {}
+            return null;
+        }
+
+        // Get all locally registered trial users
+        function getRegisteredUsers() {
+            try {
+                const users = localStorage.getItem('amestx_registered_users');
+                if (users) return JSON.parse(users);
+            } catch(e) {}
+            return [];
+        }
+
+        function saveRegisteredUser(userObj) {
+            const users = getRegisteredUsers();
+            // Replace if email already exists, else append
+            const filtered = users.filter(u => u.email.toLowerCase() !== userObj.email.toLowerCase());
+            filtered.push(userObj);
+            localStorage.setItem('amestx_registered_users', JSON.stringify(filtered));
+        }
+
         function getTrialStatus() {
             if (localStorage.getItem('amestx_subscribed') === 'true') {
-                return { status: 'subscribed', daysLeft: Infinity, active: true };
+                return { status: 'subscribed', daysLeft: Infinity, active: true, user: getCurrentUser() || { firstName: 'Owner', company: 'USA Amtech' } };
             }
 
-            const rawTrial = localStorage.getItem('amestx_trial');
+            const curUser = getCurrentUser();
+            const rawTrial = curUser ? JSON.stringify(curUser) : localStorage.getItem('amestx_trial');
             if (!rawTrial) {
                 return { status: 'none', daysLeft: 0, active: false };
             }
@@ -1711,9 +1863,9 @@
                 const diffMs = exp - now;
                 const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
                 if (daysLeft > 0) {
-                    return { status: 'trial', daysLeft: daysLeft, active: true, trial: trial };
+                    return { status: 'trial', daysLeft: daysLeft, active: true, user: trial };
                 } else {
-                    return { status: 'expired', daysLeft: 0, active: false, trial: trial };
+                    return { status: 'expired', daysLeft: 0, active: false, user: trial };
                 }
             } catch(e) {
                 return { status: 'none', daysLeft: 0, active: false };
@@ -1725,6 +1877,15 @@
             const badge = document.getElementById('trialBadge');
             const banner = document.getElementById('trialCountdownBanner');
             const daysText = document.getElementById('trialDaysLeftText');
+            const custNameEl = document.getElementById('dialerCustomerName');
+
+            if (custNameEl) {
+                if (st.user && st.user.firstName) {
+                    custNameEl.textContent = `${st.user.firstName} (${st.user.company || 'Business'})`;
+                } else {
+                    custNameEl.textContent = "Business Line";
+                }
+            }
 
             if (st.status === 'subscribed') {
                 if (badge) {
@@ -1733,7 +1894,7 @@
                 }
                 if (banner) {
                     banner.className = "bg-emerald-50 border-b border-emerald-200 px-4 py-1.5 flex items-center justify-between text-xs text-emerald-900 font-bold";
-                    banner.innerHTML = `<span>🟢 Active Business Line: +1 (844) 826-3789</span><span class="text-emerald-700 text-[10px] font-extrabold uppercase">Unlimited Access</span>`;
+                    banner.innerHTML = `<span>🟢 Active Line: +1 (844) 826-3789</span><span class="text-emerald-700 text-[10px] font-extrabold uppercase">Unlimited Pro Access</span>`;
                 }
             } else if (st.status === 'trial') {
                 if (badge) {
@@ -1755,55 +1916,268 @@
             }
         }
 
+        // Updates header state based on whether customer is logged in
+        function updateHeaderAuthState() {
+            const st = getTrialStatus();
+            const guestBox = document.getElementById('headerGuestActions');
+            const userBox = document.getElementById('headerUserActions');
+            const userGreeting = document.getElementById('headerUserGreeting');
+
+            if (st.active && st.user) {
+                if (guestBox) guestBox.classList.add('hidden');
+                if (userBox) {
+                    userBox.classList.remove('hidden');
+                    if (userGreeting) {
+                        const name = st.user.firstName || 'My Account';
+                        userGreeting.textContent = `${name} (${st.daysLeft === Infinity ? 'Pro' : st.daysLeft + 'd'})`;
+                    }
+                }
+            } else {
+                if (guestBox) guestBox.classList.remove('hidden');
+                if (userBox) userBox.classList.add('hidden');
+            }
+        }
+
+        // Auth Modal Controls
+        function openAuthModal(tab = 'signup') {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.classList.remove('hidden');
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function switchAuthTab(tab) {
+            const tabLogin = document.getElementById('authTabLogin');
+            const tabSignup = document.getElementById('authTabSignup');
+            const panelLogin = document.getElementById('authPanelLogin');
+            const panelSignup = document.getElementById('authPanelSignup');
+
+            if (tab === 'login') {
+                if (tabLogin) tabLogin.className = "flex-1 py-2 text-center rounded-lg transition bg-white text-blue-700 shadow-sm font-bold";
+                if (tabSignup) tabSignup.className = "flex-1 py-2 text-center rounded-lg transition text-slate-600 hover:text-slate-900 font-bold";
+                if (panelLogin) panelLogin.classList.remove('hidden');
+                if (panelSignup) panelSignup.classList.add('hidden');
+                setTimeout(() => { const el = document.getElementById('loginEmail'); if (el) el.focus(); }, 100);
+            } else {
+                if (tabSignup) tabSignup.className = "flex-1 py-2 text-center rounded-lg transition bg-white text-blue-700 shadow-sm font-bold";
+                if (tabLogin) tabLogin.className = "flex-1 py-2 text-center rounded-lg transition text-slate-600 hover:text-slate-900 font-bold";
+                if (panelSignup) panelSignup.classList.remove('hidden');
+                if (panelLogin) panelLogin.classList.add('hidden');
+                setTimeout(() => { const el = document.getElementById('signupFirstName'); if (el) el.focus(); }, 100);
+            }
+        }
+
+        function togglePasswordVisibility(inputId, btnId) {
+            const input = document.getElementById(inputId);
+            const btn = document.getElementById(btnId);
+            if (!input) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (btn) btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                if (btn) btn.textContent = '👁️';
+            }
+        }
+
+        function openMasterKeyHint() {
+            const pass = prompt("🔐 Amestx Master Admin Access\n\nEnter master administrator password:");
+            if (!pass) return;
+            if (pass.trim() === "Amestx2026" || pass.trim() === "Amestx@2026" || pass.trim() === "844826") {
+                localStorage.setItem('amestx_subscribed', 'true');
+                const adminUser = { firstName: 'Mohsin', lastName: 'Ulhaque', company: 'USA Amtech', email: 'owner@amestx.com', phone: '8328379801' };
+                localStorage.setItem('amestx_current_user', JSON.stringify(adminUser));
+                closeAuthModal();
+                updateHeaderAuthState();
+                openDialerModal(true);
+                alert("🔓 Master Owner Access Verified! Opening Amestx Voice Dialer.");
+            } else {
+                alert("❌ Invalid master admin key.");
+            }
+        }
+
+        // Handle Log In Submit
+        function handleLoginFormSubmit(e) {
+            e.preventDefault();
+            const emailOrPhone = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!emailOrPhone || !password) {
+                alert("Please enter both your email/phone and password.");
+                return;
+            }
+
+            // 1. Check Owner Master Key
+            if (password === "Amestx2026" || password === "Amestx@2026" || password === "844826") {
+                localStorage.setItem('amestx_subscribed', 'true');
+                const adminUser = { firstName: 'Mohsin', lastName: 'Ulhaque', company: 'USA Amtech', email: emailOrPhone, phone: '8328379801' };
+                localStorage.setItem('amestx_current_user', JSON.stringify(adminUser));
+                closeAuthModal();
+                updateHeaderAuthState();
+                openDialerModal(true);
+                alert("🔓 Master Access Unlocked! Welcome to Amestx Voice.");
+                return;
+            }
+
+            // 2. Check registered trial users
+            const users = getRegisteredUsers();
+            const normalized = emailOrPhone.toLowerCase();
+            const digits = emailOrPhone.replace(/[^0-9]/g, '');
+
+            const match = users.find(u => {
+                const uEmail = (u.email || '').toLowerCase();
+                const uPhone = (u.phone || '').replace(/[^0-9]/g, '');
+                return (uEmail === normalized || (digits.length >= 7 && uPhone.includes(digits)));
+            });
+
+            if (match) {
+                if (match.password && match.password !== password) {
+                    alert("❌ Incorrect password. Please try again or create a new trial account.");
+                    return;
+                }
+                // Valid credentials
+                localStorage.setItem('amestx_current_user', JSON.stringify(match));
+                localStorage.setItem('amestx_trial', JSON.stringify(match));
+                closeAuthModal();
+                updateHeaderAuthState();
+                openDialerModal(true);
+                alert(`👋 Welcome back, ${match.firstName || 'Customer'}! Opening your Amestx Web Dialer...`);
+                return;
+            }
+
+            // 3. Check legacy amestx_trial in storage
+            const legacyTrial = localStorage.getItem('amestx_trial');
+            if (legacyTrial) {
+                try {
+                    const lt = JSON.parse(legacyTrial);
+                    if (lt.email && lt.email.toLowerCase() === normalized) {
+                        localStorage.setItem('amestx_current_user', JSON.stringify(lt));
+                        closeAuthModal();
+                        updateHeaderAuthState();
+                        openDialerModal(true);
+                        alert(`👋 Welcome back, ${lt.firstName || 'Customer'}! Opening your Amestx Web Dialer...`);
+                        return;
+                    }
+                } catch(err) {}
+            }
+
+            alert("❌ Account not found. Please click '15-Day Free Trial' above to create your free account in under 60 seconds!");
+        }
+
+        // Register new customer trial record with password
+        async function registerTrialRecord(userData) {
+            const now = new Date();
+            const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000);
+            const trialObj = {
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                company: userData.company,
+                email: userData.email,
+                phone: userData.phone,
+                password: userData.password,
+                areaCode: userData.areaCode || '844',
+                started_at: now.toISOString(),
+                expires_at: expiresAt.toISOString()
+            };
+
+            // Save to registered accounts list and set as current logged in user
+            saveRegisteredUser(trialObj);
+            localStorage.setItem('amestx_current_user', JSON.stringify(trialObj));
+            localStorage.setItem('amestx_trial', JSON.stringify(trialObj));
+
+            // Sync with backend telemetry
+            try {
+                fetch('https://amestx-translator-869440210153.us-central1.run.app/trial/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(trialObj)
+                }).catch(() => {});
+            } catch(e) {}
+
+            return trialObj;
+        }
+
+        // Handle Signup Modal Submit
+        async function handleSignupModalSubmit(e) {
+            e.preventDefault();
+            const first = document.getElementById('signupFirstName').value.trim();
+            const last = document.getElementById('signupLastName').value.trim();
+            const company = document.getElementById('signupCompany').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const phone = document.getElementById('signupPhone').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const areaCode = document.getElementById('signupAreaCode').value;
+
+            if (password.length < 6) {
+                alert("Please choose a password with at least 6 characters.");
+                return;
+            }
+
+            const trial = await registerTrialRecord({ firstName: first, lastName: last, company: company, email: email, phone: phone, password: password, areaCode: areaCode });
+            closeAuthModal();
+            updateHeaderAuthState();
+            alert(`🎉 Welcome to Amestx Voice, ${first}!
+
+Your 15-Day Free Trial is active for ${company}.
+Your login password has been saved.
+
+Opening your web dialer now...`);
+            openDialerModal(true);
+        }
+
+        // Handle Hero Onboarding Form Submit
+        async function handleOnboardingSubmit(e) {
+            e.preventDefault();
+            const first = document.getElementById('custFirstName').value.trim();
+            const last = document.getElementById('custLastName').value.trim();
+            const company = document.getElementById('custCompany').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const password = document.getElementById('custPassword').value.trim();
+            const area = document.getElementById('custAreaCode').value;
+
+            if (password.length < 6) {
+                alert("Please choose a password with at least 6 characters.");
+                return;
+            }
+
+            const trial = await registerTrialRecord({ firstName: first, lastName: last, email: email, phone: phone, company: company, password: password, areaCode: area });
+            updateHeaderAuthState();
+            alert(`🎉 Welcome to Amestx Voice, ${first}!
+
+Your 15-Day Free Trial is active for ${company}.
+Your account password has been created.
+
+Opening your web dialer now...`);
+            openDialerModal(true);
+        }
+
+        function logoutCustomer() {
+            if (confirm("Are you sure you want to sign out of Amestx Voice?")) {
+                localStorage.removeItem('amestx_current_user');
+                localStorage.removeItem('amestx_subscribed');
+                closeDialerModal();
+                updateHeaderAuthState();
+                alert("🔒 You have signed out. Click 'Log In' anytime to access your dialer.");
+            }
+        }
+
         function checkAccessAndLaunchDialer() {
             const st = getTrialStatus();
             if (st.active) {
                 openDialerModal(true);
             } else if (st.status === 'expired') {
-                alert("⚠️ Your 15-day free trial has expired.\n\nPlease choose a subscription plan below to keep your dedicated business line active.");
+                alert("⚠️ Your 15-day free trial has expired.
+
+Please choose a subscription plan below to keep your dedicated business line active.");
                 document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
             } else {
-                openTrialSignupModal();
+                openAuthModal('signup');
             }
-        }
-
-        function openTrialSignupModal() {
-            document.getElementById('trialSignupModal').classList.remove('hidden');
-        }
-
-        function closeTrialModal() {
-            document.getElementById('trialSignupModal').classList.add('hidden');
-        }
-
-        function unlockDirectAccess() {
-            const input = prompt("🔐 Amestx Security Verification\n\nEnter Admin Password or your registered subscriber email:");
-            if (!input) return;
-
-            const trimmed = input.trim();
-            // Admin password verification for owner (you)
-            if (trimmed === "Amestx2026" || trimmed === "Amestx@2026" || trimmed === "844826") {
-                localStorage.setItem('amestx_subscribed', 'true');
-                closeTrialModal();
-                openDialerModal(true);
-                alert("🔓 Admin Verification Successful!\n\nPermanent owner access unlocked. Opening web dialer now.");
-                return;
-            }
-
-            // Check if user entered their registered trial email
-            const rawTrial = localStorage.getItem('amestx_trial');
-            if (rawTrial) {
-                try {
-                    const t = JSON.parse(rawTrial);
-                    if (t.email && t.email.toLowerCase() === trimmed.toLowerCase()) {
-                        closeTrialModal();
-                        openDialerModal(true);
-                        alert(`Welcome back, ${t.firstName || 'Subscriber'}!\n\nYour 15-day trial session has been verified.`);
-                        return;
-                    }
-                } catch(e) {}
-            }
-
-            alert("❌ Access Denied: Invalid Admin Password or unregistered email.");
         }
 
         function openDialerModal(bypassAuth = false) {
@@ -1820,162 +2194,6 @@
         function closeDialerModal() {
             document.getElementById('dialerModal').classList.add('hidden');
             if (isCalling) endCallUi();
-        }
-
-        function switchDialerTab(tab) {
-            const tabCallBtn = document.getElementById('tabCallBtn');
-            const tabSmsBtn = document.getElementById('tabSmsBtn');
-            const panelCall = document.getElementById('panelCall');
-            const panelSms = document.getElementById('panelSms');
-
-            if (tab === 'call') {
-                tabCallBtn.className = "flex-1 py-3 text-center text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
-                tabSmsBtn.className = "flex-1 py-3 text-center text-slate-500 hover:text-slate-800 font-bold";
-                panelCall.classList.remove('hidden');
-                panelSms.classList.add('hidden');
-            } else {
-                tabSmsBtn.className = "flex-1 py-3 text-center text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
-                tabCallBtn.className = "flex-1 py-3 text-center text-slate-500 hover:text-slate-800 font-bold";
-                panelSms.classList.remove('hidden');
-                panelCall.classList.add('hidden');
-            }
-        }
-
-        async function sendTestSms() {
-            const input = document.getElementById('smsInput');
-            const history = document.getElementById('smsChatHistory');
-            const text = input.value.trim();
-            if (!text) return;
-
-            // Render sent bubble
-            const userBubble = document.createElement('div');
-            userBubble.className = "bg-blue-600 text-white p-3 rounded-xl ml-auto max-w-[85%] shadow-sm";
-            userBubble.innerHTML = `<div class="font-bold text-[10px] text-blue-200 mb-0.5">You (Amestx Dialer)</div><p>${text}</p>`;
-            history.appendChild(userBubble);
-            input.value = "";
-            history.scrollTop = history.scrollHeight;
-
-            // Quick language detection
-            const spanishKeywords = ["el", "la", "los", "las", "un", "una", "de", "en", "para", "por", "con", "ya", "si", "no", "que", "hola", "buenos", "dias", "tardes", "amigo", "jefe", "concreto", "trabajo", "estamos", "vamos", "llegamos", "llego", "hora", "falta", "zapata", "obra"];
-            const words = text.toLowerCase().split(/\s+/);
-            const isSpanish = text.match(/[áéíóúñ¿¡]/i) || words.some(w => spanishKeywords.includes(w));
-            
-            const fromLang = isSpanish ? 'es' : 'en';
-            const toLang = isSpanish ? 'en' : 'es';
-
-            // Show translating spinner
-            const loadingBubble = document.createElement('div');
-            loadingBubble.className = "bg-slate-200 text-slate-600 p-2.5 rounded-xl max-w-[85%] shadow-sm italic text-[11px] animate-pulse";
-            loadingBubble.id = "translatingBubble";
-            loadingBubble.textContent = "Amestx AI is translating & synthesizing voice...";
-            history.appendChild(loadingBubble);
-            history.scrollTop = history.scrollHeight;
-
-            let translated = text;
-            try {
-                // Direct high-speed Google Translate API
-                const gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`;
-                const res = await fetch(gUrl);
-                const data = await res.json();
-                if (data && data[0]) {
-                    translated = data[0].map(item => item[0]).join('');
-                }
-            } catch (err) {
-                console.warn("Direct translate fallback:", err);
-            }
-
-            // Remove loading bubble
-            const loadEl = document.getElementById("translatingBubble");
-            if (loadEl) loadEl.remove();
-
-            // Render reply with TTS Audio button
-            const replyBubble = document.createElement('div');
-            replyBubble.className = "bg-white border border-slate-200 text-slate-800 p-3 rounded-xl max-w-[85%] shadow-sm space-y-2";
-            
-            const flag = isSpanish ? "🇺🇸 English Translation" : "🇲🇽 Traducción al Español";
-            const audioLang = isSpanish ? "en-US" : "es-MX";
-            
-            replyBubble.innerHTML = `
-                <div class="font-bold text-[11px] text-blue-600">${flag}</div>
-                <p class="font-semibold text-slate-900">"${translated}"</p>
-                <div class="pt-1 flex items-center gap-2">
-                    <button onclick="speakText('${translated.replace(/'/g, "\\'")}', '${audioLang}')" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded-lg text-[11px] flex items-center gap-1.5 border border-blue-200 transition">
-                        <span>🔊 Play Voice</span>
-                    </button>
-                    <span class="text-[10px] text-slate-400">Original: "${text}"</span>
-                </div>
-            `;
-            history.appendChild(replyBubble);
-            history.scrollTop = history.scrollHeight;
-
-            // Automatically speak the translation
-            speakText(translated, audioLang);
-        }
-
-        // Web Speech API for instant voice playback
-        function speakText(textToSpeak, langCode) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(textToSpeak);
-                utterance.lang = langCode;
-                utterance.rate = 1.0;
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        async function registerTrialRecord(userData) {
-            const now = new Date();
-            const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000);
-            const trialObj = {
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-                company: userData.company,
-                email: userData.email,
-                phone: userData.phone,
-                areaCode: userData.areaCode || '844',
-                started_at: now.toISOString(),
-                expires_at: expiresAt.toISOString()
-            };
-            localStorage.setItem('amestx_trial', JSON.stringify(trialObj));
-
-            // Send registration to backend API to track and monitor trials
-            try {
-                fetch('https://amestx-translator-869440210153.us-central1.run.app/trial/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(trialObj)
-                }).catch(() => {});
-            } catch(e) {}
-
-            return trialObj;
-        }
-
-        async function handleQuickTrialSubmit(e) {
-            e.preventDefault();
-            const first = document.getElementById('quickTrialFirstName').value.trim();
-            const last = document.getElementById('quickTrialLastName').value.trim();
-            const email = document.getElementById('quickTrialEmail').value.trim();
-            const phone = document.getElementById('quickTrialPhone').value.trim();
-            const company = document.getElementById('quickTrialCompany').value.trim();
-
-            await registerTrialRecord({ firstName: first, lastName: last, email: email, phone: phone, company: company });
-            closeTrialModal();
-            alert(`🎉 Welcome to your 15-Day Free Trial, ${first}!\n\nYour Amestx business line (+1 844-826-3789) is active for ${company}.\n\nOpening your web dialer now...`);
-            openDialerModal(true);
-        }
-
-        async function handleOnboardingSubmit(e) {
-            e.preventDefault();
-            const first = document.getElementById('custFirstName').value.trim();
-            const last = document.getElementById('custLastName').value.trim();
-            const company = document.getElementById('custCompany').value.trim();
-            const email = document.getElementById('custEmail').value.trim();
-            const phone = document.getElementById('custPhone').value.trim();
-            const area = document.getElementById('custAreaCode').value;
-
-            await registerTrialRecord({ firstName: first, lastName: last, email: email, phone: phone, company: company, areaCode: area });
-            alert(`🎉 Welcome to your 15-Day Free Trial, ${first}!\n\nYour business line (+1 844-826-3789) is active for ${company}.\n\nOpening your web dialer now...`);
-            openDialerModal(true);
         }
 
         function selectPlan(planName, price) {
