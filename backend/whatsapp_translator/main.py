@@ -188,11 +188,20 @@ def transcribe_audio_bytes(audio_bytes: bytes, source_lang: str = "es") -> tuple
             )
         elif audio_bytes.startswith(b"OggS"):
             # Ogg container with Opus (WhatsApp audio)
+            sample_rate = 16000
+            if b"OpusHead" in audio_bytes[:150]:
+                idx = audio_bytes.find(b"OpusHead")
+                try:
+                    sr = int.from_bytes(audio_bytes[idx+12:idx+16], byteorder="little")
+                    if sr in [8000, 12000, 16000, 24000, 48000]:
+                        sample_rate = sr
+                except Exception:
+                    pass
             config = speech.RecognitionConfig(
                 encoding=speech.RecognitionConfig.AudioEncoding.OGG_OPUS,
-                sample_rate_hertz=16000,
+                sample_rate_hertz=sample_rate,
                 language_code="es-US" if source_lang == "es" else "en-US",
-                alternative_language_codes=["en-US"],
+                alternative_language_codes=["es-MX", "en-US"],
                 enable_automatic_punctuation=True
             )
         else:
@@ -205,12 +214,23 @@ def transcribe_audio_bytes(audio_bytes: bytes, source_lang: str = "es") -> tuple
                 enable_automatic_punctuation=True
             )
 
-        response = client.recognize(config=config, audio=audio)
-        for result in response.results:
-            if result.alternatives:
-                transcript = result.alternatives[0].transcript
-                detected_lang = result.language_code[:2] if result.language_code else source_lang
-                return (transcript, detected_lang)
+        try:
+            response = client.recognize(config=config, audio=audio)
+            for result in response.results:
+                if result.alternatives:
+                    transcript = result.alternatives[0].transcript
+                    detected_lang = result.language_code[:2] if result.language_code else source_lang
+                    return (transcript, detected_lang)
+        except Exception as primary_err:
+            logger.warning(f"STT primary attempt failed ({primary_err}), trying alternative sample rate...")
+            if audio_bytes.startswith(b"OggS"):
+                config.sample_rate_hertz = 48000 if sample_rate == 16000 else 16000
+                response = client.recognize(config=config, audio=audio)
+                for result in response.results:
+                    if result.alternatives:
+                        transcript = result.alternatives[0].transcript
+                        detected_lang = result.language_code[:2] if result.language_code else source_lang
+                        return (transcript, detected_lang)
     except Exception as e:
         logger.error(f"STT Error: {e}")
     return ("", source_lang)
@@ -218,10 +238,15 @@ def transcribe_audio_bytes(audio_bytes: bytes, source_lang: str = "es") -> tuple
 def download_twilio_media(media_url: str) -> Optional[bytes]:
     try:
         import requests
-        auth = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN) if TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN else None
-        res = requests.get(media_url, auth=auth, timeout=8)
+        auth = None
+        if TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN:
+            auth = (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        elif TWILIO_API_KEY and TWILIO_API_SECRET:
+            auth = (TWILIO_API_KEY, TWILIO_API_SECRET)
+        res = requests.get(media_url, auth=auth, timeout=12)
         if res.status_code == 200:
             return res.content
+        logger.warning(f"Download media returned HTTP {res.status_code}: {res.text[:120]}")
     except Exception as e:
         logger.error(f"Download media error: {e}")
     return None
@@ -234,11 +259,24 @@ def build_twiml(body: str, media_url: Optional[str] = None) -> str:
             .replace('"', "&quot;")
             .replace("'", "&apos;")
     )
-    media_tag = f"\n        <Media>{media_url}</Media>" if media_url else ""
+    if media_url:
+        # In WhatsApp, audio files cannot have text captions (WhatsApp discards <Body> when audio is present).
+        # We deliver TWO distinct messages in the TwiML response:
+        # 1. The formatted text translation
+        # 2. The spoken voice audio note
+        return f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Message>
+        <Body>{escaped}</Body>
+    </Message>
+    <Message>
+        <Media>{media_url}</Media>
+    </Message>
+</Response>"""
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Message>
-        <Body>{escaped}</Body>{media_tag}
+        <Body>{escaped}</Body>
     </Message>
 </Response>"""
 
@@ -467,35 +505,49 @@ async def whatsapp_webhook(request: Request):
     media_url = get_val("MediaUrl0")
     media_type = get_val("MediaContentType0")
 
-    if media_url and media_type and "audio" in media_type.lower():
-        audio_bytes = download_twilio_media(media_url)
-        transcript, detected_lang = ("", "es")
-        if audio_bytes:
-            transcript, detected_lang = transcribe_audio_bytes(audio_bytes)
-        
-        if transcript:
-            target_lang = "en" if detected_lang == "es" else "es"
-            translated = translate_text(transcript, detected_lang, target_lang)
-            audio_link = synthesize_speech(translated, target_lang)
-            
-            if target_lang == "en":
-                reply = (
-                    f"🎙️ *Voice Note from {profile_name}*:\n"
-                    f"\"{transcript}\"\n\n"
-                    f"🇺🇸 *English Translation*:\n"
-                    f"\"{translated}\""
-                )
-            else:
-                reply = (
-                    f"🎙️ *Nota de Voz de {profile_name}*:\n"
-                    f"\"{transcript}\"\n\n"
-                    f"🇲🇽 *Traducción al Español*:\n"
-                    f"\"{translated}\""
-                )
-            return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+    logger.info(f"Incoming WhatsApp from {profile_name}: body='{body_text}', media_url='{media_url}', media_type='{media_type}'")
+
+    if media_url:
+        is_audio = False
+        if media_type:
+            mt = media_type.lower()
+            if any(term in mt for term in ["audio", "ogg", "opus", "voice", "mp4", "amr"]):
+                is_audio = True
         else:
-            reply = f"🎙️ *Amestx Voice*\nVoice note received from *{profile_name}*.\nPlease speak closer to your microphone or send text."
-            return PlainResponse(content=build_twiml(reply), media_type="application/xml")
+            is_audio = True
+
+        if is_audio:
+            logger.info(f"Downloading WhatsApp voice note: {media_url} (type: {media_type})")
+            audio_bytes = download_twilio_media(media_url)
+            transcript, detected_lang = ("", "es")
+            if audio_bytes:
+                logger.info(f"Downloaded {len(audio_bytes)} audio bytes, transcribing...")
+                transcript, detected_lang = transcribe_audio_bytes(audio_bytes, source_lang="es")
+
+            if transcript:
+                target_lang = "en" if detected_lang == "es" else "es"
+                translated = translate_text(transcript, detected_lang, target_lang)
+                audio_link = synthesize_speech(translated, target_lang)
+
+                if target_lang == "en":
+                    reply = (
+                        f"🎙️ *Voice Note from {profile_name}*:\n"
+                        f"\"{transcript}\"\n\n"
+                        f"🇺🇸 *English Translation*:\n"
+                        f"\"{translated}\""
+                    )
+                else:
+                    reply = (
+                        f"🎙️ *Nota de Voz de {profile_name}*:\n"
+                        f"\"{transcript}\"\n\n"
+                        f"🇲🇽 *Traducción al Español*:\n"
+                        f"\"{translated}\""
+                    )
+                logger.info(f"WhatsApp Voice Translated: '{transcript}' ({detected_lang}) -> '{translated}' ({target_lang})")
+                return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+            else:
+                reply = f"🎙️ *Amestx Voice*\nVoice note received from *{profile_name}*, but no speech could be transcribed.\nPlease speak clearly into the microphone or send text."
+                return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
     clean_text = (body_text or "").strip()
     if not clean_text:
@@ -512,6 +564,7 @@ async def whatsapp_webhook(request: Request):
         audio_link = synthesize_speech(translated, "es")
         reply = f"🇲🇽 *Traducción al Español*:\n\"{translated}\"\n\n_(Original from {profile_name}: \"{clean_text}\")_"
 
+    logger.info(f"WhatsApp Text Translated: '{clean_text}' ({lang}) -> '{translated}' | audio: {audio_link}")
     return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
 
 # ==========================================
