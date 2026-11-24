@@ -66,7 +66,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-8">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-3">
+                <a href="voice.html" class="flex items-center space-x-3" title="Amestx Voice">
                     <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-md shadow-blue-500/20">
                         AV
                     </div>
@@ -2171,9 +2171,7 @@ Opening your web dialer now...`);
             if (st.active) {
                 openDialerModal(true);
             } else if (st.status === 'expired') {
-                alert("⚠️ Your 15-day free trial has expired.
-
-Please choose a subscription plan below to keep your dedicated business line active.");
+                alert(`⚠️ Your 15-day free trial has expired.\n\nPlease choose a subscription plan below to keep your dedicated business line active.`);
                 document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
             } else {
                 openAuthModal('signup');
