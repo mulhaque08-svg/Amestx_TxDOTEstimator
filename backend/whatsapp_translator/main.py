@@ -251,6 +251,73 @@ def download_twilio_media(media_url: str) -> Optional[bytes]:
         logger.error(f"Download media error: {e}")
     return None
 
+# ==========================================
+# 2-WAY TRANSLATION RELAY (Supervisor <-> Crew)
+# ==========================================
+SUPERVISOR_PHONE = "18328379801"
+SUPERVISOR_NAME = "Mohsin"
+
+# Pre-registered crew members: normalized phone digits -> info
+CREW_MEMBERS = {
+    "18328012101": {
+        "name": "Octavio",
+        "lang": "es",
+        "role": "Crew Member"
+    }
+}
+ACTIVE_CREW_PHONE = "18328012101"
+
+def normalize_phone(phone: str) -> str:
+    digits = re.sub(r'[^0-9]', '', phone or '')
+    if len(digits) == 10:
+        digits = "1" + digits
+    return digits
+
+def get_twilio_client():
+    try:
+        from twilio.rest import Client
+        if TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN:
+            return Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+        elif TWILIO_API_KEY and TWILIO_API_SECRET and TWILIO_ACCOUNT_SID:
+            return Client(TWILIO_API_KEY, TWILIO_API_SECRET, TWILIO_ACCOUNT_SID)
+    except Exception as e:
+        logger.error(f"Error initializing Twilio Client: {e}")
+    return None
+
+def send_whatsapp_outbound(to_number: str, text: Optional[str] = None, media_url: Optional[str] = None) -> tuple[bool, Optional[str]]:
+    """
+    Sends an outbound WhatsApp message via Twilio REST API.
+    Sends text and audio as two distinct messages to comply with WhatsApp media constraints.
+    """
+    client = get_twilio_client()
+    if not client:
+        logger.warning("Twilio client credentials not configured for outbound relay")
+        return False, "Twilio credentials missing"
+
+    clean_digits = normalize_phone(to_number)
+    clean_to = f"whatsapp:+{clean_digits}"
+    from_wa = f"whatsapp:{CALLER_ID}"
+
+    try:
+        if text:
+            msg = client.messages.create(
+                from_=from_wa,
+                to=clean_to,
+                body=text
+            )
+            logger.info(f"Outbound WhatsApp text sent to {clean_to}: sid={msg.sid}")
+        if media_url:
+            msg = client.messages.create(
+                from_=from_wa,
+                to=clean_to,
+                media_url=[media_url]
+            )
+            logger.info(f"Outbound WhatsApp audio sent to {clean_to}: sid={msg.sid}")
+        return True, None
+    except Exception as e:
+        logger.error(f"Failed to send outbound WhatsApp to {clean_to}: {e}")
+        return False, str(e)
+
 def build_twiml(body: str, media_url: Optional[str] = None) -> str:
     escaped = (
         body.replace("&", "&amp;")
@@ -500,13 +567,22 @@ async def whatsapp_webhook(request: Request):
         v = parsed.get(name, [])
         return v[0] if v else None
 
+    from_raw = get_val("From") or ""
     body_text = get_val("Body")
     profile_name = get_val("ProfileName") or "User"
     media_url = get_val("MediaUrl0")
     media_type = get_val("MediaContentType0")
 
-    logger.info(f"Incoming WhatsApp from {profile_name}: body='{body_text}', media_url='{media_url}', media_type='{media_type}'")
+    from_digits = normalize_phone(from_raw)
+    is_supervisor = (from_digits == SUPERVISOR_PHONE)
+    is_crew = (from_digits in CREW_MEMBERS)
+    crew_info = CREW_MEMBERS.get(from_digits)
 
+    logger.info(f"Incoming WhatsApp from {profile_name} ({from_raw}, digits={from_digits}): body='{body_text}', media_url='{media_url}', is_sup={is_supervisor}, is_crew={is_crew}")
+
+    # ==========================================
+    # 1. VOICE NOTE / AUDIO PROCESSING
+    # ==========================================
     if media_url:
         is_audio = False
         if media_type:
@@ -522,50 +598,160 @@ async def whatsapp_webhook(request: Request):
             transcript, detected_lang = ("", "es")
             if audio_bytes:
                 logger.info(f"Downloaded {len(audio_bytes)} audio bytes, transcribing...")
-                transcript, detected_lang = transcribe_audio_bytes(audio_bytes, source_lang="es")
+                transcript, detected_lang = transcribe_audio_bytes(
+                    audio_bytes,
+                    source_lang="en" if is_supervisor else "es"
+                )
 
             if transcript:
-                target_lang = "en" if detected_lang == "es" else "es"
+                target_lang = "es" if detected_lang == "en" else "en"
                 translated = translate_text(transcript, detected_lang, target_lang)
                 audio_link = synthesize_speech(translated, target_lang)
 
-                if target_lang == "en":
-                    reply = (
-                        f"🎙️ *Voice Note from {profile_name}*:\n"
-                        f"\"{transcript}\"\n\n"
-                        f"🇺🇸 *English Translation*:\n"
+                if is_supervisor:
+                    # Supervisor voice note -> Deliver in Spanish to Crew
+                    target_crew = CREW_MEMBERS.get(ACTIVE_CREW_PHONE, {"name": "Octavio"})
+                    crew_text = (
+                        f"🎙️ *Nota de Voz de {SUPERVISOR_NAME} (Supervisor)*:\n"
                         f"\"{translated}\""
                     )
+                    sent, err = send_whatsapp_outbound(ACTIVE_CREW_PHONE, text=crew_text, media_url=audio_link)
+
+                    if sent:
+                        reply = (
+                            f"✅ *Nota de Voz enviada a {target_crew['name']} (Crew)*:\n"
+                            f"🇲🇽 \"{translated}\"\n\n"
+                            f"_(Original voice: \"{transcript}\")_"
+                        )
+                    else:
+                        reply = (
+                            f"🎙️ *Traducción de tu Nota de Voz*:\n"
+                            f"🇲🇽 \"{translated}\"\n\n"
+                            f"⚠️ *Aviso de Entrega a {target_crew['name']}*:\n"
+                            f"{target_crew['name']} aún no ha iniciado conversación con este número (+1 844-826-3789).\n"
+                            f"👉 Pídele que envíe \"Hola\" a este número para activar la línea directa."
+                        )
+                    return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+
+                elif is_crew:
+                    # Crew voice note -> Deliver in English to Supervisor
+                    crew_name = crew_info["name"] if crew_info else profile_name
+                    sup_text = (
+                        f"🎙️ *Crew Voice Note from {crew_name}*:\n"
+                        f"🇺🇸 \"{translated}\"\n\n"
+                        f"_(Original de {crew_name}: \"{transcript}\")_"
+                    )
+                    send_whatsapp_outbound(SUPERVISOR_PHONE, text=sup_text, media_url=audio_link)
+
+                    reply = (
+                        f"✅ *Nota de Voz entregada a {SUPERVISOR_NAME} (Supervisor)*:\n"
+                        f"🇺🇸 \"{translated}\""
+                    )
+                    return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+
                 else:
-                    reply = (
-                        f"🎙️ *Nota de Voz de {profile_name}*:\n"
-                        f"\"{transcript}\"\n\n"
-                        f"🇲🇽 *Traducción al Español*:\n"
-                        f"\"{translated}\""
-                    )
-                logger.info(f"WhatsApp Voice Translated: '{transcript}' ({detected_lang}) -> '{translated}' ({target_lang})")
-                return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+                    # Standalone user
+                    if target_lang == "en":
+                        reply = f"🎙️ *Voice Note from {profile_name}*:\n\"{transcript}\"\n\n🇺🇸 *English Translation*:\n\"{translated}\""
+                    else:
+                        reply = f"🎙️ *Nota de Voz de {profile_name}*:\n\"{transcript}\"\n\n🇲🇽 *Traducción al Español*:\n\"{translated}\""
+                    logger.info(f"WhatsApp Voice Translated: '{transcript}' ({detected_lang}) -> '{translated}' ({target_lang})")
+                    return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
             else:
                 reply = f"🎙️ *Amestx Voice*\nVoice note received from *{profile_name}*, but no speech could be transcribed.\nPlease speak clearly into the microphone or send text."
                 return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
+    # ==========================================
+    # 2. TEXT MESSAGE PROCESSING
+    # ==========================================
     clean_text = (body_text or "").strip()
     if not clean_text:
         reply = "📞 *Amestx Voice*\nSend any text or voice note in Spanish or English and I will translate it with both text and voice audio."
         return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
+    # GREETING / ACTIVATION CHECK FOR CREW
+    if is_crew:
+        lower_txt = clean_text.lower()
+        if any(w in lower_txt for w in ["hola", "buenos dias", "buenas tardes", "buenas noches", "start", "join", "hi"]):
+            crew_name = crew_info["name"] if crew_info else "Octavio"
+            reply = (
+                f"👋 *¡Hola {crew_name}! Bienvenido a Amestx Voice.*\n\n"
+                f"El puente de comunicación con *{SUPERVISOR_NAME}* está activo.\n"
+                f"• Cualquier mensaje de texto o nota de voz que envíes aquí será traducido al inglés y entregado a {SUPERVISOR_NAME}.\n"
+                f"• Los mensajes de {SUPERVISOR_NAME} te llegarán aquí traducidos al español con audio."
+            )
+            # Notify supervisor immediately that crew is online
+            notify_sup = (
+                f"🟢 *{crew_name} is now connected on WhatsApp!*\n"
+                f"The 2-way bilingual bridge is active. Any message you send here will be forwarded to {crew_name} in Spanish."
+            )
+            send_whatsapp_outbound(SUPERVISOR_PHONE, text=notify_sup)
+            return PlainResponse(content=build_twiml(reply), media_type="application/xml")
+
     lang = detect_language(clean_text)
-    if lang == "es":
-        translated = translate_text(clean_text, "es", "en")
-        audio_link = synthesize_speech(translated, "en")
-        reply = f"🇺🇸 *English Translation*:\n\"{translated}\"\n\n_(Original de {profile_name}: \"{clean_text}\")_"
-    else:
+
+    # A) SUPERVISOR MESSAGE -> Forward to Crew in Spanish
+    if is_supervisor:
+        target_crew = CREW_MEMBERS.get(ACTIVE_CREW_PHONE, {"name": "Octavio"})
         translated = translate_text(clean_text, "en", "es")
         audio_link = synthesize_speech(translated, "es")
-        reply = f"🇲🇽 *Traducción al Español*:\n\"{translated}\"\n\n_(Original from {profile_name}: \"{clean_text}\")_"
 
-    logger.info(f"WhatsApp Text Translated: '{clean_text}' ({lang}) -> '{translated}' | audio: {audio_link}")
-    return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+        crew_msg = (
+            f"👷 *Mensaje de {SUPERVISOR_NAME} (Supervisor)*:\n"
+            f"\"{translated}\""
+        )
+        sent, err = send_whatsapp_outbound(ACTIVE_CREW_PHONE, text=crew_msg, media_url=audio_link)
+
+        if sent:
+            reply = (
+                f"✅ *Enviado a {target_crew['name']} (Crew)*:\n"
+                f"🇲🇽 \"{translated}\"\n\n"
+                f"_(Original: \"{clean_text}\")_"
+            )
+        else:
+            reply = (
+                f"🇲🇽 *Traducción al Español*:\n"
+                f"\"{translated}\"\n\n"
+                f"⚠️ *Aviso de Entrega a {target_crew['name']}*:\n"
+                f"{target_crew['name']} aún no ha iniciado conversación con este número (+1 844-826-3789).\n"
+                f"👉 Por favor pide a {target_crew['name']} que envíe \"Hola\" al +1 (844) 826-3789 en WhatsApp una vez para activar la línea."
+            )
+        logger.info(f"Relayed from {SUPERVISOR_NAME} to {target_crew['name']}: sent={sent}")
+        return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+
+    # B) CREW MESSAGE -> Forward to Supervisor in English
+    elif is_crew:
+        crew_name = crew_info["name"] if crew_info else "Octavio"
+        translated = translate_text(clean_text, "es", "en")
+        audio_link = synthesize_speech(translated, "en")
+
+        sup_msg = (
+            f"👷 *Crew Reply from {crew_name}*:\n"
+            f"🇺🇸 \"{translated}\"\n\n"
+            f"_(Original de {crew_name}: \"{clean_text}\")_"
+        )
+        send_whatsapp_outbound(SUPERVISOR_PHONE, text=sup_msg, media_url=audio_link)
+
+        reply = (
+            f"✅ *Entregado a {SUPERVISOR_NAME} (Supervisor)*:\n"
+            f"🇺🇸 \"{translated}\""
+        )
+        logger.info(f"Relayed from {crew_name} to {SUPERVISOR_NAME}")
+        return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
+
+    # C) DEFAULT STANDALONE TRANSLATION
+    else:
+        if lang == "es":
+            translated = translate_text(clean_text, "es", "en")
+            audio_link = synthesize_speech(translated, "en")
+            reply = f"🇺🇸 *English Translation*:\n\"{translated}\"\n\n_(Original de {profile_name}: \"{clean_text}\")_"
+        else:
+            translated = translate_text(clean_text, "en", "es")
+            audio_link = synthesize_speech(translated, "es")
+            reply = f"🇲🇽 *Traducción al Español*:\n\"{translated}\"\n\n_(Original from {profile_name}: \"{clean_text}\")_"
+
+        logger.info(f"WhatsApp Text Translated: '{clean_text}' ({lang}) -> '{translated}' | audio: {audio_link}")
+        return PlainResponse(content=build_twiml(reply, audio_link), media_type="application/xml")
 
 # ==========================================
 # 3. DIRECT SMS & MMS TEXTING ENDPOINTS
