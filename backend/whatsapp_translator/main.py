@@ -259,13 +259,18 @@ SUPERVISOR_NAME = "Mohsin"
 
 # Pre-registered crew members: normalized phone digits -> info
 CREW_MEMBERS = {
+    "18323908863": {
+        "name": "Octavio",
+        "lang": "es",
+        "role": "Crew Member"
+    },
     "18328012101": {
         "name": "Octavio",
         "lang": "es",
         "role": "Crew Member"
     }
 }
-ACTIVE_CREW_PHONE = "18328012101"
+ACTIVE_CREW_PHONE = "18323908863"
 
 def normalize_phone(phone: str) -> str:
     digits = re.sub(r'[^0-9]', '', phone or '')
