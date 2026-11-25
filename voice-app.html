@@ -784,6 +784,10 @@
         };
 
         function initApp() {
+            // Initialize Twilio Carrier Voice Engine and load saved lines
+            initTwilioVoice();
+            loadSavedPaidLines();
+
             try {
                 const stored = localStorage.getItem('amestx_call_forwarding');
                 if (stored) {
@@ -971,58 +975,59 @@
             // Show In-Call Screen with DIALING state (Timer stays at 00:00 until recipient answers!)
             startActiveCallScreen(rawNum);
 
-            // Connect real live Twilio Voice call
-            if (twilioDevice) {
-                try {
-                    const statusTxt = document.getElementById('activeCallStatusText');
-                    if (statusTxt) statusTxt.textContent = "Connecting to carrier network...";
-                    
-                    const call = await twilioDevice.connect({ 
-                        params: { 
-                            To: dialableNumber,
-                            CallerId: "+18448263789"
-                        } 
-                    });
-                    activeTwilioCall = call;
-
-                    call.on('ringing', () => {
-                        const st = document.getElementById('activeCallStatusText');
-                        if (st) st.textContent = `Ringing ${formatPhoneNumber(rawNum)}...`;
-                        showNotification(`🔔 Ringing ${formatPhoneNumber(rawNum)}...`);
-                    });
-
-                    // ONLY start timer when recipient actually answers the phone!
-                    call.on('accept', () => {
-                        const st = document.getElementById('activeCallStatusText');
-                        if (st) st.textContent = "Connected • HD Voice In Call";
-                        showNotification(`✓ Call connected with ${formatPhoneNumber(rawNum)}`);
-                        beginCallTimer();
-                    });
-
-                    call.on('disconnect', () => {
-                        endActiveCall();
-                    });
-
-                    call.on('error', (err) => {
-                        console.error("Twilio Call Error:", err);
-                        showNotification("Call ended: No answer or disconnected");
-                        endActiveCall();
-                    });
-                } catch (err) {
-                    console.warn("Twilio connect notice:", err);
-                }
-            } else {
-                // If device is not yet registered, notify user
+            // Ensure Twilio carrier voice device is initialized
+            if (!twilioDevice) {
                 const statusTxt = document.getElementById('activeCallStatusText');
-                if (statusTxt) statusTxt.textContent = "Ringing via Amestx Carrier Bridge...";
-                
-                // Disconnect after 25s if unanswered (NO 3-minute fake timer!)
-                setTimeout(() => {
-                    if (activeCallTimerInterval === null && document.getElementById('keypadActiveCallView').classList.contains('hidden') === false) {
-                        showNotification("No answer from recipient. Line disconnected.");
-                        endActiveCall();
-                    }
-                }, 25000);
+                if (statusTxt) statusTxt.textContent = "Connecting to Amestx carrier network...";
+                await initTwilioVoice();
+            }
+
+            if (!twilioDevice) {
+                showNotification("⚠️ Carrier network connecting... Please try dialing again in a moment.");
+                endActiveCall();
+                return;
+            }
+
+            try {
+                const statusTxt = document.getElementById('activeCallStatusText');
+                if (statusTxt) statusTxt.textContent = `Connecting carrier to ${formatPhoneNumber(rawNum)}...`;
+
+                const call = await twilioDevice.connect({ 
+                    params: { 
+                        To: dialableNumber,
+                        CallerId: "+18448263789"
+                    } 
+                });
+                activeTwilioCall = call;
+
+                call.on('ringing', () => {
+                    const st = document.getElementById('activeCallStatusText');
+                    if (st) st.textContent = `Ringing ${formatPhoneNumber(rawNum)}...`;
+                    showNotification(`🔔 Ringing ${formatPhoneNumber(rawNum)}...`);
+                });
+
+                // ONLY start timer when recipient actually answers the phone!
+                call.on('accept', () => {
+                    const st = document.getElementById('activeCallStatusText');
+                    if (st) st.textContent = "Connected • HD Voice In Call";
+                    showNotification(`✓ Call connected with ${formatPhoneNumber(rawNum)}`);
+                    beginCallTimer();
+                });
+
+                call.on('disconnect', () => {
+                    showNotification("Call ended");
+                    endActiveCall();
+                });
+
+                call.on('error', (err) => {
+                    console.error("Twilio Call Error:", err);
+                    showNotification("Call ended: " + (err.message || "Line busy or disconnected"));
+                    endActiveCall();
+                });
+            } catch (err) {
+                console.error("Twilio connect failed:", err);
+                showNotification("Could not place call: " + (err.message || "Carrier error"));
+                endActiveCall();
             }
         }
 
@@ -1059,7 +1064,7 @@
             const timerDisp = document.getElementById('activeCallTimer');
 
             if (numDisp) numDisp.textContent = formatted;
-            if (statusTxt) statusTxt.textContent = "Calling with HD Voice...";
+            if (statusTxt) statusTxt.textContent = `Connecting to ${formatted}...`;
             if (dialView) dialView.classList.add('hidden');
             if (callView) callView.classList.remove('hidden');
 
@@ -1075,7 +1080,7 @@
                 activeCallTimerInterval = null;
             }
 
-            showNotification(`📞 Connected to ${num} from (844) 826-3789`);
+            showNotification(`📞 Calling ${formatted}...`);
         }
 
         function endActiveCall() {
