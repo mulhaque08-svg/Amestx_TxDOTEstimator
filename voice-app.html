@@ -1178,6 +1178,12 @@
             if (callView) callView.classList.add('hidden');
             if (dialView) dialView.classList.remove('hidden');
 
+            // Reset dialed number to blank for the next new call
+            const kpInput = document.getElementById('keypadNumberInput');
+            if (kpInput) {
+                kpInput.value = '';
+            }
+
             showNotification("Call ended");
         }
 
@@ -1485,6 +1491,12 @@
             if (dialView) dialView.classList.remove('hidden');
             if (ringingControls) ringingControls.classList.add('hidden');
             if (connectedControls) connectedControls.classList.remove('hidden');
+
+            // Reset dialed number to blank
+            const kpInput = document.getElementById('keypadNumberInput');
+            if (kpInput) {
+                kpInput.value = '';
+            }
         }
 
         function hideIncomingCallFloatingBanner() {
