@@ -65,6 +65,24 @@
     </style>
 </head>
 <body class="h-screen w-screen overflow-hidden flex flex-col bg-white antialiased select-none">
+    <!-- Floating Top Incoming Call Notification -->
+    <div id="incomingCallFloatingBanner" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#0d163a] text-white px-6 py-3.5 rounded-full shadow-2xl border-2 border-emerald-500/60 flex items-center gap-6 animate-in slide-in-from-top duration-200">
+        <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+            <div>
+                <div class="text-[10px] font-bold text-emerald-300 uppercase tracking-widest">Incoming Call • (844) 826-3789</div>
+                <div id="floatingBannerCallerNumber" class="text-sm font-black text-white font-mono">+1 (832) 390-8863</div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="answerIncomingCall()" class="px-4 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-md shadow-emerald-500/30 flex items-center gap-1 transition cursor-pointer">
+                <span>✓ Answer</span>
+            </button>
+            <button onclick="declineIncomingCall()" class="px-3.5 py-1.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-black shadow-md shadow-rose-600/30 flex items-center gap-1 transition cursor-pointer">
+                <span>✕ Decline</span>
+            </button>
+        </div>
+    </div>
 
     <!-- Top Utility Bar: Midnight Navy Gradient with Fluorescent Blue Accents -->
     <div class="h-11 bg-gradient-to-r from-[#0d163a] via-[#162854] to-[#0f1d47] border-b border-[#213a74]/70 text-white px-3 sm:px-5 flex items-center justify-between text-xs z-30 flex-shrink-0 whitespace-nowrap shadow-sm">
@@ -349,7 +367,7 @@
                     <div class="flex items-center justify-center gap-8 py-3">
                         <!-- Big Green Answer Button -->
                         <div class="flex flex-col items-center gap-2">
-                            <button onclick="answerIncomingCall()" class="w-16 h-16 rounded-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white flex items-center justify-center shadow-xl shadow-emerald-500/40 transition transform hover:scale-105 cursor-pointer animate-bounce" title="Answer Call">
+                            <button onclick="answerIncomingCall()" class="w-16 h-16 rounded-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white flex items-center justify-center shadow-xl shadow-emerald-500/40 transition transform hover:scale-105 cursor-pointer animate-pulse" title="Answer Call">
                                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
                             </button>
                             <span class="text-xs font-black text-emerald-700 tracking-wide uppercase">Answer</span>
