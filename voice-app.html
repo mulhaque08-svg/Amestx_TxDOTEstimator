@@ -65,14 +65,7 @@
     </style>
 </head>
 <body class="h-screen w-screen overflow-hidden flex flex-col bg-white antialiased select-none">
-    <!-- Floating Top Incoming Call Notification -->
-    <div id="incomingCallFloatingBanner" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#0d163a] text-white px-6 py-3.5 rounded-full shadow-2xl border-2 border-emerald-500/60 flex items-center gap-6 animate-in slide-in-from-top duration-200">
-        <div class="flex items-center gap-3">
-            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-            <div>
-                <div class="text-[10px] font-bold text-emerald-300 uppercase tracking-widest">Incoming Call • (844) 826-3789</div>
-                <div id="floatingBannerCallerNumber" class="text-sm font-black text-white font-mono">+1 (832) 390-8863</div>
-            </div>
+    
         </div>
         <div class="flex items-center gap-2">
             <button onclick="answerIncomingCall()" class="px-4 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black shadow-md shadow-emerald-500/30 flex items-center gap-1 transition cursor-pointer">
@@ -362,9 +355,28 @@
                     </div>
                 </div>
 
-                <!-- State 1: Incoming Call Ringing Controls (Big Green Answer & Red Decline) -->
-                <div id="incomingCallRingingControls" class="hidden space-y-4">
-                    <div class="flex items-center justify-center gap-8 py-3">
+                <!-- State 1: Incoming Call Ringing Controls & Box (Sidebar Position - Green Circle Area) -->
+                <div id="incomingCallRingingControls" class="hidden space-y-4 my-2">
+                    <!-- The Answering Box (Moved from Header to Sidebar) -->
+                    <div id="incomingCallSidebarCard" class="p-4 rounded-2xl bg-[#0d163a] text-white shadow-xl border-2 border-emerald-500/50 text-left">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="flex items-center gap-1.5 text-[10px] font-extrabold text-emerald-400 uppercase tracking-widest">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span>INCOMING CALL</span>
+                            </span>
+                            <span class="text-[10px] font-bold text-blue-200 bg-blue-900/60 px-2 py-0.5 rounded-full font-mono">(844) 826-3789</span>
+                        </div>
+                        <div id="sidebarBoxCallerNumber" class="text-lg font-black text-white font-mono tracking-tight">
+                            +1 (832) 390-8863
+                        </div>
+                        <div class="mt-2.5 pt-2 border-t border-slate-700/60 flex items-center justify-between">
+                            <span class="text-[11px] text-slate-300 font-medium">🔔 Ringing Desktop App...</span>
+                            <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-md">HD Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Side-by-Side Large Circular Action Buttons -->
+                    <div class="flex items-center justify-center gap-8 py-2">
                         <!-- Big Green Answer Button -->
                         <div class="flex flex-col items-center gap-2">
                             <button onclick="answerIncomingCall()" class="w-16 h-16 rounded-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white flex items-center justify-center shadow-xl shadow-emerald-500/40 transition transform hover:scale-105 cursor-pointer animate-pulse" title="Answer Call">
@@ -1164,7 +1176,7 @@
 
         function endActiveCall() {
             stopIncomingRingtone();
-            hideIncomingCallFloatingBanner();
+            // floating banner removed from header
             if (activeTwilioCall) {
                 try { activeTwilioCall.disconnect(); } catch (e) {}
                 activeTwilioCall = null;
@@ -1415,10 +1427,8 @@
             if (ringingControls) ringingControls.classList.remove('hidden');
 
             // Also show the floating banner at top of page
-            const banner = document.getElementById('incomingCallFloatingBanner');
-            const bannerNum = document.getElementById('floatingBannerCallerNumber');
-            if (bannerNum) bannerNum.textContent = formatted;
-            if (banner) banner.classList.remove('hidden');
+            const boxNum = document.getElementById('sidebarBoxCallerNumber');
+            if (boxNum) boxNum.textContent = formatted;
 
             showNotification(`📲 Incoming Call from ${formatted} on (844) 826-3789`);
 
@@ -1436,7 +1446,7 @@
 
         function answerIncomingCall() {
             stopIncomingRingtone();
-            hideIncomingCallFloatingBanner();
+            // floating banner removed from header
 
             if (pendingIncomingCall) {
                 try {
@@ -1462,7 +1472,7 @@
 
         function declineIncomingCall() {
             stopIncomingRingtone();
-            hideIncomingCallFloatingBanner();
+            // floating banner removed from header
 
             if (pendingIncomingCall) {
                 try {
@@ -1481,7 +1491,7 @@
         }
 
         function hideIncomingCallUI() {
-            hideIncomingCallFloatingBanner();
+            // floating banner removed from header
             const dialView = document.getElementById('keypadDialView');
             const callView = document.getElementById('keypadActiveCallView');
             const connectedControls = document.getElementById('inCallConnectedControls');
