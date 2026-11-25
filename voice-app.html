@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amestx Voice — Web Phone & Call Forwarding App</title>
+
+    <!-- Progressive Web App (PWA) & Apple iOS Home Screen Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Amestx Voice">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="manifest" href="voice-manifest.json">
+    <meta name="theme-color" content="#0d163a">
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        .dial-key {
+            transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dial-key:active {
+            transform: scale(0.92);
+            background-color: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col bg-white antialiased select-none">
+
+    <!-- Top Utility Bar: Midnight Navy Gradient with Fluorescent Blue Accents -->
+    <div class="h-11 bg-gradient-to-r from-[#0d163a] via-[#162854] to-[#0f1d47] border-b border-[#213a74]/70 text-white px-3 sm:px-5 flex items-center justify-between text-xs z-30 flex-shrink-0 whitespace-nowrap shadow-sm">
+        <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            <span class="font-extrabold tracking-tight text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#00e5ff] shadow-[0_0_10px_#00e5ff] animate-pulse"></span>
+                <span class="text-white font-black tracking-tight text-sm">Amestx <span class="text-[#38bdf8]">Voice</span></span>
+                <span class="text-[10px] uppercase font-bold tracking-wider bg-white/10 text-cyan-200 border border-cyan-400/30 px-1.5 py-0.5 rounded">App</span>
+            </span>
+            <span class="text-slate-500 hidden xl:inline">|</span>
+            <span class="text-slate-300 hidden xl:inline text-xs">Dedicated Line: <strong class="text-white font-bold">(844) 826-3789</strong></span>
+        </div>
+
+        <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            <!-- Call Forwarding Status Pill -->
+            <div id="topForwardingPill" class="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold cursor-pointer hover:bg-emerald-500/30 transition shadow-sm flex-shrink-0" onclick="switchRightTab('forwarding')" title="Click to configure Call Forwarding">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
+                <span class="hidden sm:inline text-slate-300 font-medium">Forwarding:</span>
+                <strong id="topForwardingNumberDisplay" class="text-emerald-200 font-mono text-[11px]">ACTIVE &rarr; (832) 837-9801</strong>
+            </div>
+
+            <!-- Customer User Pill -->
+            <div class="hidden md:flex items-center space-x-1.5 text-slate-300 text-xs flex-shrink-0">
+                <span id="topUserDisplay" class="font-bold text-white">Mohsin</span>
+                <span class="text-[9px] bg-amber-400/20 text-amber-300 border border-amber-400/30 px-1.5 py-0.2 rounded font-black uppercase">15d Trial</span>
+            </div>
+
+                        <!-- Install on Phone Button -->
+            <button onclick="openIosInstallModal()" class="hidden sm:flex items-center gap-1.5 text-xs bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/30 px-2.5 py-1 rounded-lg font-bold transition flex-shrink-0" title="Install on iPhone / Android Home Screen">
+                <span>📲</span>
+                <span class="hidden md:inline">Install App</span>
+            </button>
+
+            <a href="voice.html" class="text-xs text-slate-300 hover:text-white flex items-center gap-1 font-semibold transition flex-shrink-0 px-1" title="Return to website">
+                <span>Web &rarr;</span>
+            </a>
+            <button onclick="handleLogout()" class="text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 border border-rose-500/30 px-2.5 py-1 rounded-lg font-bold transition flex-shrink-0" title="Sign Out">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+    <!-- Main 3-Column Interface (Exact RingCentral Layout) -->
+    <div class="flex-1 flex overflow-hidden">
+
+        <!-- Column 1: Slim Left Sidebar (Exact RingCentral Icons) -->
+        <aside class="w-16 bg-white border-r border-slate-200 flex flex-col items-center justify-between py-3 flex-shrink-0 z-20">
+            <!-- Top Apps Navigation -->
+            <div class="w-full flex flex-col items-center space-y-1">
+                <!-- Message -->
+                <button onclick="alert('Message: Internal team chat and direct messaging.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Message">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Message</span>
+                </button>
+
+                <!-- Video -->
+                <button onclick="alert('Video: 1-click video meeting bridge.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Video">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Video</span>
+                </button>
+
+                <!-- AIR (AI Voice Assistant) -->
+                <button onclick="alert('AIR: Amestx Bilingual AI Assistant (Spanish & English translation).')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition" title="AIR - AI Translation">
+                    <div class="w-5 h-5 border border-slate-700 rounded-md flex items-center justify-center text-[9px] font-black tracking-tighter">AIR</div>
+                    <span class="text-[9px] font-bold text-slate-500 mt-0.5">AIR</span>
+                </button>
+
+                <!-- Phone (Active Blue Pill - Exact RingCentral) -->
+                <button class="w-12 h-12 rounded-xl flex flex-col items-center justify-center text-blue-600 bg-blue-50 border border-blue-200 transition relative" title="Phone">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
+                    <span class="text-[9px] font-bold text-blue-700 mt-0.5">Phone</span>
+                </button>
+
+                <!-- Text (SMS) -->
+                <button onclick="alert('Text: 2-way client SMS with instant Spanish translation.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Text">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Text</span>
+                </button>
+
+                <!-- Fax -->
+                <button onclick="alert('Fax: Cloud digital faxing for construction bids & TxDOT plans.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Fax">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Fax</span>
+                </button>
+
+                <!-- Contacts -->
+                <button onclick="switchRightTab('favorites')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Contacts">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Contacts</span>
+                </button>
+
+                <!-- Webinar -->
+                <button onclick="alert('Webinar: Live team broadcasts and subcontractor bid conferences.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Webinar">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Webinar</span>
+                </button>
+
+                <!-- More -->
+                <button onclick="switchRightTab('forwarding')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="More Features">
+                    <span class="text-base font-black leading-none text-slate-600">&bull;&bull;&bull;</span>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">More</span>
+                </button>
+            </div>
+
+            <!-- Bottom Tools -->
+            <div class="w-full flex flex-col items-center space-y-1">
+                <button onclick="switchRightTab('forwarding')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition" title="Settings">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Settings</span>
+                </button>
+                <button onclick="alert('Amestx Priority Support: 1-844-826-3789')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition" title="Help">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-[9px] font-medium text-slate-500 mt-0.5">Help</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Column 2: Phone Dialpad Panel (Exact RingCentral Middle Column) -->
+        <section class="w-72 sm:w-80 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 z-10">
+            <!-- Header: Phone + Icons -->
+            <div class="px-5 pt-4 pb-2 flex items-center justify-between">
+                <h1 class="text-xl font-bold text-slate-900 tracking-tight">Phone</h1>
+                <div class="flex items-center space-x-2 text-slate-500">
+                    <button class="hover:text-blue-600 transition" title="Pop out dialer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </button>
+                    <button onclick="switchRightTab('forwarding')" class="hover:text-blue-600 transition" title="Phone Settings">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sub Tabs: Keypad | Calls | Voicemail | Recordings -->
+            <div class="flex border-b border-slate-200 px-5 text-xs font-semibold text-slate-500">
+                <button onclick="switchPhoneTab('keypad')" id="tabPhoneKeypad" class="py-2.5 px-2 text-blue-600 border-b-2 border-blue-600 font-bold transition">Keypad</button>
+                <button onclick="switchPhoneTab('calls')" id="tabPhoneCalls" class="py-2.5 px-2 hover:text-slate-900 transition">Calls</button>
+                <button onclick="switchPhoneTab('voicemail')" id="tabPhoneVoicemail" class="py-2.5 px-2 hover:text-slate-900 transition">Voicemail</button>
+                <button onclick="switchPhoneTab('recordings')" id="tabPhoneRecordings" class="py-2.5 px-2 hover:text-slate-900 transition">Recordings</button>
+            </div>
+
+            <!-- Caller ID Selection Dropdown -->
+            <div class="px-5 pt-3 pb-1">
+                <div class="text-[11px] text-slate-500 font-medium mb-1">My caller ID:</div>
+                <div class="relative">
+                    <select id="callerIdSelect" class="w-full bg-transparent hover:bg-slate-50 text-xs font-bold text-slate-800 outline-none cursor-pointer pr-2 py-1 border-b border-transparent hover:border-slate-300 transition">
+                        <option value="18448263789">(844) 826-3789 (Toll-Free Nationwide)</option>
+                        <option value="12109424238">(210) 942-4238 (San Antonio, TX)</option>
+                        <option value="15125550192">(512) 555-0192 (Austin, TX)</option>
+                        <option value="17135550144">(713) 555-0144 (Houston, TX)</option>
+                    </select>
+                    
+                </div>
+            </div>
+
+            <!-- Enter a name or number Input -->
+            <div class="px-5 pt-2 pb-1">
+                <div class="relative flex items-center">
+                    <input id="keypadNumberInput" type="tel" placeholder="Enter a name or number" class="w-full bg-transparent border-b border-slate-200 focus:border-blue-600 py-2 pr-8 text-sm font-semibold text-slate-800 placeholder-slate-400 outline-none transition font-sans">
+                    <button onclick="clearKeypadDigit()" class="absolute right-0 text-slate-400 hover:text-slate-700 p-1 text-sm transition" title="Clear">
+                        ⌫
+                    </button>
+                </div>
+            </div>
+
+            <!-- Numeric Keypad (RingCentral Minimalist Style) -->
+            <div class="px-6 py-2 flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-3 gap-y-3 gap-x-4 max-w-[220px] mx-auto w-full text-center">
+                    <button onclick="pressDigit('1')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">1</span>
+                        <span class="text-[8px] text-slate-400 font-normal leading-none mt-0.5">&bull;&bull;&bull;</span>
+                    </button>
+                    <button onclick="pressDigit('2')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">2</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">ABC</span>
+                    </button>
+                    <button onclick="pressDigit('3')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">3</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">DEF</span>
+                    </button>
+
+                    <button onclick="pressDigit('4')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">4</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">GHI</span>
+                    </button>
+                    <button onclick="pressDigit('5')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">5</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">JKL</span>
+                    </button>
+                    <button onclick="pressDigit('6')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">6</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">MNO</span>
+                    </button>
+
+                    <button onclick="pressDigit('7')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">7</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">PQRS</span>
+                    </button>
+                    <button onclick="pressDigit('8')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">8</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">TUV</span>
+                    </button>
+                    <button onclick="pressDigit('9')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">9</span>
+                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">WXYZ</span>
+                    </button>
+
+                    <button onclick="pressDigit('*')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-xl font-bold text-slate-800">*</span>
+                    </button>
+                    <button onclick="pressDigit('0')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800 leading-none">0</span>
+                        <span class="text-[9px] text-slate-400 font-normal leading-none mt-0.5">+</span>
+                    </button>
+                    <button onclick="pressDigit('#')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                        <span class="text-lg font-bold text-slate-800">#</span>
+                    </button>
+                </div>
+
+                <!-- Bottom Actions: Transcribe & Green Call Button (Exact RingCentral) -->
+                <div class="flex items-center justify-center gap-8 mt-5">
+                    <!-- Transcribe / AI Button -->
+                    <button onclick="toggleTranscribeMode()" id="transcribeBtn" class="flex flex-col items-center text-slate-500 hover:text-blue-600 transition" title="Bilingual Real-Time AI Transcription">
+                        <div class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 bg-white hover:bg-slate-50 shadow-xs">
+                            <span class="text-base font-black">≡</span>
+                        </div>
+                        <span class="text-[10px] font-medium text-slate-500 mt-1">Transcribe</span>
+                    </button>
+
+                    <!-- Green Circular Call Button -->
+                    <button onclick="makeCallFromKeypad()" class="w-14 h-14 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 transition transform active:scale-95 cursor-pointer" title="Call">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reachability Quick Bar at Bottom of Phone -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-slate-500 font-semibold text-[11px]">Forwarding:</span>
+                <button onclick="switchRightTab('forwarding')" class="text-emerald-700 font-extrabold text-[11px] hover:underline flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span id="keypadForwardStatus">Mobile (832) 837-9801</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Column 3: Main Content Area (HUD | Call Forwarding | Favorites) -->
+        <main class="flex-1 bg-white overflow-y-auto custom-scrollbar flex flex-col">
+
+            <!-- Sub Header Tabs: HUD | Favorites | Call Forwarding -->
+            <div class="h-12 border-b border-slate-200 px-6 flex items-center justify-between flex-shrink-0">
+                <div class="flex items-center space-x-2">
+                    <button onclick="switchRightTab('hud')" id="tabHud" class="px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition">
+                        HUD
+                    </button>
+                    <button onclick="switchRightTab('forwarding')" id="tabForwarding" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+                        <span>Call Forwarding</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </button>
+                    <button onclick="switchRightTab('favorites')" id="tabFavorites" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition">
+                        Favorites
+                    </button>
+                </div>
+
+                <!-- Right Action Icons: +, Pop-out, Help (Exact RingCentral) -->
+                <div class="flex items-center space-x-3 text-slate-400">
+                    <button onclick="switchRightTab('forwarding')" class="hover:text-blue-600 transition" title="Add Forwarding Rule">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </button>
+                    <button class="hover:text-blue-600 transition" title="Pop-out window">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </button>
+                    <button onclick="alert('Help: Inbound calls to (844) 826-3789 can be answered in this web dialer or forwarded automatically to your personal cell phone.')" class="hover:text-blue-600 transition" title="Help">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIEW 1: HUD VIEW (Exact RingCentral Illustration Banner + Extension Cards) -->
+            <div id="viewHud" class="flex-1 flex flex-col">
+                <!-- RingCentral Hero Illustration Banner (Exact vector art matching screenshot) -->
+                <div class="w-full h-40 bg-[#d9e8fb] border-b border-slate-200 relative overflow-hidden flex items-end justify-center">
+                    <svg viewBox="0 0 1000 160" class="w-full h-full max-w-4xl" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Panes -->
+                        <rect x="0" y="0" width="1000" height="160" fill="#dce9fa"/>
+                        <rect x="260" y="20" width="220" height="140" fill="#cfe0f7" opacity="0.6"/>
+                        <rect x="520" y="20" width="230" height="140" fill="#cfe0f7" opacity="0.6"/>
+
+                        <!-- Left background subtle tree & hill -->
+                        <path d="M-20 160 Q 90 100 180 160 Z" fill="#b9d3f5" opacity="0.5"/>
+                        <circle cx="85" cy="65" r="16" fill="#cbe1fa"/>
+                        <rect x="83" y="80" width="4" height="25" fill="#a8c7ed"/>
+
+                        <!-- Center Bookshelf blocks -->
+                        <rect x="525" y="45" width="40" height="12" rx="2" fill="#b8d2f5" opacity="0.7"/>
+                        <rect x="525" y="60" width="30" height="12" rx="2" fill="#b8d2f5" opacity="0.7"/>
+                        <rect x="525" y="75" width="45" height="12" rx="2" fill="#b8d2f5" opacity="0.7"/>
+
+                        <!-- Floating Speech Bubble with 3 dots -->
+                        <g transform="translate(705, 50)">
+                            <rect width="78" height="42" rx="6" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.05))"/>
+                            <circle cx="26" cy="21" r="3.5" fill="#93c5fd"/>
+                            <circle cx="39" cy="21" r="3.5" fill="#93c5fd"/>
+                            <circle cx="52" cy="21" r="3.5" fill="#93c5fd"/>
+                        </g>
+
+                        <!-- Right background subtle cityscape -->
+                        <rect x="910" y="55" width="40" height="105" rx="3" fill="#b9d3f5" opacity="0.4"/>
+                        <rect x="955" y="75" width="35" height="85" rx="3" fill="#b9d3f5" opacity="0.4"/>
+
+                        <!-- ==================== CHARACTER 1: Left (Yellow Jacket on Mobile Phone) ==================== -->
+                        <g id="char-mobile" transform="translate(380, 48)">
+                            <!-- Hair/Head -->
+                            <path d="M15 15 C 5 25, -2 38, 0 55 C 5 60, 15 50, 16 40 C 22 42, 28 35, 26 25 Z" fill="#78350f"/>
+                            <!-- Face / Neck -->
+                            <path d="M18 20 C 18 12, 28 8, 36 12 C 42 16, 42 28, 38 35 L 35 48 L 26 48 L 26 36 Z" fill="#d97706" opacity="0.9"/>
+                            <!-- Baseball Cap (Blue) -->
+                            <path d="M22 10 C 22 2, 42 -2, 50 8 C 55 12, 58 13, 62 13 C 64 13, 64 16, 60 16 L 36 16 Z" fill="#3b82f6"/>
+                            <!-- Ponytail -->
+                            <path d="M12 28 C 5 35, 2 55, 10 65 C 14 55, 14 42, 18 35 Z" fill="#78350f"/>
+                            <!-- Smartphone at ear -->
+                            <rect x="22" y="24" width="7" height="16" rx="2" fill="#1e293b"/>
+                            <!-- Torso / Yellow Jacket -->
+                            <path d="M12 48 C 24 45, 42 45, 52 50 C 60 55, 68 85, 70 112 L -6 112 C -4 85, 2 55, 12 48 Z" fill="#f59e0b"/>
+                            <!-- Arm holding phone -->
+                            <path d="M52 50 C 50 62, 38 65, 30 42 C 28 38, 32 30, 36 34 Z" fill="#d97706" opacity="0.3"/>
+                        </g>
+
+                        <!-- ==================== CHARACTER 2: Middle (Purple Sweater on Laptop) ==================== -->
+                        <g id="char-laptop" transform="translate(560, 44)">
+                            <!-- Hair -->
+                            <path d="M68 18 C 68 5, 85 2, 92 8 C 98 12, 100 20, 95 28 C 90 28, 88 20, 82 20 C 76 20, 72 26, 68 18 Z" fill="#0f172a"/>
+                            <!-- Face Profile -->
+                            <path d="M78 18 C 84 18, 92 24, 88 34 C 86 38, 82 42, 85 45 L 82 47 L 76 42 Z" fill="#fed7aa"/>
+                            <!-- Beard subtle line -->
+                            <path d="M84 38 C 85 43, 80 46, 76 43 Z" fill="#0f172a"/>
+                            <!-- Torso / Purple Sweater -->
+                            <path d="M55 48 C 68 45, 88 45, 102 52 C 115 60, 120 85, 122 116 L 36 116 C 38 88, 42 58, 55 48 Z" fill="#6366f1"/>
+                            <!-- Laptop Open on desk -->
+                            <polygon points="0,96 52,96 66,74 24,74" fill="#64748b"/>
+                            <rect x="0" y="96" width="60" height="5" rx="1" fill="#475569"/>
+                            <!-- Hands on keyboard -->
+                            <path d="M60 78 C 55 88, 48 95, 35 95" stroke="#fed7aa" stroke-width="6" stroke-linecap="round"/>
+                        </g>
+
+                        <!-- ==================== CHARACTER 3: Right (Blue Shirt taking Notes with Headset) ==================== -->
+                        <g id="char-headset" transform="translate(800, 44)">
+                            <!-- Hair -->
+                            <path d="M42 16 C 42 4, 62 2, 70 8 C 76 14, 76 24, 72 28 C 65 24, 60 22, 52 24 C 48 24, 44 22, 42 16 Z" fill="#1e1b4b"/>
+                            <!-- Head / Face -->
+                            <path d="M46 18 C 54 18, 66 18, 66 30 C 66 40, 58 48, 54 48 L 48 48 C 44 44, 42 36, 44 26 Z" fill="#fed7aa"/>
+                            <!-- Headset band over head -->
+                            <path d="M42 22 C 40 8, 68 4, 72 20" stroke="#0f172a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <!-- Headset earpiece & boom microphone -->
+                            <circle cx="43" cy="24" r="5" fill="#0f172a"/>
+                            <path d="M43 27 Q 48 38 60 36" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <circle cx="61" cy="36" r="2" fill="#0f172a"/>
+                            <!-- Torso / Blue Shirt -->
+                            <path d="M26 48 C 38 45, 62 45, 78 50 C 90 56, 105 85, 110 116 L -4 116 C 2 85, 12 55, 26 48 Z" fill="#3b82f6"/>
+                            <!-- White Collar -->
+                            <polygon points="50,48 54,60 58,48" fill="#ffffff"/>
+                            <!-- Hand with Pen writing on desk -->
+                            <line x1="42" y1="92" x2="32" y2="108" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Empty State Message matching Screenshot -->
+                <div class="p-8 text-center max-w-lg mx-auto flex-1 flex flex-col items-center justify-center">
+                    <h2 class="text-2xl font-bold text-slate-800 tracking-tight mb-2">No extensions yet</h2>
+                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+                        All extensions and forwarded mobile lines added to HUD will appear here. Set up your call forwarding to answer calls away from your desk.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <button onclick="switchRightTab('forwarding')" class="px-5 py-2.5 rounded-full border border-blue-500 text-blue-600 hover:bg-blue-50 text-xs font-bold transition shadow-xs">
+                            Add an extension
+                        </button>
+                        <button onclick="switchRightTab('forwarding')" class="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-md shadow-blue-500/20">
+                            Configure Call Forwarding &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: CALL FORWARDING & REACHABILITY (MAIN REQUESTED ENGINE) -->
+            <div id="viewForwarding" class="hidden p-6 max-w-4xl mx-auto w-full space-y-6">
+
+                <!-- Header Banner -->
+                <div class="bg-gradient-to-r from-[#0d163a] via-[#162854] to-[#0f1d47] rounded-3xl p-6 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-slate-800">
+                    <div class="space-y-1.5">
+                        <div class="inline-flex items-center gap-1.5 bg-blue-500/20 border border-blue-400/30 rounded-full px-2.5 py-0.5 text-[11px] font-bold text-blue-200">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>Remote Reachability Engine</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-white tracking-tight">Call Forwarding &amp; Reachability</h2>
+                        <p class="text-xs text-slate-300 max-w-xl leading-relaxed">
+                            When you are away from your desktop, Amestx automatically routes incoming calls to your existing phone line with real-time Spanish &amp; English AI translation.
+                        </p>
+                    </div>
+
+                    <!-- Master On/Off Switch -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center min-w-[190px]">
+                        <div class="text-[11px] font-bold text-slate-300 mb-2">Forwarding Status</div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input id="mainForwardToggle" type="checkbox" checked onchange="toggleForwarding(this.checked)" class="sr-only peer">
+                            <div class="w-14 h-8 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-emerald-500 shadow-inner"></div>
+                        </label>
+                        <div id="mainForwardToggleText" class="text-xs font-black text-emerald-300 mt-1.5">ACTIVE &bull; Forwarding ON</div>
+                    </div>
+                </div>
+
+                <!-- Settings Columns Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Card 1: Forwarding Destination Phone Number -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                                <span>📱</span>
+                                <span>Forwarding Phone Number</span>
+                            </h3>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Primary</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-700">Enter Your Personal Mobile Cell Phone:</label>
+                            <div class="relative flex items-center w-full">
+                                <span class="absolute left-3.5 text-slate-400 text-xs font-mono select-none">🇺🇸 +1</span>
+                                <input id="forwardPhoneInput" type="tel" value="(832) 837-9801" placeholder="(555) 000-0000" class="w-full pl-12 pr-4 py-2.5 text-sm font-bold text-slate-900 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white outline-none transition font-mono shadow-xs">
+                            </div>
+                            <div class="flex items-center justify-between gap-3 pt-1">
+                                <p class="text-[11px] text-slate-500">Inbound calls to (844) 826-3789 forward here.</p>
+                                <button onclick="saveForwardingConfig(true)" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-lg shadow-sm transition flex-shrink-0">
+                                    Save Number
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Backup Number -->
+                        <div class="pt-2 border-t border-slate-100 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-700">Backup Line / Supervisor (Optional):</label>
+                            <input id="backupPhoneInput" type="tel" placeholder="(Optional backup phone)" class="w-full px-3 py-2 text-xs font-mono text-slate-800 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-1 focus:ring-blue-600">
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Ring Strategy & Reachability Mode -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+                        <div class="pb-3 border-b border-slate-100">
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                                <span>⚡</span>
+                                <span>Ring Strategy</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 p-3 rounded-xl border border-blue-200 bg-blue-50/50 hover:bg-blue-50 cursor-pointer transition">
+                                <input type="radio" name="ringStrategyRadio" value="simultaneous" checked onchange="saveRingStrategy(this.value)" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <div class="text-xs font-extrabold text-slate-900 flex flex-wrap items-center gap-2">
+                                        <span>Simultaneous Ring</span>
+                                        <span class="text-[9px] bg-blue-600 text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Recommended</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-600">Rings this web app AND your mobile phone at the exact same moment.</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="radio" name="ringStrategyRadio" value="sequential" onchange="saveRingStrategy(this.value)" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <div class="text-xs font-bold text-slate-800">Sequential Ring (Desktop First)</div>
+                                    <p class="text-[11px] text-slate-500">Rings desktop for 15s. If you don't answer at your computer, forwards to cell.</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="radio" name="ringStrategyRadio" value="always" onchange="saveRingStrategy(this.value)" class="mt-0.5 text-blue-600">
+                                <div>
+                                    <div class="text-xs font-bold text-slate-800">Always Forward (100% Mobile Redirect)</div>
+                                    <p class="text-[11px] text-slate-500">All calls bypass computer and ring straight to your cell phone.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: AI Translation on Forwarded Calls -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+                        <div class="pb-3 border-b border-slate-100">
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                                <span>✨</span>
+                                <span>Bilingual AI on Forwarded Calls</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl bg-purple-50/70 border border-purple-200">
+                                <div>
+                                    <div class="text-xs font-extrabold text-purple-950">Active AI Spanish &harr; English Bridge</div>
+                                    <p class="text-[11px] text-purple-800 leading-tight">When answering on mobile cell, Spanish speakers are translated in real-time.</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-0.5">
+                                    <input id="aiBridgeToggle" type="checkbox" checked onchange="saveForwardingConfig(false)" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                </label>
+                            </div>
+
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                <div>
+                                    <div class="text-xs font-bold text-slate-900">Forward Client SMS to My Phone</div>
+                                    <p class="text-[11px] text-slate-500 leading-tight">Customer text messages will be forwarded via SMS to your cell.</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-0.5">
+                                    <input id="smsForwardToggle" type="checkbox" checked onchange="saveForwardingConfig(false)" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Quick Action Controls -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-slate-900 mb-1">Test &amp; Confirm Reachability</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Send a simulated incoming call to test how your cell phone rings when a customer calls your Amestx number.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2.5">
+                            <button onclick="testCallForwardingSimulation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3 px-4 rounded-xl shadow-md shadow-blue-600/20 transition flex items-center justify-center gap-2 text-xs">
+                                <span>🔔 Simulate Incoming Call to Cell Phone</span>
+                            </button>
+                            <button onclick="saveForwardingConfig(true)" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center gap-1.5">
+                                <span>💾 Save Forwarding Settings</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- VIEW 3: FAVORITES -->
+            <div id="viewFavorites" class="hidden p-8 text-center max-w-lg mx-auto flex-1 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center text-3xl mx-auto mb-3">
+                    ⭐
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 mb-2">Favorites &amp; Speed Dial</h2>
+                <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                    Pin your frequent subcontractors, TxDOT project managers, and suppliers for 1-click calling and translation.
+                </p>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-bold">
+        <span class="text-emerald-400 text-base">✓</span>
+        <span id="toastMessage">Call Forwarding Settings Saved</span>
+    </div>
+
+    <script>
+        // Load data on start
+        let fwdState = {
+            enabled: true,
+            phone: "(832) 837-9801",
+            backup: "",
+            strategy: "simultaneous",
+            ai: true,
+            sms: true
+        };
+
+        function initApp() {
+            try {
+                const stored = localStorage.getItem('amestx_call_forwarding');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    fwdState.enabled = parsed.enabled !== false;
+                    fwdState.phone = parsed.primaryPhone || parsed.phone || fwdState.phone;
+                    fwdState.backup = parsed.backupPhone || parsed.backup || "";
+                    fwdState.strategy = parsed.ringStrategy || parsed.strategy || "simultaneous";
+                    fwdState.ai = parsed.aiTranslationEnabled !== false;
+                    fwdState.sms = parsed.forwardSms !== false;
+                }
+            } catch(e) {}
+
+            // Populate UI
+            const inp = document.getElementById('forwardPhoneInput');
+            const bk = document.getElementById('backupPhoneInput');
+            const tog = document.getElementById('mainForwardToggle');
+            const aiTog = document.getElementById('aiBridgeToggle');
+            const smsTog = document.getElementById('smsForwardToggle');
+            const topDisp = document.getElementById('topForwardingNumberDisplay');
+            const kpDisp = document.getElementById('keypadForwardStatus');
+
+            if (inp) inp.value = fwdState.phone;
+            if (bk) bk.value = fwdState.backup;
+            if (tog) tog.checked = fwdState.enabled;
+            if (aiTog) aiTog.checked = fwdState.ai;
+            if (smsTog) smsTog.checked = fwdState.sms;
+            if (topDisp) topDisp.textContent = fwdState.enabled ? `ACTIVE → ${fwdState.phone}` : "DISABLED";
+            if (kpDisp) kpDisp.textContent = fwdState.enabled ? `Mobile ${fwdState.phone}` : "Off";
+
+            const radios = document.getElementsByName('ringStrategyRadio');
+            for (let r of radios) {
+                r.checked = (r.value === fwdState.strategy);
+            }
+        }
+
+        function toggleForwarding(active) {
+            fwdState.enabled = active;
+            const lbl = document.getElementById('mainForwardToggleText');
+            const topDisp = document.getElementById('topForwardingNumberDisplay');
+            const kpDisp = document.getElementById('keypadForwardStatus');
+
+            if (lbl) {
+                lbl.textContent = active ? "ACTIVE • Forwarding ON" : "PAUSED • Desktop Only";
+                lbl.className = active ? "text-xs font-black text-emerald-300 mt-1.5" : "text-xs font-bold text-slate-400 mt-1.5";
+            }
+            if (topDisp) topDisp.textContent = active ? `ACTIVE → ${fwdState.phone}` : "DISABLED";
+            if (kpDisp) kpDisp.textContent = active ? `Mobile ${fwdState.phone}` : "Off";
+
+            saveForwardingConfig(false);
+            showNotification(active ? "Call Forwarding Active! Your cell will ring." : "Forwarding Paused (Desktop Only)");
+        }
+
+        function saveRingStrategy(val) {
+            fwdState.strategy = val;
+            saveForwardingConfig(false);
+            showNotification(`Strategy: ${val.toUpperCase()}`);
+        }
+
+        function saveForwardingConfig(showToast = true) {
+            const inp = document.getElementById('forwardPhoneInput');
+            const bk = document.getElementById('backupPhoneInput');
+            const aiTog = document.getElementById('aiBridgeToggle');
+            const smsTog = document.getElementById('smsForwardToggle');
+
+            if (inp) fwdState.phone = inp.value.trim();
+            if (bk) fwdState.backup = bk.value.trim();
+            if (aiTog) fwdState.ai = aiTog.checked;
+            if (smsTog) fwdState.sms = smsTog.checked;
+
+            const configToStore = {
+                enabled: fwdState.enabled,
+                primaryPhone: fwdState.phone,
+                backupPhone: fwdState.backup,
+                ringStrategy: fwdState.strategy,
+                aiTranslationEnabled: fwdState.ai,
+                forwardSms: fwdState.sms
+            };
+            localStorage.setItem('amestx_call_forwarding', JSON.stringify(configToStore));
+
+            const topDisp = document.getElementById('topForwardingNumberDisplay');
+            const kpDisp = document.getElementById('keypadForwardStatus');
+            if (topDisp) topDisp.textContent = fwdState.enabled ? `ACTIVE → ${fwdState.phone}` : "DISABLED";
+            if (kpDisp) kpDisp.textContent = fwdState.enabled ? `Mobile ${fwdState.phone}` : "Off";
+
+            if (showToast) showNotification("Forwarding settings saved successfully!");
+        }
+
+        function testCallForwardingSimulation() {
+            alert(`🔔 SIMULATED INCOMING CALL:
+From: +1 (512) 472-8819 (Austin Contractor)
+Calling Amestx Number: (844) 826-3789
+
+Routing: FORWARDED TO YOUR CELL PHONE ${fwdState.phone}
+Ring Strategy: ${fwdState.strategy.toUpperCase()}
+Bilingual AI Bridge: ${fwdState.ai ? 'ACTIVE (Spanish ↔ English)' : 'Off'}
+
+Your personal cell phone is now ringing!`);
+        }
+
+        function switchRightTab(tab) {
+            ['hud', 'forwarding', 'favorites'].forEach(t => {
+                const btn = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}`);
+                const view = document.getElementById(`view${t.charAt(0).toUpperCase() + t.slice(1)}`);
+                if (t === tab) {
+                    if (btn) btn.className = "px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition";
+                    if (view) view.classList.remove('hidden');
+                } else {
+                    if (btn) btn.className = "px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition";
+                    if (view) view.classList.add('hidden');
+                }
+            });
+        }
+
+        function switchPhoneTab(tab) {
+            ['keypad', 'calls', 'voicemail', 'recordings'].forEach(t => {
+                const btn = document.getElementById(`tabPhone${t.charAt(0).toUpperCase() + t.slice(1)}`);
+                if (btn) {
+                    if (t === tab) {
+                        btn.className = "py-2.5 px-2 text-blue-600 border-b-2 border-blue-600 font-bold transition";
+                    } else {
+                        btn.className = "py-2.5 px-2 hover:text-slate-900 transition";
+                    }
+                }
+            });
+        }
+
+        function pressDigit(d) {
+            const inp = document.getElementById('keypadNumberInput');
+            if (inp) inp.value += d;
+        }
+
+        function clearKeypadDigit() {
+            const inp = document.getElementById('keypadNumberInput');
+            if (inp) inp.value = inp.value.slice(0, -1);
+        }
+
+        function toggleTranscribeMode() {
+            const btn = document.getElementById('transcribeBtn');
+            if (btn) {
+                btn.classList.toggle('text-blue-600');
+                showNotification("Bilingual AI Voice Transcription Toggled");
+            }
+        }
+
+        function makeCallFromKeypad() {
+            const inp = document.getElementById('keypadNumberInput');
+            const num = inp ? inp.value.trim() : '';
+            if (!num) {
+                alert("Please enter a telephone number to dial.");
+                return;
+            }
+            alert(`📞 Calling ${num} from (844) 826-3789 with HD Voice...`);
+        }
+
+        function showNotification(msg) {
+            const toast = document.getElementById('toastNotification');
+            const txt = document.getElementById('toastMessage');
+            if (!toast) return;
+            if (txt) txt.textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2500);
+        }
+
+        function handleLogout() {
+            if (confirm("Sign out of Amestx Voice App?")) {
+                localStorage.removeItem('amestx_subscribed');
+                window.location.href = "voice.html";
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+    <!-- iOS & Mobile Home Screen Installation Guide Modal -->
+    <div id="iosInstallModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-[#0d163a] via-[#162854] to-[#0f1d47] p-6 text-white text-center relative border-b border-[#213a74]/60">
+                <button onclick="closeIosInstallModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition">
+                    &times;
+                </button>
+                <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-0.5 shadow-lg shadow-blue-500/30 flex items-center justify-center">
+                    <img src="apple-touch-icon.png" alt="Amestx Voice App Icon" class="w-full h-full rounded-2xl object-cover">
+                </div>
+                <h3 class="text-xl font-black tracking-tight text-white">Install Amestx Voice</h3>
+                <p class="text-xs text-cyan-200 mt-1">Add to your iPhone or Android home screen with official app icon</p>
+            </div>
+
+            <!-- Modal Body: 3 Visual Steps -->
+            <div class="p-6 space-y-4 text-slate-700">
+                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Tap the Share Button</strong>
+                        In Safari at the bottom of your iPhone screen, tap the <strong>Share</strong> icon (the square with an arrow pointing up <span class="text-blue-600 font-bold text-sm">⎋</span> or <span class="text-blue-600 font-bold text-sm">↑</span>).
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Select "Add to Home Screen"</strong>
+                        Scroll down the menu options and tap <strong>Add to Home Screen</strong> (<span class="font-bold text-slate-900">＋</span>).
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Tap "Add" in Top Right</strong>
+                        Confirm the app name <em>"Amestx Voice"</em> and tap <strong>Add</strong>.
+                    </div>
+                </div>
+
+                <!-- Advantage Callout -->
+                <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 flex items-center gap-2">
+                    <span class="text-base">🚀</span>
+                    <span><strong>Full-Screen App:</strong> Launches full screen without browser address bars, with one-tap access anytime!</span>
+                </div>
+
+                <button onclick="closeIosInstallModal()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-bold rounded-2xl transition shadow-md shadow-blue-500/20 text-sm">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openIosInstallModal() {
+            document.getElementById('iosInstallModal').classList.remove('hidden');
+        }
+        function closeIosInstallModal() {
+            document.getElementById('iosInstallModal').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>

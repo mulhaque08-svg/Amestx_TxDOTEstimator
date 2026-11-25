@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amestx Voice — Modern Virtual Business Phone with Real-Time AI Translation</title>
+
+    <!-- Progressive Web App (PWA) & Apple iOS Home Screen Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Amestx Voice">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="manifest" href="voice-manifest.json">
+    <meta name="theme-color" content="#0d163a">
+
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,9 +117,13 @@
 
                 <!-- Logged In User Pill (Dynamic) -->
                 <div id="headerUserActions" class="hidden flex items-center space-x-2 sm:space-x-2.5">
-                    <button onclick="openDialerModal(true)" class="bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 whitespace-nowrap">
+                    <a href="voice-app.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-black px-3.5 sm:px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 whitespace-nowrap">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span id="headerUserGreeting">Open Dialer</span>
+                        <span id="headerUserGreeting">Voice App &amp; Forwarding</span>
+                        <span>&rarr;</span>
+                    </a>
+                    <button onclick="openDialerModal(true)" title="Quick Web Dialer" class="text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-xs font-bold px-2.5 py-2.5 rounded-xl border border-slate-200 transition flex items-center gap-1">
+                        <span>📞</span><span class="hidden md:inline">Dialer</span>
                     </button>
                     <button onclick="logoutCustomer()" title="Sign Out of Amestx Voice" class="text-slate-500 hover:text-red-600 hover:bg-red-50 text-xs font-bold px-2.5 py-2.5 rounded-xl border border-slate-200 transition">
                         Sign Out
@@ -657,7 +672,7 @@
                     </div>
 
                     <!-- Listener Audio Controls & Trigger Bar -->
-                    <div class="flex items-center justify-between mb-2 px-0.5">
+                    <div class="flex items-center justify-between mb-1.5 px-0.5">
                         <span class="text-[10px] text-slate-500 font-semibold">Spanish Voice:</span>
                         <div class="flex items-center gap-1.5">
                             <button id="toggleDuckSpanishBtn" type="button" onclick="toggleDuckSpanish()" title="Toggle ducking or muting raw Spanish voice in caller ear" class="text-[10px] font-bold text-blue-700 bg-white border border-blue-200 px-2 py-0.5 rounded-lg hover:bg-blue-50 shadow-xs transition">
@@ -665,6 +680,22 @@
                             </button>
                             <button id="manualListenBtn" type="button" onclick="manualTranslateListener()" title="Manually record &amp; translate listener's Spanish sentence" class="text-[10px] font-bold text-indigo-700 bg-white border border-indigo-200 px-2 py-0.5 rounded-lg hover:bg-indigo-50 shadow-xs transition flex items-center gap-1">
                                 <span>🎙️</span><span>Translate</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Speaker Anti-Overlap & Acoustic Echo Controls -->
+                    <div class="flex items-center justify-between mb-2 px-0.5 pt-1.5 border-t border-blue-200/60">
+                        <div class="flex items-center gap-1">
+                            <span class="text-[10px] text-slate-600 font-bold">Speaker:</span>
+                            <span id="speakerLiveBadge" class="text-[9px] px-1.5 py-0.5 rounded font-black bg-emerald-100 text-emerald-800 border border-emerald-200">🔊 Ready</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button id="autoSpeakerMuteBtn" type="button" onclick="toggleAutoSpeakerMuteMode()" title="Automatically silences your phone speaker while you speak to eliminate echo &amp; voice overlap" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-lg hover:bg-emerald-100 shadow-xs transition">
+                                🛡️ Anti-Echo: ON
+                            </button>
+                            <button id="hardMuteSpeakerBtn" type="button" onclick="toggleHardSpeakerMute()" title="Immediately mute or unmute phone speaker" class="text-[10px] font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-lg hover:bg-slate-50 shadow-xs transition">
+                                <span>🔊</span><span>Mute</span>
                             </button>
                         </div>
                     </div>
@@ -900,6 +931,11 @@
         let listenerPcmChunks = [];
         let isManualRecordingListener = false;
         let manualRecordTimeout = null;
+
+        // Anti-Echo & Smart Speaker Muting
+        let isSpeakerMutedWhileSpeaking = true; // Auto-silence speaker when caller speaks (echo prevention)
+        let isHardSpeakerMuted = false;        // Manual hard-mute for phone speaker
+        let speakerRestoreTimeout = null;
 
         // Audio WAV Encoder & Downsampler (16kHz Mono 16-bit PCM)
         function floatTo16BitPCM(view, offset, input) {
@@ -1222,6 +1258,11 @@
                 return;
             }
             try {
+                // 1. ACOUSTIC ECHO ELIMINATION: MUTE caller microphone to the call so English audio coming out of speaker NEVER leaks to supervisor's phone!
+                if (inCallMicGain && inCallAudioContext) {
+                    inCallMicGain.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
+                }
+
                 const response = await fetch(audioUrl);
                 const arrayBuffer = await response.arrayBuffer();
                 const audioBuffer = await inCallAudioContext.decodeAudioData(arrayBuffer);
@@ -1229,18 +1270,24 @@
                 const sourceNode = inCallAudioContext.createBufferSource();
                 sourceNode.buffer = audioBuffer;
 
-                // Duck remote Spanish to 5% during English voice playback
+                // 2. Duck remote Spanish to 0% during English playback so only clean English is heard
                 if (remoteGainNode) {
-                    remoteGainNode.gain.setValueAtTime(0.05, inCallAudioContext.currentTime);
+                    remoteGainNode.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
                 }
 
-                // Play directly to caller's ear
+                // 3. Play directly to caller's ear/speaker
                 sourceNode.connect(inCallAudioContext.destination);
 
                 sourceNode.onended = () => {
-                    if (remoteGainNode && isTranslateModeActive) {
-                        const targetGain = isDuckSpanishActive ? remoteDuckLevel : 0.0;
+                    // Restore remote Spanish gain
+                    if (remoteGainNode && inCallAudioContext && !isHardSpeakerMuted) {
+                        const targetGain = isTranslateModeActive ? (isDuckSpanishActive ? remoteDuckLevel : 0.0) : 1.0;
                         remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                    }
+                    // Restore caller mic gain (if normal voice mode, 1.0; if translate mode, 0.0)
+                    if (inCallMicGain && inCallAudioContext) {
+                        const targetMic = isTranslateModeActive ? 0.0 : 1.0;
+                        inCallMicGain.gain.setValueAtTime(targetMic, inCallAudioContext.currentTime);
                     }
                 };
 
@@ -1261,6 +1308,59 @@
                     window.speechSynthesis.speak(utter);
                 }
             } catch(e) {}
+        }
+
+        function updateSpeakerIndicator(isSpeaking) {
+            const badge = document.getElementById('speakerLiveBadge');
+            const hardBtn = document.getElementById('hardMuteSpeakerBtn');
+            if (badge) {
+                if (isHardSpeakerMuted) {
+                    badge.className = "text-[9px] px-1.5 py-0.5 rounded font-black bg-rose-100 text-rose-800 border border-rose-200";
+                    badge.textContent = "🔇 Speaker Muted";
+                } else if (isSpeaking) {
+                    badge.className = "text-[9px] px-1.5 py-0.5 rounded font-black bg-amber-100 text-amber-900 border border-amber-300 animate-pulse";
+                    badge.textContent = "🔇 Speaking (Speaker Off)";
+                } else {
+                    badge.className = "text-[9px] px-1.5 py-0.5 rounded font-black bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    badge.textContent = "🔊 Ready";
+                }
+            }
+            if (hardBtn) {
+                if (isHardSpeakerMuted) {
+                    hardBtn.className = "text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-300 px-2 py-0.5 rounded-lg hover:bg-rose-100 shadow-xs transition";
+                    hardBtn.innerHTML = "<span>🔇</span><span>Unmute</span>";
+                } else {
+                    hardBtn.className = "text-[10px] font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-lg hover:bg-slate-50 shadow-xs transition";
+                    hardBtn.innerHTML = "<span>🔊</span><span>Mute</span>";
+                }
+            }
+        }
+
+        function toggleHardSpeakerMute() {
+            isHardSpeakerMuted = !isHardSpeakerMuted;
+            if (remoteGainNode && inCallAudioContext) {
+                if (isHardSpeakerMuted) {
+                    remoteGainNode.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
+                } else {
+                    const targetGain = isTranslateModeActive ? (isDuckSpanishActive ? remoteDuckLevel : 0.0) : 1.0;
+                    remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                }
+            }
+            updateSpeakerIndicator(false);
+        }
+
+        function toggleAutoSpeakerMuteMode() {
+            isSpeakerMutedWhileSpeaking = !isSpeakerMutedWhileSpeaking;
+            const btn = document.getElementById('autoSpeakerMuteBtn');
+            if (btn) {
+                if (isSpeakerMutedWhileSpeaking) {
+                    btn.textContent = "🛡️ Anti-Echo: ON";
+                    btn.className = "text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-lg hover:bg-emerald-100 shadow-xs transition";
+                } else {
+                    btn.textContent = "🛡️ Anti-Echo: OFF";
+                    btn.className = "text-[10px] font-bold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-lg hover:bg-slate-50 shadow-xs transition";
+                }
+            }
         }
 
         function toggleDuckSpanish() {
@@ -1361,13 +1461,17 @@
 
         async function playAudioIntoCall(audioUrl) {
             if (!inCallAudioContext || !inCallDestination) {
-                const a = new Audio(audioUrl);
-                a.dataset.amestxVoice = "true";
-                a.play();
+                console.log("Audio destination not connected, skipping local playback to prevent disturbing caller.");
                 return;
             }
             try {
                 isAiSpeakingToListener = true; // Prevent AI self-translation
+
+                // When Spanish is being spoken to listener, mute caller's speaker output so nothing clashes
+                if (remoteGainNode && inCallAudioContext && isSpeakerMutedWhileSpeaking) {
+                    remoteGainNode.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
+                    updateSpeakerIndicator(true);
+                }
 
                 const response = await fetch(audioUrl);
                 const arrayBuffer = await response.arrayBuffer();
@@ -1376,32 +1480,34 @@
                 const sourceNode = inCallAudioContext.createBufferSource();
                 sourceNode.buffer = audioBuffer;
 
-                // 1. Pipe audio directly into call to the listener
+                // 1. Pipe Spanish translated audio ONLY to the listener over the phone line
                 sourceNode.connect(inCallDestination);
 
-                // 2. Play soft monitor to caller's ear
-                const monitorGain = inCallAudioContext.createGain();
-                monitorGain.gain.setValueAtTime(0.35, inCallAudioContext.currentTime);
-                sourceNode.connect(monitorGain);
-                monitorGain.connect(inCallAudioContext.destination);
+                // 2. COMPLETELY REMOVED SELF-MONITOR: Never play Spanish back into caller's ear!
+                // (Caller speaks English and is not disturbed by hearing their own words in Spanish)
 
                 sourceNode.onended = () => {
                     setTimeout(() => {
                         isAiSpeakingToListener = false;
+                        if (remoteGainNode && inCallAudioContext && !isHardSpeakerMuted) {
+                            const targetGain = isTranslateModeActive ? (isDuckSpanishActive ? remoteDuckLevel : 0.0) : 1.0;
+                            remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                            updateSpeakerIndicator(false);
+                        }
                     }, 500);
                 };
 
                 sourceNode.start(0);
             } catch (err) {
                 isAiSpeakingToListener = false;
-                console.warn("Direct buffer audio error, trying fallback:", err);
+                console.warn("Direct buffer audio error, trying fallback to destination:", err);
                 try {
                     const fallbackAudio = new Audio(audioUrl);
                     fallbackAudio.dataset.amestxVoice = "true";
                     fallbackAudio.crossOrigin = "anonymous";
                     const elementSource = inCallAudioContext.createMediaElementSource(fallbackAudio);
+                    // ONLY connect to inCallDestination (listener phone), NEVER to inCallAudioContext.destination!
                     elementSource.connect(inCallDestination);
-                    elementSource.connect(inCallAudioContext.destination);
                     fallbackAudio.play();
                 } catch(e) {
                     console.error("Audio playback error:", e);
@@ -1505,6 +1611,26 @@
                 speechRecognizer.continuous = true;
                 speechRecognizer.interimResults = false;
                 speechRecognizer.lang = 'en-US';
+
+                // Switch off phone speaker the instant caller starts speaking!
+                speechRecognizer.onspeechstart = () => {
+                    if (isSpeakerMutedWhileSpeaking && remoteGainNode && inCallAudioContext) {
+                        remoteGainNode.gain.setValueAtTime(0.0, inCallAudioContext.currentTime);
+                        updateSpeakerIndicator(true);
+                    }
+                };
+
+                // Restore speaker shortly after speech ends
+                speechRecognizer.onspeechend = () => {
+                    if (speakerRestoreTimeout) clearTimeout(speakerRestoreTimeout);
+                    speakerRestoreTimeout = setTimeout(() => {
+                        if (remoteGainNode && inCallAudioContext && !isHardSpeakerMuted && !isAiSpeakingToListener) {
+                            const targetGain = isTranslateModeActive ? (isDuckSpanishActive ? remoteDuckLevel : 0.0) : 1.0;
+                            remoteGainNode.gain.setValueAtTime(targetGain, inCallAudioContext.currentTime);
+                            updateSpeakerIndicator(false);
+                        }
+                    }, 700);
+                };
 
                 speechRecognizer.onresult = (event) => {
                     if (!isTranslateModeActive) return;
@@ -1756,6 +1882,8 @@
                         call.on('accept', () => {
                             status.textContent = "Connected • HD Voice In Call";
                             status.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-500 mb-1";
+                            // Duck Twilio's raw audio element immediately so it doesn't duplicate through the speaker
+                            applyDuckToTwilioAudio(true);
                             setupInCallAudioMixer(call);
                         });
 
@@ -2018,8 +2146,7 @@
                 localStorage.setItem('amestx_current_user', JSON.stringify(adminUser));
                 closeAuthModal();
                 updateHeaderAuthState();
-                openDialerModal(true);
-                alert("🔓 Master Access Unlocked! Welcome to Amestx Voice.");
+                window.location.href = "voice-app.html";
                 return;
             }
 
@@ -2044,8 +2171,7 @@
                 localStorage.setItem('amestx_trial', JSON.stringify(match));
                 closeAuthModal();
                 updateHeaderAuthState();
-                openDialerModal(true);
-                alert(`👋 Welcome back, ${match.firstName || 'Customer'}! Opening your Amestx Web Dialer...`);
+                window.location.href = "voice-app.html";
                 return;
             }
 
@@ -2118,15 +2244,19 @@
             }
 
             const trial = await registerTrialRecord({ firstName: first, lastName: last, company: company, email: email, phone: phone, password: password, areaCode: areaCode });
+            // Pre-seed forwarding with registered mobile phone
+            try {
+                const fwd = { enabled: true, primaryPhone: phone, backupPhone: "", ringStrategy: "simultaneous", aiTranslationEnabled: true, forwardSms: true, callerIdMode: "caller" };
+                localStorage.setItem('amestx_call_forwarding', JSON.stringify(fwd));
+            } catch(e) {}
+
             closeAuthModal();
             updateHeaderAuthState();
             alert(`🎉 Welcome to Amestx Voice, ${first}!
 
 Your 15-Day Free Trial is active for ${company}.
-Your login password has been saved.
-
-Opening your web dialer now...`);
-            openDialerModal(true);
+Launching your Voice App & Call Forwarding portal...`);
+            window.location.href = "voice-app.html";
         }
 
         // Handle Hero Onboarding Form Submit
@@ -2147,13 +2277,17 @@ Opening your web dialer now...`);
 
             const trial = await registerTrialRecord({ firstName: first, lastName: last, email: email, phone: phone, company: company, password: password, areaCode: area });
             updateHeaderAuthState();
+            // Pre-seed forwarding with registered mobile phone
+            try {
+                const fwd = { enabled: true, primaryPhone: phone, backupPhone: "", ringStrategy: "simultaneous", aiTranslationEnabled: true, forwardSms: true, callerIdMode: "caller" };
+                localStorage.setItem('amestx_call_forwarding', JSON.stringify(fwd));
+            } catch(e) {}
+
             alert(`🎉 Welcome to Amestx Voice, ${first}!
 
 Your 15-Day Free Trial is active for ${company}.
-Your account password has been created.
-
-Opening your web dialer now...`);
-            openDialerModal(true);
+Launching your Voice App & Call Forwarding portal...`);
+            window.location.href = "voice-app.html";
         }
 
         function logoutCustomer() {

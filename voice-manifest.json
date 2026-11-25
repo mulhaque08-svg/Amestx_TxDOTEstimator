@@ -1,0 +1,30 @@
+{
+  "name": "Amestx Voice — Virtual Business Phone",
+  "short_name": "Amestx Voice",
+  "description": "Dedicated US business phone, web dialer, call forwarding, and real-time AI Spanish-English translation.",
+  "start_url": "./voice-app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d163a",
+  "theme_color": "#0d163a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
