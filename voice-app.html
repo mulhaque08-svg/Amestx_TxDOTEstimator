@@ -783,6 +783,39 @@
             sms: true
         };
 
+        function loadSavedPaidLines() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
+                const select = document.getElementById('callerIdSelect');
+                if (!select) return;
+
+                saved.forEach(item => {
+                    if (typeof paidLinesRegistry !== 'undefined' && !paidLinesRegistry.includes(item.id)) {
+                        paidLinesRegistry.push(item.id);
+                    }
+                    let exists = false;
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === item.id) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        const opt = document.createElement('option');
+                        opt.value = item.id;
+                        opt.textContent = `★ ${item.number} (${item.label ? item.label.split(' ')[0] : 'Active'} • Dedicated Line)`;
+                        if (select.options.length > 0) {
+                            select.insertBefore(opt, select.options[select.options.length - 1]);
+                        } else {
+                            select.appendChild(opt);
+                        }
+                    }
+                });
+            } catch (err) {
+                console.warn("Could not load saved lines:", err);
+            }
+        }
+
         function initApp() {
             // Initialize Twilio Carrier Voice Engine and load saved lines
             initTwilioVoice();
