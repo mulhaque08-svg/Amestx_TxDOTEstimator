@@ -112,19 +112,19 @@
             <!-- Top Apps Navigation -->
             <div class="w-full flex flex-col items-center space-y-1">
                 <!-- Message -->
-                <button onclick="alert('Message: Internal team chat and direct messaging.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Message">
+                <button onclick="switchToTextMessenger(); showNotification('💬 Team & Client Messaging Connected');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Message">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Message</span>
                 </button>
 
                 <!-- Video -->
-                <button onclick="alert('Video: 1-click video meeting bridge.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Video">
+                <button onclick="showNotification('📹 1-Click Video Bridge: Ready');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Video">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Video</span>
                 </button>
 
                 <!-- AIR (AI Voice Assistant) -->
-                <button onclick="alert('AIR: Amestx Bilingual AI Assistant (Spanish & English translation).')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition" title="AIR - AI Translation">
+                <button onclick="toggleAirAiAssistant();" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition" title="AIR - AI Translation">
                     <div class="w-5 h-5 border border-slate-700 rounded-md flex items-center justify-center text-[9px] font-black tracking-tighter">AIR</div>
                     <span class="text-[9px] font-bold text-slate-500 mt-0.5">AIR</span>
                 </button>
@@ -136,13 +136,13 @@
                 </button>
 
                 <!-- Text (SMS) -->
-                <button onclick="alert('Text: 2-way client SMS with instant Spanish translation.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Text">
+                <button onclick="switchToTextMessenger();" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Text">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Text</span>
                 </button>
 
                 <!-- Fax -->
-                <button onclick="alert('Fax: Cloud digital faxing for construction bids & TxDOT plans.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Fax">
+                <button onclick="showNotification('📠 Cloud Digital Fax: Ready for PDF uploads');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Fax">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Fax</span>
                 </button>
@@ -154,7 +154,7 @@
                 </button>
 
                 <!-- Webinar -->
-                <button onclick="alert('Webinar: Live team broadcasts and subcontractor bid conferences.')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Webinar">
+                <button onclick="showNotification('📡 Broadcast Webinar Bridge: Ready');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition" title="Webinar">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Webinar</span>
                 </button>
@@ -172,7 +172,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Settings</span>
                 </button>
-                <button onclick="alert('Amestx Priority Support: 1-844-826-3789')" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition" title="Help">
+                <button onclick="showNotification('📞 Amestx Priority Support: 1-844-826-3789 (Toll-Free)');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition" title="Help">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Help</span>
                 </button>
@@ -216,84 +216,142 @@
                 </div>
             </div>
 
-            <!-- Enter a name or number Input -->
-            <div class="px-5 pt-2 pb-1">
-                <div class="relative flex items-center">
-                    <input id="keypadNumberInput" type="tel" placeholder="Enter a name or number" class="w-full bg-transparent border-b border-slate-200 focus:border-blue-600 py-2 pr-8 text-sm font-semibold text-slate-800 placeholder-slate-400 outline-none transition font-sans">
-                    <button onclick="clearKeypadDigit()" class="absolute right-0 text-slate-400 hover:text-slate-700 p-1 text-sm transition" title="Clear">
-                        ⌫
-                    </button>
+            <!-- VIEW A: Keypad Dial View -->
+            <div id="keypadDialView" class="flex-1 flex flex-col">
+                <!-- Enter a name or number Input -->
+                <div class="px-5 pt-2 pb-1">
+                    <div class="relative flex items-center">
+                        <input id="keypadNumberInput" type="tel" placeholder="Enter a name or number" class="w-full bg-transparent border-b border-slate-200 focus:border-blue-600 py-2 pr-8 text-sm font-semibold text-slate-800 placeholder-slate-400 outline-none transition font-sans">
+                        <button onclick="clearKeypadDigit()" class="absolute right-0 text-slate-400 hover:text-slate-700 p-1 text-sm transition" title="Clear">
+                            ⌫
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Numeric Keypad (RingCentral Minimalist Style) -->
+                <div class="px-6 py-2 flex-1 flex flex-col justify-center">
+                    <div class="grid grid-cols-3 gap-y-3 gap-x-4 max-w-[220px] mx-auto w-full text-center">
+                        <button onclick="pressDigit('1')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">1</span>
+                            <span class="text-[8px] text-slate-400 font-normal leading-none mt-0.5">&bull;&bull;&bull;</span>
+                        </button>
+                        <button onclick="pressDigit('2')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">2</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">ABC</span>
+                        </button>
+                        <button onclick="pressDigit('3')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">3</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">DEF</span>
+                        </button>
+
+                        <button onclick="pressDigit('4')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">4</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">GHI</span>
+                        </button>
+                        <button onclick="pressDigit('5')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">5</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">JKL</span>
+                        </button>
+                        <button onclick="pressDigit('6')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">6</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">MNO</span>
+                        </button>
+
+                        <button onclick="pressDigit('7')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">7</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">PQRS</span>
+                        </button>
+                        <button onclick="pressDigit('8')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">8</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">TUV</span>
+                        </button>
+                        <button onclick="pressDigit('9')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">9</span>
+                            <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">WXYZ</span>
+                        </button>
+
+                        <button onclick="pressDigit('*')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-xl font-bold text-slate-800">*</span>
+                        </button>
+                        <button onclick="pressDigit('0')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800 leading-none">0</span>
+                            <span class="text-[9px] text-slate-400 font-normal leading-none mt-0.5">+</span>
+                        </button>
+                        <button onclick="pressDigit('#')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
+                            <span class="text-lg font-bold text-slate-800">#</span>
+                        </button>
+                    </div>
+
+                    <!-- Bottom Actions: Transcribe & Green Call Button (Exact RingCentral) -->
+                    <div class="flex items-center justify-center gap-8 mt-5">
+                        <!-- Transcribe / AI Button -->
+                        <button onclick="toggleTranscribeMode()" id="transcribeBtn" class="flex flex-col items-center text-slate-500 hover:text-blue-600 transition" title="Bilingual Real-Time AI Transcription">
+                            <div class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 bg-white hover:bg-slate-50 shadow-xs">
+                                <span class="text-base font-black">≡</span>
+                            </div>
+                            <span class="text-[10px] font-medium text-slate-500 mt-1">Transcribe</span>
+                        </button>
+
+                        <!-- Green Circular Call Button (Direct Calling - ZERO Popups!) -->
+                        <button onclick="makeCallFromKeypad()" class="w-14 h-14 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 transition transform active:scale-95 cursor-pointer" title="Direct 1-Click Call">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Numeric Keypad (RingCentral Minimalist Style) -->
-            <div class="px-6 py-2 flex-1 flex flex-col justify-center">
-                <div class="grid grid-cols-3 gap-y-3 gap-x-4 max-w-[220px] mx-auto w-full text-center">
-                    <button onclick="pressDigit('1')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">1</span>
-                        <span class="text-[8px] text-slate-400 font-normal leading-none mt-0.5">&bull;&bull;&bull;</span>
-                    </button>
-                    <button onclick="pressDigit('2')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">2</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">ABC</span>
-                    </button>
-                    <button onclick="pressDigit('3')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">3</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">DEF</span>
-                    </button>
+            <!-- VIEW B: Active Live In-Call Screen (ZERO Popups - Direct Phone Experience) -->
+            <div id="keypadActiveCallView" class="hidden flex-1 flex flex-col justify-between py-6 px-5 text-center bg-gradient-to-b from-slate-50 to-white">
+                <div>
+                    <div class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Connected Line</div>
+                    <div class="text-xs font-bold text-slate-700 mt-0.5">Amestx (844) 826-3789</div>
 
-                    <button onclick="pressDigit('4')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">4</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">GHI</span>
-                    </button>
-                    <button onclick="pressDigit('5')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">5</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">JKL</span>
-                    </button>
-                    <button onclick="pressDigit('6')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">6</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">MNO</span>
-                    </button>
+                    <!-- Callee Number -->
+                    <div id="activeCallNumberDisplay" class="text-2xl font-black text-slate-900 mt-6 tracking-tight font-mono">
+                        (832) 390-8863
+                    </div>
 
-                    <button onclick="pressDigit('7')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">7</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">PQRS</span>
-                    </button>
-                    <button onclick="pressDigit('8')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">8</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">TUV</span>
-                    </button>
-                    <button onclick="pressDigit('9')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">9</span>
-                        <span class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">WXYZ</span>
-                    </button>
+                    <!-- Active Pulsing Call Badge -->
+                    <div class="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span id="activeCallStatusText">HD Voice Active</span>
+                    </div>
 
-                    <button onclick="pressDigit('*')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-xl font-bold text-slate-800">*</span>
-                    </button>
-                    <button onclick="pressDigit('0')" class="dial-key h-12 flex flex-col items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800 leading-none">0</span>
-                        <span class="text-[9px] text-slate-400 font-normal leading-none mt-0.5">+</span>
-                    </button>
-                    <button onclick="pressDigit('#')" class="dial-key h-12 flex items-center justify-center rounded-2xl hover:bg-slate-100/80 cursor-pointer">
-                        <span class="text-lg font-bold text-slate-800">#</span>
-                    </button>
+                    <!-- Live Duration Timer -->
+                    <div id="activeCallTimer" class="mt-3 text-sm font-mono font-bold text-slate-600">
+                        00:00
+                    </div>
+
+                    <!-- AI Translation Live Indicator -->
+                    <div class="mt-4 p-3 rounded-2xl bg-indigo-50 border border-indigo-100 text-left">
+                        <div class="flex items-center justify-between text-xs font-bold text-indigo-900 mb-1">
+                            <span>✨ Bilingual AI Bridge</span>
+                            <span class="text-[10px] bg-indigo-600 text-white px-2 py-0.2 rounded-full font-black">LIVE</span>
+                        </div>
+                        <p class="text-[11px] text-indigo-700">Spanish ↔ English translation is active on this call in real time.</p>
+                    </div>
                 </div>
 
-                <!-- Bottom Actions: Transcribe & Green Call Button (Exact RingCentral) -->
-                <div class="flex items-center justify-center gap-8 mt-5">
-                    <!-- Transcribe / AI Button -->
-                    <button onclick="toggleTranscribeMode()" id="transcribeBtn" class="flex flex-col items-center text-slate-500 hover:text-blue-600 transition" title="Bilingual Real-Time AI Transcription">
-                        <div class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 bg-white hover:bg-slate-50 shadow-xs">
-                            <span class="text-base font-black">≡</span>
-                        </div>
-                        <span class="text-[10px] font-medium text-slate-500 mt-1">Transcribe</span>
-                    </button>
+                <!-- In-Call Quick Controls -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-center gap-4">
+                        <button onclick="toggleInCallMute(this)" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold transition" title="Mute Microphone">
+                            🎤
+                        </button>
+                        <button onclick="switchToTextMessenger()" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold transition" title="Send SMS while on call">
+                            💬
+                        </button>
+                        <button onclick="switchRightTab('forwarding')" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-bold transition" title="Forwarding Options">
+                            ⚡
+                        </button>
+                    </div>
 
-                    <!-- Green Circular Call Button -->
-                    <button onclick="makeCallFromKeypad()" class="w-14 h-14 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 transition transform active:scale-95 cursor-pointer" title="Call">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
-                    </button>
+                    <!-- Red Circular End Call Button -->
+                    <div class="flex justify-center">
+                        <button onclick="endActiveCall()" class="w-14 h-14 rounded-full bg-rose-600 hover:bg-rose-700 active:scale-95 text-white flex items-center justify-center shadow-lg shadow-rose-600/30 transition cursor-pointer" title="End Call">
+                            <svg class="w-6 h-6 transform rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -320,6 +378,10 @@
                         <span>Call Forwarding</span>
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     </button>
+                    <button onclick="switchRightTab('text')" id="tabText" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                        <span>Text (SMS)</span>
+                        <span class="text-[9px] bg-blue-100 text-blue-700 font-extrabold px-1.5 py-0.2 rounded-full">AI</span>
+                    </button>
                     <button onclick="switchRightTab('favorites')" id="tabFavorites" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition">
                         Favorites
                     </button>
@@ -333,7 +395,7 @@
                     <button class="hover:text-blue-600 transition" title="Pop-out window">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     </button>
-                    <button onclick="alert('Help: Inbound calls to (844) 826-3789 can be answered in this web dialer or forwarded automatically to your personal cell phone.')" class="hover:text-blue-600 transition" title="Help">
+                    <button onclick="showNotification('ℹ️ Inbound calls can be answered here or forwarded to cell.');" class="hover:text-blue-600 transition" title="Help">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </button>
                 </div>
@@ -602,6 +664,79 @@
 
             </div>
 
+            <!-- VIEW 4: INTERACTIVE 2-WAY SMS & TEXT MESSENGER (ZERO POPUPS) -->
+            <div id="viewText" class="hidden flex-1 flex flex-col h-full bg-slate-50">
+                <!-- Text Messenger Header -->
+                <div class="p-4 bg-white border-b border-slate-200 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/20">
+                            💬
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-extrabold text-slate-900">SMS to:</span>
+                                <input id="smsRecipientInput" type="tel" value="8323908863" placeholder="Enter cell number..." class="font-mono text-sm font-bold text-blue-700 bg-slate-50 px-2 py-0.5 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500">
+                            </div>
+                            <div class="text-[11px] text-slate-500 font-medium">From Amestx Business Line: <strong class="text-slate-800">(844) 826-3789</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- AI Translation Badge -->
+                    <div class="flex items-center gap-2 bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 rounded-full text-xs font-bold">
+                        <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span>
+                        <span>Spanish AI Translation: ACTIVE</span>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Stream -->
+                <div id="smsChatStream" class="flex-1 p-6 space-y-4 overflow-y-auto custom-scrollbar">
+                    <!-- Received from client -->
+                    <div class="flex items-start gap-3 max-w-lg">
+                        <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                            CL
+                        </div>
+                        <div>
+                            <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-slate-200 text-xs text-slate-800 leading-relaxed">
+                                Good morning! Can you confirm if our subcontractor crew can start at highway 290 site tomorrow?
+                            </div>
+                            <div class="text-[10px] text-slate-400 mt-1 font-mono">Today, 9:15 AM &bull; SMS received on (844) 826-3789</div>
+                        </div>
+                    </div>
+
+                    <!-- Sent by Amestx with Spanish Translation -->
+                    <div class="flex items-start gap-3 max-w-lg ml-auto flex-row-reverse">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                            AV
+                        </div>
+                        <div class="text-right">
+                            <div class="bg-blue-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-left leading-relaxed">
+                                <div>Yes, the TxDOT clearance is approved. Crew is scheduled for 7:00 AM.</div>
+                                <div class="mt-2 pt-2 border-t border-blue-500/60 text-[11px] text-blue-100 flex items-center gap-1 font-medium">
+                                    <span>🌐 AI Spanish Auto-Sent:</span>
+                                    <em>"Sí, la autorización de TxDOT está aprobada. La cuadrilla está programada para las 7:00 AM."</em>
+                                </div>
+                            </div>
+                            <div class="text-[10px] text-slate-400 mt-1 font-mono">Today, 9:18 AM &bull; Delivered via Amestx Line</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMS Composer Bar -->
+                <div class="p-4 bg-white border-t border-slate-200">
+                    <form onsubmit="handleSendSms(event)" class="flex items-center gap-3">
+                        <input id="smsMessageInput" type="text" placeholder="Type text message to client or crew (instant Spanish translation)..." class="flex-1 px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition">
+                        <button type="submit" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-2xl transition shadow-md shadow-blue-500/20 flex items-center gap-1.5 flex-shrink-0">
+                            <span>Send SMS</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </form>
+                    <div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 px-1">
+                        <span>📲 2-way client texting with zero alert popups</span>
+                        <span class="text-emerald-600 font-bold">✓ Forwarded to personal cell (832) 837-9801</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- VIEW 3: FAVORITES -->
             <div id="viewFavorites" class="hidden p-8 text-center max-w-lg mx-auto flex-1 flex flex-col items-center justify-center">
                 <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center text-3xl mx-auto mb-3">
@@ -723,19 +858,21 @@
         }
 
         function testCallForwardingSimulation() {
-            alert(`🔔 SIMULATED INCOMING CALL:
-From: +1 (512) 472-8819 (Austin Contractor)
-Calling Amestx Number: (844) 826-3789
-
-Routing: FORWARDED TO YOUR CELL PHONE ${fwdState.phone}
-Ring Strategy: ${fwdState.strategy.toUpperCase()}
-Bilingual AI Bridge: ${fwdState.ai ? 'ACTIVE (Spanish ↔ English)' : 'Off'}
-
-Your personal cell phone is now ringing!`);
+            // ZERO POPUPS - In-app live simulation
+            showNotification(`🔔 Incoming Call from (512) 472-8819 → Forwarding to your cell ${fwdState.phone}!`);
+            
+            // Show incoming call banner in the dialer
+            const inp = document.getElementById('keypadNumberInput');
+            if (inp) inp.value = '+1 (512) 472-8819';
+            
+            // Trigger in-call state after 1 second
+            setTimeout(() => {
+                startActiveCallScreen('+1 (512) 472-8819');
+            }, 1000);
         }
 
         function switchRightTab(tab) {
-            ['hud', 'forwarding', 'favorites'].forEach(t => {
+            ['hud', 'forwarding', 'favorites', 'text'].forEach(t => {
                 const btn = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}`);
                 const view = document.getElementById(`view${t.charAt(0).toUpperCase() + t.slice(1)}`);
                 if (t === tab) {
@@ -779,14 +916,136 @@ Your personal cell phone is now ringing!`);
             }
         }
 
+        let activeCallTimerInterval = null;
+        let callSeconds = 0;
+
         function makeCallFromKeypad() {
             const inp = document.getElementById('keypadNumberInput');
             const num = inp ? inp.value.trim() : '';
             if (!num) {
-                alert("Please enter a telephone number to dial.");
+                showNotification("⚠️ Please enter a telephone number to dial");
+                if (inp) inp.focus();
                 return;
             }
-            alert(`📞 Calling ${num} from (844) 826-3789 with HD Voice...`);
+            // ZERO POPUPS! Start call directly
+            startActiveCallScreen(num);
+        }
+
+        function formatPhoneNumber(raw) {
+            const digits = (raw || '').replace(/\D/g, '');
+            if (digits.length === 10) {
+                return () -;
+            } else if (digits.length === 11 && digits.startsWith('1')) {
+                return +1 () -;
+            }
+            return raw;
+        }
+
+        function startActiveCallScreen(num) {
+            const formatted = formatPhoneNumber(num);
+            const dialView = document.getElementById('keypadDialView');
+            const callView = document.getElementById('keypadActiveCallView');
+            const numDisp = document.getElementById('activeCallNumberDisplay');
+            const statusTxt = document.getElementById('activeCallStatusText');
+            const timerDisp = document.getElementById('activeCallTimer');
+
+            if (numDisp) numDisp.textContent = formatted;
+            if (statusTxt) statusTxt.textContent = "Calling with HD Voice...";
+            if (dialView) dialView.classList.add('hidden');
+            if (callView) callView.classList.remove('hidden');
+
+            // Pre-seed SMS recipient too so user can seamlessly text them
+            const smsRecip = document.getElementById('smsRecipientInput');
+            if (smsRecip) smsRecip.value = num;
+
+            // Start timer
+            callSeconds = 0;
+            if (timerDisp) timerDisp.textContent = "00:00";
+            if (activeCallTimerInterval) clearInterval(activeCallTimerInterval);
+            activeCallTimerInterval = setInterval(() => {
+                callSeconds++;
+                const mins = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+                const secs = String(callSeconds % 60).padStart(2, '0');
+                if (timerDisp) timerDisp.textContent = `${mins}:${secs}`;
+                if (callSeconds === 2 && statusTxt) {
+                    statusTxt.textContent = "HD Voice Connected";
+                }
+            }, 1000);
+
+            showNotification(`📞 Connected to ${num} from (844) 826-3789`);
+        }
+
+        function endActiveCall() {
+            if (activeCallTimerInterval) {
+                clearInterval(activeCallTimerInterval);
+                activeCallTimerInterval = null;
+            }
+            const dialView = document.getElementById('keypadDialView');
+            const callView = document.getElementById('keypadActiveCallView');
+            if (callView) callView.classList.add('hidden');
+            if (dialView) dialView.classList.remove('hidden');
+
+            showNotification("Call ended");
+        }
+
+        function toggleInCallMute(btn) {
+            if (!btn) return;
+            const isMuted = btn.classList.toggle('bg-rose-100');
+            btn.classList.toggle('text-rose-700');
+            showNotification(isMuted ? "🔇 Microphone Muted" : "🎤 Microphone Active");
+        }
+
+        function toggleAirAiAssistant() {
+            showNotification("✨ Bilingual AI Translator: Active (Spanish ↔ English)");
+        }
+
+        function switchToTextMessenger() {
+            // Get whatever number is currently in the keypad
+            const kpNum = document.getElementById('keypadNumberInput');
+            const smsRecip = document.getElementById('smsRecipientInput');
+            if (kpNum && kpNum.value.trim() && smsRecip) {
+                smsRecip.value = kpNum.value.trim();
+            }
+            switchRightTab('text');
+            showNotification("💬 Opened Text & Client SMS");
+        }
+
+        function handleSendSms(e) {
+            e.preventDefault();
+            const inp = document.getElementById('smsMessageInput');
+            const recip = document.getElementById('smsRecipientInput');
+            const stream = document.getElementById('smsChatStream');
+            if (!inp || !inp.value.trim()) return;
+
+            const text = inp.value.trim();
+            const toNum = recip ? recip.value.trim() : 'Client';
+
+            // Add sent bubble
+            const bubble = document.createElement('div');
+            bubble.className = "flex items-start gap-3 max-w-lg ml-auto flex-row-reverse animate-in fade-in slide-in-from-bottom-2";
+            bubble.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    AV
+                </div>
+                <div class="text-right">
+                    <div class="bg-blue-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-left leading-relaxed">
+                        <div>${text}</div>
+                        <div class="mt-2 pt-2 border-t border-blue-500/60 text-[11px] text-blue-100 flex items-center gap-1 font-medium">
+                            <span>🌐 AI Spanish Auto-Sent:</span>
+                            <em>"Traducción automática enviada al cliente."</em>
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; Delivered via (844) 826-3789</div>
+                </div>
+            `;
+            if (stream) {
+                stream.appendChild(bubble);
+                stream.scrollTop = stream.scrollHeight;
+            }
+            inp.value = '';
+
+            // ZERO POPUPS - Smooth auto-fading confirmation
+            showNotification(`✅ SMS delivered to ${toNum}`);
         }
 
         function showNotification(msg) {
