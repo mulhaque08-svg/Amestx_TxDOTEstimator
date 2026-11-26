@@ -3,5 +3,8 @@ __pycache__/
 *$py.class
 *.env
 .env*
+*credentials*
+*CREDENTIALS*
+.telnyx*
 .DS_Store
 Thumbs.db
