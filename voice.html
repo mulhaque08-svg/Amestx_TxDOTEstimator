@@ -2248,7 +2248,7 @@
         }
 
         // Handle Log In Submit
-        function handleLoginFormSubmit(e) {
+        async function handleLoginFormSubmit(e) {
             e.preventDefault();
             const emailOrPhone = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value.trim();
