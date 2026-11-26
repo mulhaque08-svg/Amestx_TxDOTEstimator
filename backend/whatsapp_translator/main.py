@@ -490,11 +490,20 @@ def get_voice_token(identity: Optional[str] = "amestx_agent"):
 async def voice_outbound(request: Request):
     """
     Handles outbound phone calls placed from the Amestx Web Dialer.
-    Dials the destination number while presenting CALLER_ID (+18448263789).
+    Also gracefully detects and routes inbound calls that arrive via TwiML App.
     """
     body_bytes = await request.body()
     parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
     to_number = parsed.get("To", [""])[0]
+    from_raw = parsed.get("From", [""])[0]
+    called_num = parsed.get("Called", [""])[0] or to_number
+
+    # CRITICAL INBOUND DETECTOR:
+    # If From does NOT start with "client:", this is an INBOUND call from an outside phone
+    # routed to the TwiML App URL. Route it immediately to voice_inbound!
+    if not from_raw.startswith("client:") and called_num:
+        logger.info(f"Inbound call arrived at /voice/outbound from {from_raw} to {called_num} - delegating to voice_inbound")
+        return await voice_inbound(request)
 
     # Block emergency numbers to prevent accidental $75 Twilio fee
     digits_only = re.sub(r'[^0-9]', '', to_number)
@@ -513,7 +522,7 @@ async def voice_outbound(request: Request):
         clean_number = "+1" + clean_number if len(clean_number) == 10 else "+" + clean_number
 
     # Extract dynamic Caller ID requested from frontend (or fallback to CALLER_ID)
-    raw_caller_id = parsed.get("CallerId", [""])[0] or parsed.get("callerId", [""])[0] or parsed.get("From", [""])[0]
+    raw_caller_id = parsed.get("CallerId", [""])[0] or parsed.get("callerId", [""])[0]
     outbound_caller_id = CALLER_ID
     if raw_caller_id:
         clean_caller_digits = re.sub(r'[^0-9]', '', raw_caller_id)
@@ -542,8 +551,8 @@ async def voice_inbound(request: Request):
     """
     body_bytes = await request.body()
     parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
-    to_number = parsed.get("To", [""])[0]
-    from_number = parsed.get("From", [""])[0]
+    to_number = parsed.get("Called", [""])[0] or parsed.get("To", [""])[0]
+    from_number = parsed.get("Caller", [""])[0] or parsed.get("From", [""])[0]
     logger.info(f"Inbound call received from {from_number} to {to_number}")
 
     to_digits = re.sub(r'[^0-9]', '', to_number)
@@ -561,20 +570,26 @@ async def voice_inbound(request: Request):
     except Exception as e:
         logger.warning(f"Notice looking up trial forwarding: {e}")
 
+    # Prevent loop if caller is the forwarding phone itself (e.g. owner testing from their own cell)
+    clean_from_digits = re.sub(r'[^0-9]', '', from_number)
+    clean_fwd_digits = re.sub(r'[^0-9]', '', forwarding_target)
+    if clean_from_digits and clean_fwd_digits and (clean_from_digits == clean_fwd_digits or clean_from_digits.endswith(clean_fwd_digits) or clean_fwd_digits.endswith(clean_from_digits)):
+        logger.info(f"Caller {from_number} is the forwarding target itself. Ringing web client only to avoid busy loop.")
+        forwarding_target = ""
+
     if forwarding_target:
-        logger.info(f"Simultaneous inbound call ring: Web Client + Forwarding Cell {forwarding_target}")
+        logger.info(f"Simultaneous inbound call ring: Web Client (amestx_agent) + Forwarding Cell {forwarding_target}")
         twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Say voice="Polly.Joanna">Connecting your call to Amestx Voice.</Say>
-    <Dial>
+    <Dial callerId="{to_number}">
         <Client>amestx_agent</Client>
         <Number>{forwarding_target}</Number>
     </Dial>
 </Response>"""
     else:
+        logger.info("Ringing Amestx Web Client (amestx_agent)")
         twiml = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Say voice="Polly.Joanna">Thank you for calling Amestx Voice. Connecting your call now.</Say>
     <Dial>
         <Client>amestx_agent</Client>
     </Dial>
@@ -1039,17 +1054,58 @@ async def list_twilio_numbers():
     if not client:
         return {"error": "Twilio client not configured"}
     try:
-        incoming = client.incoming_phone_numbers.list(limit=20)
+        incoming = client.incoming_phone_numbers.list(limit=50)
         numbers = []
         for n in incoming:
             numbers.append({
+                "sid": n.sid,
                 "phone_number": n.phone_number,
                 "friendly_name": n.friendly_name,
+                "voice_url": getattr(n, "voice_url", ""),
+                "voice_method": getattr(n, "voice_method", ""),
+                "voice_application_sid": getattr(n, "voice_application_sid", ""),
+                "sms_url": getattr(n, "sms_url", ""),
                 "capabilities": n.capabilities
             })
         return {"numbers": numbers}
     except Exception as e:
         return {"error": str(e)}
+
+@app.get("/twilio/numbers/configure")
+@app.post("/twilio/numbers/configure")
+async def configure_twilio_numbers():
+    """
+    Ensures ALL Twilio phone numbers are explicitly configured with the Cloud Run /voice/inbound and /sms webhooks.
+    Clears voice_application_sid so it doesn't hijack incoming calls into /voice/outbound.
+    """
+    client = get_twilio_client()
+    if not client:
+        return {"error": "Twilio client not configured"}
+    try:
+        incoming = client.incoming_phone_numbers.list(limit=50)
+        updated = []
+        target_voice_url = f"{PUBLIC_BASE_URL}/voice/inbound"
+        target_sms_url = f"{PUBLIC_BASE_URL}/sms"
+        for n in incoming:
+            logger.info(f"Configuring Twilio incoming number {n.phone_number} -> {target_voice_url}")
+            n.update(
+                voice_url=target_voice_url,
+                voice_method="POST",
+                sms_url=target_sms_url,
+                sms_method="POST",
+                voice_application_sid=""
+            )
+            updated.append({
+                "sid": n.sid,
+                "phone_number": n.phone_number,
+                "friendly_name": n.friendly_name,
+                "voice_url": target_voice_url,
+                "sms_url": target_sms_url
+            })
+        return {"success": True, "count": len(updated), "configured": updated}
+    except Exception as e:
+        logger.error(f"Error configuring Twilio numbers: {e}")
+        return {"success": False, "error": str(e)}
 
 # ==========================================
 # 3B. REAL-TIME NUMBER SEARCH & AUTOMATED PROVISIONING
