@@ -75,7 +75,7 @@
                 <span class="text-[10px] uppercase font-bold tracking-wider bg-white/10 text-cyan-200 border border-cyan-400/30 px-1.5 py-0.5 rounded">App</span>
             </span>
             <span class="text-slate-500 hidden xl:inline">|</span>
-            <span class="text-slate-300 hidden xl:inline text-xs">Dedicated Line: <strong class="text-white font-bold">(844) 826-3789</strong></span>
+            <span class="text-slate-300 hidden xl:inline text-xs">Dedicated Line: <strong class="text-white font-bold" id="topDedicatedLineNumber">(844) 826-3789</strong></span>
         </div>
 
         <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
@@ -316,7 +316,7 @@
             <div id="keypadActiveCallView" class="hidden flex-1 flex flex-col justify-between py-6 px-5 text-center bg-gradient-to-b from-slate-50 to-white">
                 <div>
                     <div class="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Connected Line</div>
-                    <div class="text-xs font-bold text-slate-700 mt-0.5">Amestx (844) 826-3789</div>
+                    <div id="activeCallConnectedLineName" class="text-xs font-bold text-slate-700 mt-0.5">Amestx (844) 826-3789</div>
 
                     <!-- Callee Number -->
                     <div id="activeCallNumberDisplay" class="text-2xl font-black text-slate-900 mt-6 tracking-tight font-mono">
@@ -732,7 +732,7 @@
                                 <span class="text-xs font-extrabold text-slate-900">SMS to:</span>
                                 <input id="smsRecipientInput" type="tel" value="8323908863" placeholder="Enter cell number..." class="font-mono text-sm font-bold text-blue-700 bg-slate-50 px-2 py-0.5 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500">
                             </div>
-                            <div class="text-[11px] text-slate-500 font-medium">From Amestx Business Line: <strong class="text-slate-800">(844) 826-3789</strong></div>
+                            <div class="text-[11px] text-slate-500 font-medium">From Amestx Business Line: <strong class="text-slate-800" id="smsFromLineDisplay">(844) 826-3789</strong></div>
                         </div>
                     </div>
 
@@ -823,6 +823,71 @@
             sms: true
         };
 
+        function getActiveCallerId() {
+            const select = document.getElementById('callerIdSelect');
+            if (!select) return { phone: "+18448263789", friendly: "(844) 826-3789" };
+            const opt = select.options[select.selectedIndex];
+            if (!opt) return { phone: "+18448263789", friendly: "(844) 826-3789" };
+
+            // 1. Check dataset number
+            if (opt.dataset && opt.dataset.number) {
+                return { phone: opt.dataset.number, friendly: formatPhoneNumber(opt.dataset.number) };
+            }
+
+            // 2. Check if option value itself is 10/11 digits
+            const valClean = (opt.value || '').replace(/\D/g, '');
+            if (valClean.length >= 10 && valClean.length <= 11) {
+                const fullE164 = valClean.length === 10 ? '+1' + valClean : '+' + valClean;
+                return { phone: fullE164, friendly: formatPhoneNumber(fullE164) };
+            }
+
+            // 3. Search in amestx_paid_lines by opt.value (item.id or item.number)
+            try {
+                const saved = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
+                const match = saved.find(l => l.id === opt.value || l.number === opt.value);
+                if (match && match.number) {
+                    return { phone: match.number, friendly: formatPhoneNumber(match.number) };
+                }
+            } catch(e) {}
+
+            // 4. Extract phone from option text if text contains e.g. "+18322407667" or "(832) 240-7667"
+            const textMatch = opt.textContent.match(/\+?1?\s*\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}/);
+            if (textMatch) {
+                const digits = textMatch[0].replace(/\D/g, '');
+                const fullE164 = digits.length === 10 ? '+1' + digits : '+' + digits;
+                return { phone: fullE164, friendly: formatPhoneNumber(fullE164) };
+            }
+
+            // 5. Fallback to amestx_primary_line from localStorage
+            const prim = localStorage.getItem('amestx_primary_line');
+            if (prim) {
+                return { phone: prim, friendly: formatPhoneNumber(prim) };
+            }
+
+            return { phone: "+18448263789", friendly: "(844) 826-3789" };
+        }
+
+        function syncActiveCallerIdUI() {
+            const activeLine = getActiveCallerId();
+
+            // 1. Top bar dedicated line
+            const topDisp = document.getElementById('topDedicatedLineNumber');
+            if (topDisp) topDisp.textContent = activeLine.friendly;
+
+            // 2. In-Call screen connected line
+            const connLine = document.getElementById('activeCallConnectedLineName');
+            if (connLine) connLine.textContent = `Amestx ${activeLine.friendly}`;
+
+            // 3. SMS header display
+            const smsDisp = document.getElementById('smsFromLineDisplay');
+            if (smsDisp) smsDisp.textContent = activeLine.friendly;
+
+            // 4. Update sticky primary line in localStorage
+            if (activeLine.phone && activeLine.phone !== '+18448263789') {
+                localStorage.setItem('amestx_primary_line', activeLine.phone);
+            }
+        }
+
         function loadSavedPaidLines() {
             try {
                 const saved = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
@@ -830,19 +895,27 @@
                 if (!select) return;
 
                 saved.forEach(item => {
-                    if (typeof paidLinesRegistry !== 'undefined' && !paidLinesRegistry.includes(item.id)) {
-                        paidLinesRegistry.push(item.id);
+                    if (typeof paidLinesRegistry !== 'undefined') {
+                        if (!paidLinesRegistry.includes(item.id)) paidLinesRegistry.push(item.id);
+                        if (!paidLinesRegistry.includes(item.number)) paidLinesRegistry.push(item.number);
+                        const cleanD = (item.number || '').replace(/\D/g, '');
+                        if (cleanD && !paidLinesRegistry.includes(cleanD)) paidLinesRegistry.push(cleanD);
                     }
                     let exists = false;
                     for (let i = 0; i < select.options.length; i++) {
-                        if (select.options[i].value === item.id) {
+                        if (select.options[i].value === item.number || select.options[i].value === item.id) {
                             exists = true;
+                            select.options[i].value = item.number;
+                            select.options[i].dataset.number = item.number;
+                            select.options[i].dataset.id = item.id;
                             break;
                         }
                     }
                     if (!exists) {
                         const opt = document.createElement('option');
-                        opt.value = item.id;
+                        opt.value = item.number;
+                        opt.dataset.number = item.number;
+                        opt.dataset.id = item.id;
                         opt.textContent = `★ ${item.number} (${item.label ? item.label.split(' ')[0] : 'Active'} • Dedicated Line)`;
                         if (select.options.length > 0) {
                             select.insertBefore(opt, select.options[select.options.length - 1]);
@@ -861,6 +934,7 @@
                         }
                     }
                 }
+                syncActiveCallerIdUI();
             } catch (err) {
                 console.warn("Could not load saved lines:", err);
             }
@@ -927,6 +1001,7 @@
             for (let r of radios) {
                 r.checked = (r.value === fwdState.strategy);
             }
+            syncActiveCallerIdUI();
         }
 
         function toggleForwarding(active) {
@@ -1040,8 +1115,7 @@
 
         async function makeCallFromKeypad() {
             const inp = document.getElementById('keypadNumberInput');
-            const callerSelect = document.getElementById('callerIdSelect');
-            const selectedCallerId = callerSelect ? callerSelect.value : '18448263789';
+            const activeLine = getActiveCallerId();
             const rawNum = inp ? inp.value.trim() : '';
 
             if (!rawNum) {
@@ -1051,10 +1125,13 @@
             }
 
             // CHECK: Has this line been paid for?
-            if (!paidLinesRegistry.includes(selectedCallerId)) {
-                showNotification("⚠️ Payment required ($29/mo) to activate and place calls from this line");
-                openPurchaseNumberModal();
-                return;
+            if (activeLine.phone !== '+18448263789' && !paidLinesRegistry.includes(activeLine.phone) && !paidLinesRegistry.includes(activeLine.phone.replace(/\D/g, ''))) {
+                const prim = localStorage.getItem('amestx_primary_line');
+                if (!prim || (prim !== activeLine.phone && !prim.includes(activeLine.phone.replace(/\D/g, '')))) {
+                    showNotification("⚠️ Payment required ($29/mo) to activate and place calls from this line");
+                    openPurchaseNumberModal();
+                    return;
+                }
             }
 
             // Check microphone permission before placing call
@@ -1090,12 +1167,12 @@
 
             try {
                 const statusTxt = document.getElementById('activeCallStatusText');
-                if (statusTxt) statusTxt.textContent = `Connecting carrier to ${formatPhoneNumber(rawNum)}...`;
+                if (statusTxt) statusTxt.textContent = `Connecting ${activeLine.friendly} to ${formatPhoneNumber(rawNum)}...`;
 
                 const call = await twilioDevice.connect({ 
                     params: { 
                         To: dialableNumber,
-                        CallerId: "+18448263789"
+                        CallerId: activeLine.phone
                     } 
                 });
                 activeTwilioCall = call;
@@ -1163,8 +1240,11 @@
             const statusTxt = document.getElementById('activeCallStatusText');
             const timerDisp = document.getElementById('activeCallTimer');
 
+            const activeLine = getActiveCallerId();
             if (numDisp) numDisp.textContent = formatted;
             if (statusTxt) statusTxt.textContent = `Connecting to ${formatted}...`;
+            const connLine = document.getElementById('activeCallConnectedLineName');
+            if (connLine) connLine.textContent = `Amestx ${activeLine.friendly}`;
             if (dialView) dialView.classList.add('hidden');
             if (callView) callView.classList.remove('hidden');
 
@@ -1260,10 +1340,13 @@
         function handleCallerIdChange(val) {
             if (val === '__ADD_NEW__') {
                 const select = document.getElementById('callerIdSelect');
-                if (select) select.value = '18448263789';
+                const prim = localStorage.getItem('amestx_primary_line') || '18448263789';
+                if (select) select.value = prim;
                 openPurchaseNumberModal();
             } else {
-                showNotification("Caller ID active line: " + val);
+                syncActiveCallerIdUI();
+                const activeLine = getActiveCallerId();
+                showNotification("Caller ID active line: " + activeLine.friendly);
             }
         }
 
@@ -1297,6 +1380,7 @@
             const btn = document.getElementById('smsSendBtn');
             const btnText = document.getElementById('smsSendBtnText');
             const btnIcon = document.getElementById('smsSendBtnIcon');
+            const activeLine = getActiveCallerId();
 
             if (!inp || !inp.value.trim()) return;
 
@@ -1319,6 +1403,7 @@
                     },
                     body: JSON.stringify({
                         to: toNum,
+                        from: activeLine.phone,
                         message: text,
                         translate: true
                     })
@@ -1351,7 +1436,7 @@
                                 <div>${escapeHtml(text)}</div>
                                 ${translationHtml}
                             </div>
-                            <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; Delivered via (844) 826-3789${sidShort}</div>
+                            <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; Delivered via ${activeLine.friendly}${sidShort}</div>
                         </div>
                     `;
                     if (stream) {

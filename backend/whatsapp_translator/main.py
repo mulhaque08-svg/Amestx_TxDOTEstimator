@@ -512,11 +512,23 @@ async def voice_outbound(request: Request):
     if not clean_number.startswith("+"):
         clean_number = "+1" + clean_number if len(clean_number) == 10 else "+" + clean_number
 
-    logger.info(f"Outbound call placed to: {clean_number} via Caller ID {CALLER_ID}")
+    # Extract dynamic Caller ID requested from frontend (or fallback to CALLER_ID)
+    raw_caller_id = parsed.get("CallerId", [""])[0] or parsed.get("callerId", [""])[0] or parsed.get("From", [""])[0]
+    outbound_caller_id = CALLER_ID
+    if raw_caller_id:
+        clean_caller_digits = re.sub(r'[^0-9]', '', raw_caller_id)
+        if len(clean_caller_digits) == 10:
+            outbound_caller_id = f"+1{clean_caller_digits}"
+        elif len(clean_caller_digits) == 11 and clean_caller_digits.startswith("1"):
+            outbound_caller_id = f"+{clean_caller_digits}"
+        elif raw_caller_id.startswith("+"):
+            outbound_caller_id = raw_caller_id
+
+    logger.info(f"Outbound call placed to: {clean_number} via Caller ID {outbound_caller_id}")
     
     twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Dial callerId="{CALLER_ID}">
+    <Dial callerId="{outbound_caller_id}">
         <Number>{clean_number}</Number>
     </Dial>
 </Response>"""
@@ -525,11 +537,42 @@ async def voice_outbound(request: Request):
 @app.post("/voice/inbound")
 async def voice_inbound(request: Request):
     """
-    Handles inbound phone calls dialed to +1 (844) 826-3789.
-    Rings the Amestx Web Dialer client.
+    Handles inbound phone calls dialed to any Amestx Voice number (e.g. +18322407667 or +18448263789).
+    Rings the Amestx Web Dialer client and simultaneously forwards to client cell phone if configured.
     """
-    logger.info("Inbound call received on Amestx Voice number")
-    twiml = """<?xml version="1.0" encoding="UTF-8"?>
+    body_bytes = await request.body()
+    parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
+    to_number = parsed.get("To", [""])[0]
+    from_number = parsed.get("From", [""])[0]
+    logger.info(f"Inbound call received from {from_number} to {to_number}")
+
+    to_digits = re.sub(r'[^0-9]', '', to_number)
+    forwarding_target = ""
+    try:
+        trials = load_trials()
+        for t in trials:
+            t_num = re.sub(r'[^0-9]', '', t.get("phone_number", ""))
+            if t_num and (t_num == to_digits or to_digits.endswith(t_num) or t_num.endswith(to_digits)):
+                fwd = t.get("forwarding_phone", "")
+                if fwd:
+                    fwd_digits = re.sub(r'[^0-9]', '', fwd)
+                    forwarding_target = f"+1{fwd_digits}" if len(fwd_digits) == 10 else f"+{fwd_digits}"
+                break
+    except Exception as e:
+        logger.warning(f"Notice looking up trial forwarding: {e}")
+
+    if forwarding_target:
+        logger.info(f"Simultaneous inbound call ring: Web Client + Forwarding Cell {forwarding_target}")
+        twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say voice="Polly.Joanna">Connecting your call to Amestx Voice.</Say>
+    <Dial>
+        <Client>amestx_agent</Client>
+        <Number>{forwarding_target}</Number>
+    </Dial>
+</Response>"""
+    else:
+        twiml = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say voice="Polly.Joanna">Thank you for calling Amestx Voice. Connecting your call now.</Say>
     <Dial>
@@ -878,6 +921,7 @@ async def send_sms_outbound(request: Request):
     try:
         data = await request.json()
         to_number = data.get("to") or data.get("recipient") or ""
+        from_number = data.get("from") or data.get("from_number") or data.get("sender") or ""
         message_text = (data.get("message") or data.get("text") or "").strip()
         translate = data.get("translate", True)
 
@@ -891,6 +935,17 @@ async def send_sms_outbound(request: Request):
 
         clean_digits = normalize_phone(to_number)
         clean_to = f"+{clean_digits}"
+
+        # Resolve outbound from number (use customer's selected line or fallback to CALLER_ID)
+        outbound_from = CALLER_ID
+        if from_number:
+            clean_from_digits = re.sub(r'[^0-9]', '', from_number)
+            if len(clean_from_digits) == 10:
+                outbound_from = f"+1{clean_from_digits}"
+            elif len(clean_from_digits) == 11 and clean_from_digits.startswith("1"):
+                outbound_from = f"+{clean_from_digits}"
+            elif from_number.startswith("+"):
+                outbound_from = from_number
 
         # Bilingual Translation:
         # Detect language of message:
@@ -913,9 +968,9 @@ async def send_sms_outbound(request: Request):
 
         # 1. Primary Attempt via Twilio
         try:
-            logger.info(f"Sending outbound SMS to {clean_to} from {CALLER_ID} via Twilio...")
+            logger.info(f"Sending outbound SMS to {clean_to} from {outbound_from} via Twilio...")
             msg = client.messages.create(
-                from_=CALLER_ID,
+                from_=outbound_from,
                 to=clean_to,
                 body=full_body
             )
@@ -924,7 +979,7 @@ async def send_sms_outbound(request: Request):
             logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
         except Exception as tw_err:
             logger.warning(f"Twilio SMS attempt notice ({tw_err}). Attempting automated Telnyx failover...")
-            ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=CALLER_ID, text=full_body)
+            ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=outbound_from, text=full_body)
             if ok and isinstance(telnyx_res, dict):
                 carrier_used = "telnyx"
                 msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
@@ -936,7 +991,7 @@ async def send_sms_outbound(request: Request):
 
         record_sms_message(
             direction="outbound",
-            from_num=CALLER_ID,
+            from_num=outbound_from,
             to_num=clean_to,
             body=message_text,
             translation=translation_text,
@@ -948,6 +1003,7 @@ async def send_sms_outbound(request: Request):
             "success": True,
             "sid": msg_sid,
             "carrier": carrier_used,
+            "from": outbound_from,
             "to": clean_to,
             "status": msg_status,
             "original": message_text,
@@ -1227,6 +1283,7 @@ async def sms_inbound(request: Request):
     parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
     body_text = parsed.get("Body", [""])[0].strip()
     from_number = parsed.get("From", [""])[0]
+    to_number = parsed.get("To", [""])[0]
 
     if not body_text:
         return PlainResponse(content="<Response></Response>", media_type="application/xml")
@@ -1240,32 +1297,49 @@ async def sms_inbound(request: Request):
         trans = translate_text(body_text, "en", "es")
         reply = f"[Amestx Voice Translation]\n🇲🇽 ES: \"{trans}\""
 
-    logger.info(f"SMS from {from_number}: '{body_text}' -> '{trans}'")
+    logger.info(f"SMS from {from_number} to {to_number}: '{body_text}' -> '{trans}'")
 
     # Record in history
     record_sms_message(
         direction="inbound",
         from_num=from_number,
-        to_num=CALLER_ID,
+        to_num=to_number or CALLER_ID,
         body=body_text,
         translation=trans,
         status="received"
     )
 
-    # Forward to supervisor personal mobile phone (+1 832-837-9801) if not from supervisor
-    if clean_from_digits != SUPERVISOR_PHONE:
+    # Determine customer forwarding phone
+    to_digits = re.sub(r'[^0-9]', '', to_number)
+    customer_fwd = ""
+    try:
+        trials = load_trials()
+        for t in trials:
+            t_num = re.sub(r'[^0-9]', '', t.get("phone_number", ""))
+            if t_num and (t_num == to_digits or to_digits.endswith(t_num) or t_num.endswith(to_digits)):
+                fwd = t.get("forwarding_phone", "")
+                if fwd:
+                    customer_fwd = re.sub(r'[^0-9]', '', fwd)
+                break
+    except Exception as e:
+        logger.warning(f"Error checking customer forwarding for SMS: {e}")
+
+    target_fwd = customer_fwd if customer_fwd else SUPERVISOR_PHONE
+
+    # Forward to cell phone if not from same target
+    if clean_from_digits != target_fwd:
         try:
             client = get_twilio_client()
             if client:
-                fwd_body = f"📩 [Amestx SMS from {from_number}]:\n\"{body_text}\"\n\n[Translation]:\n\"{trans}\""
+                fwd_body = f"📩 [Amestx SMS to {to_number} from {from_number}]:\n\"{body_text}\"\n\n[Translation]:\n\"{trans}\""
                 client.messages.create(
-                    from_=CALLER_ID,
-                    to=f"+{SUPERVISOR_PHONE}",
+                    from_=to_number or CALLER_ID,
+                    to=f"+{target_fwd}",
                     body=fwd_body
                 )
-                logger.info(f"Forwarded SMS from {from_number} to Supervisor +{SUPERVISOR_PHONE}")
+                logger.info(f"Forwarded SMS from {from_number} to Cell +{target_fwd}")
         except Exception as fwd_err:
-            logger.warning(f"Failed to forward SMS to supervisor: {fwd_err}")
+            logger.warning(f"Failed to forward SMS to cell: {fwd_err}")
 
     return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
