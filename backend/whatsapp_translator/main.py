@@ -557,6 +557,66 @@ async def voice_outbound(request: Request):
 </Response>"""
     return PlainResponse(content=twiml, media_type="application/xml")
 
+FORWARDING_FILE = os.path.join(os.path.dirname(__file__), "forwarding_settings.json")
+
+def load_forwarding_settings():
+    default_settings = {
+        "enabled": True,
+        "phone": "+18323908863",
+        "backup": "",
+        "strategy": "always",  # simultaneous, always, sequential
+        "ai": True,
+        "sms": True
+    }
+    if os.path.exists(FORWARDING_FILE):
+        try:
+            with open(FORWARDING_FILE, "r", encoding="utf-8") as f:
+                saved = json.load(f)
+                default_settings.update(saved)
+        except Exception as e:
+            logger.warning(f"Error loading forwarding settings: {e}")
+    return default_settings
+
+def save_forwarding_settings(settings: dict):
+    try:
+        with open(FORWARDING_FILE, "w", encoding="utf-8") as f:
+            json.dump(settings, f, indent=2)
+    except Exception as e:
+        logger.error(f"Error saving forwarding settings: {e}")
+
+@app.get("/api/forwarding")
+async def get_forwarding():
+    return load_forwarding_settings()
+
+@app.post("/api/forwarding")
+async def set_forwarding(request: Request):
+    try:
+        data = await request.json()
+    except Exception:
+        body = await request.body()
+        data = urllib.parse.parse_qs(body.decode("utf-8", errors="replace"))
+        data = {k: v[0] if isinstance(v, list) else v for k, v in data.items()}
+
+    current = load_forwarding_settings()
+    phone = data.get("phone") or data.get("primaryPhone") or ""
+    if phone:
+        digits = normalize_phone(phone)
+        current["phone"] = f"+{digits}" if len(digits) >= 10 else phone
+    if "enabled" in data:
+        current["enabled"] = bool(data["enabled"])
+    if "strategy" in data or "ringStrategy" in data:
+        current["strategy"] = data.get("strategy") or data.get("ringStrategy") or current.get("strategy", "simultaneous")
+    if "backup" in data or "backupPhone" in data:
+        current["backup"] = data.get("backup") or data.get("backupPhone") or ""
+    if "ai" in data or "aiTranslationEnabled" in data:
+        current["ai"] = bool(data.get("ai") if "ai" in data else data.get("aiTranslationEnabled"))
+    if "sms" in data or "forwardSms" in data:
+        current["sms"] = bool(data.get("sms") if "sms" in data else data.get("forwardSms"))
+
+    save_forwarding_settings(current)
+    logger.info(f"Updated global call forwarding settings: {current}")
+    return {"success": True, "settings": current}
+
 @app.api_route("/voice/inbound", methods=["GET", "POST"])
 async def voice_inbound(request: Request):
     """
@@ -586,7 +646,21 @@ async def voice_inbound(request: Request):
     </Dial>
 </Response>"""
         return PlainResponse(content=twiml, media_type="application/xml")
+
+    # Load active global forwarding settings
+    fwd_cfg = load_forwarding_settings()
     forwarding_target = ""
+    fwd_strategy = fwd_cfg.get("strategy", "simultaneous")
+    if fwd_cfg.get("enabled", True):
+        raw_fwd = fwd_cfg.get("phone", "")
+        if raw_fwd:
+            fwd_digits = normalize_phone(raw_fwd)
+            if len(fwd_digits) == 10:
+                forwarding_target = f"+1{fwd_digits}"
+            elif len(fwd_digits) > 10:
+                forwarding_target = f"+{fwd_digits}"
+
+    # Also check trials for customer-specific override
     try:
         trials = load_trials()
         for t in trials:
@@ -604,12 +678,21 @@ async def voice_inbound(request: Request):
     clean_from_digits = re.sub(r'[^0-9]', '', from_number)
     clean_fwd_digits = re.sub(r'[^0-9]', '', forwarding_target)
     if clean_from_digits and clean_fwd_digits and (clean_from_digits == clean_fwd_digits or clean_from_digits.endswith(clean_fwd_digits) or clean_fwd_digits.endswith(clean_from_digits)):
-        logger.info(f"Caller {from_number} is the forwarding target itself. Ringing web client only to avoid busy loop.")
+        logger.info(f"Caller {from_number} is the forwarding target itself ({forwarding_target}). Ringing web client only to avoid busy loop.")
         forwarding_target = ""
 
     if forwarding_target:
-        logger.info(f"Simultaneous inbound call ring: Web Client (amestx_agent) + Forwarding Cell {forwarding_target}")
-        twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+        if fwd_strategy == "always":
+            logger.info(f"Inbound call: Always Forwarding directly to Cell {forwarding_target}")
+            twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Dial callerId="{to_number}">
+        <Number>{forwarding_target}</Number>
+    </Dial>
+</Response>"""
+        else:
+            logger.info(f"Simultaneous inbound call ring: Web Client (amestx_agent) + Forwarding Cell {forwarding_target}")
+            twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Dial callerId="{to_number}">
         <Client>amestx_agent</Client>

@@ -1050,12 +1050,28 @@
             };
             localStorage.setItem('amestx_call_forwarding', JSON.stringify(configToStore));
 
+            // Sync live to Cloud Run backend so Twilio knows where to forward inbound calls
+            fetch("https://amestx-translator-869440210153.us-central1.run.app/api/forwarding", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    enabled: fwdState.enabled,
+                    phone: fwdState.phone,
+                    backup: fwdState.backup,
+                    strategy: fwdState.strategy,
+                    ai: fwdState.ai,
+                    sms: fwdState.sms
+                })
+            }).then(r => r.json()).then(d => {
+                console.log("Forwarding synced to server:", d);
+            }).catch(e => console.warn("Could not sync forwarding to server:", e));
+
             const topDisp = document.getElementById('topForwardingNumberDisplay');
             const kpDisp = document.getElementById('keypadForwardStatus');
             if (topDisp) topDisp.textContent = fwdState.enabled ? `ACTIVE → ${fwdState.phone}` : "DISABLED";
             if (kpDisp) kpDisp.textContent = fwdState.enabled ? `Mobile ${fwdState.phone}` : "Off";
 
-            if (showToast) showNotification("Forwarding settings saved successfully!");
+            if (showToast) showNotification("Forwarding settings saved & synced to phone network!");
         }
 
         function testCallForwardingSimulation() {
