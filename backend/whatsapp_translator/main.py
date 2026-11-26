@@ -44,6 +44,7 @@ PUBLIC_BASE_URL = os.environ.get("PUBLIC_BASE_URL", "https://amestx-translator-8
 TELNYX_API_KEY = os.environ.get("TELNYX_API_KEY", "")
 TELNYX_MESSAGING_PROFILE_ID = os.environ.get("TELNYX_MESSAGING_PROFILE_ID", "4001a219-04c1-46fb-a83d-b27a4ac40ba1")
 TELNYX_TEXML_APP_ID = os.environ.get("TELNYX_TEXML_APP_ID", "3101859461770249628")
+TELNYX_DEFAULT_NUMBER = os.environ.get("TELNYX_DEFAULT_NUMBER", "+13466880017")
 
 speech_client = None
 tts_client = None
@@ -330,23 +331,29 @@ def telnyx_request(endpoint: str, method: str = "GET", data: Optional[dict] = No
 def send_telnyx_sms(to_number: str, from_number: Optional[str] = None, text: str = "") -> Tuple[bool, Any]:
     """Sends outbound SMS via Telnyx Messaging Profile with auto-fallback for source numbers."""
     clean_to = "+" + normalize_phone(to_number)
+    
+    # Telnyx requires the 'from' number to be an active number on the Telnyx account.
+    sender = TELNYX_DEFAULT_NUMBER
+    if from_number:
+        clean_from = "+" + normalize_phone(from_number)
+        if "3466880017" in clean_from:
+            sender = clean_from
+
     payload = {
         "to": clean_to,
+        "from": sender,
         "text": text,
         "messaging_profile_id": TELNYX_MESSAGING_PROFILE_ID
     }
-    if from_number:
-        payload["from"] = "+" + normalize_phone(from_number)
 
     ok, res = telnyx_request("/messages", method="POST", data=payload)
-    # If rejected due to source number not in Telnyx account, retry without 'from' so Telnyx auto-selects its assigned number
-    if not ok and from_number:
-        logger.info("Telnyx rejected specific from_number. Retrying with Telnyx messaging profile pool...")
-        payload.pop("from", None)
+    if not ok and sender != TELNYX_DEFAULT_NUMBER:
+        logger.info(f"Telnyx rejected specific from_number {sender}. Retrying with default Telnyx line {TELNYX_DEFAULT_NUMBER}...")
+        payload["from"] = TELNYX_DEFAULT_NUMBER
         ok, res = telnyx_request("/messages", method="POST", data=payload)
 
     if ok and isinstance(res, dict) and "data" in res:
-        logger.info(f"Telnyx SMS dispatched to {clean_to}: id={res['data'].get('id')}")
+        logger.info(f"Telnyx SMS dispatched to {clean_to} from {payload.get('from')}: id={res['data'].get('id')}")
         return True, res["data"]
     return False, res
 
@@ -550,19 +557,35 @@ async def voice_outbound(request: Request):
 </Response>"""
     return PlainResponse(content=twiml, media_type="application/xml")
 
-@app.post("/voice/inbound")
+@app.api_route("/voice/inbound", methods=["GET", "POST"])
 async def voice_inbound(request: Request):
     """
-    Handles inbound phone calls dialed to any Amestx Voice number (e.g. +18322407667 or +18448263789).
+    Handles inbound phone calls dialed to any Amestx Voice number (e.g. +18322407667, +18448263789, or Telnyx +13466880017).
     Rings the Amestx Web Dialer client and simultaneously forwards to client cell phone if configured.
     """
-    body_bytes = await request.body()
-    parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
+    if request.method == "POST":
+        body_bytes = await request.body()
+        parsed = urllib.parse.parse_qs(body_bytes.decode("utf-8", errors="replace"))
+    else:
+        parsed = {k: [v] for k, v in request.query_params.items()}
+
     to_number = parsed.get("Called", [""])[0] or parsed.get("To", [""])[0]
     from_number = parsed.get("Caller", [""])[0] or parsed.get("From", [""])[0]
     logger.info(f"Inbound call received from {from_number} to {to_number}")
 
     to_digits = re.sub(r'[^0-9]', '', to_number)
+
+    # Special routing for Telnyx incoming call (+13466880017):
+    # Telnyx TeXML bridges to the active Twilio line (+18322407667), which rings the browser Web Dialer amestx_agent.
+    if "3466880017" in to_digits:
+        logger.info("Inbound call to Telnyx line +13466880017. Bridging to Web Dialer line +18322407667.")
+        twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Dial callerId="{from_number or to_number}">
+        <Number>+18322407667</Number>
+    </Dial>
+</Response>"""
+        return PlainResponse(content=twiml, media_type="application/xml")
     forwarding_target = ""
     try:
         trials = load_trials()
