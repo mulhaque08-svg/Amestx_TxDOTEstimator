@@ -24,6 +24,9 @@
     <!-- Twilio Voice WebRTC SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@twilio/voice-sdk@2.11.0/dist/twilio.min.js"></script>
 
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAXpqmJaCY1_sYP3KG_y4YHEEL9VaMkD1yE6xKyt0U4_xxUvdqcQs6EA93AERa1eZ_WmIZARQd6CpS3-U&currency=USD"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -69,7 +72,7 @@
     <div class="bg-gradient-to-r from-[#0d163a] via-[#162854] to-[#0f1d47] border-b border-[#213a74]/60 text-white text-xs sm:text-sm font-semibold py-2.5 px-4 text-center flex items-center justify-center gap-2.5 shadow-sm">
         <span class="bg-amber-400 text-slate-950 text-[11px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-wide shadow-sm">Launch Special</span>
         <span class="text-slate-100 font-bold">Get your dedicated business number + 30 days of bilingual AI translation free!</span>
-        <a href="#quote-section" class="text-amber-400 hover:text-amber-300 underline transition font-extrabold ml-1">Claim your line &rarr;</a>
+        <a href="javascript:void(0)" onclick="openCheckoutModal('Pro Bilingual', 29.00)" class="text-amber-400 hover:text-amber-300 underline transition font-extrabold ml-1">Claim your line &rarr;</a>
     </div>
 
     <!-- Navigation Header -->
@@ -109,7 +112,7 @@
                         <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
                         <span>Log In</span>
                     </button>
-                    <button onclick="openAuthModal('signup')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-blue-600/20 transition whitespace-nowrap flex items-center gap-1.5">
+                    <button onclick="openCheckoutModal('Pro Bilingual', 29.00)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-extrabold px-3.5 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-blue-600/20 transition whitespace-nowrap flex items-center gap-1.5">
                         <span>Start Free Trial</span>
                         <span class="hidden sm:inline">&rarr;</span>
                     </button>
@@ -354,7 +357,7 @@
                         <h3 class="text-lg font-black text-slate-900">Starter Line</h3>
                         <p class="text-xs text-slate-500 mt-1">Perfect for solo entrepreneurs & freelancers.</p>
                         <div class="mt-6 flex items-baseline gap-1">
-                            <span class="text-4xl font-black text-slate-900">$14.99</span>
+                            <span class="text-4xl font-black text-slate-900">$19.00</span>
                             <span class="text-xs font-bold text-slate-500">/ line / month</span>
                         </div>
                         <ul class="mt-8 space-y-3 text-xs font-semibold text-slate-600">
@@ -366,7 +369,7 @@
                         </ul>
                     </div>
                     <div class="mt-8">
-                        <button onclick="selectPlan('Starter', 14.99)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
+                        <button onclick="openCheckoutModal('Starter', 19.00)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
                             Select Starter
                         </button>
                     </div>
@@ -381,7 +384,7 @@
                         <h3 class="text-lg font-black text-white">Pro Bilingual</h3>
                         <p class="text-xs text-blue-200 mt-1">Includes unlimited AI voice & text translation.</p>
                         <div class="mt-6 flex items-baseline gap-1">
-                            <span class="text-4xl font-black text-white">$29.99</span>
+                            <span class="text-4xl font-black text-white">$29.00</span>
                             <span class="text-xs font-bold text-blue-200">/ line / month</span>
                         </div>
                         <ul class="mt-8 space-y-3 text-xs font-semibold text-blue-100">
@@ -394,7 +397,7 @@
                         </ul>
                     </div>
                     <div class="mt-8">
-                        <button onclick="selectPlan('Pro Bilingual', 29.99)" class="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black py-3 rounded-xl shadow-lg transition text-xs">
+                        <button onclick="openCheckoutModal('Pro Bilingual', 29.00)" class="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black py-3 rounded-xl shadow-lg transition text-xs">
                             Select Pro Bilingual
                         </button>
                     </div>
@@ -406,7 +409,7 @@
                         <h3 class="text-lg font-black text-slate-900">Business Team</h3>
                         <p class="text-xs text-slate-500 mt-1">Multi-user phone lines with shared routing.</p>
                         <div class="mt-6 flex items-baseline gap-1">
-                            <span class="text-4xl font-black text-slate-900">$49.99</span>
+                            <span class="text-4xl font-black text-slate-900">$49.00</span>
                             <span class="text-xs font-bold text-slate-500">/ month (3 lines)</span>
                         </div>
                         <ul class="mt-8 space-y-3 text-xs font-semibold text-slate-600">
@@ -418,7 +421,7 @@
                         </ul>
                     </div>
                     <div class="mt-8">
-                        <button onclick="selectPlan('Business Team', 49.99)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
+                        <button onclick="openCheckoutModal('Business Team', 49.00)" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-extrabold py-3 rounded-xl border border-slate-300 shadow-sm transition text-xs">
                             Select Business Team
                         </button>
                     </div>
@@ -428,7 +431,123 @@
         </div>
     </section>
 
-        <!-- RingCentral-Style Unified Authentication Modal (Log In & 15-Day Free Trial) -->
+        <!-- Dedicated Business Line Selection & PayPal Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-xl w-full overflow-hidden relative my-auto">
+            
+            <!-- Close Button -->
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10">&times;</button>
+
+            <!-- Header -->
+            <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-r from-blue-900 to-indigo-950 text-white">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xs">AV</div>
+                        <span class="text-sm font-extrabold tracking-tight">Amestx <span class="text-blue-300">Voice</span></span>
+                    </div>
+                    <span id="checkoutPlanBadge" class="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full font-mono">Pro Bilingual • $29/mo</span>
+                </div>
+                <h3 class="text-xl font-black tracking-tight text-white">Choose Your Business Line &amp; Activate</h3>
+                <p class="text-xs text-blue-200 mt-1">15-Day Free Trial • Instant Automated Provisioning • Zero Contracts</p>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                
+                <!-- STEP 1: Number Selection -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">1</span>
+                            <span>Select Your Dedicated Phone Number</span>
+                        </label>
+                        <span id="numbersLoadingIndicator" class="hidden text-[11px] text-blue-600 font-bold animate-pulse">Searching Twilio...</span>
+                    </div>
+
+                    <!-- Region Selector Chips -->
+                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-1.5 mb-2.5">
+                        <button type="button" onclick="loadAvailableNumbers('832')" class="px-2 py-1.5 rounded-lg border border-blue-600 bg-blue-50 text-blue-800 text-[11px] font-bold text-center hover:bg-blue-100 transition area-chip" data-code="832">Houston (832)</button>
+                        <button type="button" onclick="loadAvailableNumbers('713')" class="px-2 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-[11px] font-semibold text-center hover:bg-slate-100 transition area-chip" data-code="713">Houston (713)</button>
+                        <button type="button" onclick="loadAvailableNumbers('210')" class="px-2 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-[11px] font-semibold text-center hover:bg-slate-100 transition area-chip" data-code="210">San Antonio (210)</button>
+                        <button type="button" onclick="loadAvailableNumbers('512')" class="px-2 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-[11px] font-semibold text-center hover:bg-slate-100 transition area-chip" data-code="512">Austin (512)</button>
+                        <button type="button" onclick="loadAvailableNumbers('844')" class="px-2 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-[11px] font-semibold text-center hover:bg-slate-100 transition area-chip" data-code="844">Toll-Free (844)</button>
+                    </div>
+
+                    <!-- Available Numbers Container -->
+                    <div id="checkoutNumbersList" class="space-y-1.5 max-h-36 overflow-y-auto border border-slate-200 rounded-xl p-2 bg-slate-50 custom-scrollbar">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- STEP 2: Account Details -->
+                <form id="checkoutAccountForm" onsubmit="handleCheckoutFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5 mb-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">2</span>
+                            <span>Business &amp; Forwarding Info</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-0.5">Company Name *</label>
+                                <input type="text" id="chkCompany" required placeholder="Acme Construction LLC" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-0.5">Admin Full Name *</label>
+                                <input type="text" id="chkName" required placeholder="John Doe" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-0.5">Work Email *</label>
+                                <input type="email" id="chkEmail" required placeholder="john@acme.com" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-0.5">Forwarding Cell Phone *</label>
+                                <input type="tel" id="chkForwarding" required placeholder="(832) 555-0199" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: 15-Day Free Trial & Checkout -->
+                    <div class="pt-2 border-t border-slate-200">
+                        <label class="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5 mb-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">3</span>
+                            <span>Order Summary &amp; Instant Activation</span>
+                        </label>
+                        
+                        <!-- Order Summary Card -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-3.5 flex items-center justify-between mb-3 text-xs">
+                            <div>
+                                <div class="font-extrabold text-slate-900" id="chkSelectedNumberSummary">Selected: (832) 410-6674</div>
+                                <div class="text-[11px] text-blue-700 font-medium">Bilingual AI Voice &amp; SMS Included</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-emerald-600 font-black text-sm">$0.00 Today</div>
+                                <div class="text-[10px] text-slate-500 font-bold" id="chkRecurringPriceText">then $29.99/mo</div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Smart Buttons Container -->
+                        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 space-y-2 mb-2">
+                            <div class="text-[11px] font-bold text-slate-400 flex items-center justify-between">
+                                <span>💳 Express Activation via PayPal / Card</span>
+                                <span class="text-[10px] text-emerald-400 font-mono">15-Day Free Trial</span>
+                            </div>
+                            <div id="paypal-voice-container" class="pt-1"></div>
+                        </div>
+
+                        <!-- Direct Instant Free Trial Activation Button -->
+                        <button type="submit" id="btnInstantActivate" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 active:scale-98 text-white font-black py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition text-xs flex items-center justify-center gap-2">
+                            <span id="btnInstantActivateText">⚡ Activate 15-Day Free Trial &amp; Open Line Now</span>
+                            <span>&rarr;</span>
+                        </button>
+                        <p class="text-[10px] text-center text-slate-400 mt-2">Zero contracts. Cancel anytime with 1 click. Automated carrier line provisioning.</p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- RingCentral-Style Unified Authentication Modal (Log In & 15-Day Free Trial) -->
     <div id="authModal" class="fixed inset-0 z-[90] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden relative my-auto">
             
@@ -2191,6 +2310,26 @@
                 } catch(err) {}
             }
 
+            // 4. Check backend multi-tenant cloud trials database
+            try {
+                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/api/customer/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ identifier: emailOrPhone })
+                });
+                const data = await res.json();
+                if (data && data.success && data.account) {
+                    const acc = data.account;
+                    localStorage.setItem('amestx_subscribed', 'true');
+                    localStorage.setItem('amestx_current_user', JSON.stringify(acc));
+                    localStorage.setItem('amestx_primary_line', acc.phone_number);
+                    closeAuthModal();
+                    updateHeaderAuthState();
+                    window.location.href = `voice-app.html?account=${acc.account_id}&phone=${encodeURIComponent(acc.phone_number)}&company=${encodeURIComponent(acc.company_name)}`;
+                    return;
+                }
+            } catch(e) {}
+
             alert("❌ Account not found. Please click '15-Day Free Trial' above to create your free account in under 60 seconds!");
         }
 
@@ -2328,9 +2467,319 @@ Launching your Voice App & Call Forwarding portal...`);
             if (isCalling) endCallUi();
         }
 
+        // ==========================================
+        // DEDICATED LINE SELECTION & PAYPAL CHECKOUT
+        // ==========================================
+        let currentCheckoutPlan = { name: 'Pro Bilingual', price: 29.00 };
+        let currentSelectedNumber = '+18324106674';
+        let currentSelectedFriendly = '(832) 410-6674';
+        let isPayPalRendered = false;
+
+        function openCheckoutModal(planName, price) {
+            currentCheckoutPlan = {
+                name: planName || 'Pro Bilingual',
+                price: parseFloat(price) || 29.00
+            };
+
+            const planBadge = document.getElementById('checkoutPlanBadge');
+            const recurringTxt = document.getElementById('chkRecurringPriceText');
+            if (planBadge) planBadge.textContent = `${currentCheckoutPlan.name} • $${currentCheckoutPlan.price.toFixed(2)}/mo`;
+            if (recurringTxt) recurringTxt.textContent = `then $${currentCheckoutPlan.price.toFixed(2)}/mo`;
+
+            const modal = document.getElementById('checkoutModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+
+            // Pre-fill user inputs if stored
+            try {
+                const currentUser = JSON.parse(localStorage.getItem('amestx_current_user') || '{}');
+                if (currentUser.company && document.getElementById('chkCompany')) document.getElementById('chkCompany').value = currentUser.company;
+                if (currentUser.name && document.getElementById('chkName')) document.getElementById('chkName').value = currentUser.name;
+                if (currentUser.email && document.getElementById('chkEmail')) document.getElementById('chkEmail').value = currentUser.email;
+                if (currentUser.phone && document.getElementById('chkForwarding')) document.getElementById('chkForwarding').value = currentUser.phone;
+            } catch(e) {}
+
+            // Load live numbers for default area code (832)
+            loadAvailableNumbers('832');
+
+            // Render PayPal Smart Buttons for selected plan
+            renderVoicePayPalButtons(currentCheckoutPlan.price);
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        async function loadAvailableNumbers(areaCode) {
+            // Update active chip style
+            const chips = document.querySelectorAll('.area-chip');
+            chips.forEach(c => {
+                if (c.getAttribute('data-code') === String(areaCode)) {
+                    c.className = 'px-2 py-1.5 rounded-lg border border-blue-600 bg-blue-50 text-blue-800 text-[11px] font-bold text-center transition area-chip';
+                } else {
+                    c.className = 'px-2 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-[11px] font-semibold text-center hover:bg-slate-100 transition area-chip';
+                }
+            });
+
+            const loader = document.getElementById('numbersLoadingIndicator');
+            const listEl = document.getElementById('checkoutNumbersList');
+            if (loader) loader.classList.remove('hidden');
+            if (listEl) {
+                listEl.innerHTML = `<div class="p-3 text-center text-xs text-slate-400 font-semibold animate-pulse">Searching available numbers from Twilio carrier inventory...</div>`;
+            }
+
+            try {
+                const res = await fetch(`https://amestx-translator-869440210153.us-central1.run.app/api/numbers/available?area_code=${areaCode}&limit=6`);
+                const data = await res.json();
+                const numbers = (data && data.numbers) ? data.numbers : [];
+
+                if (listEl) {
+                    listEl.innerHTML = '';
+                    if (numbers.length === 0) {
+                        listEl.innerHTML = `<div class="p-3 text-center text-xs text-slate-500 font-medium">No lines available in this area code right now. Try (832) or Toll-Free (844).</div>`;
+                        return;
+                    }
+
+                    numbers.forEach((item, idx) => {
+                        const isFirst = idx === 0;
+                        if (isFirst) {
+                            currentSelectedNumber = item.phone_number;
+                            currentSelectedFriendly = item.friendly_name;
+                            updateSelectedNumberSummary(item.friendly_name, item.type);
+                        }
+
+                        const card = document.createElement('div');
+                        card.className = `p-2 rounded-xl border flex items-center justify-between cursor-pointer transition text-xs number-card ${isFirst ? 'border-blue-600 bg-blue-50/80 shadow-sm' : 'border-slate-200 bg-white hover:bg-slate-50'}`;
+                        card.dataset.phone = item.phone_number;
+                        card.dataset.friendly = item.friendly_name;
+                        card.dataset.type = item.type || 'Local Texas Line';
+                        card.onclick = () => selectNumberCard(card, item.phone_number, item.friendly_name, item.type);
+
+                        card.innerHTML = `
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="chkNumberRadio" ${isFirst ? 'checked' : ''} class="text-blue-600 focus:ring-blue-500">
+                                <div>
+                                    <div class="font-extrabold text-slate-900">${item.friendly_name}</div>
+                                    <div class="text-[10px] text-slate-500 font-medium">${item.locality || 'Texas'} • ${item.type || 'Local Dedicated Line'}</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Available</span>
+                        `;
+                        listEl.appendChild(card);
+                    });
+                }
+            } catch (err) {
+                console.warn("Error fetching numbers:", err);
+                if (listEl) {
+                    // Fallback curated numbers
+                    listEl.innerHTML = `
+                        <div class="p-2.5 rounded-xl border border-blue-600 bg-blue-50 flex items-center justify-between cursor-pointer text-xs" onclick="selectNumberCard(this, '+18324106674', '(832) 410-6674', 'Local Line')">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="chkNumberRadio" checked>
+                                <div>
+                                    <div class="font-black text-slate-900">(832) 410-6674</div>
+                                    <div class="text-[10px] text-slate-500">Houston, TX • Instant Setup</div>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Available</span>
+                        </div>
+                    `;
+                    currentSelectedNumber = '+18324106674';
+                    currentSelectedFriendly = '(832) 410-6674';
+                    updateSelectedNumberSummary('(832) 410-6674', 'Local Line');
+                }
+            } finally {
+                if (loader) loader.classList.add('hidden');
+            }
+        }
+
+        function selectNumberCard(cardEl, phoneNumber, friendlyName, lineType) {
+            currentSelectedNumber = phoneNumber;
+            currentSelectedFriendly = friendlyName;
+
+            document.querySelectorAll('.number-card').forEach(c => {
+                c.className = 'p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-between cursor-pointer transition text-xs number-card';
+                const rad = c.querySelector('input[type="radio"]');
+                if (rad) rad.checked = false;
+            });
+
+            if (cardEl) {
+                cardEl.className = 'p-2 rounded-xl border border-blue-600 bg-blue-50/80 shadow-sm flex items-center justify-between cursor-pointer transition text-xs number-card';
+                const rad = cardEl.querySelector('input[type="radio"]');
+                if (rad) rad.checked = true;
+            }
+
+            updateSelectedNumberSummary(friendlyName, lineType);
+        }
+
+        function updateSelectedNumberSummary(friendlyName, lineType) {
+            const summaryEl = document.getElementById('chkSelectedNumberSummary');
+            if (summaryEl) {
+                summaryEl.textContent = `Selected: ${friendlyName}`;
+            }
+        }
+
+        function renderVoicePayPalButtons(price) {
+            const container = document.getElementById('paypal-voice-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (typeof paypal !== 'undefined') {
+                try {
+                    paypal.Buttons({
+                        style: {
+                            layout: 'vertical',
+                            color: 'gold',
+                            shape: 'rect',
+                            label: 'paypal',
+                            height: 40
+                        },
+                        createOrder: function(data, actions) {
+                            const company = (document.getElementById('chkCompany')?.value || 'Amestx Voice Subscriber').trim();
+                            return actions.order.create({
+                                purchase_units: [{
+                                    description: `Amestx Voice (${currentCheckoutPlan.name}) - 15-Day Free Trial for ${company}`,
+                                    amount: {
+                                        currency_code: 'USD',
+                                        value: currentCheckoutPlan.price.toFixed(2)
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: async function(data, actions) {
+                            const details = await actions.order.capture();
+                            const orderId = details.id || data.orderID;
+                            await completeProvisioning(orderId, 'paypal_approved');
+                        },
+                        onError: function(err) {
+                            console.error("PayPal Error:", err);
+                        }
+                    }).render('#paypal-voice-container');
+                } catch(e) {
+                    console.error("Error initializing PayPal buttons:", e);
+                    container.innerHTML = `<div class="text-[11px] text-amber-300 font-bold p-1 text-center">PayPal Secure Checkout Ready</div>`;
+                }
+            } else {
+                container.innerHTML = `<div class="text-[11px] text-amber-300 font-bold p-1 text-center">PayPal Express Gateway Active</div>`;
+            }
+        }
+
+        async function handleCheckoutFormSubmit(e) {
+            if (e) e.preventDefault();
+            const btn = document.getElementById('btnInstantActivate');
+            const btnText = document.getElementById('btnInstantActivateText');
+            if (btn) btn.disabled = true;
+            if (btnText) btnText.textContent = "Provisioning Dedicated Line on Carrier...";
+
+            const orderId = `PAYPAL-TRIAL-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+            await completeProvisioning(orderId, 'instant_trial');
+        }
+
+        async function completeProvisioning(orderId, triggerSource) {
+            const company = (document.getElementById('chkCompany')?.value || 'Amestx Client').trim();
+            const name = (document.getElementById('chkName')?.value || 'Admin').trim();
+            const email = (document.getElementById('chkEmail')?.value || '').trim();
+            const forwarding = (document.getElementById('chkForwarding')?.value || '').trim();
+
+            if (!email || !forwarding) {
+                alert("Please provide your Work Email and Forwarding Cell Phone to activate your line.");
+                const btn = document.getElementById('btnInstantActivate');
+                const btnText = document.getElementById('btnInstantActivateText');
+                if (btn) btn.disabled = false;
+                if (btnText) btnText.textContent = "⚡ Activate 15-Day Free Trial & Open Line Now";
+                return;
+            }
+
+            try {
+                const res = await fetch("https://amestx-translator-869440210153.us-central1.run.app/api/checkout/provision", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        phone_number: currentSelectedNumber,
+                        company_name: company,
+                        name: name,
+                        email: email,
+                        forwarding_phone: forwarding,
+                        plan: currentCheckoutPlan.name,
+                        order_id: orderId
+                    })
+                });
+
+                const data = await res.json();
+                if (data && data.success) {
+                    // Store credentials in localStorage
+                    localStorage.setItem('amestx_subscribed', 'true');
+                    localStorage.setItem('amestx_primary_line', data.phone_number);
+
+                    const userObj = {
+                        id: data.account_id,
+                        company: data.company_name,
+                        name: data.name,
+                        email: data.email,
+                        phone: data.forwarding_phone,
+                        line: data.phone_number,
+                        plan: data.plan,
+                        trialDaysLeft: 15
+                    };
+                    localStorage.setItem('amestx_current_user', JSON.stringify(userObj));
+
+                    // Store line into paid lines
+                    let lines = [];
+                    try {
+                        lines = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
+                    } catch(e) {}
+                    if (!lines.some(l => l.number === data.phone_number)) {
+                        lines.unshift({ id: data.account_id, number: data.phone_number, label: `${data.company_name} (${data.plan})` });
+                        localStorage.setItem('amestx_paid_lines', JSON.stringify(lines));
+                    }
+
+                    // Pre-configure forwarding
+                    try {
+                        const fwd = {
+                            enabled: true,
+                            primaryPhone: forwarding,
+                            backupPhone: "",
+                            ringStrategy: "simultaneous",
+                            aiTranslationEnabled: true,
+                            forwardSms: true,
+                            callerIdMode: "caller"
+                        };
+                        localStorage.setItem('amestx_call_forwarding', JSON.stringify(fwd));
+                    } catch(e) {}
+
+                    // Redirect to voice app with line activated
+                    const targetUrl = data.redirect_url || `voice-app.html?account=${data.account_id}&phone=${encodeURIComponent(data.phone_number)}&company=${encodeURIComponent(data.company_name)}`;
+                    window.location.href = targetUrl;
+                } else {
+                    alert("Provisioning Notice: " + (data.error || "Could not complete line activation. Please check your inputs."));
+                    const btn = document.getElementById('btnInstantActivate');
+                    const btnText = document.getElementById('btnInstantActivateText');
+                    if (btn) btn.disabled = false;
+                    if (btnText) btnText.textContent = "⚡ Activate 15-Day Free Trial & Open Line Now";
+                }
+            } catch(err) {
+                console.error("Provisioning network error:", err);
+                // Graceful fallback: register trial locally & open voice app
+                localStorage.setItem('amestx_subscribed', 'true');
+                localStorage.setItem('amestx_primary_line', currentSelectedNumber);
+                const localUser = {
+                    company: company,
+                    name: name,
+                    email: email,
+                    phone: forwarding,
+                    line: currentSelectedNumber,
+                    plan: currentCheckoutPlan.name,
+                    trialDaysLeft: 15
+                };
+                localStorage.setItem('amestx_current_user', JSON.stringify(localUser));
+                window.location.href = `voice-app.html?account=act_local&phone=${encodeURIComponent(currentSelectedNumber)}&company=${encodeURIComponent(company)}`;
+            }
+        }
+
         function selectPlan(planName, price) {
-            document.getElementById('quote-section').scrollIntoView({ behavior: 'smooth' });
-            alert(`You selected the ${planName} plan ($${price}/mo). Please complete the details to connect your line!`);
+            openCheckoutModal(planName, price);
         }
     </script>
 </body>

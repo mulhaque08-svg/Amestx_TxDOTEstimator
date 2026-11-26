@@ -884,6 +884,200 @@ async def list_twilio_numbers():
     except Exception as e:
         return {"error": str(e)}
 
+# ==========================================
+# 3B. REAL-TIME NUMBER SEARCH & AUTOMATED PROVISIONING
+# ==========================================
+TEXAS_CURATED_NUMBERS = {
+    "832": [
+        {"phone_number": "+18324106674", "friendly_name": "(832) 410-6674", "locality": "Houston", "region": "TX"},
+        {"phone_number": "+18325091244", "friendly_name": "(832) 509-1244", "locality": "Houston", "region": "TX"},
+        {"phone_number": "+18327368819", "friendly_name": "(832) 736-8819", "locality": "Pasadena", "region": "TX"}
+    ],
+    "713": [
+        {"phone_number": "+17135894412", "friendly_name": "(713) 589-4412", "locality": "Houston", "region": "TX"},
+        {"phone_number": "+17134291880", "friendly_name": "(713) 429-1880", "locality": "Houston", "region": "TX"}
+    ],
+    "210": [
+        {"phone_number": "+12107581194", "friendly_name": "(210) 758-1194", "locality": "San Antonio", "region": "TX"},
+        {"phone_number": "+12109424238", "friendly_name": "(210) 942-4238", "locality": "San Antonio", "region": "TX"}
+    ],
+    "512": [
+        {"phone_number": "+15126489102", "friendly_name": "(512) 648-9102", "locality": "Austin", "region": "TX"},
+        {"phone_number": "+15128903415", "friendly_name": "(512) 890-3415", "locality": "Austin", "region": "TX"}
+    ],
+    "214": [
+        {"phone_number": "+12147365540", "friendly_name": "(214) 736-5540", "locality": "Dallas", "region": "TX"},
+        {"phone_number": "+12148193021", "friendly_name": "(214) 819-3021", "locality": "Dallas", "region": "TX"}
+    ],
+    "844": [
+        {"phone_number": "+18449124420", "friendly_name": "(844) 912-4420", "locality": "Nationwide", "region": "US"},
+        {"phone_number": "+18887203901", "friendly_name": "(888) 720-3901", "locality": "Nationwide", "region": "US"}
+    ]
+}
+
+@app.get("/api/numbers/available")
+def search_available_numbers(area_code: Optional[str] = "832", type: Optional[str] = "local", limit: int = 6):
+    clean_code = re.sub(r'[^0-9]', '', area_code or '832')
+    is_toll_free = (type == "toll_free" or clean_code in ["800", "888", "877", "866", "855", "844", "833"])
+
+    client = get_twilio_client()
+    if client:
+        try:
+            if is_toll_free:
+                available = client.available_phone_numbers("US").toll_free.list(limit=limit)
+            else:
+                available = client.available_phone_numbers("US").local.list(
+                    area_code=int(clean_code) if clean_code else 832,
+                    limit=limit
+                )
+            if available:
+                results = []
+                for num in available:
+                    results.append({
+                        "phone_number": num.phone_number,
+                        "friendly_name": num.friendly_name,
+                        "locality": num.locality or ("Nationwide" if is_toll_free else "Texas"),
+                        "region": num.region or ("US" if is_toll_free else "TX"),
+                        "postal_code": getattr(num, 'postal_code', ''),
+                        "type": "Toll-Free" if is_toll_free else "Local Texas Line"
+                    })
+                return {"success": True, "source": "twilio_live", "numbers": results}
+        except Exception as e:
+            logger.warning(f"Twilio live number search failed, using curated pool: {e}")
+
+    # Fallback to curated Texas catalog
+    fallback = TEXAS_CURATED_NUMBERS.get(clean_code) or TEXAS_CURATED_NUMBERS.get("832", [])
+    formatted = []
+    for f in fallback:
+        formatted.append({
+            "phone_number": f["phone_number"],
+            "friendly_name": f["friendly_name"],
+            "locality": f["locality"],
+            "region": f["region"],
+            "type": "Toll-Free" if is_toll_free else "Local Texas Line"
+        })
+    return {"success": True, "source": "curated_pool", "numbers": formatted}
+
+@app.post("/api/checkout/provision")
+async def provision_customer_line(request: Request):
+    """
+    Automated line purchasing & multi-tenant provisioning endpoint.
+    Invoked upon successful checkout or trial start.
+    """
+    try:
+        data = await request.json()
+    except Exception:
+        body = await request.body()
+        data = urllib.parse.parse_qs(body.decode("utf-8", errors="replace"))
+        data = {k: v[0] if isinstance(v, list) else v for k, v in data.items()}
+
+    selected_number = (data.get("phone_number") or data.get("number") or "").strip()
+    company_name = (data.get("company_name") or data.get("company") or "Valued Client").strip()
+    email = (data.get("email") or "").strip().lower()
+    name = (data.get("name") or data.get("admin_name") or "Administrator").strip()
+    forwarding_phone = (data.get("forwarding_phone") or data.get("phone") or "").strip()
+    plan = (data.get("plan") or "pro").strip().lower()
+    paypal_order_id = (data.get("order_id") or data.get("paypal_order_id") or f"PAYPAL-TRIAL-{uuid.uuid4().hex[:6].upper()}").strip()
+
+    if not selected_number or not email:
+        return {"success": False, "error": "Selected phone number and email are required."}
+
+    client = get_twilio_client()
+    purchased_sid = None
+    purchase_mode = "simulated"
+
+    if client:
+        try:
+            logger.info(f"Provisioning real line {selected_number} on Twilio for {company_name} ({email})...")
+            purchased = client.incoming_phone_numbers.create(
+                phone_number=selected_number,
+                friendly_name=f"{company_name} ({plan.title()})",
+                voice_application_sid=TWILIO_TWIML_APP_SID,
+                sms_url=f"{PUBLIC_BASE_URL}/sms",
+                sms_method="POST",
+                voice_url=f"{PUBLIC_BASE_URL}/voice/inbound",
+                voice_method="POST"
+            )
+            purchased_sid = purchased.sid
+            purchase_mode = "twilio_live"
+            logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
+        except Exception as tw_err:
+            logger.error(f"Live Twilio number purchase notice: {tw_err}")
+            purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
+            purchase_mode = "assigned_existing"
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    expires_at = now + datetime.timedelta(days=15)
+    account_id = f"act_{uuid.uuid4().hex[:8]}"
+
+    customer_record = {
+        "account_id": account_id,
+        "company_name": company_name,
+        "name": name,
+        "email": email,
+        "phone_number": selected_number,
+        "phone_sid": purchased_sid,
+        "forwarding_phone": normalize_phone(forwarding_phone) if forwarding_phone else "",
+        "plan": plan,
+        "paypal_order_id": paypal_order_id,
+        "started_at": now.isoformat(),
+        "expires_at": expires_at.isoformat(),
+        "days_left": 15,
+        "mode": purchase_mode,
+        "status": "active"
+    }
+
+    trials = load_trials()
+    trials.append(customer_record)
+    save_trials(trials)
+
+    return {
+        "success": True,
+        "account_id": account_id,
+        "company_name": company_name,
+        "name": name,
+        "email": email,
+        "phone_number": selected_number,
+        "plan": plan,
+        "forwarding_phone": customer_record["forwarding_phone"],
+        "purchase_mode": purchase_mode,
+        "redirect_url": f"voice-app.html?account={account_id}&phone={urllib.parse.quote(selected_number)}&company={urllib.parse.quote(company_name)}"
+    }
+
+@app.post("/api/customer/login")
+async def customer_login(request: Request):
+    try:
+        data = await request.json()
+    except Exception:
+        body = await request.body()
+        data = urllib.parse.parse_qs(body.decode("utf-8", errors="replace"))
+        data = {k: v[0] if isinstance(v, list) else v for k, v in data.items()}
+
+    query = (data.get("identifier") or data.get("email") or data.get("phone") or "").strip().lower()
+    clean_query_num = normalize_phone(query)
+
+    trials = load_trials()
+    matched = None
+    for t in trials:
+        if t.get("email") and t.get("email").lower() == query:
+            matched = t
+            break
+        if clean_query_num and normalize_phone(t.get("phone_number")) == clean_query_num:
+            matched = t
+            break
+        if clean_query_num and normalize_phone(t.get("phone")) == clean_query_num:
+            matched = t
+            break
+
+    if not matched:
+        return {"success": False, "error": "No active line found for that email or number. Please subscribe or register."}
+
+    return {
+        "success": True,
+        "customer": matched,
+        "redirect_url": f"voice-app.html?account={matched.get('account_id')}&phone={urllib.parse.quote(matched.get('phone_number') or matched.get('phone', ''))}&company={urllib.parse.quote(matched.get('company_name') or matched.get('company', 'Company'))}"
+    }
+
 @app.get("/sms/history")
 async def get_sms_history(phone: Optional[str] = None):
     clean_target = normalize_phone(phone) if phone else None

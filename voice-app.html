@@ -851,18 +851,44 @@
                         }
                     }
                 });
+
+                const primLine = localStorage.getItem('amestx_primary_line');
+                if (primLine) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].textContent.includes(primLine) || select.options[i].value === primLine) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
             } catch (err) {
                 console.warn("Could not load saved lines:", err);
             }
         }
 
         function initApp() {
+            // Auto-detect newly provisioned line from URL params (from voice.html checkout)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('account') && urlParams.has('phone')) {
+                const actId = urlParams.get('account');
+                const actPhone = decodeURIComponent(urlParams.get('phone'));
+                const actCompany = decodeURIComponent(urlParams.get('company') || 'Dedicated Business Line');
+                try {
+                    localStorage.setItem('amestx_subscribed', 'true');
+                    localStorage.setItem('amestx_primary_line', actPhone);
+                    let lines = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
+                    if (!lines.some(l => l.number === actPhone)) {
+                        lines.unshift({ id: actId, number: actPhone, label: `${actCompany} (Dedicated Line)` });
+                        localStorage.setItem('amestx_paid_lines', JSON.stringify(lines));
+                    }
+                } catch(e) {}
+            }
+
             // Initialize Twilio Carrier Voice Engine and load saved lines
             initTwilioVoice();
             loadSavedPaidLines();
 
             // Auto-trigger test incoming call if URL query param is present
-            const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('testIncoming') || urlParams.has('simulateIncoming')) {
                 setTimeout(() => testCallForwardingSimulation(), 1200);
             }
