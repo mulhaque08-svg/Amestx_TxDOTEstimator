@@ -328,16 +328,23 @@ def telnyx_request(endpoint: str, method: str = "GET", data: Optional[dict] = No
         return False, str(e)
 
 def send_telnyx_sms(to_number: str, from_number: Optional[str] = None, text: str = "") -> Tuple[bool, Any]:
-    """Sends outbound SMS via Telnyx Messaging Profile."""
+    """Sends outbound SMS via Telnyx Messaging Profile with auto-fallback for source numbers."""
     clean_to = "+" + normalize_phone(to_number)
-    clean_from = ("+" + normalize_phone(from_number)) if from_number else CALLER_ID
     payload = {
         "to": clean_to,
-        "from": clean_from,
         "text": text,
         "messaging_profile_id": TELNYX_MESSAGING_PROFILE_ID
     }
+    if from_number:
+        payload["from"] = "+" + normalize_phone(from_number)
+
     ok, res = telnyx_request("/messages", method="POST", data=payload)
+    # If rejected due to source number not in Telnyx account, retry without 'from' so Telnyx auto-selects its assigned number
+    if not ok and from_number:
+        logger.info("Telnyx rejected specific from_number. Retrying with Telnyx messaging profile pool...")
+        payload.pop("from", None)
+        ok, res = telnyx_request("/messages", method="POST", data=payload)
+
     if ok and isinstance(res, dict) and "data" in res:
         logger.info(f"Telnyx SMS dispatched to {clean_to}: id={res['data'].get('id')}")
         return True, res["data"]
@@ -977,32 +984,31 @@ async def send_sms_outbound(request: Request):
                 translation_text = translate_text(message_text, "en", "es")
                 full_body = f"{message_text}\n\n[Traducción ES]: {translation_text}"
 
-        carrier_used = "twilio"
+        # 1. Primary Attempt via Telnyx (Active carrier while Twilio 10DLC is under review)
+        carrier_used = "telnyx"
         msg_sid = None
         msg_status = "sent"
 
-        # 1. Primary Attempt via Twilio
-        try:
-            logger.info(f"Sending outbound SMS to {clean_to} from {outbound_from} via Twilio...")
-            msg = client.messages.create(
-                from_=outbound_from,
-                to=clean_to,
-                body=full_body
-            )
-            msg_sid = msg.sid
-            msg_status = msg.status or "sent"
-            logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
-        except Exception as tw_err:
-            logger.warning(f"Twilio SMS attempt notice ({tw_err}). Attempting automated Telnyx failover...")
-            ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=outbound_from, text=full_body)
-            if ok and isinstance(telnyx_res, dict):
-                carrier_used = "telnyx"
-                msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
-                msg_status = "sent"
-                logger.info(f"Successfully delivered outbound SMS via Telnyx failover! ID: {msg_sid}")
-            else:
-                logger.error(f"Both Twilio and Telnyx SMS attempts failed for {clean_to}: {tw_err}")
-                return {"success": False, "error": f"Twilio: {tw_err}; Telnyx: {telnyx_res}"}
+        tel_ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=outbound_from, text=full_body)
+        if tel_ok and isinstance(telnyx_res, dict):
+            msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+            msg_status = "sent"
+            logger.info(f"Outbound SMS dispatched via Telnyx to {clean_to}: sid={msg_sid}")
+        else:
+            logger.warning(f"Telnyx attempt notice ({telnyx_res}). Falling back to Twilio...")
+            try:
+                msg = client.messages.create(
+                    from_=outbound_from,
+                    to=clean_to,
+                    body=full_body
+                )
+                carrier_used = "twilio"
+                msg_sid = msg.sid
+                msg_status = msg.status or "sent"
+                logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
+            except Exception as tw_err:
+                logger.error(f"Both Telnyx and Twilio failed: Telnyx={telnyx_res}, Twilio={tw_err}")
+                return {"success": False, "error": f"Telnyx: {telnyx_res}; Twilio: {tw_err}"}
 
         record_sms_message(
             direction="outbound",
