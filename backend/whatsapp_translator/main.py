@@ -846,6 +846,44 @@ async def send_sms_outbound(request: Request):
         logger.error(f"Error sending outbound SMS: {e}")
         return {"success": False, "error": str(e)}
 
+@app.get("/sms/status/{sid}")
+async def get_sms_status(sid: str):
+    client = get_twilio_client()
+    if not client:
+        return {"error": "Twilio client not configured"}
+    try:
+        msg = client.messages(sid).fetch()
+        return {
+            "sid": msg.sid,
+            "status": msg.status,
+            "error_code": msg.error_code,
+            "error_message": msg.error_message,
+            "to": msg.to,
+            "from": msg.from_,
+            "date_sent": str(msg.date_sent),
+            "date_updated": str(msg.date_updated)
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/twilio/numbers")
+async def list_twilio_numbers():
+    client = get_twilio_client()
+    if not client:
+        return {"error": "Twilio client not configured"}
+    try:
+        incoming = client.incoming_phone_numbers.list(limit=20)
+        numbers = []
+        for n in incoming:
+            numbers.append({
+                "phone_number": n.phone_number,
+                "friendly_name": n.friendly_name,
+                "capabilities": n.capabilities
+            })
+        return {"numbers": numbers}
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/sms/history")
 async def get_sms_history(phone: Optional[str] = None):
     clean_target = normalize_phone(phone) if phone else None
