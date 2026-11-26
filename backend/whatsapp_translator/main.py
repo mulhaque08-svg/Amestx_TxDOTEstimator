@@ -360,7 +360,7 @@ def health():
         "service": "Amestx Voice & AI Translation Engine",
         "version": "3.0.0",
         "number": CALLER_ID,
-        "endpoints": ["/token", "/voice/outbound", "/voice/inbound", "/translate/speak", "/translate/audio", "/whatsapp", "/sms", "/audio/{id}"]
+        "endpoints": ["/token", "/voice/outbound", "/voice/inbound", "/translate/speak", "/translate/audio", "/whatsapp", "/sms", "/sms/send", "/sms/history", "/audio/{id}"]
     }
 
 # ==========================================
@@ -761,6 +761,102 @@ async def whatsapp_webhook(request: Request):
 # ==========================================
 # 3. DIRECT SMS & MMS TEXTING ENDPOINTS
 # ==========================================
+SMS_HISTORY = []
+
+def record_sms_message(direction: str, from_num: str, to_num: str, body: str, translation: str = "", sid: str = "", status: str = "delivered"):
+    clean_from = normalize_phone(from_num)
+    clean_to = normalize_phone(to_num)
+    entry = {
+        "id": sid or str(uuid.uuid4()),
+        "direction": direction,
+        "from": clean_from,
+        "to": clean_to,
+        "body": body,
+        "translation": translation,
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "status": status
+    }
+    SMS_HISTORY.append(entry)
+    if len(SMS_HISTORY) > 100:
+        SMS_HISTORY.pop(0)
+    return entry
+
+@app.post("/sms/send")
+@app.post("/api/sms/send")
+async def send_sms_outbound(request: Request):
+    try:
+        data = await request.json()
+        to_number = data.get("to") or data.get("recipient") or ""
+        message_text = (data.get("message") or data.get("text") or "").strip()
+        translate = data.get("translate", True)
+
+        if not to_number or not message_text:
+            return {"success": False, "error": "Recipient phone number and message text are required."}
+
+        client = get_twilio_client()
+        if not client:
+            logger.error("Twilio client credentials not configured on server")
+            return {"success": False, "error": "Twilio server credentials not configured."}
+
+        clean_digits = normalize_phone(to_number)
+        clean_to = f"+{clean_digits}"
+
+        # Bilingual Translation:
+        # Detect language of message:
+        # If English, translate to Spanish and attach translation.
+        # If Spanish, translate to English and attach translation.
+        translation_text = ""
+        full_body = message_text
+        if translate:
+            src_lang = detect_language(message_text)
+            if src_lang == "es":
+                translation_text = translate_text(message_text, "es", "en")
+                full_body = f"{message_text}\n\n[Traducción EN]: {translation_text}"
+            else:
+                translation_text = translate_text(message_text, "en", "es")
+                full_body = f"{message_text}\n\n[Traducción ES]: {translation_text}"
+
+        logger.info(f"Sending outbound SMS to {clean_to} from {CALLER_ID}: {full_body[:80]}...")
+        msg = client.messages.create(
+            from_=CALLER_ID,
+            to=clean_to,
+            body=full_body
+        )
+        logger.info(f"Outbound SMS sent to {clean_to}: sid={msg.sid}, status={msg.status}")
+
+        record_sms_message(
+            direction="outbound",
+            from_num=CALLER_ID,
+            to_num=clean_to,
+            body=message_text,
+            translation=translation_text,
+            sid=msg.sid,
+            status=msg.status or "sent"
+        )
+
+        return {
+            "success": True,
+            "sid": msg.sid,
+            "to": clean_to,
+            "status": msg.status,
+            "original": message_text,
+            "translation": translation_text
+        }
+    except Exception as e:
+        logger.error(f"Error sending outbound SMS: {e}")
+        return {"success": False, "error": str(e)}
+
+@app.get("/sms/history")
+async def get_sms_history(phone: Optional[str] = None):
+    clean_target = normalize_phone(phone) if phone else None
+    if not clean_target:
+        return {"messages": SMS_HISTORY[-30:]}
+    filtered = [
+        m for m in SMS_HISTORY
+        if m["to"] == clean_target or m["from"] == clean_target
+    ]
+    return {"messages": filtered}
+
 @app.post("/sms")
 @app.post("/sms/inbound")
 async def sms_inbound(request: Request):
@@ -772,6 +868,7 @@ async def sms_inbound(request: Request):
     if not body_text:
         return PlainResponse(content="<Response></Response>", media_type="application/xml")
 
+    clean_from_digits = normalize_phone(from_number)
     lang = detect_language(body_text)
     if lang == "es":
         trans = translate_text(body_text, "es", "en")
@@ -781,6 +878,32 @@ async def sms_inbound(request: Request):
         reply = f"[Amestx Voice Translation]\n🇲🇽 ES: \"{trans}\""
 
     logger.info(f"SMS from {from_number}: '{body_text}' -> '{trans}'")
+
+    # Record in history
+    record_sms_message(
+        direction="inbound",
+        from_num=from_number,
+        to_num=CALLER_ID,
+        body=body_text,
+        translation=trans,
+        status="received"
+    )
+
+    # Forward to supervisor personal mobile phone (+1 832-837-9801) if not from supervisor
+    if clean_from_digits != SUPERVISOR_PHONE:
+        try:
+            client = get_twilio_client()
+            if client:
+                fwd_body = f"📩 [Amestx SMS from {from_number}]:\n\"{body_text}\"\n\n[Translation]:\n\"{trans}\""
+                client.messages.create(
+                    from_=CALLER_ID,
+                    to=f"+{SUPERVISOR_PHONE}",
+                    body=fwd_body
+                )
+                logger.info(f"Forwarded SMS from {from_number} to Supervisor +{SUPERVISOR_PHONE}")
+        except Exception as fwd_err:
+            logger.warning(f"Failed to forward SMS to supervisor: {fwd_err}")
+
     return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
 @app.get("/audio/{filename}")

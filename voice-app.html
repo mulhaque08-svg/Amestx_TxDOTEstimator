@@ -780,9 +780,9 @@
                 <div class="p-4 bg-white border-t border-slate-200">
                     <form onsubmit="handleSendSms(event)" class="flex items-center gap-3">
                         <input id="smsMessageInput" type="text" placeholder="Type text message to client or crew (instant Spanish translation)..." class="flex-1 px-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition">
-                        <button type="submit" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-2xl transition shadow-md shadow-blue-500/20 flex items-center gap-1.5 flex-shrink-0">
-                            <span>Send SMS</span>
-                            <span>&rarr;</span>
+                        <button id="smsSendBtn" type="submit" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-2xl transition shadow-md shadow-blue-500/20 flex items-center gap-1.5 flex-shrink-0">
+                            <span id="smsSendBtnText">Send SMS</span>
+                            <span id="smsSendBtnIcon">&rarr;</span>
                         </button>
                     </form>
                     <div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 px-1">
@@ -1256,43 +1256,143 @@
             showNotification("💬 Opened Text & Client SMS");
         }
 
-        function handleSendSms(e) {
-            e.preventDefault();
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        const displayedSmsIds = new Set();
+
+        async function handleSendSms(e) {
+            if (e) e.preventDefault();
             const inp = document.getElementById('smsMessageInput');
             const recip = document.getElementById('smsRecipientInput');
             const stream = document.getElementById('smsChatStream');
+            const btn = document.getElementById('smsSendBtn');
+            const btnText = document.getElementById('smsSendBtnText');
+            const btnIcon = document.getElementById('smsSendBtnIcon');
+
             if (!inp || !inp.value.trim()) return;
 
             const text = inp.value.trim();
-            const toNum = recip ? recip.value.trim() : 'Client';
+            let toNum = recip ? recip.value.trim() : '8323908863';
+            if (!toNum) toNum = '8323908863';
 
-            // Add sent bubble
-            const bubble = document.createElement('div');
-            bubble.className = "flex items-start gap-3 max-w-lg ml-auto flex-row-reverse animate-in fade-in slide-in-from-bottom-2";
-            bubble.innerHTML = `
-                <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
-                    AV
-                </div>
-                <div class="text-right">
-                    <div class="bg-blue-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-left leading-relaxed">
-                        <div>${text}</div>
+            // Loading state on button
+            if (btn) btn.disabled = true;
+            if (btnText) btnText.textContent = "Sending...";
+            if (btnIcon) btnIcon.innerHTML = `<svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>`;
+
+            showNotification(`📡 Transmitting SMS to ${toNum}...`);
+
+            try {
+                const response = await fetch("https://amestx-translator-869440210153.us-central1.run.app/sms/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        to: toNum,
+                        message: text,
+                        translate: true
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.sid) displayedSmsIds.add(data.sid);
+                    const sidShort = data.sid ? ` (SID: ${data.sid.slice(-6)})` : '';
+                    const translationHtml = data.translation ? `
                         <div class="mt-2 pt-2 border-t border-blue-500/60 text-[11px] text-blue-100 flex items-center gap-1 font-medium">
                             <span>🌐 AI Spanish Auto-Sent:</span>
-                            <em>"Traducción automática enviada al cliente."</em>
+                            <em>"${escapeHtml(data.translation)}"</em>
                         </div>
-                    </div>
-                    <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; Delivered via (844) 826-3789</div>
-                </div>
-            `;
-            if (stream) {
-                stream.appendChild(bubble);
-                stream.scrollTop = stream.scrollHeight;
-            }
-            inp.value = '';
+                    ` : '';
 
-            // ZERO POPUPS - Smooth auto-fading confirmation
-            showNotification(`✅ SMS delivered to ${toNum}`);
+                    const bubble = document.createElement('div');
+                    bubble.className = "flex items-start gap-3 max-w-lg ml-auto flex-row-reverse animate-in fade-in slide-in-from-bottom-2";
+                    bubble.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                            AV
+                        </div>
+                        <div class="text-right">
+                            <div class="bg-blue-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-left leading-relaxed">
+                                <div>${escapeHtml(text)}</div>
+                                ${translationHtml}
+                            </div>
+                            <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; Delivered via (844) 826-3789${sidShort}</div>
+                        </div>
+                    `;
+                    if (stream) {
+                        stream.appendChild(bubble);
+                        stream.scrollTop = stream.scrollHeight;
+                    }
+                    inp.value = '';
+                    showNotification(`✅ SMS delivered to ${toNum}`);
+                } else {
+                    console.error("SMS Send Error:", data.error);
+                    showNotification(`⚠️ SMS failed: ${data.error || 'Server rejected message'}`);
+                }
+            } catch (err) {
+                console.error("SMS Network/Server Error:", err);
+                showNotification(`⚠️ Could not deliver SMS: ${err.message || 'Check server status'}`);
+            } finally {
+                if (btn) btn.disabled = false;
+                if (btnText) btnText.textContent = "Send SMS";
+                if (btnIcon) btnIcon.innerHTML = "&rarr;";
+            }
         }
+
+        async function checkIncomingSms() {
+            const recip = document.getElementById('smsRecipientInput');
+            const stream = document.getElementById('smsChatStream');
+            if (!recip || !stream) return;
+            const toNum = recip.value.trim();
+            if (!toNum) return;
+            try {
+                const res = await fetch(`https://amestx-translator-869440210153.us-central1.run.app/sms/history?phone=${encodeURIComponent(toNum)}`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data && data.messages && Array.isArray(data.messages)) {
+                    data.messages.forEach(msg => {
+                        if (!displayedSmsIds.has(msg.id)) {
+                            displayedSmsIds.add(msg.id);
+                            if (msg.direction === 'inbound') {
+                                const bubble = document.createElement('div');
+                                bubble.className = "flex items-start gap-3 max-w-lg animate-in fade-in slide-in-from-bottom-2";
+                                bubble.innerHTML = `
+                                    <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                                        CL
+                                    </div>
+                                    <div>
+                                        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-slate-200 text-xs text-slate-800 leading-relaxed">
+                                            <div>${escapeHtml(msg.body)}</div>
+                                            ${msg.translation ? `
+                                            <div class="mt-2 pt-2 border-t border-slate-100 text-[11px] text-purple-700 flex items-center gap-1 font-medium">
+                                                <span>🌐 AI Translation:</span>
+                                                <em>"${escapeHtml(msg.translation)}"</em>
+                                            </div>` : ''}
+                                        </div>
+                                        <div class="text-[10px] text-slate-400 mt-1 font-mono">Just now &bull; SMS received on (844) 826-3789</div>
+                                    </div>
+                                `;
+                                stream.appendChild(bubble);
+                                stream.scrollTop = stream.scrollHeight;
+                                showNotification(`📩 New SMS reply from ${msg.from}`);
+                            }
+                        }
+                    });
+                }
+            } catch (e) {
+                // silent background poll
+            }
+        }
+        setInterval(checkIncomingSms, 8000);
 
         function showNotification(msg) {
             const toast = document.getElementById('toastNotification');
