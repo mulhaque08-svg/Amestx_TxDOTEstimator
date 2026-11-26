@@ -1094,14 +1094,9 @@ async def send_sms_outbound(request: Request):
         carrier_used = "telnyx"
         msg_sid = None
         msg_status = "sent"
+        requested_carrier = (data.get("carrier") or "").lower()
 
-        tel_ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=outbound_from, text=full_body)
-        if tel_ok and isinstance(telnyx_res, dict):
-            msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
-            msg_status = "sent"
-            logger.info(f"Outbound SMS dispatched via Telnyx to {clean_to}: sid={msg_sid}")
-        else:
-            logger.warning(f"Telnyx attempt notice ({telnyx_res}). Falling back to Twilio...")
+        if requested_carrier == "twilio":
             try:
                 msg = client.messages.create(
                     from_=outbound_from,
@@ -1113,8 +1108,29 @@ async def send_sms_outbound(request: Request):
                 msg_status = msg.status or "sent"
                 logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
             except Exception as tw_err:
-                logger.error(f"Both Telnyx and Twilio failed: Telnyx={telnyx_res}, Twilio={tw_err}")
-                return {"success": False, "error": f"Telnyx: {telnyx_res}; Twilio: {tw_err}"}
+                logger.error(f"Forced Twilio SMS failed: {tw_err}")
+                return {"success": False, "error": f"Twilio: {tw_err}"}
+        else:
+            tel_ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=outbound_from, text=full_body)
+            if tel_ok and isinstance(telnyx_res, dict):
+                msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+                msg_status = "sent"
+                logger.info(f"Outbound SMS dispatched via Telnyx to {clean_to}: sid={msg_sid}")
+            else:
+                logger.warning(f"Telnyx attempt notice ({telnyx_res}). Falling back to Twilio...")
+                try:
+                    msg = client.messages.create(
+                        from_=outbound_from,
+                        to=clean_to,
+                        body=full_body
+                    )
+                    carrier_used = "twilio"
+                    msg_sid = msg.sid
+                    msg_status = msg.status or "sent"
+                    logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
+                except Exception as tw_err:
+                    logger.error(f"Both Telnyx and Twilio failed: Telnyx={telnyx_res}, Twilio={tw_err}")
+                    return {"success": False, "error": f"Telnyx: {telnyx_res}; Twilio: {tw_err}"}
 
         record_sms_message(
             direction="outbound",
@@ -1444,6 +1460,56 @@ async def get_sms_history(phone: Optional[str] = None):
     ]
     return {"messages": filtered}
 
+def forward_sms_to_cell(from_number: str, to_number: str, message_body: str, translation: str = ""):
+    """
+    Forwards any incoming customer SMS to the user's active mobile phone number (e.g. +18323908863).
+    """
+    try:
+        fwd_cfg = load_forwarding_settings()
+        if not fwd_cfg.get("enabled", True) or not fwd_cfg.get("sms", True):
+            logger.info("SMS forwarding to cell is disabled in settings.")
+            return
+
+        raw_fwd = fwd_cfg.get("phone", "")
+        if not raw_fwd:
+            return
+
+        clean_target = normalize_phone(raw_fwd)
+        clean_from = normalize_phone(from_number)
+
+        # Avoid loop if sender is the forwarding cell itself
+        if clean_from == clean_target:
+            logger.info(f"SMS from {from_number} is the target cell itself ({clean_target}). Skipping forward.")
+            return
+
+        target_fwd = f"+{clean_target}"
+        fwd_text = f"📩 [Amestx SMS to {to_number} from {from_number}]:\n\"{message_body}\""
+        if translation:
+            fwd_text += f"\n\n[Translation]:\n\"{translation}\""
+
+        logger.info(f"Forwarding inbound SMS from {from_number} to Cell {target_fwd}...")
+
+        # 1. Try sending via Telnyx
+        tel_ok, tel_res = send_telnyx_sms(to_number=target_fwd, text=fwd_text)
+        if tel_ok and isinstance(tel_res, dict):
+            logger.info(f"SMS forwarded to {target_fwd} via Telnyx (id: {tel_res.get('id')})")
+            return
+
+        # 2. Fallback to Twilio via Master Toll-Free line (+18448263789)
+        client = get_twilio_client()
+        if client:
+            try:
+                msg = client.messages.create(
+                    from_=CALLER_ID,  # +18448263789
+                    to=target_fwd,
+                    body=fwd_text
+                )
+                logger.info(f"SMS forwarded to {target_fwd} via Twilio ({CALLER_ID}, sid: {msg.sid})")
+            except Exception as tw_err:
+                logger.warning(f"Twilio SMS forward notice: {tw_err}")
+    except Exception as e:
+        logger.error(f"Error in forward_sms_to_cell: {e}")
+
 @app.post("/sms")
 @app.post("/sms/inbound")
 async def sms_inbound(request: Request):
@@ -1477,37 +1543,8 @@ async def sms_inbound(request: Request):
         status="received"
     )
 
-    # Determine customer forwarding phone
-    to_digits = re.sub(r'[^0-9]', '', to_number)
-    customer_fwd = ""
-    try:
-        trials = load_trials()
-        for t in trials:
-            t_num = re.sub(r'[^0-9]', '', t.get("phone_number", ""))
-            if t_num and (t_num == to_digits or to_digits.endswith(t_num) or t_num.endswith(to_digits)):
-                fwd = t.get("forwarding_phone", "")
-                if fwd:
-                    customer_fwd = re.sub(r'[^0-9]', '', fwd)
-                break
-    except Exception as e:
-        logger.warning(f"Error checking customer forwarding for SMS: {e}")
-
-    target_fwd = customer_fwd if customer_fwd else SUPERVISOR_PHONE
-
-    # Forward to cell phone if not from same target
-    if clean_from_digits != target_fwd:
-        try:
-            client = get_twilio_client()
-            if client:
-                fwd_body = f"📩 [Amestx SMS to {to_number} from {from_number}]:\n\"{body_text}\"\n\n[Translation]:\n\"{trans}\""
-                client.messages.create(
-                    from_=to_number or CALLER_ID,
-                    to=f"+{target_fwd}",
-                    body=fwd_body
-                )
-                logger.info(f"Forwarded SMS from {from_number} to Cell +{target_fwd}")
-        except Exception as fwd_err:
-            logger.warning(f"Failed to forward SMS to cell: {fwd_err}")
+    # Automatically forward to configured cell phone (+18323908863)
+    forward_sms_to_cell(from_number, to_number, body_text, trans)
 
     return PlainResponse(content=build_twiml(reply), media_type="application/xml")
 
@@ -1561,6 +1598,9 @@ async def telnyx_inbound_sms(request: Request):
             translation=translated_text,
             sid=payload.get("id", f"TLX_IN_{uuid.uuid4().hex[:6]}")
         )
+
+        # Automatically forward to configured cell phone (+18323908863)
+        forward_sms_to_cell(clean_from, clean_to, message_body, translated_text)
 
         # Reply back via Telnyx
         send_telnyx_sms(to_number=clean_from, from_number=clean_to, text=reply_text)
