@@ -7,7 +7,7 @@ import json
 import logging
 import datetime
 import base64
-from typing import Optional
+from typing import Optional, Any, Tuple, List, Dict
 from fastapi import FastAPI, Request
 from fastapi.responses import Response as PlainResponse, FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,6 +40,10 @@ TWILIO_TWIML_APP_SID = os.environ.get("TWILIO_TWIML_APP_SID", "")
 
 CALLER_ID = "+18448263789"
 PUBLIC_BASE_URL = os.environ.get("PUBLIC_BASE_URL", "https://amestx-translator-869440210153.us-central1.run.app")
+
+TELNYX_API_KEY = os.environ.get("TELNYX_API_KEY", "")
+TELNYX_MESSAGING_PROFILE_ID = os.environ.get("TELNYX_MESSAGING_PROFILE_ID", "4001a219-04c1-46fb-a83d-b27a4ac40ba1")
+TELNYX_TEXML_APP_ID = os.environ.get("TELNYX_TEXML_APP_ID", "3101859461770249628")
 
 speech_client = None
 tts_client = None
@@ -288,6 +292,93 @@ def get_twilio_client():
     except Exception as e:
         logger.error(f"Error initializing Twilio Client: {e}")
     return None
+
+def format_phone_friendly(phone: str) -> str:
+    clean = re.sub(r'[^0-9]', '', phone or '')
+    if len(clean) == 11 and clean.startswith('1'):
+        return f"({clean[1:4]}) {clean[4:7]}-{clean[7:]}"
+    elif len(clean) == 10:
+        return f"({clean[0:3]}) {clean[3:6]}-{clean[6:]}"
+    return phone
+
+def telnyx_request(endpoint: str, method: str = "GET", data: Optional[dict] = None) -> Tuple[bool, Any]:
+    """Helper to query Telnyx REST API v2."""
+    if not TELNYX_API_KEY:
+        return False, "TELNYX_API_KEY not configured"
+    url = f"https://api.telnyx.com/v2{endpoint}"
+    headers = {
+        "Authorization": f"Bearer {TELNYX_API_KEY}",
+        "Accept": "application/json"
+    }
+    body_bytes = None
+    if data is not None:
+        headers["Content-Type"] = "application/json"
+        body_bytes = json.dumps(data).encode("utf-8")
+    try:
+        req = urllib.request.Request(url, data=body_bytes, headers=headers, method=method)
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            res_json = json.loads(resp.read().decode("utf-8"))
+            return True, res_json
+    except urllib.error.HTTPError as he:
+        err_msg = he.read().decode("utf-8", errors="replace")
+        logger.warning(f"Telnyx API HTTP {he.code} on {endpoint}: {err_msg}")
+        return False, err_msg
+    except Exception as e:
+        logger.error(f"Telnyx API error on {endpoint}: {e}")
+        return False, str(e)
+
+def send_telnyx_sms(to_number: str, from_number: Optional[str] = None, text: str = "") -> Tuple[bool, Any]:
+    """Sends outbound SMS via Telnyx Messaging Profile."""
+    clean_to = "+" + normalize_phone(to_number)
+    clean_from = ("+" + normalize_phone(from_number)) if from_number else CALLER_ID
+    payload = {
+        "to": clean_to,
+        "from": clean_from,
+        "text": text,
+        "messaging_profile_id": TELNYX_MESSAGING_PROFILE_ID
+    }
+    ok, res = telnyx_request("/messages", method="POST", data=payload)
+    if ok and isinstance(res, dict) and "data" in res:
+        logger.info(f"Telnyx SMS dispatched to {clean_to}: id={res['data'].get('id')}")
+        return True, res["data"]
+    return False, res
+
+def search_telnyx_numbers(area_code: Optional[str] = "832", is_toll_free: bool = False, limit: int = 4) -> List[dict]:
+    """Searches Telnyx live available numbers pool."""
+    clean_code = re.sub(r'[^0-9]', '', area_code or '832')
+    if is_toll_free:
+        endpoint = f"/available_phone_numbers?filter[country_code]=US&filter[phone_number_type]=toll_free&filter[limit]={limit}"
+    else:
+        endpoint = f"/available_phone_numbers?filter[country_code]=US&filter[administrative_area]=TX&filter[limit]={limit}"
+    ok, res = telnyx_request(endpoint, method="GET")
+    if ok and isinstance(res, dict) and "data" in res:
+        formatted = []
+        for n in res["data"]:
+            num = n.get("phone_number", "")
+            formatted.append({
+                "phone_number": num,
+                "friendly_name": format_phone_friendly(num),
+                "locality": "Texas" if not is_toll_free else "Nationwide",
+                "region": "TX" if not is_toll_free else "US",
+                "postal_code": "",
+                "type": "Toll-Free (Telnyx)" if is_toll_free else f"Texas Line ({format_phone_friendly(num)[:5]})",
+                "carrier": "telnyx"
+            })
+        return formatted
+    return []
+
+def order_telnyx_number(phone_number: str) -> Tuple[bool, Any]:
+    """Places an automated number order on Telnyx and binds Messaging Profile and TeXML App."""
+    payload = {
+        "phone_numbers": [{"phone_number": phone_number}],
+        "messaging_profile_id": TELNYX_MESSAGING_PROFILE_ID,
+        "connection_id": TELNYX_TEXML_APP_ID
+    }
+    ok, res = telnyx_request("/number_orders", method="POST", data=payload)
+    if ok and isinstance(res, dict) and "data" in res:
+        logger.info(f"Telnyx number ordered successfully: {phone_number} (Order ID: {res['data'].get('id')})")
+        return True, res["data"]
+    return False, res
 
 def send_whatsapp_outbound(to_number: str, text: Optional[str] = None, media_url: Optional[str] = None) -> tuple[bool, Optional[str]]:
     """
@@ -816,13 +907,32 @@ async def send_sms_outbound(request: Request):
                 translation_text = translate_text(message_text, "en", "es")
                 full_body = f"{message_text}\n\n[Traducción ES]: {translation_text}"
 
-        logger.info(f"Sending outbound SMS to {clean_to} from {CALLER_ID}: {full_body[:80]}...")
-        msg = client.messages.create(
-            from_=CALLER_ID,
-            to=clean_to,
-            body=full_body
-        )
-        logger.info(f"Outbound SMS sent to {clean_to}: sid={msg.sid}, status={msg.status}")
+        carrier_used = "twilio"
+        msg_sid = None
+        msg_status = "sent"
+
+        # 1. Primary Attempt via Twilio
+        try:
+            logger.info(f"Sending outbound SMS to {clean_to} from {CALLER_ID} via Twilio...")
+            msg = client.messages.create(
+                from_=CALLER_ID,
+                to=clean_to,
+                body=full_body
+            )
+            msg_sid = msg.sid
+            msg_status = msg.status or "sent"
+            logger.info(f"Outbound SMS sent via Twilio to {clean_to}: sid={msg.sid}")
+        except Exception as tw_err:
+            logger.warning(f"Twilio SMS attempt notice ({tw_err}). Attempting automated Telnyx failover...")
+            ok, telnyx_res = send_telnyx_sms(to_number=clean_to, from_number=CALLER_ID, text=full_body)
+            if ok and isinstance(telnyx_res, dict):
+                carrier_used = "telnyx"
+                msg_sid = telnyx_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+                msg_status = "sent"
+                logger.info(f"Successfully delivered outbound SMS via Telnyx failover! ID: {msg_sid}")
+            else:
+                logger.error(f"Both Twilio and Telnyx SMS attempts failed for {clean_to}: {tw_err}")
+                return {"success": False, "error": f"Twilio: {tw_err}; Telnyx: {telnyx_res}"}
 
         record_sms_message(
             direction="outbound",
@@ -830,15 +940,16 @@ async def send_sms_outbound(request: Request):
             to_num=clean_to,
             body=message_text,
             translation=translation_text,
-            sid=msg.sid,
-            status=msg.status or "sent"
+            sid=msg_sid,
+            status=msg_status
         )
 
         return {
             "success": True,
-            "sid": msg.sid,
+            "sid": msg_sid,
+            "carrier": carrier_used,
             "to": clean_to,
-            "status": msg.status,
+            "status": msg_status,
             "original": message_text,
             "translation": translation_text
         }
@@ -943,7 +1054,12 @@ def search_available_numbers(area_code: Optional[str] = "832", type: Optional[st
                     })
                 return {"success": True, "source": "twilio_live", "numbers": results}
         except Exception as e:
-            logger.warning(f"Twilio live number search failed, using curated pool: {e}")
+            logger.warning(f"Twilio live number search failed, trying Telnyx: {e}")
+
+    # 2. Try Telnyx Live search
+    telnyx_nums = search_telnyx_numbers(clean_code, is_toll_free, limit=limit)
+    if telnyx_nums:
+        return {"success": True, "source": "telnyx_live", "numbers": telnyx_nums}
 
     # Fallback to curated Texas catalog
     fallback = TEXAS_CURATED_NUMBERS.get(clean_code) or TEXAS_CURATED_NUMBERS.get("832", [])
@@ -1002,7 +1118,22 @@ async def provision_customer_line(request: Request):
             purchase_mode = "twilio_live"
             logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
         except Exception as tw_err:
-            logger.error(f"Live Twilio number purchase notice: {tw_err}")
+            logger.error(f"Live Twilio number purchase notice: {tw_err}. Attempting Telnyx order...")
+            tel_ok, tel_res = order_telnyx_number(selected_number)
+            if tel_ok and isinstance(tel_res, dict):
+                purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+                purchase_mode = "telnyx_live"
+                logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
+            else:
+                purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
+                purchase_mode = "assigned_existing"
+    else:
+        tel_ok, tel_res = order_telnyx_number(selected_number)
+        if tel_ok and isinstance(tel_res, dict):
+            purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+            purchase_mode = "telnyx_live"
+            logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
+        else:
             purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
             purchase_mode = "assigned_existing"
 
@@ -1137,6 +1268,51 @@ async def sms_inbound(request: Request):
             logger.warning(f"Failed to forward SMS to supervisor: {fwd_err}")
 
     return PlainResponse(content=build_twiml(reply), media_type="application/xml")
+
+@app.post("/telnyx/sms")
+async def telnyx_inbound_sms(request: Request):
+    """
+    Handles inbound SMS delivered from Telnyx carrier.
+    Parses Telnyx v2 webhook format and translates automatically.
+    """
+    try:
+        body = await request.json()
+        data = body.get("data", {})
+        payload = data.get("payload", {})
+        from_number = payload.get("from", {}).get("phone_number", "")
+        to_number = payload.get("to", [{}])[0].get("phone_number", "")
+        message_body = payload.get("text", "").strip()
+
+        if not message_body:
+            return {"status": "ignored_empty"}
+
+        clean_from = "+" + normalize_phone(from_number)
+        clean_to = "+" + normalize_phone(to_number)
+        logger.info(f"Inbound Telnyx SMS from {clean_from} to {clean_to}: '{message_body}'")
+
+        src_lang = detect_language(message_body)
+        if src_lang == "es":
+            translated_text = translate_text(message_body, "es", "en")
+            reply_text = f"🇺🇸 English Translation:\n\"{translated_text}\""
+        else:
+            translated_text = translate_text(message_body, "en", "es")
+            reply_text = f"🇲🇽 Traducción al Español:\n\"{translated_text}\""
+
+        record_sms_message(
+            direction="inbound",
+            from_num=clean_from,
+            to_num=clean_to,
+            body=message_body,
+            translation=translated_text,
+            sid=payload.get("id", f"TLX_IN_{uuid.uuid4().hex[:6]}")
+        )
+
+        # Reply back via Telnyx
+        send_telnyx_sms(to_number=clean_from, from_number=clean_to, text=reply_text)
+        return {"status": "success", "carrier": "telnyx"}
+    except Exception as e:
+        logger.error(f"Error handling Telnyx inbound SMS: {e}")
+        return {"status": "error", "error": str(e)}
 
 @app.get("/audio/{filename}")
 def get_audio(filename: str):
