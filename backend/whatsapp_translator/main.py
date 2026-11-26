@@ -1431,13 +1431,26 @@ async def sms_inbound(request: Request):
 @app.post("/telnyx/sms")
 async def telnyx_inbound_sms(request: Request):
     """
-    Handles inbound SMS delivered from Telnyx carrier.
+    Handles inbound SMS and delivery status callbacks from Telnyx carrier.
     Parses Telnyx v2 webhook format and translates automatically.
     """
     try:
         body = await request.json()
         data = body.get("data", {})
+        event_type = data.get("event_type", "")
         payload = data.get("payload", {})
+
+        # Handle delivery status receipts (message.sent, message.finalized) without creating duplicate inbound records
+        if event_type and event_type != "message.received":
+            msg_id = payload.get("id", "")
+            to_status = payload.get("to", [{}])[0].get("status", "sent")
+            logger.info(f"Telnyx delivery receipt ({event_type}) for {msg_id}: status={to_status}")
+            for msg in reversed(SMS_HISTORY):
+                if msg.get("id") == msg_id:
+                    msg["status"] = to_status
+                    break
+            return {"status": "status_updated", "event_type": event_type}
+
         from_number = payload.get("from", {}).get("phone_number", "")
         to_number = payload.get("to", [{}])[0].get("phone_number", "")
         message_body = payload.get("text", "").strip()
