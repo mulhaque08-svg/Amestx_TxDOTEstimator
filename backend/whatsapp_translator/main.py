@@ -1271,6 +1271,12 @@ def search_available_numbers(area_code: Optional[str] = "832", type: Optional[st
     clean_code = re.sub(r'[^0-9]', '', area_code or '832')
     is_toll_free = (type == "toll_free" or clean_code in ["800", "888", "877", "866", "855", "844", "833"])
 
+    # 1. Primary: Search Telnyx live available numbers pool (Telnyx is default provider)
+    telnyx_nums = search_telnyx_numbers(clean_code, is_toll_free, limit=limit)
+    if telnyx_nums:
+        return {"success": True, "source": "telnyx_live", "numbers": telnyx_nums}
+
+    # 2. Secondary fallback: Twilio
     client = get_twilio_client()
     if client:
         try:
@@ -1294,14 +1300,9 @@ def search_available_numbers(area_code: Optional[str] = "832", type: Optional[st
                     })
                 return {"success": True, "source": "twilio_live", "numbers": results}
         except Exception as e:
-            logger.warning(f"Twilio live number search failed, trying Telnyx: {e}")
+            logger.warning(f"Twilio live number search failed: {e}")
 
-    # 2. Try Telnyx Live search
-    telnyx_nums = search_telnyx_numbers(clean_code, is_toll_free, limit=limit)
-    if telnyx_nums:
-        return {"success": True, "source": "telnyx_live", "numbers": telnyx_nums}
-
-    # Fallback to curated Texas catalog
+    # 3. Fallback to curated Texas catalog
     fallback = TEXAS_CURATED_NUMBERS.get(clean_code) or TEXAS_CURATED_NUMBERS.get("832", [])
     formatted = []
     for f in fallback:
@@ -1319,6 +1320,7 @@ async def provision_customer_line(request: Request):
     """
     Automated line purchasing & multi-tenant provisioning endpoint.
     Invoked upon successful checkout or trial start.
+    Prioritizes Telnyx as default provider for ordering and auto-binding.
     """
     try:
         data = await request.json()
@@ -1338,41 +1340,37 @@ async def provision_customer_line(request: Request):
     if not selected_number or not email:
         return {"success": False, "error": "Selected phone number and email are required."}
 
-    client = get_twilio_client()
     purchased_sid = None
     purchase_mode = "simulated"
 
-    if client:
-        try:
-            logger.info(f"Provisioning real line {selected_number} on Twilio for {company_name} ({email})...")
-            purchased = client.incoming_phone_numbers.create(
-                phone_number=selected_number,
-                friendly_name=f"{company_name} ({plan.title()})",
-                voice_application_sid=TWILIO_TWIML_APP_SID,
-                sms_url=f"{PUBLIC_BASE_URL}/sms",
-                sms_method="POST",
-                voice_url=f"{PUBLIC_BASE_URL}/voice/inbound",
-                voice_method="POST"
-            )
-            purchased_sid = purchased.sid
-            purchase_mode = "twilio_live"
-            logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
-        except Exception as tw_err:
-            logger.error(f"Live Twilio number purchase notice: {tw_err}. Attempting Telnyx order...")
-            tel_ok, tel_res = order_telnyx_number(selected_number)
-            if tel_ok and isinstance(tel_res, dict):
-                purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
-                purchase_mode = "telnyx_live"
-                logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
-            else:
+    # 1. Primary: Order real line via Telnyx (Default Provider)
+    logger.info(f"Provisioning real line {selected_number} via Telnyx (default provider) for {company_name} ({email})...")
+    tel_ok, tel_res = order_telnyx_number(selected_number)
+    if tel_ok and isinstance(tel_res, dict):
+        purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+        purchase_mode = "telnyx_live"
+        logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
+    else:
+        logger.info(f"Telnyx order notice ({tel_res}). Attempting Twilio fallback...")
+        client = get_twilio_client()
+        if client:
+            try:
+                purchased = client.incoming_phone_numbers.create(
+                    phone_number=selected_number,
+                    friendly_name=f"{company_name} ({plan.title()})",
+                    voice_application_sid=TWILIO_TWIML_APP_SID,
+                    sms_url=f"{PUBLIC_BASE_URL}/sms",
+                    sms_method="POST",
+                    voice_url=f"{PUBLIC_BASE_URL}/voice/inbound",
+                    voice_method="POST"
+                )
+                purchased_sid = purchased.sid
+                purchase_mode = "twilio_live"
+                logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
+            except Exception as tw_err:
+                logger.error(f"Twilio order notice: {tw_err}. Setting up assigned virtual line...")
                 purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
                 purchase_mode = "assigned_existing"
-    else:
-        tel_ok, tel_res = order_telnyx_number(selected_number)
-        if tel_ok and isinstance(tel_res, dict):
-            purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
-            purchase_mode = "telnyx_live"
-            logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
         else:
             purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
             purchase_mode = "assigned_existing"

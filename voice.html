@@ -496,7 +496,7 @@
                             <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">1</span>
                             <span>Select Your Dedicated Phone Number</span>
                         </label>
-                        <span id="numbersLoadingIndicator" class="hidden text-[11px] text-blue-600 font-bold animate-pulse">Searching Twilio...</span>
+                        <span id="numbersLoadingIndicator" class="hidden text-[11px] text-blue-600 font-bold animate-pulse">Searching carrier pool...</span>
                     </div>
 
                     <!-- Region Selector Chips -->
@@ -2650,7 +2650,7 @@ Launching your Voice App & Call Forwarding portal...`);
             const listEl = document.getElementById('checkoutNumbersList');
             if (loader) loader.classList.remove('hidden');
             if (listEl) {
-                listEl.innerHTML = `<div class="p-3 text-center text-xs text-slate-400 font-semibold animate-pulse">Searching available numbers from Twilio carrier inventory...</div>`;
+                listEl.innerHTML = `<div class="p-3 text-center text-xs text-slate-400 font-semibold animate-pulse">Searching live carrier inventory...</div>`;
             }
 
             let numbers = [];
