@@ -98,10 +98,10 @@
                 <span class="text-[9px] bg-amber-400/20 text-amber-300 border border-amber-400/30 px-1.5 py-0.2 rounded font-black uppercase">15d Trial</span>
             </div>
 
-                        <!-- Install on Phone Button -->
-            <button onclick="openIosInstallModal()" class="hidden sm:flex items-center gap-1.5 text-xs bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/30 px-2.5 py-1 rounded-lg font-bold transition flex-shrink-0" title="Install on iPhone / Android Home Screen">
+                        <!-- Install on Phone Button (Visible on both Mobile & Desktop) -->
+            <button onclick="openIosInstallModal()" class="flex items-center gap-1.5 text-xs bg-cyan-500/25 hover:bg-cyan-500/35 text-cyan-200 border border-cyan-400/40 px-2.5 py-1 rounded-lg font-bold transition flex-shrink-0 shadow-sm" title="Install on iPhone / Android Home Screen">
                 <span>📲</span>
-                <span class="hidden md:inline">Install App</span>
+                <span>Install App</span>
             </button>
 
             <a href="voice.html" class="text-xs text-slate-300 hover:text-white flex items-center gap-1 font-semibold transition flex-shrink-0 px-1" title="Return to website">
@@ -2102,6 +2102,7 @@
         window.addEventListener('DOMContentLoaded', initApp);
     </script>
     <!-- iOS & Mobile Home Screen Installation Guide Modal -->
+    <!-- iOS & Mobile Home Screen Installation Guide Modal -->
     <div id="iosInstallModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200">
             <!-- Modal Header -->
@@ -2110,42 +2111,94 @@
                     &times;
                 </button>
                 <div class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-0.5 shadow-lg shadow-blue-500/30 flex items-center justify-center">
-                    <img src="apple-touch-icon.png" alt="Amestx Voice App Icon" class="w-full h-full rounded-2xl object-cover">
+                    <img src="apple-touch-icon.png" alt="Amestx Voice App Icon" class="w-full h-full rounded-2xl object-cover shadow-inner">
                 </div>
-                <h3 class="text-xl font-black tracking-tight text-white">Install Amestx Voice</h3>
-                <p class="text-xs text-cyan-200 mt-1">Add to your iPhone or Android home screen with official app icon</p>
+                <h3 class="text-xl font-black tracking-tight text-white">Add Dialer App to Phone</h3>
+                <p class="text-xs text-cyan-200 mt-1">Get the Amestx Voice app icon directly on your home screen</p>
+
+                <!-- Phone Platform Toggle Tabs -->
+                <div class="flex items-center justify-center gap-2 mt-4">
+                    <button type="button" id="tabInstallIos" onclick="switchInstallTab('ios')" class="px-4 py-1.5 rounded-full text-xs font-bold transition bg-white text-slate-900 shadow-sm flex items-center gap-1.5">
+                        <span>🍎</span>
+                        <span>iPhone (Safari)</span>
+                    </button>
+                    <button type="button" id="tabInstallAndroid" onclick="switchInstallTab('android')" class="px-4 py-1.5 rounded-full text-xs font-bold transition bg-white/15 text-slate-200 hover:bg-white/25 flex items-center gap-1.5">
+                        <span>🤖</span>
+                        <span>Android (Chrome)</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Modal Body: 3 Visual Steps -->
-            <div class="p-6 space-y-4 text-slate-700">
-                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+            <!-- TAB 1: iPhone Instructions -->
+            <div id="installPanelIos" class="p-6 space-y-3.5 text-slate-700">
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
                     <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
                     <div class="text-xs leading-relaxed">
-                        <strong class="text-slate-900 block text-sm">Tap the Share Button</strong>
-                        In Safari at the bottom of your iPhone screen, tap the <strong>Share</strong> icon (the square with an arrow pointing up <span class="text-blue-600 font-bold text-sm">⎋</span> or <span class="text-blue-600 font-bold text-sm">↑</span>).
+                        <strong class="text-slate-900 block text-sm">Open in Safari &amp; Tap Share</strong>
+                        In Safari on your iPhone, tap the <strong>Share</strong> button at the bottom (the square with an arrow pointing up <span class="text-blue-600 font-bold text-sm">⎋</span> or <span class="text-blue-600 font-bold text-sm">↑</span>).
                     </div>
                 </div>
 
-                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
                     <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
                     <div class="text-xs leading-relaxed">
                         <strong class="text-slate-900 block text-sm">Select "Add to Home Screen"</strong>
-                        Scroll down the menu options and tap <strong>Add to Home Screen</strong> (<span class="font-bold text-slate-900">＋</span>).
+                        Scroll down the menu list and tap <strong>Add to Home Screen</strong> (<span class="font-bold text-slate-900 text-sm">＋</span>).
                     </div>
                 </div>
 
-                <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
                     <div class="w-7 h-7 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
                     <div class="text-xs leading-relaxed">
-                        <strong class="text-slate-900 block text-sm">Tap "Add" in Top Right</strong>
-                        Confirm the app name <em>"Amestx Voice"</em> and tap <strong>Add</strong>.
+                        <strong class="text-slate-900 block text-sm">Tap "Add" in Top-Right</strong>
+                        Confirm the name <em>"Amestx Voice"</em> and tap <strong>Add</strong>.
                     </div>
                 </div>
 
-                <!-- Advantage Callout -->
                 <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 flex items-center gap-2">
                     <span class="text-base">🚀</span>
-                    <span><strong>Full-Screen App:</strong> Launches full screen without browser address bars, with one-tap access anytime!</span>
+                    <span><strong>Full-Screen Dialer:</strong> Launches full screen with no browser address bar, instant one-tap dialing!</span>
+                </div>
+
+                <button onclick="closeIosInstallModal()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-bold rounded-2xl transition shadow-md shadow-blue-500/20 text-sm">
+                    Got it!
+                </button>
+            </div>
+
+            <!-- TAB 2: Android Instructions -->
+            <div id="installPanelAndroid" class="hidden p-6 space-y-3.5 text-slate-700">
+                <button type="button" id="nativeAndroidInstallBtn" onclick="triggerNativeInstall()" class="hidden w-full py-3 bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white font-bold rounded-2xl transition shadow-md shadow-emerald-500/20 text-sm flex items-center justify-center gap-2">
+                    <span>📲</span>
+                    <span>Tap Here to Install App (1-Click)</span>
+                </button>
+
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Open in Chrome &amp; Tap Menu</strong>
+                        In Chrome on your Android phone, tap the <strong>3 vertical dots</strong> (<span class="font-bold text-slate-900 text-sm">⋮</span>) at the top-right corner.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Tap "Install App" / "Add to Home"</strong>
+                        Tap <strong>Install app</strong> (or <strong>Add to Home screen</strong>).
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="w-7 h-7 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="text-slate-900 block text-sm">Tap "Install" to Confirm</strong>
+                        The official <strong>Amestx Voice</strong> icon is added to your home screen and apps drawer!
+                    </div>
+                </div>
+
+                <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 flex items-center gap-2">
+                    <span class="text-base">🚀</span>
+                    <span><strong>Zero App Store Download:</strong> No 200MB app store download needed. Works 100% instantly!</span>
                 </div>
 
                 <button onclick="closeIosInstallModal()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-bold rounded-2xl transition shadow-md shadow-blue-500/20 text-sm">
@@ -2156,7 +2209,51 @@
     </div>
 
     <script>
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btn = document.getElementById('nativeAndroidInstallBtn');
+            if (btn) btn.classList.remove('hidden');
+        });
+
+        function triggerNativeInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    closeIosInstallModal();
+                });
+            }
+        }
+
+        function switchInstallTab(platform) {
+            const tabIos = document.getElementById('tabInstallIos');
+            const tabAndroid = document.getElementById('tabInstallAndroid');
+            const panelIos = document.getElementById('installPanelIos');
+            const panelAndroid = document.getElementById('installPanelAndroid');
+
+            if (platform === 'android') {
+                tabAndroid.className = 'px-4 py-1.5 rounded-full text-xs font-bold transition bg-white text-slate-900 shadow-sm flex items-center gap-1.5';
+                tabIos.className = 'px-4 py-1.5 rounded-full text-xs font-bold transition bg-white/15 text-slate-200 hover:bg-white/25 flex items-center gap-1.5';
+                panelAndroid.classList.remove('hidden');
+                panelIos.classList.add('hidden');
+            } else {
+                tabIos.className = 'px-4 py-1.5 rounded-full text-xs font-bold transition bg-white text-slate-900 shadow-sm flex items-center gap-1.5';
+                tabAndroid.className = 'px-4 py-1.5 rounded-full text-xs font-bold transition bg-white/15 text-slate-200 hover:bg-white/25 flex items-center gap-1.5';
+                panelIos.classList.remove('hidden');
+                panelAndroid.classList.add('hidden');
+            }
+        }
+
         function openIosInstallModal() {
+            // Auto-detect mobile platform and open relevant tab
+            const isAndroid = /android/i.test(navigator.userAgent || '');
+            if (isAndroid) {
+                switchInstallTab('android');
+            } else {
+                switchInstallTab('ios');
+            }
             document.getElementById('iosInstallModal').classList.remove('hidden');
         }
         function closeIosInstallModal() {
