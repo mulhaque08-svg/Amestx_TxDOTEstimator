@@ -234,31 +234,37 @@
                             <p class="text-xs text-slate-500 font-medium mt-1">Instant access to web dialer &amp; live AI translation. No credit card required.</p>
                         </div>
 
-                        <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" class="space-y-3.5">
+                        <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" autocomplete="off" class="space-y-3.5">
+                            <!-- Hidden decoy inputs to absorb aggressive browser credential autofill -->
+                            <div style="position:absolute; opacity:0; pointer-events:none; height:0; width:0; overflow:hidden;" aria-hidden="true">
+                                <input type="text" name="fake_username_autofill" tabindex="-1" autocomplete="username">
+                                <input type="password" name="fake_password_autofill" tabindex="-1" autocomplete="current-password">
+                            </div>
+
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
-                                    <input type="text" required placeholder="John" id="custFirstName" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <input type="text" required placeholder="John" id="custFirstName" autocomplete="given-name" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
-                                    <input type="text" required placeholder="Doe" id="custLastName" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <input type="text" required placeholder="Doe" id="custLastName" autocomplete="family-name" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Company / Organization *</label>
-                                <input type="text" required placeholder="Acme Logistics LLC" id="custCompany" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="text" required placeholder="Acme Logistics LLC" id="custCompany" autocomplete="organization" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
-                                    <input type="email" required placeholder="john@company.com" id="custEmail" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <input type="email" required placeholder="john@company.com" id="custEmail" autocomplete="off" oninput="this.dataset.userTyped='true'" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Phone *</label>
-                                    <input type="tel" required placeholder="(832) 555-0199" id="custPhone" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <input type="tel" required placeholder="(832) 555-0199" id="custPhone" autocomplete="tel" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                 </div>
                             </div>
 
@@ -269,7 +275,7 @@
                                     <span class="text-[10px] text-slate-400 font-medium">Min. 6 characters</span>
                                 </div>
                                 <div class="relative">
-                                    <input type="password" required minlength="6" placeholder="Create your login password" id="custPassword" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                    <input type="password" required minlength="6" placeholder="Create your login password" id="custPassword" autocomplete="new-password" oninput="this.dataset.userTyped='true'" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                     <button type="button" onclick="togglePasswordVisibility('custPassword', 'heroEyeBtn')" id="heroEyeBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-xs">
                                         👁️
                                     </button>
@@ -693,31 +699,37 @@
                         <p class="text-xs text-slate-500 mt-1">Get your dedicated line + real-time bilingual AI translation.</p>
                     </div>
 
-                    <form id="signupModalForm" onsubmit="handleSignupModalSubmit(event)" class="space-y-3">
+                    <form id="signupModalForm" onsubmit="handleSignupModalSubmit(event)" autocomplete="off" class="space-y-3">
+                        <!-- Hidden decoy inputs to absorb aggressive browser credential autofill -->
+                        <div style="position:absolute; opacity:0; pointer-events:none; height:0; width:0; overflow:hidden;" aria-hidden="true">
+                            <input type="text" name="fake_modal_username" tabindex="-1" autocomplete="username">
+                            <input type="password" name="fake_modal_password" tabindex="-1" autocomplete="current-password">
+                        </div>
+
                         <div class="grid grid-cols-2 gap-2.5">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
-                                <input type="text" id="signupFirstName" required placeholder="John" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="text" id="signupFirstName" required placeholder="John" autocomplete="given-name" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
-                                <input type="text" id="signupLastName" required placeholder="Doe" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="text" id="signupLastName" required placeholder="Doe" autocomplete="family-name" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">Company / Organization *</label>
-                            <input type="text" id="signupCompany" required placeholder="Acme Logistics LLC" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                            <input type="text" id="signupCompany" required placeholder="Acme Logistics LLC" autocomplete="organization" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
-                                <input type="email" id="signupEmail" required placeholder="john@company.com" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="email" id="signupEmail" required placeholder="john@company.com" autocomplete="off" oninput="this.dataset.userTyped='true'" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Phone *</label>
-                                <input type="tel" id="signupPhone" required placeholder="(832) 555-0199" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="tel" id="signupPhone" required placeholder="(832) 555-0199" autocomplete="tel" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                             </div>
                         </div>
 
@@ -728,7 +740,7 @@
                                 <span class="text-[10px] text-slate-400 font-medium">Min. 6 chars</span>
                             </div>
                             <div class="relative">
-                                <input type="password" id="signupPassword" required minlength="6" placeholder="Choose your account password" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
+                                <input type="password" id="signupPassword" required minlength="6" placeholder="Choose your account password" autocomplete="new-password" oninput="this.dataset.userTyped='true'" class="w-full text-xs font-medium bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 pr-10 text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 transition">
                                 <button type="button" onclick="togglePasswordVisibility('signupPassword', 'signupEyeBtn')" id="signupEyeBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 text-xs">
                                     👁️
                                 </button>
@@ -2015,8 +2027,32 @@
             }
         }
 
+        // Ensure trial sign-up fields remain blank by default (clears any browser password manager autofill)
+        function clearAutofilledTrialFields() {
+            const pairs = [
+                { email: 'custEmail', pass: 'custPassword' },
+                { email: 'signupEmail', pass: 'signupPassword' }
+            ];
+            pairs.forEach(pair => {
+                const e = document.getElementById(pair.email);
+                const p = document.getElementById(pair.pass);
+                if (e && !e.dataset.userTyped) e.value = '';
+                if (p && !p.dataset.userTyped) p.value = '';
+            });
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(clearAutofilledTrialFields, 50);
+            setTimeout(clearAutofilledTrialFields, 250);
+            setTimeout(clearAutofilledTrialFields, 600);
+        });
+
         // Auto-initialize background device for incoming calls & check admin URL key
         window.addEventListener('DOMContentLoaded', () => {
+            clearAutofilledTrialFields();
+            setTimeout(clearAutofilledTrialFields, 50);
+            setTimeout(clearAutofilledTrialFields, 200);
+
             const urlParams = new URLSearchParams(window.location.search);
             const adminKey = urlParams.get('admin');
             if (adminKey === 'Amestx2026' || adminKey === '844826') {
