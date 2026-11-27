@@ -181,7 +181,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Settings</span>
                 </button>
-                <button onclick="showNotification('📞 Amestx Priority Support: 1-844-826-3789 (Toll-Free)');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition" title="Help">
+                <button onclick="showNotification('📞 Amestx Priority Support: (346) 688-0017');" class="w-12 h-11 rounded-xl flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition" title="Help">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span class="text-[9px] font-medium text-slate-500 mt-0.5">Help</span>
                 </button>
@@ -233,9 +233,8 @@
                 </div>
                 <div class="relative">
                     <select id="callerIdSelect" onchange="handleCallerIdChange(this.value)" class="w-full bg-transparent hover:bg-slate-50 text-xs font-bold text-slate-800 outline-none cursor-pointer pr-2 py-1 border-b border-transparent hover:border-slate-300 transition">
-                        <option value="18322407667">★ (832) 240-7667 (USA Amtech Inc • Pro Bilingual)</option>
-                        <option value="13466880017">★ (346) 688-0017 (Telnyx Houston Line • SMS &amp; Voice)</option>
-                        <option value="18448263789">🔒 (844) 826-3789 (Amestx Master Line • Active)</option>
+                        <option value="13466880017">★ (346) 688-0017 (Amestx Master Line • Telnyx Houston)</option>
+                        <option value="18445438844">🔒 (844) 543-8844 (Amestx Toll-Free • In Verification)</option>
                         <option value="__ADD_NEW__" class="text-blue-600 font-bold">+ Purchase &amp; Add New Line ($29/mo)...</option>
                     </select>
                     
@@ -871,9 +870,9 @@
 
         function getActiveCallerId() {
             const select = document.getElementById('callerIdSelect');
-            if (!select) return { phone: "+18448263789", friendly: "(844) 826-3789" };
+            if (!select) return { phone: "+13466880017", friendly: "(346) 688-0017" };
             const opt = select.options[select.selectedIndex];
-            if (!opt) return { phone: "+18448263789", friendly: "(844) 826-3789" };
+            if (!opt) return { phone: "+13466880017", friendly: "(346) 688-0017" };
 
             // 1. Check dataset number
             if (opt.dataset && opt.dataset.number) {
@@ -910,7 +909,7 @@
                 return { phone: prim, friendly: formatPhoneNumber(prim) };
             }
 
-            return { phone: "+18448263789", friendly: "(844) 826-3789" };
+            return { phone: "+13466880017", friendly: "(346) 688-0017" };
         }
 
         function syncActiveCallerIdUI() {
@@ -929,7 +928,7 @@
             if (smsDisp) smsDisp.textContent = activeLine.friendly;
 
             // 4. Update sticky primary line in localStorage
-            if (activeLine.phone && activeLine.phone !== '+18448263789') {
+            if (activeLine.phone) {
                 localStorage.setItem('amestx_primary_line', activeLine.phone);
             }
         }
@@ -970,9 +969,8 @@
             try {
                 const saved = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
                 select.innerHTML = `
-                    <option value="18322407667">★ (832) 240-7667 (USA Amtech Inc • Pro Bilingual)</option>
-                    <option value="13466880017">★ (346) 688-0017 (Telnyx Houston Line • SMS &amp; Voice)</option>
-                    <option value="18448263789">🔒 (844) 826-3789 (Amestx Master Line • Active)</option>
+                    <option value="13466880017">★ (346) 688-0017 (Amestx Master Line • Telnyx Houston)</option>
+                    <option value="18445438844">🔒 (844) 543-8844 (Amestx Toll-Free • In Verification)</option>
                     <option value="__ADD_NEW__" class="text-blue-600 font-bold">+ Purchase &amp; Add New Line ($29/mo)...</option>
                 `;
 
@@ -1275,8 +1273,8 @@
                 return;
             }
 
-            // CHECK: Has this line been paid for?
-            if (activeLine.phone !== '+18448263789' && !paidLinesRegistry.includes(activeLine.phone) && !paidLinesRegistry.includes(activeLine.phone.replace(/\D/g, ''))) {
+            // CHECK: Has this line been paid for or active?
+            if (activeLine.phone !== '+13466880017' && !paidLinesRegistry.includes(activeLine.phone) && !paidLinesRegistry.includes(activeLine.phone.replace(/\D/g, ''))) {
                 const prim = localStorage.getItem('amestx_primary_line');
                 if (!prim || (prim !== activeLine.phone && !prim.includes(activeLine.phone.replace(/\D/g, '')))) {
                     showNotification("⚠️ Payment required ($29/mo) to activate and place calls from this line");
@@ -1954,7 +1952,7 @@
         let pendingCheckoutNumber = null;
         let pendingCheckoutLabel = null;
         let pendingCheckoutId = null;
-        let paidLinesRegistry = ['18448263789']; // Master admin line is paid & active
+        let paidLinesRegistry = ['13466880017', '18445438844', '18329407003', '17132508692', '13467608647', '14698980915', '15129578724']; // Telnyx Master Houston line, Toll-Free & Texas trial pool
 
         function goToPaymentCheckout() {
             const checked = document.querySelector('input[name="selectedNumberRadio"]:checked');

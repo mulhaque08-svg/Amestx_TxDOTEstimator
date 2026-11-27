@@ -2433,18 +2433,39 @@
             alert("❌ Account not found. Please click '15-Day Free Trial' above to create your free account in under 60 seconds!");
         }
 
-        // Register new customer trial record with password
+        // 5 Texas Trial Pool Numbers (Active on Telnyx - $0 carrier cost)
+        const TEXAS_TRIAL_NUMBERS = [
+            { number: "+18329407003", area: "832", label: "Houston (832) 940-7003" },
+            { number: "+17132508692", area: "713", label: "Houston (713) 250-8692" },
+            { number: "+13467608647", area: "346", label: "Houston (346) 760-8647" },
+            { number: "+14698980915", area: "469", label: "Dallas (469) 898-0915" },
+            { number: "+15129578724", area: "512", label: "Austin (512) 957-8724" }
+        ];
+
+        // Register new customer trial record with password & assign from Texas pool
         async function registerTrialRecord(userData) {
             const now = new Date();
             const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000);
+            const accountId = 'trial_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 6);
+
+            // Match preferred area from pool, or fallback to first Houston line
+            const requestedArea = (userData.areaCode || '832').toString();
+            let assigned = TEXAS_TRIAL_NUMBERS.find(n => n.area === requestedArea || (requestedArea === '214' && n.area === '469'));
+            if (!assigned) {
+                assigned = TEXAS_TRIAL_NUMBERS[0]; // +18329407003
+            }
+
             const trialObj = {
+                account_id: accountId,
                 firstName: userData.firstName,
                 lastName: userData.lastName,
-                company: userData.company,
+                company: userData.company || (userData.firstName + ' ' + userData.lastName),
                 email: userData.email,
                 phone: userData.phone,
                 password: userData.password,
-                areaCode: userData.areaCode || '844',
+                areaCode: requestedArea,
+                assigned_line: assigned.number,
+                assigned_line_label: assigned.label,
                 started_at: now.toISOString(),
                 expires_at: expiresAt.toISOString()
             };
@@ -2453,6 +2474,17 @@
             saveRegisteredUser(trialObj);
             localStorage.setItem('amestx_current_user', JSON.stringify(trialObj));
             localStorage.setItem('amestx_trial', JSON.stringify(trialObj));
+            localStorage.setItem('amestx_primary_line', assigned.number);
+            localStorage.setItem('amestx_subscribed', 'true');
+
+            // Save to paid/active lines list so voice-app dialer immediately recognizes this line
+            try {
+                let lines = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
+                if (!lines.some(l => l.number === assigned.number)) {
+                    lines.unshift({ id: accountId, number: assigned.number, label: `${trialObj.company} (${assigned.label})` });
+                    localStorage.setItem('amestx_paid_lines', JSON.stringify(lines));
+                }
+            } catch(e) {}
 
             // Sync with backend telemetry
             try {
@@ -2493,9 +2525,10 @@
             updateHeaderAuthState();
             alert(`🎉 Welcome to Amestx Voice, ${first}!
 
-Your 15-Day Free Trial is active for ${company}.
+Your 15-Day Free Trial is active for ${company || 'your business'}.
+Assigned Business Line: ${trial.assigned_line_label || trial.assigned_line}
 Launching your Voice App & Call Forwarding portal...`);
-            window.location.href = "voice-app.html";
+            window.location.href = `voice-app.html?account=${encodeURIComponent(trial.account_id)}&phone=${encodeURIComponent(trial.assigned_line)}&company=${encodeURIComponent(company)}`;
         }
 
         // Handle Hero Onboarding Form Submit
@@ -2524,9 +2557,10 @@ Launching your Voice App & Call Forwarding portal...`);
 
             alert(`🎉 Welcome to Amestx Voice, ${first}!
 
-Your 15-Day Free Trial is active for ${company}.
+Your 15-Day Free Trial is active for ${company || 'your business'}.
+Assigned Business Line: ${trial.assigned_line_label || trial.assigned_line}
 Launching your Voice App & Call Forwarding portal...`);
-            window.location.href = "voice-app.html";
+            window.location.href = `voice-app.html?account=${encodeURIComponent(trial.account_id)}&phone=${encodeURIComponent(trial.assigned_line)}&company=${encodeURIComponent(company)}`;
         }
 
         function logoutCustomer() {
