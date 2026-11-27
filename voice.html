@@ -442,20 +442,22 @@
     </section>
 
         <!-- Dedicated Business Line Selection & PayPal Checkout Modal -->
-    <div id="checkoutModal" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div id="checkoutModal" onclick="if(event.target === this) closeCheckoutModal()" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-xl w-full overflow-hidden relative my-auto">
-            
-            <!-- Close Button -->
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10">&times;</button>
 
             <!-- Header -->
-            <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-r from-blue-900 to-indigo-950 text-white">
+            <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-r from-blue-900 to-indigo-950 text-white relative">
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center space-x-2">
-                        <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xs">AV</div>
+                        <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-sm">AV</div>
                         <span class="text-sm font-extrabold tracking-tight">Amestx <span class="text-blue-300">Voice</span></span>
                     </div>
-                    <span id="checkoutPlanBadge" class="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full font-mono">Pro Bilingual • $29/mo</span>
+                    <div class="flex items-center space-x-2.5">
+                        <span id="checkoutPlanBadge" class="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full font-mono shadow-sm">Pro Bilingual • $29/mo</span>
+                        <button type="button" onclick="closeCheckoutModal()" title="Exit and return to homepage" class="text-white hover:text-white bg-white/20 hover:bg-white/35 active:scale-95 w-8 h-8 rounded-full flex items-center justify-center text-xl font-bold transition border border-white/20 shadow-sm" aria-label="Close modal">
+                            &times;
+                        </button>
+                    </div>
                 </div>
                 <h3 class="text-xl font-black tracking-tight text-white">Choose Your Business Line &amp; Activate</h3>
                 <p class="text-xs text-blue-200 mt-1">15-Day Free Trial • Instant Automated Provisioning • Zero Contracts</p>
@@ -571,6 +573,14 @@
                         </div>
 
                         <p class="text-[10px] text-center text-slate-400 mt-2.5">Zero contracts. Cancel anytime with 1 click. Instant automated line provisioning.</p>
+
+                        <!-- Exit / Return to Homepage Option -->
+                        <div class="pt-3 mt-2 border-t border-slate-100 text-center">
+                            <button type="button" onclick="closeCheckoutModal()" class="text-xs font-bold text-slate-500 hover:text-blue-600 transition py-2 px-4 rounded-xl hover:bg-slate-100 inline-flex items-center gap-2 border border-slate-200 shadow-sm">
+                                <span>&larr;</span>
+                                <span>Cancel &amp; Return to Homepage</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
 
@@ -579,11 +589,11 @@
     </div>
 
     <!-- RingCentral-Style Unified Authentication Modal (Log In & 15-Day Free Trial) -->
-    <div id="authModal" class="fixed inset-0 z-[90] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div id="authModal" onclick="if(event.target === this) closeAuthModal()" class="fixed inset-0 z-[90] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden relative my-auto">
             
             <!-- Modal Close Button -->
-            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-100 transition z-10">&times;</button>
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center transition z-10 shadow-sm" title="Close" aria-label="Close">&times;</button>
             
             <!-- Modal Brand Header -->
             <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
@@ -2563,6 +2573,15 @@ Launching your Voice App & Call Forwarding portal...`);
             const modal = document.getElementById('checkoutModal');
             if (modal) modal.classList.add('hidden');
         }
+
+        // Global escape key handler to easily exit open modals
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCheckoutModal();
+                if (typeof closeAuthModal === 'function') closeAuthModal();
+                if (typeof closeDialerModal === 'function') closeDialerModal();
+            }
+        });
 
         // Curated regional line catalog fallback
         const CLIENT_NUMBER_CATALOG = {
