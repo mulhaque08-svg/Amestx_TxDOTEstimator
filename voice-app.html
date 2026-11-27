@@ -117,7 +117,7 @@
     <div class="flex-1 flex overflow-hidden">
 
         <!-- Column 1: Slim Left Sidebar (Exact RingCentral Icons) -->
-        <aside class="w-16 bg-white border-r border-slate-200 flex flex-col items-center justify-between py-3 flex-shrink-0 z-20">
+        <aside id="columnSidebar" class="hidden md:flex w-16 bg-white border-r border-slate-200 flex-col items-center justify-between py-3 flex-shrink-0 z-20">
             <!-- Top Apps Navigation -->
             <div class="w-full flex flex-col items-center space-y-1">
                 <!-- Message -->
@@ -189,7 +189,19 @@
         </aside>
 
         <!-- Column 2: Phone Dialpad Panel (Exact RingCentral Middle Column) -->
-        <section class="w-72 sm:w-80 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 z-10">
+        <section id="columnPhone" class="w-full md:w-80 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 z-10">
+            <!-- Mobile Quick Switcher Bar (Only visible on mobile) -->
+            <div class="md:hidden px-4 py-2 bg-blue-50/90 border-b border-blue-100 flex items-center justify-between text-xs font-bold text-blue-900 flex-shrink-0">
+                <span class="flex items-center gap-1.5 text-blue-800">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                    <span>Dialer &amp; Calls</span>
+                </span>
+                <button type="button" onclick="showMobilePane('text')" class="px-3 py-1 bg-white hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg text-xs font-extrabold flex items-center gap-1 shadow-xs transition">
+                    <span>💬</span>
+                    <span>Messages &rarr;</span>
+                </button>
+            </div>
+
             <!-- Header: Phone + Icons -->
             <div class="px-5 pt-4 pb-2 flex items-center justify-between">
                 <h1 class="text-xl font-bold text-slate-900 tracking-tight">Phone</h1>
@@ -422,24 +434,29 @@
             </div>
         </section>
 
-        <!-- Column 3: Main Content Area (HUD | Call Forwarding | Favorites) -->
-        <main class="flex-1 bg-white overflow-y-auto custom-scrollbar flex flex-col">
+        <!-- Column 3: Main Content Area (HUD | Call Forwarding | Text SMS | Favorites) -->
+        <main id="columnMain" class="hidden md:flex flex-1 bg-white overflow-y-auto custom-scrollbar flex-col">
 
             <!-- Sub Header Tabs: HUD | Favorites | Call Forwarding -->
-            <div class="h-12 border-b border-slate-200 px-6 flex items-center justify-between flex-shrink-0">
-                <div class="flex items-center space-x-2">
-                    <button onclick="switchRightTab('hud')" id="tabHud" class="px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition">
-                        HUD
+            <div class="h-12 border-b border-slate-200 px-3 sm:px-6 flex items-center justify-between flex-shrink-0 bg-slate-50/50">
+                <div class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto custom-scrollbar">
+                    <!-- Mobile Back to Keypad Button (Only visible on mobile) -->
+                    <button onclick="showMobilePane('phone')" class="md:hidden px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-black transition flex items-center gap-1 flex-shrink-0 mr-1 shadow-sm" title="Back to Phone Keypad">
+                        <span>&larr;</span>
+                        <span>Keypad</span>
                     </button>
-                    <button onclick="switchRightTab('forwarding')" id="tabForwarding" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
-                        <span>Call Forwarding</span>
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    </button>
-                    <button onclick="switchRightTab('text')" id="tabText" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                    <button onclick="switchRightTab('text')" id="tabText" class="px-2.5 sm:px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition flex items-center gap-1.5 flex-shrink-0">
                         <span>Text (SMS)</span>
                         <span class="text-[9px] bg-blue-100 text-blue-700 font-extrabold px-1.5 py-0.2 rounded-full">AI</span>
                     </button>
-                    <button onclick="switchRightTab('favorites')" id="tabFavorites" class="px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition">
+                    <button onclick="switchRightTab('forwarding')" id="tabForwarding" class="px-2.5 sm:px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-bold flex items-center gap-1.5 transition flex-shrink-0">
+                        <span>Forwarding</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </button>
+                    <button onclick="switchRightTab('hud')" id="tabHud" class="px-2.5 sm:px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition flex-shrink-0">
+                        HUD
+                    </button>
+                    <button onclick="switchRightTab('favorites')" id="tabFavorites" class="hidden sm:inline-block px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition flex-shrink-0">
                         Favorites
                     </button>
                 </div>
@@ -808,6 +825,33 @@
         </main>
     </div>
 
+    <!-- Mobile Bottom Navigation Bar (Visible only on screens < 768px) -->
+    <nav class="md:hidden flex items-center justify-around bg-white border-t border-slate-200 h-16 flex-shrink-0 z-40 px-2 shadow-lg">
+        <!-- Phone / Keypad -->
+        <button id="mobileNavPhone" onclick="showMobilePane('phone')" class="flex flex-col items-center justify-center flex-1 py-1 text-blue-600 font-bold transition">
+            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.053 15.053 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.5 3.93c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.55c0-.55-.45-1-.99-1z"/></svg>
+            <span class="text-[10px] mt-0.5">Phone</span>
+        </button>
+
+        <!-- Text / SMS -->
+        <button id="mobileNavText" onclick="showMobilePane('text')" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 font-medium transition">
+            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            <span class="text-[10px] mt-0.5">Text (SMS)</span>
+        </button>
+
+        <!-- Forwarding -->
+        <button id="mobileNavForwarding" onclick="showMobilePane('forwarding')" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 font-medium transition">
+            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span class="text-[10px] mt-0.5">Forwarding</span>
+        </button>
+
+        <!-- HUD / Dashboard -->
+        <button id="mobileNavHud" onclick="showMobilePane('hud')" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 font-medium transition">
+            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            <span class="text-[10px] mt-0.5">HUD</span>
+        </button>
+    </nav>
+
     <!-- Notification Toast -->
     <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-bold">
         <span class="text-emerald-400 text-base">✓</span>
@@ -1083,19 +1127,72 @@
             });
         }
 
-        function switchRightTab(tab) {
+        let currentMobilePane = 'phone';
+
+        function showMobilePane(pane) {
+            currentMobilePane = pane;
+            const colPhone = document.getElementById('columnPhone');
+            const colMain = document.getElementById('columnMain');
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                if (pane === 'phone') {
+                    if (colPhone) { colPhone.classList.remove('hidden'); colPhone.classList.add('flex', 'w-full'); }
+                    if (colMain) { colMain.classList.add('hidden'); colMain.classList.remove('flex', 'w-full'); }
+                } else {
+                    if (colPhone) { colPhone.classList.add('hidden'); colPhone.classList.remove('flex', 'w-full'); }
+                    if (colMain) { colMain.classList.remove('hidden'); colMain.classList.add('flex', 'w-full'); }
+                    switchRightTab(pane, false);
+                }
+            } else {
+                if (colPhone) { colPhone.classList.remove('hidden', 'w-full'); colPhone.classList.add('flex'); }
+                if (colMain) { colMain.classList.remove('hidden', 'w-full'); colMain.classList.add('flex'); }
+                if (pane !== 'phone') switchRightTab(pane, false);
+            }
+
+            // Update bottom nav highlighting
+            ['phone', 'text', 'forwarding', 'hud'].forEach(p => {
+                const btn = document.getElementById(`mobileNav${p.charAt(0).toUpperCase() + p.slice(1)}`);
+                if (btn) {
+                    const svg = btn.querySelector('svg');
+                    if (p === pane) {
+                        btn.className = "flex flex-col items-center justify-center flex-1 py-1 text-blue-600 font-bold transition";
+                        if (svg) {
+                            svg.classList.remove('text-slate-500');
+                            svg.classList.add('text-blue-600');
+                        }
+                    } else {
+                        btn.className = "flex flex-col items-center justify-center flex-1 py-1 text-slate-500 font-medium transition";
+                        if (svg) {
+                            svg.classList.remove('text-blue-600');
+                            svg.classList.add('text-slate-500');
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchRightTab(tab, triggerMobile = true) {
+            if (triggerMobile && window.innerWidth < 768) {
+                showMobilePane(tab);
+                return;
+            }
             ['hud', 'forwarding', 'favorites', 'text'].forEach(t => {
                 const btn = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}`);
                 const view = document.getElementById(`view${t.charAt(0).toUpperCase() + t.slice(1)}`);
                 if (t === tab) {
-                    if (btn) btn.className = "px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition";
+                    if (btn) btn.className = "px-2.5 sm:px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold transition flex-shrink-0";
                     if (view) view.classList.remove('hidden');
                 } else {
-                    if (btn) btn.className = "px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition";
+                    if (btn) btn.className = "px-2.5 sm:px-3 py-1 text-slate-600 hover:text-slate-900 rounded-lg text-xs font-semibold transition flex-shrink-0";
                     if (view) view.classList.add('hidden');
                 }
             });
         }
+
+        window.addEventListener('resize', function() {
+            showMobilePane(currentMobilePane);
+        });
 
         function switchPhoneTab(tab) {
             ['keypad', 'calls', 'voicemail', 'recordings'].forEach(t => {
@@ -1379,7 +1476,7 @@
             if (kpNum && kpNum.value.trim() && smsRecip) {
                 smsRecip.value = kpNum.value.trim();
             }
-            switchRightTab('text');
+            showMobilePane('text');
             showNotification("💬 Opened Text & Client SMS");
         }
 
