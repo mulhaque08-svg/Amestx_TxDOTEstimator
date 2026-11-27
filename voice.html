@@ -447,14 +447,21 @@
 
             <!-- Header -->
             <div class="px-6 pt-6 pb-4 border-b border-slate-100 bg-gradient-to-r from-blue-900 to-indigo-950 text-white relative">
-                <div class="flex items-center justify-between mb-2">
-                    <div class="flex items-center space-x-2">
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <!-- Left: Brand -->
+                    <div class="flex items-center space-x-2 flex-shrink-0">
                         <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-sm">AV</div>
                         <span class="text-sm font-extrabold tracking-tight">Amestx <span class="text-blue-300">Voice</span></span>
                     </div>
-                    <div class="flex items-center space-x-2.5">
-                        <span id="checkoutPlanBadge" class="text-[10px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-2.5 py-1 rounded-full font-mono shadow-sm">Pro Bilingual • $29/mo</span>
-                        <button type="button" onclick="closeCheckoutModal()" title="Exit and return to homepage" class="text-white hover:text-white bg-white/20 hover:bg-white/35 active:scale-95 w-8 h-8 rounded-full flex items-center justify-center text-xl font-bold transition border border-white/20 shadow-sm" aria-label="Close modal">
+
+                    <!-- Center: Plan Badge -->
+                    <div class="flex-1 flex justify-center">
+                        <span id="checkoutPlanBadge" class="text-[10px] sm:text-xs font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-3 py-1 rounded-full font-mono shadow-md text-center whitespace-nowrap">Pro Bilingual • $29/mo</span>
+                    </div>
+
+                    <!-- Right: High-Visibility Red Close Button -->
+                    <div class="flex-shrink-0">
+                        <button type="button" onclick="closeCheckoutModal()" title="Close and return to homepage" class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 active:scale-95 text-white flex items-center justify-center text-xl font-black shadow-lg transition" aria-label="Close modal">
                             &times;
                         </button>
                     </div>
@@ -464,7 +471,7 @@
             </div>
 
             <!-- Form Content -->
-            <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto custom-scrollbar">
+            <div class="p-6 space-y-5 max-h-[70vh] overflow-y-auto custom-scrollbar">
                 
                 <!-- STEP 1: Number Selection -->
                 <div>
@@ -573,17 +580,18 @@
                         </div>
 
                         <p class="text-[10px] text-center text-slate-400 mt-2.5">Zero contracts. Cancel anytime with 1 click. Instant automated line provisioning.</p>
-
-                        <!-- Exit / Return to Homepage Option -->
-                        <div class="pt-3 mt-2 border-t border-slate-100 text-center">
-                            <button type="button" onclick="closeCheckoutModal()" class="text-xs font-bold text-slate-500 hover:text-blue-600 transition py-2 px-4 rounded-xl hover:bg-slate-100 inline-flex items-center gap-2 border border-slate-200 shadow-sm">
-                                <span>&larr;</span>
-                                <span>Cancel &amp; Return to Homepage</span>
-                            </button>
-                        </div>
                     </div>
                 </form>
 
+            </div>
+
+            <!-- Fixed Bottom Exit Footer Bar (Always visible without scrolling) -->
+            <div class="px-6 py-3.5 bg-slate-100 border-t border-slate-200 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-500">Need help? Call <a href="tel:18448263789" class="text-blue-600 font-bold hover:underline">1-844-826-3789</a></span>
+                <button type="button" onclick="closeCheckoutModal()" class="text-xs font-bold text-slate-700 hover:text-white bg-white hover:bg-red-600 border border-slate-300 hover:border-red-600 transition py-1.5 px-3.5 rounded-xl shadow-sm inline-flex items-center gap-1.5">
+                    <span>&larr;</span>
+                    <span>Exit &amp; Return to Homepage</span>
+                </button>
             </div>
         </div>
     </div>
