@@ -85,20 +85,20 @@
                 <span class="hidden sm:inline">Add Line</span>
             </button>
 
-            <!-- Call Forwarding Status Pill -->
-            <div id="topForwardingPill" class="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold cursor-pointer hover:bg-emerald-500/30 transition shadow-sm flex-shrink-0" onclick="switchRightTab('forwarding')" title="Click to configure Call Forwarding">
+            <!-- Call Forwarding Status Pill (Hidden on mobile screens to keep bar clean) -->
+            <div id="topForwardingPill" class="hidden sm:flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold cursor-pointer hover:bg-emerald-500/30 transition shadow-sm flex-shrink-0" onclick="switchRightTab('forwarding')" title="Click to configure Call Forwarding">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
-                <span class="hidden sm:inline text-slate-300 font-medium">Forwarding:</span>
-                <strong id="topForwardingNumberDisplay" class="text-emerald-200 font-mono text-[11px]">ACTIVE &rarr; (832) 837-9801</strong>
+                <span class="text-slate-300 font-medium">Forwarding:</span>
+                <strong id="topForwardingNumberDisplay" class="text-emerald-200 font-mono text-[11px]">Not Configured</strong>
             </div>
 
             <!-- Customer User Pill -->
             <div class="hidden md:flex items-center space-x-1.5 text-slate-300 text-xs flex-shrink-0">
-                <span id="topUserDisplay" class="font-bold text-white">Mohsin</span>
+                <span id="topUserDisplay" class="font-bold text-white">My Account</span>
                 <span class="text-[9px] bg-amber-400/20 text-amber-300 border border-amber-400/30 px-1.5 py-0.2 rounded font-black uppercase">15d Trial</span>
             </div>
 
-                        <!-- Install on Phone Button (Visible on both Mobile & Desktop) -->
+            <!-- Install on Phone Button (Visible on both Mobile & Desktop) -->
             <button onclick="openIosInstallModal()" class="flex items-center gap-1.5 text-xs bg-cyan-500/25 hover:bg-cyan-500/35 text-cyan-200 border border-cyan-400/40 px-2.5 py-1 rounded-lg font-bold transition flex-shrink-0 shadow-sm" title="Install on iPhone / Android Home Screen">
                 <span>📲</span>
                 <span>Install App</span>
@@ -111,6 +111,22 @@
                 Sign Out
             </button>
         </div>
+    </div>
+
+    <!-- Mobile Screen Quick Install Banner (Prominent on iPhone & Android) -->
+    <div id="mobileInstallBanner" class="md:hidden bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white px-3.5 py-2 flex items-center justify-between border-b border-blue-500/40 shadow-sm">
+        <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-white/10 p-0.5 flex items-center justify-center flex-shrink-0">
+                <img src="apple-touch-icon.png" alt="Icon" class="w-6 h-6 rounded-md object-cover">
+            </div>
+            <div class="leading-tight">
+                <span class="text-xs font-black text-white block">Add Dialer to Phone Screen</span>
+                <span class="text-[10px] text-blue-200">Tap for instant 1-tap mobile app icon</span>
+            </div>
+        </div>
+        <button type="button" onclick="openIosInstallModal()" class="px-3 py-1 bg-amber-400 hover:bg-amber-300 active:scale-95 text-slate-950 font-black text-xs rounded-xl shadow-md transition flex items-center gap-1">
+            <span>Install 📲</span>
+        </button>
     </div>
 
     <!-- Main 3-Column Interface (Exact RingCentral Layout) -->
@@ -428,7 +444,7 @@
                 <span class="text-slate-500 font-semibold text-[11px]">Forwarding:</span>
                 <button onclick="switchRightTab('forwarding')" class="text-emerald-700 font-extrabold text-[11px] hover:underline flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span id="keypadForwardStatus">Mobile (832) 837-9801</span>
+                    <span id="keypadForwardStatus">Set Forwarding Cell</span>
                 </button>
             </div>
         </section>
@@ -624,10 +640,10 @@
                             <label class="text-xs font-bold text-slate-700">Enter Your Personal Mobile Cell Phone:</label>
                             <div class="relative flex items-center w-full">
                                 <span class="absolute left-3.5 text-slate-400 text-xs font-mono select-none">🇺🇸 +1</span>
-                                <input id="forwardPhoneInput" type="tel" value="(832) 837-9801" placeholder="(555) 000-0000" class="w-full pl-12 pr-4 py-2.5 text-sm font-bold text-slate-900 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white outline-none transition font-mono shadow-xs">
+                                <input id="forwardPhoneInput" type="tel" value="" placeholder="(555) 000-0000" class="w-full pl-12 pr-4 py-2.5 text-sm font-bold text-slate-900 bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 focus:bg-white outline-none transition font-mono shadow-xs">
                             </div>
                             <div class="flex items-center justify-between gap-3 pt-1">
-                                <p class="text-[11px] text-slate-500">Inbound calls to (844) 826-3789 forward here.</p>
+                                <p class="text-[11px] text-slate-500">Inbound calls to your business line forward here.</p>
                                 <button onclick="saveForwardingConfig(true)" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold rounded-lg shadow-sm transition flex-shrink-0">
                                     Save Number
                                 </button>
@@ -805,7 +821,7 @@
                     </form>
                     <div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 px-1">
                         <span>📲 2-way client texting with zero alert popups</span>
-                        <span class="text-emerald-600 font-bold">✓ Forwarded to personal cell (832) 837-9801</span>
+                        <span class="text-emerald-600 font-bold">✓ 2-Way SMS forwarded to cell phone</span>
                     </div>
                 </div>
             </div>
@@ -860,8 +876,8 @@
     <script>
         // Load data on start
         let fwdState = {
-            enabled: true,
-            phone: "(832) 837-9801",
+            enabled: false,
+            phone: "",
             backup: "",
             strategy: "simultaneous",
             ai: true,
@@ -1047,6 +1063,22 @@
                 setTimeout(() => testCallForwardingSimulation(), 1200);
             }
 
+            // Load user profile from localStorage if present
+            try {
+                const uStr = localStorage.getItem('amestx_current_user');
+                if (uStr) {
+                    const u = JSON.parse(uStr);
+                    const topUser = document.getElementById('topUserDisplay');
+                    if (topUser && (u.company || u.firstName)) {
+                        topUser.textContent = u.company || u.firstName;
+                    }
+                    if (u.phone && !fwdState.phone) {
+                        fwdState.phone = u.phone;
+                        fwdState.enabled = true;
+                    }
+                }
+            } catch(e) {}
+
             try {
                 const stored = localStorage.getItem('amestx_call_forwarding');
                 if (stored) {
@@ -1074,8 +1106,12 @@
             if (tog) tog.checked = fwdState.enabled;
             if (aiTog) aiTog.checked = fwdState.ai;
             if (smsTog) smsTog.checked = fwdState.sms;
-            if (topDisp) topDisp.textContent = fwdState.enabled ? `ACTIVE → ${fwdState.phone}` : "DISABLED";
-            if (kpDisp) kpDisp.textContent = fwdState.enabled ? `Mobile ${fwdState.phone}` : "Off";
+            if (topDisp) {
+                topDisp.textContent = (fwdState.enabled && fwdState.phone) ? `ACTIVE → ${fwdState.phone}` : (fwdState.phone ? "PAUSED" : "Not Set");
+            }
+            if (kpDisp) {
+                kpDisp.textContent = (fwdState.enabled && fwdState.phone) ? `Mobile ${fwdState.phone}` : "Set Forwarding Cell";
+            }
 
             const radios = document.getElementsByName('ringStrategyRadio');
             for (let r of radios) {
@@ -2367,29 +2403,29 @@
                 <form id="paymentForm" onsubmit="handleProcessPayment(event)" class="space-y-3.5">
                     <div>
                         <label class="text-xs font-bold text-slate-700 block mb-1">Cardholder Full Name</label>
-                        <input id="cardholderName" type="text" required placeholder="John Doe" value="Mohsin Ulhaque" class="w-full px-3.5 py-2.5 text-xs font-semibold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition">
+                        <input id="cardholderName" type="text" required placeholder="Cardholder Full Name" value="" class="w-full px-3.5 py-2.5 text-xs font-semibold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition">
                     </div>
 
                     <div>
                         <label class="text-xs font-bold text-slate-700 block mb-1">Card Number (Visa, Mastercard, Amex)</label>
                         <div class="relative flex items-center">
                             <span class="absolute left-3.5 text-slate-400 text-sm">💳</span>
-                            <input id="cardNumber" type="text" required maxlength="19" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" value="4242 8819 0293 4102" class="w-full pl-10 pr-3.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition">
+                            <input id="cardNumber" type="text" required maxlength="19" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" value="" class="w-full pl-10 pr-3.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-3 gap-2.5">
                         <div>
                             <label class="text-xs font-bold text-slate-700 block mb-1">Expires (MM/YY)</label>
-                            <input id="cardExpiry" type="text" required maxlength="5" placeholder="MM/YY" value="08/29" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
+                            <input id="cardExpiry" type="text" required maxlength="5" placeholder="MM/YY" value="" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
                         </div>
                         <div>
                             <label class="text-xs font-bold text-slate-700 block mb-1">CVC Code</label>
-                            <input id="cardCvc" type="password" required maxlength="4" placeholder="CVC" value="382" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
+                            <input id="cardCvc" type="password" required maxlength="4" placeholder="CVC" value="" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
                         </div>
                         <div>
                             <label class="text-xs font-bold text-slate-700 block mb-1">Billing ZIP</label>
-                            <input id="cardBillingZip" type="text" required maxlength="5" placeholder="ZIP" value="78205" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
+                            <input id="cardBillingZip" type="text" required maxlength="5" placeholder="77001" value="" class="w-full px-2.5 py-2.5 text-xs font-mono font-bold text-slate-900 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-center">
                         </div>
                     </div>
 
