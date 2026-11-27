@@ -1315,12 +1315,101 @@ def search_available_numbers(area_code: Optional[str] = "832", type: Optional[st
         })
     return {"success": True, "source": "curated_pool", "numbers": formatted}
 
+# ==========================================
+# AMESTX ACTIVE TEXAS TRIAL POOL (5 Lines)
+# Pre-allocated on Telnyx for 15-day free trials ($0 carrier cost per new trial)
+# ==========================================
+TRIAL_NUMBER_POOL = [
+    {
+        "phone_number": "+18329407003",
+        "friendly_name": "(832) 940-7003",
+        "locality": "Houston (832)",
+        "region": "TX",
+        "area_code": "832",
+        "type": "Texas Trial Line (832)",
+        "id": "d14e1efe-8a09-470f-9646-d0115fa8573b"
+    },
+    {
+        "phone_number": "+17132508692",
+        "friendly_name": "(713) 250-8692",
+        "locality": "Houston (713)",
+        "region": "TX",
+        "area_code": "713",
+        "type": "Texas Trial Line (713)",
+        "id": "34340df8-2f23-4292-8cdf-5e673c105090"
+    },
+    {
+        "phone_number": "+13467608647",
+        "friendly_name": "(346) 760-8647",
+        "locality": "Houston (346)",
+        "region": "TX",
+        "area_code": "346",
+        "type": "Texas Trial Line (346)",
+        "id": "1c14fcc3-5dbd-44de-8e4b-c55c534427cb"
+    },
+    {
+        "phone_number": "+14698980915",
+        "friendly_name": "(469) 898-0915",
+        "locality": "Dallas (469)",
+        "region": "TX",
+        "area_code": "469",
+        "type": "Texas Trial Line (469)",
+        "id": "08d90f70-f5fb-41b4-ba84-99f3ba012fbf"
+    },
+    {
+        "phone_number": "+15129578724",
+        "friendly_name": "(512) 957-8724",
+        "locality": "Austin (512)",
+        "region": "TX",
+        "area_code": "512",
+        "type": "Texas Trial Line (512)",
+        "id": "323242a0-f189-46c0-bd26-43e01dec0e5b"
+    }
+]
+
+def assign_trial_pool_number(preferred_number: str = "") -> dict:
+    """
+    Assigns an active line from our pre-purchased 5-line Texas Trial Pool.
+    Eliminates carrier charges for free-trial signups.
+    """
+    trials = load_trials()
+    now = datetime.datetime.now(datetime.timezone.utc)
+
+    occupied = set()
+    for t in trials:
+        if t.get("status") == "active":
+            exp_str = t.get("expires_at")
+            if exp_str:
+                try:
+                    exp_dt = datetime.datetime.fromisoformat(exp_str)
+                    if exp_dt > now:
+                        occupied.add(t.get("phone_number"))
+                except Exception:
+                    pass
+
+    # If preferred number is directly in pool and available
+    clean_pref = re.sub(r'[^0-9]', '', preferred_number or '')
+    for item in TRIAL_NUMBER_POOL:
+        item_clean = re.sub(r'[^0-9]', '', item["phone_number"])
+        if clean_pref and (clean_pref in item_clean) and item["phone_number"] not in occupied:
+            return item
+
+    # Find next unoccupied pool number
+    for item in TRIAL_NUMBER_POOL:
+        if item["phone_number"] not in occupied:
+            return item
+
+    # If all occupied, rotate across pool
+    idx = len(trials) % len(TRIAL_NUMBER_POOL)
+    return TRIAL_NUMBER_POOL[idx]
+
 @app.post("/api/checkout/provision")
 async def provision_customer_line(request: Request):
     """
     Automated line purchasing & multi-tenant provisioning endpoint.
     Invoked upon successful checkout or trial start.
-    Prioritizes Telnyx as default provider for ordering and auto-binding.
+    Free trials are assigned from the pre-allocated Texas Trial Pool ($0 carrier cost).
+    Paid checkouts order dedicated lines on Telnyx.
     """
     try:
         data = await request.json()
@@ -1343,37 +1432,47 @@ async def provision_customer_line(request: Request):
     purchased_sid = None
     purchase_mode = "simulated"
 
-    # 1. Primary: Order real line via Telnyx (Default Provider)
-    logger.info(f"Provisioning real line {selected_number} via Telnyx (default provider) for {company_name} ({email})...")
-    tel_ok, tel_res = order_telnyx_number(selected_number)
-    if tel_ok and isinstance(tel_res, dict):
-        purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
-        purchase_mode = "telnyx_live"
-        logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
+    is_trial = paypal_order_id.startswith("PAYPAL-TRIAL") or (data.get("is_trial") is True) or (plan in ["trial", "free_trial"])
+
+    if is_trial:
+        # 1. FREE TRIAL: Assign from the pre-allocated 5-line Texas Trial Pool ($0 carrier cost!)
+        pool_item = assign_trial_pool_number(selected_number)
+        selected_number = pool_item["phone_number"]
+        purchased_sid = pool_item["id"]
+        purchase_mode = "trial_pool"
+        logger.info(f"Assigned Texas Trial Pool line {selected_number} to {company_name} ({email}) - zero carrier cost.")
     else:
-        logger.info(f"Telnyx order notice ({tel_res}). Attempting Twilio fallback...")
-        client = get_twilio_client()
-        if client:
-            try:
-                purchased = client.incoming_phone_numbers.create(
-                    phone_number=selected_number,
-                    friendly_name=f"{company_name} ({plan.title()})",
-                    voice_application_sid=TWILIO_TWIML_APP_SID,
-                    sms_url=f"{PUBLIC_BASE_URL}/sms",
-                    sms_method="POST",
-                    voice_url=f"{PUBLIC_BASE_URL}/voice/inbound",
-                    voice_method="POST"
-                )
-                purchased_sid = purchased.sid
-                purchase_mode = "twilio_live"
-                logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
-            except Exception as tw_err:
-                logger.error(f"Twilio order notice: {tw_err}. Setting up assigned virtual line...")
+        # 2. PAID SUBSCRIPTION: Order real dedicated line via Telnyx (Default Provider)
+        logger.info(f"Provisioning real line {selected_number} via Telnyx (default provider) for paid customer {company_name} ({email})...")
+        tel_ok, tel_res = order_telnyx_number(selected_number)
+        if tel_ok and isinstance(tel_res, dict):
+            purchased_sid = tel_res.get("id", f"TLX_{uuid.uuid4().hex[:8]}")
+            purchase_mode = "telnyx_live"
+            logger.info(f"Successfully ordered Telnyx number {selected_number} (ID: {purchased_sid})")
+        else:
+            logger.info(f"Telnyx order notice ({tel_res}). Attempting Twilio fallback...")
+            client = get_twilio_client()
+            if client:
+                try:
+                    purchased = client.incoming_phone_numbers.create(
+                        phone_number=selected_number,
+                        friendly_name=f"{company_name} ({plan.title()})",
+                        voice_application_sid=TWILIO_TWIML_APP_SID,
+                        sms_url=f"{PUBLIC_BASE_URL}/sms",
+                        sms_method="POST",
+                        voice_url=f"{PUBLIC_BASE_URL}/voice/inbound",
+                        voice_method="POST"
+                    )
+                    purchased_sid = purchased.sid
+                    purchase_mode = "twilio_live"
+                    logger.info(f"Successfully purchased Twilio number {selected_number} (SID: {purchased_sid})")
+                except Exception as tw_err:
+                    logger.error(f"Twilio order notice: {tw_err}. Setting up assigned virtual line...")
+                    purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
+                    purchase_mode = "assigned_existing"
+            else:
                 purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
                 purchase_mode = "assigned_existing"
-        else:
-            purchased_sid = f"PN_assigned_{uuid.uuid4().hex[:8]}"
-            purchase_mode = "assigned_existing"
 
     now = datetime.datetime.now(datetime.timezone.utc)
     expires_at = now + datetime.timedelta(days=15)

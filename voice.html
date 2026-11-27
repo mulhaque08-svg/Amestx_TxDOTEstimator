@@ -2643,31 +2643,29 @@ Launching your Voice App & Call Forwarding portal...`);
             }
         });
 
-        // Curated regional line catalog fallback
+        // Active Texas Trial Pool & Regional line catalog
         const CLIENT_NUMBER_CATALOG = {
             '832': [
-                { phone_number: '+18324106674', friendly_name: '(832) 410-6674', locality: 'Houston', type: 'Local Texas Line' },
-                { phone_number: '+18324005699', friendly_name: '(832) 400-5699', locality: 'Houston/Alvin', type: 'Local Texas Line' },
-                { phone_number: '+18329984120', friendly_name: '(832) 998-4120', locality: 'Houston/Katy', type: 'Local Texas Line' },
-                { phone_number: '+18327793040', friendly_name: '(832) 779-3040', locality: 'Houston/Sugar Land', type: 'Local Texas Line' }
+                { phone_number: '+18329407003', friendly_name: '(832) 940-7003', locality: 'Houston (832)', type: 'Texas Trial Line' },
+                { phone_number: '+18324106674', friendly_name: '(832) 410-6674', locality: 'Houston Metro', type: 'Local Texas Line' },
+                { phone_number: '+18324005699', friendly_name: '(832) 400-5699', locality: 'Houston/Alvin', type: 'Local Texas Line' }
             ],
             '713': [
+                { phone_number: '+17132508692', friendly_name: '(713) 250-8692', locality: 'Houston (713)', type: 'Texas Trial Line' },
                 { phone_number: '+17135892211', friendly_name: '(713) 589-2211', locality: 'Houston Downtown', type: 'Local Texas Line' },
-                { phone_number: '+17134907812', friendly_name: '(713) 490-7812', locality: 'Houston Galleria', type: 'Local Texas Line' },
-                { phone_number: '+17136009840', friendly_name: '(713) 600-9840', locality: 'Houston Heights', type: 'Local Texas Line' }
+                { phone_number: '+17134907812', friendly_name: '(713) 490-7812', locality: 'Houston Galleria', type: 'Local Texas Line' }
             ],
             '210': [
-                { phone_number: '+12108901234', friendly_name: '(210) 890-1234', locality: 'San Antonio', type: 'Local Texas Line' },
-                { phone_number: '+12107764490', friendly_name: '(210) 776-4490', locality: 'San Antonio Metro', type: 'Local Texas Line' }
+                { phone_number: '+14698980915', friendly_name: '(469) 898-0915', locality: 'Texas North/DFW', type: 'Texas Trial Line' },
+                { phone_number: '+12108901234', friendly_name: '(210) 890-1234', locality: 'San Antonio', type: 'Local Texas Line' }
             ],
             '512': [
-                { phone_number: '+15124009182', friendly_name: '(512) 400-9182', locality: 'Austin', type: 'Local Texas Line' },
-                { phone_number: '+15126883100', friendly_name: '(512) 688-3100', locality: 'Austin Tech Corridor', type: 'Local Texas Line' }
+                { phone_number: '+15129578724', friendly_name: '(512) 957-8724', locality: 'Austin (512)', type: 'Texas Trial Line' },
+                { phone_number: '+15124009182', friendly_name: '(512) 400-9182', locality: 'Austin Central', type: 'Local Texas Line' }
             ],
             '844': [
-                { phone_number: '+18448263789', friendly_name: '(844) 826-3789', locality: 'Nationwide', type: 'Toll-Free Line' },
-                { phone_number: '+18443329011', friendly_name: '(844) 332-9011', locality: 'Nationwide', type: 'Toll-Free Line' },
-                { phone_number: '+18447091200', friendly_name: '(844) 709-1200', locality: 'Nationwide', type: 'Toll-Free Line' }
+                { phone_number: '+18445438844', friendly_name: '(844) 543-8844', locality: 'Nationwide (Telnyx)', type: 'Toll-Free Line' },
+                { phone_number: '+18448263789', friendly_name: '(844) 826-3789', locality: 'Nationwide', type: 'Toll-Free Line' }
             ]
         };
 
