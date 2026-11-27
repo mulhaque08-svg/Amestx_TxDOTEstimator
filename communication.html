@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Communication Enrollment — USA Amtech Inc / Amestx</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'DM Sans', sans-serif; background-color: #0d1117; color: #e6edf3; }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto bg-gray-900 border border-gray-800 rounded-2xl p-8 sm:p-12 shadow-2xl">
+        <div class="mb-8 border-b border-gray-800 pb-6 flex items-center justify-between">
+            <div>
+                <a href="/" class="text-2xl font-bold text-amber-400 tracking-wider">USA AMTECH INC / AMESTX</a>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">SMS Communication Enrollment</h1>
+            </div>
+            <a href="/" class="text-sm font-medium text-gray-400 hover:text-white transition">← Home</a>
+        </div>
+
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+            USA Amtech Inc and Amestx Voice provide operational 2-way dispatch notifications, bilingual translation alerts, and jobsite status updates for civil engineering project managers, clients, and subcontractor field personnel.
+        </p>
+
+        <!-- Opt-in Web Form -->
+        <form onsubmit="event.preventDefault(); document.getElementById('successMsg').classList.remove('hidden');" class="space-y-5 bg-gray-800/60 border border-gray-700/60 p-6 rounded-xl">
+            <div>
+                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">Full Name</label>
+                <input type="text" required placeholder="John Doe" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">Company / Subcontractor Name</label>
+                <input type="text" required placeholder="Acme Construction LLC" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1">Mobile Phone Number</label>
+                <input type="tel" required placeholder="(832) 555-0123" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 font-mono">
+            </div>
+
+            <!-- Mandatory CTIA / Carrier Opt-In Consent Checkbox -->
+            <div class="pt-2">
+                <label class="flex items-start gap-3 cursor-pointer">
+                    <input type="checkbox" required checked class="mt-1 w-4 h-4 text-amber-500 rounded bg-gray-950 border-gray-700 focus:ring-amber-400">
+                    <span class="text-xs text-gray-300 leading-relaxed">
+                        I agree to receive operational SMS updates, dispatch notifications, and customer care messages from <strong>USA Amtech Inc</strong> (Amestx Voice). Message frequency varies based on project activity. Message and data rates may apply. Text <strong>HELP</strong> for assistance, or reply <strong>STOP</strong> at any time to unsubscribe. View our <a href="/terms.html" class="text-amber-400 underline" target="_blank">Terms of Service</a> and <a href="/privacy.html" class="text-amber-400 underline" target="_blank">Privacy Policy</a>.
+                    </span>
+                </label>
+            </div>
+
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 font-bold text-gray-950 py-3 rounded-lg text-sm transition">
+                Subscribe to Operational Updates
+            </button>
+
+            <div id="successMsg" class="hidden p-3 bg-emerald-950/60 border border-emerald-600/40 text-emerald-200 text-xs rounded-lg text-center font-medium">
+                ✅ Thank you! Your mobile number has been enrolled for project updates.
+            </div>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-gray-800 text-xs text-gray-400 space-y-2">
+            <p><strong>Customer Care & Support:</strong> info@amestx.com | Phone: (844) 826-3789</p>
+            <p><strong>Address:</strong> 8700 Woodlands Parkway 230-507, The Woodlands, TX 77382</p>
+            <p><strong>Privacy Promise:</strong> No mobile opt-in data will be shared with third parties or affiliates for marketing purposes.</p>
+        </div>
+    </div>
+</body>
+</html>
