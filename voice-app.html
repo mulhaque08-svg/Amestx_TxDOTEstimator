@@ -227,7 +227,7 @@
             <div class="px-5 pt-3 pb-1">
                 <div class="flex items-center justify-between mb-1">
                     <span class="text-[11px] text-slate-500 font-medium">My caller ID:</span>
-                    <button onclick="openPurchaseNumberModal()" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1" title="Get a dedicated toll-free or local Texas line">
+                    <button id="getNewLineBtn" onclick="openPurchaseNumberModal()" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 hover:underline flex items-center gap-1" title="Get a dedicated toll-free or local Texas line">
                         <span>+ Get New Line</span>
                     </button>
                 </div>
@@ -935,10 +935,46 @@
         }
 
         function loadSavedPaidLines() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const actPhone = urlParams.get('phone');
+            const actCompany = decodeURIComponent(urlParams.get('company') || 'My Business');
+            const isAdmin = urlParams.get('admin') === 'true' || localStorage.getItem('amestx_is_admin') === 'true';
+
+            const select = document.getElementById('callerIdSelect');
+            if (!select) return;
+
+            // ==========================================
+            // STRICT TENANT ISOLATION:
+            // When a client logs in, NEVER leak other clients' numbers!
+            // ==========================================
+            if (actPhone && !isAdmin) {
+                const formatted = formatPhoneNumber(actPhone);
+                select.innerHTML = `<option value="${actPhone}" selected>★ ${formatted} (${actCompany})</option>`;
+                select.disabled = true;
+                select.classList.remove('cursor-pointer');
+                select.classList.add('cursor-default');
+
+                // Hide "+ Get New Line" button for regular customers so they can't browse other lines
+                const getLineBtn = document.getElementById('getNewLineBtn');
+                if (getLineBtn) getLineBtn.style.display = 'none';
+
+                // Display customer company name in header
+                const topUser = document.getElementById('topUserDisplay');
+                if (topUser) topUser.textContent = actCompany;
+
+                syncActiveCallerIdUI();
+                return;
+            }
+
+            // ADMIN / OWNER VIEW (Master view for testing all lines):
             try {
                 const saved = JSON.parse(localStorage.getItem('amestx_paid_lines') || '[]');
-                const select = document.getElementById('callerIdSelect');
-                if (!select) return;
+                select.innerHTML = `
+                    <option value="18322407667">★ (832) 240-7667 (USA Amtech Inc • Pro Bilingual)</option>
+                    <option value="13466880017">★ (346) 688-0017 (Telnyx Houston Line • SMS &amp; Voice)</option>
+                    <option value="18448263789">🔒 (844) 826-3789 (Amestx Master Line • Active)</option>
+                    <option value="__ADD_NEW__" class="text-blue-600 font-bold">+ Purchase &amp; Add New Line ($29/mo)...</option>
+                `;
 
                 saved.forEach(item => {
                     if (typeof paidLinesRegistry !== 'undefined') {
